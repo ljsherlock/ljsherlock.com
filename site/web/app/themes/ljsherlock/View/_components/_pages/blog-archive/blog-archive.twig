@@ -1,0 +1,260 @@
+{# ------------------------------------------------------
+ * Twig template for Blog Archive
+ *
+ * @docs http://twig.sensiolabs.org/doc/2.x/
+ *
+ * @uses tags: include, import, for, set
+ * @uses filters: slice, length
+ * @uses macros: createHTMLTag
+ *
+
+ // submit form (mobile only)
+ // show results (do query for post with the terms)
+ // clear filters
+ // print articles
+
+ ------------------------------------------------------ #}
+
+{# import the macro createHTMLTag #}
+{% import 'el.twig' as el %}
+
+{# ------------------------------------------------------
+ * set variable to contain category checkboxes
+ ------------------------------------------------------ #}
+
+{% set cat_checkboxes %}
+
+<div class="grid grid--col grid--gutter-lg-bottom">
+
+   <div class="block--is-mobile">
+      <div class="grid-desktop grid-desktop--row grid-desktop--gutter-md-right
+      grid-mobile grid-mobile--col grid-mobile--gutter-sm-bottom">
+         <div class="grid-desktop__50-of-100 grid grid--col grid--gutter-sm-bottom">
+
+            {% for item in tags.terms|slice( 0, tags.terms|length / 2 ) %}
+
+               <div class="gird__100-of-100">
+                  {{ el.createHTMLTag('label', { for: item.slug }, [{ block: 'blog-archive', element: 'label' }], item.name ) }}
+                  {{ el.createHTMLTag( 'input', { type: 'checkbox', value: item.slug, name: tags.name ~ '[]', id: item.slug },
+                  [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+               </div>
+
+            {% endfor %}
+
+         </div>
+         <div class="grid-desktop__50-of-100 grid grid--col grid--gutter-sm-bottom">
+
+            {% for item in tags.terms|slice( tags.terms|length / 2 ) %}
+
+               <div class="gird__100-of-100">
+                  {{ el.createHTMLTag('label', { for: item.slug }, [{ block: 'blog-archive', element: 'label' }], item.name ) }}
+                  {{ el.createHTMLTag( 'input', { type: 'checkbox', value: item.slug, name: tags.name ~ '[]', id: item.slug },
+                  [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+               </div>
+
+            {% endfor %}
+
+         </div>
+      </div>
+   </div>
+
+   <div class="filter--mobile grid grid--row grid--gutter-xs-right">
+      <div class="grid__50-of-100">
+         {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+      </div>
+      <div class="grid__50-of-100">
+         {{ el.createHTMLTag( 'a', { id: 'clearCatFilters' }, [{ block: 'filter', element: 'mobile-clear' }], 'clear filters' ) }}
+      </div>
+   </div>
+
+</div>
+
+{% endset %}
+
+{# ------------------------------------------------------
+ * set variable to contain tag checkboxes
+ ------------------------------------------------------ #}
+
+{% set tag_checkboxes %}
+
+   <div class="grid grid--col grid--gutter-lg-bottom">
+
+      <div class="block--is-mobile">
+         <div class="grid-desktop grid-desktop--row grid-desktop--gutter-md-right
+         grid-mobile grid-mobile--col grid-mobile--gutter-sm-bottom">
+            <div class="grid-desktop__50-of-100 grid grid--col grid--gutter-sm-bottom">
+
+               {% for item in cats.terms|slice( 0, cats.terms|length / 2 ) %}
+
+                  <div class="gird__100-of-100">
+                     {{ el.createHTMLTag('label', { for: item.slug }, [{ block: 'blog-archive', element: 'label' }], item.name ) }}
+                     {{ el.createHTMLTag( 'input', { type: 'checkbox', value: item.slug, name: cats.name ~ '[]', id: item.slug },
+                     [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+                  </div>
+
+               {% endfor %}
+
+            </div>
+            <div class="grid-desktop__50-of-100 grid grid--col grid--gutter-sm-bottom">
+
+               {% for item in cats.terms|slice( cats.terms|length / 2 ) %}
+
+                  <div class="grid-desktop__50-of-100 gird__100-of-100">
+                     {{ el.createHTMLTag('label', { for: item.slug }, [{ block: 'blog-archive', element: 'label' }], item.name ) }}
+                     {{ el.createHTMLTag( 'input', { type: 'checkbox', value: item.slug, name: cats.name ~ '[]', id: item.slug },
+                     [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+                  </div>
+
+               {% endfor %}
+
+            </div>
+         </div>
+      </div>
+
+      <div class="filter--mobile grid grid--row grid--gutter-xs-right">
+         <div class="grid__50-of-100">
+            {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+         </div>
+         <div class="grid__50-of-100">
+            {{ el.createHTMLTag( 'a', { id: 'clearTagFilters' }, [{ block: 'filter', element: 'mobile-clear' }], 'clear filters' ) }}
+         </div>
+      </div>
+
+   </div>
+{% endset %}
+
+{# ------------------------------------------------------
+ * set variable to contain year checkboxes
+ ------------------------------------------------------ #}
+
+{% set year_checkboxes %}
+
+   <div class="grid grid--col grid--gutter-lg-bottom">
+      <div class="block--is-mobile">
+         <div class="grid-desktop grid-desktop--col grid-desktop--gutter-xs-bottom">
+            <div class="grid-desktop grid-desktop--row grid-desktop--gutter-sm-right">
+
+               {% for item in years.terms %}
+
+                  <div class="grid-desktop__25-of-100">
+
+                     {{ el.createHTMLTag('label', { for: item }, [{ block: 'blog-archive', element: 'label' }], item ) }}
+                     {{ el.createHTMLTag( 'input', { type: 'checkbox', value: item, name: 'years[]', id: item },
+                     [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+
+                  </div>
+
+                  {% if loop.index % 4 == 0 and not loop.last %}
+                     </div>
+                     <div class="grid-desktop grid-desktop--row grid-desktop--gutter-sm-right">
+                  {% endif %}
+
+                  {% if loop.last %}
+
+                     {% if loop.index % 4 != 0 %}
+                        {% set num = (loop.index % 4) == 3 ? 1 : (loop.index % 4) == 2 ? 2 : (loop.index % 4) == 1 ? 3 : 0 %}
+                        {% for item in 1..num %}
+                           <div class="grid-desktop__25-of-100"></div>
+                        {% endfor %}
+                     {% endif %}
+
+                     </div>
+
+                  {% endif %}
+
+               {% endfor %}
+
+         </div>
+      </div>
+
+      <div class="filters--mobile grid grid--row grid--gutter-xs-right">
+         <div class="grid__50-of-100">
+            {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+         </div>
+         <div class="grid__50-of-100">
+            {{ el.createHTMLTag( 'a', { id: 'clearYearFilters' }, [{ block: 'filter', element: 'mobile-clear' }], 'clear filters' ) }}
+         </div>
+      </div>
+   </div>
+
+{% endset %}
+
+
+{# ------------------------------------------------------
+ * Main template
+ ------------------------------------------------------ #}
+
+<div class="main-content page two-cols">
+    <div class="blog-archive">
+        <div class="blog-archive__form">
+           <form class="" action="" method="post">
+
+               <div class="blog-archive__keyword wrap--break-sm">
+                   <input type="text" name="blog__archive-search" placeholder="Search the archive:" class="blog-archive__search-field">
+               </div>
+
+               <div class="blog-archive__clear wrap--break-sm">
+                   <a href="#" class="btn btn--"></a>
+               </div>
+
+               <div class="blog-archive__filter wrap--break-md">
+                  <div class="wrap--break-sm grid-desktop grid-desktop--row grid-desktop--gutter-md-right
+                  grid-mobile grid-mobile--col grid-mobile--gutter-sm-bottom">
+                     <div class="grid-desktop__50-of-100 blog-archive__tags">
+
+                        {# include the variable block defined above #}
+                        {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion', modifier: ['mobile'] }],  accordionButtonHTML: cats.labels.name, accordionContentHTML: cat_checkboxes } %}
+
+                     </div>
+                     <div class="grid-desktop__50-of-100 blog-archive__categories">
+
+                        {# include the variable block defined above #}
+                        {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion', modifier: ['mobile'] }], accordionButtonHTML: tags.labels.name , accordionContentHTML: tag_checkboxes } %}
+
+                     </div>
+                  </div>
+                  <div class="blog-archive__years">
+
+                     {# include the variable block defined above #}
+                      {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion', modifier: ['mobile'] }], accordionButtonHTML: years.name , accordionContentHTML: year_checkboxes } %}
+
+                   </div>
+               </div>
+
+           </form>
+        </div>
+        <div class="blog-archive__results blog-archive__results--present">
+           <hr class="break-line">
+           <div class="grid grid--col grid--gutter-sm-bottom">
+             <h2><span>{{ posts|length }}</span> Matching articles found</h2>
+             <div class="articles">
+               {% if posts %}
+               <div class="grid grid--col grid--gutter-sm-bottom">
+                   {% for post in posts %}
+                      <div class="articles__article">
+                           <a href="{{ post.link }}">
+                             <article class="post blog-post">
+                                 <div class="grid grid--col grid--gutter-xs-bottom">
+                                    <div class="grid__100-of-100">
+                                        <h1>{{post.post_title}}</h1>
+                                    </div>
+                                    <div class="grid__100-of-100">
+                                        <small class="date"> 19 Jun, 2017</small>
+                                    </div>
+                                    <div class="grid__100-of-100">
+                                        <p>{{post.post_excerpt}}</p>
+                                    </div>
+                                 </div>
+                             </article>
+                          </a>
+                      </div>
+                      <hr class="break-line"/>
+                   {% endfor %}
+                </div>
+               {% endif %}
+             </div>
+           </div>
+        </div>
+    </div>
+
+</div>

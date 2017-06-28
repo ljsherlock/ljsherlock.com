@@ -1,0 +1,55 @@
+/*---------------------------------------------*\
+*    ACCORDION
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %accordion
+    {
+        %accordion__button
+        {
+            background-color: $white;
+            &:hover
+            {
+                background-color: $white;
+            }
+            %button__text
+            {
+                color: $black;
+                @include em(30);
+            }
+            %accordion__minus
+            {
+                opacity: 0;
+            }
+            %svg
+            {
+                fill: $black;
+                @include transition(.3s all cubic-bezier(0.250, 0.460, 0.450, 0.940));
+            }
+        }
+        %accordion__content
+        {
+            @include transition(1s all cubic-bezier(0.250, 0.460, 0.450, 0.940));
+        }
+    }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    .accordion { @extend %accordion; }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+
+    .accordion__button { @extend %accordion__button; }
+    .accordion__content { @extend %accordion__content; }
+    .button__text { @extend %button__text; }
+    .accordion__minus { @extend %accordion__minus; }
+
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/
