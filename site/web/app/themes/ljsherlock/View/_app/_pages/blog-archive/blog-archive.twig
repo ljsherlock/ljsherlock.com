@@ -22,7 +22,7 @@
  * set variable to contain category checkboxes
  ------------------------------------------------------ #}
 
-{% set cat_checkboxes %}
+{% set tag_checkboxes %}
 
 <div class="grid grid--col grid--gutter-lg-bottom">
 
@@ -75,7 +75,7 @@
  * set variable to contain tag checkboxes
  ------------------------------------------------------ #}
 
-{% set tag_checkboxes %}
+{% set cat_checkboxes %}
 
    <div class="grid grid--col grid--gutter-lg-bottom">
 
@@ -189,8 +189,8 @@
         <div class="blog-archive__form">
            <form class="" action="" method="post">
 
-               <div class="blog-archive__keyword wrap--break-sm">
-                   <input type="text" name="blog__archive-search" placeholder="Search the archive:" class="blog-archive__search-field">
+               <div class="wrap--break-sm">
+                   <input type="text" name="blog-archive__keyword" placeholder="Search the archive:" class="blog-archive__keyword">
                </div>
 
                <div class="blog-archive__clear wrap--break-sm">
@@ -223,38 +223,7 @@
 
            </form>
         </div>
-        <div class="blog-archive__results blog-archive__results--present">
-           <hr class="break-line">
-           <div class="grid grid--col grid--gutter-sm-bottom">
-             <h2><span>{{ posts|length }}</span> Matching articles found</h2>
-             <div class="articles">
-               {% if posts %}
-               <div class="grid grid--col grid--gutter-sm-bottom">
-                   {% for post in posts %}
-                      <div class="articles__article">
-                           <a href="{{ post.link }}">
-                             <article class="post blog-post">
-                                 <div class="grid grid--col grid--gutter-xs-bottom">
-                                    <div class="grid__100-of-100">
-                                        <h1>{{post.post_title}}</h1>
-                                    </div>
-                                    <div class="grid__100-of-100">
-                                        <small class="date"> 19 Jun, 2017</small>
-                                    </div>
-                                    <div class="grid__100-of-100">
-                                        <p>{{post.post_excerpt}}</p>
-                                    </div>
-                                 </div>
-                             </article>
-                          </a>
-                      </div>
-                      <hr class="break-line"/>
-                   {% endfor %}
-                </div>
-               {% endif %}
-             </div>
-           </div>
-        </div>
+        {% include '_organisms/blog-archive-results/blog-archive-results.twig' %}
     </div>
 
 </div>

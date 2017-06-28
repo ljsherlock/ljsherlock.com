@@ -2,10 +2,15 @@ define(['Util'], function( Util )
 {
 
     return {
-        put: function( json, success, fail )
+        put: function( url, json, success, fail )
         {
-            var xhr = new XMLHttpRequest();
-            xhr.open('PUT', json.url + '?action=' + json.action );
+            var xhr = new XMLHttpRequest(),
+            str = Object.keys(json).map(function(key)
+            {
+                return encodeURIComponent(key) + '=' + encodeURIComponent(json[key]);
+            }).join('&');
+
+            xhr.open('PUT', url + '?' + str );
             xhr.setRequestHeader("Content-Type", "application/json");
 
             if( json != '' )

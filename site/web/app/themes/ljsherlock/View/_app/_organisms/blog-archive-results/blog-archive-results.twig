@@ -1,0 +1,14 @@
+
+<div class="blog-archive__results blog-archive__results--present">
+   <hr class="break-line">
+   <div class="grid grid--col grid--gutter-sm-bottom">
+     <h2><span>{{ posts|length }}</span> Matching articles found</h2>
+     <div class="articles">
+       {% if posts %}
+       <div class="grid grid--col grid--gutter-sm-bottom">
+         {% include '_organisms/blog-archive-posts/blog-archive-posts.twig' %}
+        </div>
+       {% endif %}
+     </div>
+   </div>
+</div>

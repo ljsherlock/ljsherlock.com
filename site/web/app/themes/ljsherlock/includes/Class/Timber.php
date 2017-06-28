@@ -17,7 +17,7 @@ class WPTimber
 
     public static function initialize()
     {
-        \Timber\Timber::$dirname = array(  'View/_macros', 'View/_components' );
+        \Timber\Timber::$dirname = array(  'View/_macros', 'View/_components', 'View/_app' );
 
         // \Routes::map('news-views/:name', function($params)
         // {

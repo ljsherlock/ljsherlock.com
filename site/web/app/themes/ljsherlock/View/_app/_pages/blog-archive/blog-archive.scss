@@ -1,0 +1,22 @@
+%blog-archive
+{
+    height: auto;
+    %articles
+    {
+        %articles__article
+        {
+            a
+            {
+                text-decoration: none;
+            }
+        }
+        hr {
+            left: initial; right: initial;
+            top: initial; bottom: initial;
+        }
+    }
+}
+
+.blog-archive { @extend %blog-archive; }
+.articles { @extend %articles; }
+.articles__article { @extend %articles__article; }

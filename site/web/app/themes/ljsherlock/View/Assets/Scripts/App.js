@@ -19,7 +19,8 @@ define([ "Util", 'Config' ], function( Util, appConfig )
 
 		init : function()
 		{
-			if( Util.detectDevice().isMobile == true )
+			// Accordion for mobile only.
+			if( Util.detectDevice().isMobile == false )
 			{
 				require(['../../_components/_molecules/accordion/accordion'], function(accordion)
 				{
@@ -34,10 +35,10 @@ define([ "Util", 'Config' ], function( Util, appConfig )
 				});
 
 			} else {
-
-				require(['../../_components/_pages/blog-archive/blog-archive'], function(blogArchive)
+				// Ajax form for desktop and tablet only.
+				require(['../../_app/_pages/blog-archive/blog-archive'], function(blogArchive)
 				{
-					blogArchive.form(document.querySelectorAll('.blog-archive__checkbox, .blog-archive__keyword'), document.querySelector('.articles'));
+					blogArchive.form(document.querySelectorAll('.blog-archive__checkbox'), document.querySelector('.blog-archive__results'));
 				});
 
 			}

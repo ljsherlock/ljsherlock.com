@@ -112,11 +112,15 @@ class WPSearch
         );
         $wp_query = new \WP_Query( $args );
         $sql = "SELECT ID FROM wp_posts
-        WHERE (
-            wp_posts.post_type = 'post'";
-        foreach($post_types as $post_type)
+        WHERE (";
+
+        foreach($post_types as $key => $post_type)
         {
-            $sql .= " OR wp_posts.post_type = '". $post_type ."' ";
+            $query = "wp_posts.post_type = '";
+            if($key > 0) {
+                $query = " OR wp_posts.post_type = '";
+            }
+            $sql .= $query . $post_type ."' ";
         }
 
         $sql .= ") AND wp_posts.post_status = 'publish'";

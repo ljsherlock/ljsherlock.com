@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         sass: {
             build: {
                 files: {
-                 'css/style.css': 'View/main.scss'
+                 'View/CSS/style.css': 'View/main.scss'
                 }
             }
         },
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
            },
            target: {
                files: {
-                   'css/style.min.css' : 'css/style.css'
+                   'View/CSS/style.min.css' : 'View/CSS/style.css'
                }
            }
        },
@@ -109,9 +109,12 @@ module.exports = function(grunt) {
            files: [
              '*.php',
              'View/_components/*.twig',
+             'View/_app/*.twig',
              'View/_macros/*.twig',
              'View/_components/**/*.twig',
              'View/_components/***/*.twig',
+             'View/_app/**/*.twig',
+             'View/_app/***/*.twig',
            ],
            options: {
              spawn: false,
@@ -121,35 +124,39 @@ module.exports = function(grunt) {
 
          // Run build to compile SCSS and minify result
          styles: {
-           files: [
-              'View_components/*.scss',
-              'View_components/**/*.scss',
-              'View_components/**/**/*.scss',
-              'View_components/**/**/**/*.scss',
+            files: [
+              'View/_components/*.scss',
+              'View/_components/**/*.scss',
+              'View/_components/**/**/*.scss',
+              'View/_components/**/**/**/*.scss',
+              'View/_components/*.scss',
+              'View/_app/**/*.scss',
+              'View/_app/**/**/*.scss',
+              'View/_app/**/**/**/*.scss',
             ],
-           tasks: [ 'build' ],
-           options: {
-             spawn: false,
-             livereload: true
-           }
-        },
-
-        // Run Uglify to minify JS
-        js:
-        {
-           files:
-           [
-                'View/Assets/Scripts/*.js',
-                'View/Assets/Scripts/*/*.js',
-                'View/_components/*/*/*.js'
-           ],
-           tasks: [ 'requirejs' ],
-            options:
-            {
+            tasks: [ 'build' ],
+            options: {
                 spawn: false,
                 livereload: true
             }
         },
+
+        // Run Uglify to minify JS
+        // js:
+        // {
+        //    files:
+        //    [
+        //         'View/Assets/Scripts/*.js',
+        //         'View/Assets/Scripts/*/*.js',
+        //         'View/_components/*/*/*.js'
+        //    ],
+        //    tasks: [ 'requirejs' ],
+        //     options:
+        //     {
+        //         spawn: false,
+        //         livereload: true
+        //     }
+        // },
 
         // optimize SVG
         svg:

@@ -38,42 +38,48 @@ class ArchivesFilter
         }
         $this->years['name'] = "Years";
 
-        add_action('wp_ajax_archivesFilterSearch', array(__CLASS__, 'search') );
-        add_action('wp_ajax_nopriv_archivesFilterSearch', array(__CLASS__, 'search') );
     }
 
-    public function search($filters)
+    public function search_ajax($filters)
     {
-        if( !isset($filters) )
+        $request_body = file_get_contents('php://input');
+        $data = json_decode($request_body);
+
+        $posts = self::filterQuery( $data->post ) ;
+
+        // compile timber tmpl.
+        echo \Timber::compile( '_organisms/blog-archive-results/blog-archive-results.twig', array('posts' => $posts ) );
+        die();
+    }
+
+    private static function filterQuery($filters)
+    {
+        $tax_query = [];
+        $year_query = [];
+
+        $prop = 'post_tag[]';
+        if( isset( $filters->$prop) )
         {
-            $request_body = file_get_contents('php://input');
-            $filters = json_decode($request_body);
-        }
-        // WPSearch::search_posts( $term );
-        echo $this->filterQuery($filters);
-    }
-
-    private function filterQuery($filters)
-    {
-        $tax_query = array('relation' => 'OR');
-        $year_query = array('relation' => 'OR');
-
-        if( isset( $filters['post_tag'] ) ) {
+            $tags = $filters->$prop;
             array_push( $tax_query,
-                array( 'taxonomy' => 'post_tag', 'field' => 'slug', 'terms' => $filters['post_tag'] )
+                array( 'taxonomy' => 'post_tag', 'field' => 'slug', 'terms' => get_object_vars($tags) )
             );
         }
 
-        if( isset( $filters['category'] ) ) {
+        $prop = 'category[]';
+        if( isset( $filters->$prop ) )
+        {
+            $categories = $filters->$prop;
             array_push( $tax_query,
-                array( 'taxonomy' => 'tag', 'field' => 'slug', 'terms' => $filters['category'] )
+                array( 'taxonomy' => 'category', 'field' => 'slug', 'terms' => get_object_vars($categories))
             );
         }
 
-        if( isset( $filters['years )'] ) )
+        $prop = 'years[]';
+        if( isset( $filters->$prop ) )
         {
-            $year_query = array('relation' => 'OR');
-            foreach ($filters['years'] as $year)
+            $years = $filters->$prop;
+            foreach( $years as $year)
             {
                 array_push( $year_query,
                     array( 'year' => $year )
@@ -81,15 +87,29 @@ class ArchivesFilter
             }
         }
 
-        // search for posts with terms
-        $args = array(
-            'post_type' => 'post',
-            "orderby"   => "post_date",
-            "order"     => "ASC",
-            'tax_query' => $tax_query,
-            'date_query' => $year_query,
-        );
+        if( !empty($tax_query) || !empty($year_query) || !empty($filters->keyword) )
+        {
+            $args = array(
+                'post_type' => 'post',
+                "orderby"   => "post_date",
+                "order"     => "ASC"
+            );
+            if( !empty($tax_query) || !empty($year_query) )
+            {
+                array_push( $tax_query, array('relation' => 'OR') );
+                array_push( $year_query, array('relation' => 'OR') );
+                array_push($args, array( 'tax_query' => $tax_query ) );
+                array_push($args, array('date_query' => $year_query) );
+            }
+            if( !empty($filters->keyword) )
+            {
+                $args = array_merge( $args, array( 's' => $filters->keyword ) );
+            }
+        }
 
+        var_dump($args);
+
+        // search for posts with terms
         return \Timber::get_posts( $args );
     }
 }
