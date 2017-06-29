@@ -23,7 +23,11 @@ define(['Util'], function( Util )
             {
                 if (xhr.status === 200)
                 {
-                    success(xhr.responseText);
+                    if( typeof success === 'function' ) {
+                        success(xhr.responseText);
+                    } else {
+                        return xhr.responseText;
+                    }
                 }
                 else if (xhr.status !== 200)
                 {

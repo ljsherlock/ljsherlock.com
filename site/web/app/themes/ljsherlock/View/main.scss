@@ -27,7 +27,7 @@ please run "grunt watch" in the theme directory and change the .scss files in th
 /*------------------------------------*\
  *  LAYOUT
 \*------------------------------------*/
-    @import "layout/all";
+    @import "_components/layout/all";
 /*------------------------------------*\
  *  RE-USEABLE COMPONENTS
 \*------------------------------------*/
@@ -39,4 +39,7 @@ please run "grunt watch" in the theme directory and change the .scss files in th
 /*------------------------------------*\
  *  PROJECT
 \*------------------------------------*/
-// @import "partials/project/main";
+    @import "_app/_atoms/all";
+    @import "_app/_molecules/all";
+    @import "_app/_organisms/all";
+    @import "_app/_pages/all";

@@ -7,7 +7,7 @@ define(['Util'], function( Util )
     }
 
     return {
-        addEvent: function(el, callback)
+        actionAfterTyping: function(el, callback)
         {
             //setup before functions
             var typingTimer;                //timer identifier
@@ -25,6 +25,8 @@ define(['Util'], function( Util )
                     });
                 }, doneTypingInterval );
             });
+
+            return typingTimer;
 
             //on keydown, clear the countdown
             Util.addEventHandler(el, 'keydown', function() {

@@ -60,10 +60,10 @@
 
    <div class="filter--mobile grid grid--row grid--gutter-xs-right">
       <div class="grid__50-of-100">
-         {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+         {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'apply-filters'}], '' ) }}
       </div>
       <div class="grid__50-of-100">
-         {{ el.createHTMLTag( 'a', { id: 'clearCatFilters' }, [{ block: 'filter', element: 'mobile-clear' }], 'clear filters' ) }}
+         {{ el.createHTMLTag( 'a', { id: 'clearCatFilters' }, [{ block: 'blog-archive', element: 'clear-filters' }], 'clear filters' ) }}
       </div>
    </div>
 
@@ -113,10 +113,10 @@
 
       <div class="filter--mobile grid grid--row grid--gutter-xs-right">
          <div class="grid__50-of-100">
-            {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+            {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'apply-filters'}], '' ) }}
          </div>
          <div class="grid__50-of-100">
-            {{ el.createHTMLTag( 'a', { id: 'clearTagFilters' }, [{ block: 'filter', element: 'mobile-clear' }], 'clear filters' ) }}
+            {{ el.createHTMLTag( 'a', { id: 'clearTagFilters' }, [{ block: 'blog-archive', element: 'clear-filters' }], 'clear filters' ) }}
          </div>
       </div>
 
@@ -169,10 +169,10 @@
 
       <div class="filters--mobile grid grid--row grid--gutter-xs-right">
          <div class="grid__50-of-100">
-            {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+            {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'apply-filters'}], '' ) }}
          </div>
          <div class="grid__50-of-100">
-            {{ el.createHTMLTag( 'a', { id: 'clearYearFilters' }, [{ block: 'filter', element: 'mobile-clear' }], 'clear filters' ) }}
+            {{ el.createHTMLTag( 'a', { id: 'clearYearFilters' }, [{ block: 'blog-archive', element: 'clear-filters' }], 'clear filters' ) }}
          </div>
       </div>
    </div>
@@ -203,20 +203,20 @@
                      <div class="grid-desktop__50-of-100 blog-archive__tags">
 
                         {# include the variable block defined above #}
-                        {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion', modifier: ['mobile'] }],  accordionButtonHTML: cats.labels.name, accordionContentHTML: cat_checkboxes } %}
+                        {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion--mobile' }],  accordionButtonHTML: cats.labels.name, accordionContentHTML: cat_checkboxes } %}
 
                      </div>
                      <div class="grid-desktop__50-of-100 blog-archive__categories">
 
                         {# include the variable block defined above #}
-                        {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion', modifier: ['mobile'] }], accordionButtonHTML: tags.labels.name , accordionContentHTML: tag_checkboxes } %}
+                        {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion--mobile' }], accordionButtonHTML: tags.labels.name , accordionContentHTML: tag_checkboxes } %}
 
                      </div>
                   </div>
                   <div class="blog-archive__years">
 
                      {# include the variable block defined above #}
-                      {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion', modifier: ['mobile'] }], accordionButtonHTML: years.name , accordionContentHTML: year_checkboxes } %}
+                      {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion--mobile' }], accordionButtonHTML: years.name , accordionContentHTML: year_checkboxes } %}
 
                    </div>
                </div>

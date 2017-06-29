@@ -6,6 +6,8 @@ define(['Util'], function( Util )
         // .accordion__button
         init: function(accordion__button)
         {
+        	Util.buttonState('.accordion__button', '.accordion__event');
+
             [].forEach.call(document.querySelectorAll(accordion__button), function(el)
             {
                 el.addEventListener('click', function(event)

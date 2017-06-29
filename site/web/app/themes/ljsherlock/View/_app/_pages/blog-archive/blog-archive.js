@@ -1,7 +1,46 @@
 define(['Util'], function( Util )
 {
+    function get_posts(component, responseLocation)
+    {
+        component.classList.remove('blog-archive__results--loaded');
+        component.classList.add('blog-archive__results--loading');
+        component.classList.add('blog-archive__results--matches');
 
-    function action(responseLocation)
+        setTimeout(function()
+        {
+            var post = processTheForm();
+
+            // Get posts filtered by the checked inputs and
+            // return the compiled templates.
+            require(['Utils/Ajax'], function(Ajax)
+            {
+                return Ajax.put(ajax_url, {
+                    action: 'archivesFilterSearch',
+                    post: post,
+                    ajax: true
+                }, function(response)
+                {
+                    var data = JSON.parse(response);
+
+                    // add the response first because the HTML is hidden.
+                    responseLocation.innerHTML = data.template;
+                    // add num of posts to the element
+                    document.querySelector('.blog-archive__num-posts').innerHTML = data.num_of_posts;
+
+                    // fade in the results.
+                    setTimeout(function()
+                    {
+                        component.classList.remove('blog-archive__results--loading');
+                        component.classList.add('blog-archive__results--loaded');
+                    }, 750);
+                });
+            });
+
+
+        }, 750);
+    }
+
+    function processTheForm()
     {
         var post = {},
         tags = document.querySelectorAll( "input[name='post_tag[]']:checked" ),
@@ -21,26 +60,11 @@ define(['Util'], function( Util )
                 post[check.name][index] = check.value;
             });
         });
-
-        // Get posts filtered by the checked inputs and
-        // return the compiled templates.
-        require(['Utils/Ajax'], function(Ajax)
-        {
-            Ajax.put(ajax_url, {
-                action: 'archivesFilterSearch',
-                post: post,
-                ajax: true
-            }, function(responseText)
-            {
-                // search results
-                // append to page
-                responseLocation.innerHTML = responseText;
-            });
-        });
+        return post;
     }
 
     return {
-        form: function( els, responseLocation )
+        form: function( els, component, responseLocation )
         {
             // loop through all of the checkboxes to attached the event to each one.
             [].forEach.call(els, function(el)
@@ -48,17 +72,28 @@ define(['Util'], function( Util )
                 // on Change event handler
                 Util.addEventHandler(el, 'change', function()
                 {
-                    action(responseLocation);
+                    get_posts(component, responseLocation);
                 });
             });
 
-            require(['Utils/afterType'], function(type)
+            require(['Utils/Events'], function(events)
             {
-                type.addEvent(document.querySelector('.blog-archive__keyword'), function() {
-                    action(responseLocation)
+                typingTimer = events.actionAfterTyping(document.querySelector('.blog-archive__keyword'), function() {
+                    get_posts(component, responseLocation)
+                });
+
+                // inside here so that it can accss and clear "typingTimer"
+                Util.addEventHandler(document.querySelector('.blog-archive__keyword'), 'keypress', function(e)
+                {
+                    if ( e.which == 13 ) // Enter key = keycode 13
+                    {
+                        e.preventDefault();
+                        clearTimeout(typingTimer);
+                        get_posts(component, responseLocation);
+                    }
                 });
             });
-
         }
     }
+
 });

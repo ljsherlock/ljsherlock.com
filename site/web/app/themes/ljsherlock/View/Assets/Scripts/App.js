@@ -20,15 +20,16 @@ define([ "Util", 'Config' ], function( Util, appConfig )
 		init : function()
 		{
 			// Accordion for mobile only.
-			if( Util.detectDevice().isMobile == false )
+			if( Util.detectDevice().isMobile == true )
 			{
 				require(['../../_components/_molecules/accordion/accordion'], function(accordion)
 				{
-					accordionMobile = document.querySelectorAll('.accordion--mobile');
+					var accordionMobile = document.querySelectorAll('.accordion--mobile');
 
 					[].forEach.call(accordionMobile, function(el, index, array)
 					{
-						el.ClassList.add('accordion');
+						el.classList.remove('accordion--mobile');
+						el.classList.add('accordion');
 					});
 
 					accordion.init();
@@ -38,7 +39,11 @@ define([ "Util", 'Config' ], function( Util, appConfig )
 				// Ajax form for desktop and tablet only.
 				require(['../../_app/_pages/blog-archive/blog-archive'], function(blogArchive)
 				{
-					blogArchive.form(document.querySelectorAll('.blog-archive__checkbox'), document.querySelector('.blog-archive__results'));
+					var els = document.querySelectorAll('.blog-archive__checkbox'),
+					component = document.querySelector('.blog-archive__results'),
+					responseLocation = document.querySelector('.blog-archive__results .articles');
+
+					blogArchive.form(els, component, responseLocation );
 				});
 
 			}

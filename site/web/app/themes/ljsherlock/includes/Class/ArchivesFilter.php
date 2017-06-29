@@ -48,7 +48,10 @@ class ArchivesFilter
         $posts = self::filterQuery( $data->post ) ;
 
         // compile timber tmpl.
-        echo \Timber::compile( '_organisms/blog-archive-results/blog-archive-results.twig', array('posts' => $posts ) );
+        echo json_encode( array(
+            'template' => \Timber::compile( '_organisms/blog-archive-posts/blog-archive-posts.twig', array('posts' => $posts ) ),
+            'num_of_posts' => count($posts)
+        ) );
         die();
     }
 
@@ -106,8 +109,6 @@ class ArchivesFilter
                 $args = array_merge( $args, array( 's' => $filters->keyword ) );
             }
         }
-
-        var_dump($args);
 
         // search for posts with terms
         return \Timber::get_posts( $args );

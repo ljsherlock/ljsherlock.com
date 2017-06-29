@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         sass: {
             build: {
                 files: {
-                 'View/CSS/style.css': 'View/main.scss'
+                 'View/Assets/CSS/style.css': 'View/main.scss'
                 }
             }
         },
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
            },
            target: {
                files: {
-                   'View/CSS/style.min.css' : 'View/CSS/style.css'
+                   'View/Assets/CSS/style.min.css' : 'View/Assets/CSS/style.css'
                }
            }
        },
@@ -133,6 +133,7 @@ module.exports = function(grunt) {
               'View/_app/**/*.scss',
               'View/_app/**/**/*.scss',
               'View/_app/**/**/**/*.scss',
+              'View/main.scss',
             ],
             tasks: [ 'build' ],
             options: {

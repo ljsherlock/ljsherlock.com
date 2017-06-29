@@ -5,7 +5,7 @@ var require = {
     baseUrl: '<?= get_template_directory_uri() ?>/View/Assets/Scripts',
     paths: {
         Polyfills: 'Lib/polyfills',
-        Util: 'Lib/util',
+        Util: 'Utils/util',
         Mustard: 'Lib/mustard',
         Core: 'Core',
         App: 'App',

@@ -12,7 +12,14 @@
         {
             @extend %select-js__button;
             z-index: 11;
-
+            &%btn--active
+            {
+                // set in skin
+            }
+            &%btn--inactive
+            {
+                // set in skin
+            }
         }
         %accordion__content
         {
