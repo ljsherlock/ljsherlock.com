@@ -20,7 +20,8 @@ define(['Util'], function( Util )
 
                 typingTimer = setTimeout(function()
                 {
-                    doneTyping( function(){
+                    doneTyping( function()
+                    {
                         callback();
                     });
                 }, doneTypingInterval );

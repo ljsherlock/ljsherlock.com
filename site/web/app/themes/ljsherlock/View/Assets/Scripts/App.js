@@ -19,6 +19,10 @@ define([ "Util", 'Config' ], function( Util, appConfig )
 
 		init : function()
 		{
+			var els = document.querySelectorAll('.blog-archive__checkbox'),
+			component = document.querySelector('.blog-archive__results'),
+			responseLocation = document.querySelector('.blog-archive__results .articles');
+
 			// Accordion for mobile only.
 			if( Util.detectDevice().isMobile == true )
 			{
@@ -35,18 +39,64 @@ define([ "Util", 'Config' ], function( Util, appConfig )
 					accordion.init();
 				});
 
+				require(['Utils/Elements'], function(Elements)
+				{
+					// Clear the filters
+		            var clearFilters = document.querySelectorAll('.blog-archive__clear-filters');
+		            [].forEach.call( clearFilters, function(el)
+		            {
+		                Util.addEventHandler(el, 'click', function()
+		                {
+	                        var parent = Elements.getParentByClass(el, 'accordion__content'),
+	                        inputs = parent.querySelectorAll('input[type="checkbox"]');
+
+							[].forEach.call(inputs, function(el)
+							{
+								el.checked = false;
+							})
+		                });
+		            });
+				});
+
 			} else {
+
 				// Ajax form for desktop and tablet only.
 				require(['../../_app/_pages/blog-archive/blog-archive'], function(blogArchive)
 				{
-					var els = document.querySelectorAll('.blog-archive__checkbox'),
-					component = document.querySelector('.blog-archive__results'),
-					responseLocation = document.querySelector('.blog-archive__results .articles');
+					blogArchive.setFormEvents(els, component, responseLocation );
 
-					blogArchive.form(els, component, responseLocation );
+					// clear the keyword
+					var clearKeyword = document.querySelector('.blog-archive__clear-all-filters');
+					Util.addEventHandler(clearKeyword, 'click', function(el)
+					{
+						var inputs = document.querySelectorAll('.blog-archive input[type="checkbox"]');
+
+						[].forEach.call(inputs, function(el)
+						{
+							el.checked = false;
+						});
+						blogArchive.getPosts(component, responseLocation);
+					});
 				});
-
 			}
+
+
+
+			// Clear the keyword mobile
+			// __This could be a module__
+			require(['Utils/Elements'], function(Elements)
+			{
+				var clearKeyword = document.querySelector('.blog-archive__clear-keyword');
+				Util.addEventHandler(clearKeyword, 'click', function(el)
+				{
+					var parent = Elements.getParentByClass(clearKeyword, 'blog-archive__field');
+					parent.querySelector('.blog-archive__keyword').value = '';
+					require(['../../_app/_pages/blog-archive/blog-archive'], function(blogArchive)
+					{
+						blogArchive.getPosts(component, responseLocation);
+					});
+				});
+			});
 		},
     }
 });

@@ -22,6 +22,11 @@
     {
         height: auto;
 
+        %blog-archive__filters
+        {
+            padding: 0 25px;
+        }
+
         %blog-archive__apply-filters,
         %blog-archive__clear-filters,
         {

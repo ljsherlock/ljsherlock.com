@@ -26,7 +26,8 @@
 
 <div class="grid grid--col grid--gutter-lg-bottom">
 
-   <div class="block--is-mobile">
+   <div class="block--is-mobile grid grid--col grid--gutter-md-bottom">
+
       <div class="grid-desktop grid-desktop--row grid-desktop--gutter-md-right
       grid-mobile grid-mobile--col grid-mobile--gutter-sm-bottom">
          <div class="grid-desktop__50-of-100 grid grid--col grid--gutter-sm-bottom">
@@ -34,9 +35,9 @@
             {% for item in tags.terms|slice( 0, tags.terms|length / 2 ) %}
 
                <div class="gird__100-of-100">
-                  {{ el.createHTMLTag('label', { for: item.slug }, [{ block: 'blog-archive', element: 'label' }], item.name ) }}
                   {{ el.createHTMLTag( 'input', { type: 'checkbox', value: item.slug, name: tags.name ~ '[]', id: item.slug },
                   [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+                  {{ el.createHTMLTag('label', { for: item.slug }, [{ block: 'blog-archive', element: 'label' }], item.name ) }}
                </div>
 
             {% endfor %}
@@ -47,24 +48,24 @@
             {% for item in tags.terms|slice( tags.terms|length / 2 ) %}
 
                <div class="gird__100-of-100">
-                  {{ el.createHTMLTag('label', { for: item.slug }, [{ block: 'blog-archive', element: 'label' }], item.name ) }}
                   {{ el.createHTMLTag( 'input', { type: 'checkbox', value: item.slug, name: tags.name ~ '[]', id: item.slug },
                   [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+                  {{ el.createHTMLTag('label', { for: item.slug }, [{ block: 'blog-archive', element: 'label' }], item.name ) }}
                </div>
 
             {% endfor %}
 
          </div>
       </div>
-   </div>
+      <div class="filter--mobile grid grid--row grid--gutter-xs-right">
+         <div class="grid__50-of-100">
+            {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'apply-filters'}], '' ) }}
+         </div>
+         <div class="grid__50-of-100">
+            {{ el.createHTMLTag( 'a', { id: 'clearCatFilters' }, [{ block: 'blog-archive', element: 'clear-filters' }], 'clear filters' ) }}
+         </div>
+      </div>
 
-   <div class="filter--mobile grid grid--row grid--gutter-xs-right">
-      <div class="grid__50-of-100">
-         {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'apply-filters'}], '' ) }}
-      </div>
-      <div class="grid__50-of-100">
-         {{ el.createHTMLTag( 'a', { id: 'clearCatFilters' }, [{ block: 'blog-archive', element: 'clear-filters' }], 'clear filters' ) }}
-      </div>
    </div>
 
 </div>
@@ -79,7 +80,7 @@
 
    <div class="grid grid--col grid--gutter-lg-bottom">
 
-      <div class="block--is-mobile">
+      <div class="block--is-mobile grid grid--col grid--gutter-md-bottom">
          <div class="grid-desktop grid-desktop--row grid-desktop--gutter-md-right
          grid-mobile grid-mobile--col grid-mobile--gutter-sm-bottom">
             <div class="grid-desktop__50-of-100 grid grid--col grid--gutter-sm-bottom">
@@ -87,9 +88,9 @@
                {% for item in cats.terms|slice( 0, cats.terms|length / 2 ) %}
 
                   <div class="gird__100-of-100">
-                     {{ el.createHTMLTag('label', { for: item.slug }, [{ block: 'blog-archive', element: 'label' }], item.name ) }}
                      {{ el.createHTMLTag( 'input', { type: 'checkbox', value: item.slug, name: cats.name ~ '[]', id: item.slug },
                      [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+                     {{ el.createHTMLTag('label', { for: item.slug }, [{ block: 'blog-archive', element: 'label' }], item.name ) }}
                   </div>
 
                {% endfor %}
@@ -100,24 +101,24 @@
                {% for item in cats.terms|slice( cats.terms|length / 2 ) %}
 
                   <div class="grid-desktop__50-of-100 gird__100-of-100">
-                     {{ el.createHTMLTag('label', { for: item.slug }, [{ block: 'blog-archive', element: 'label' }], item.name ) }}
                      {{ el.createHTMLTag( 'input', { type: 'checkbox', value: item.slug, name: cats.name ~ '[]', id: item.slug },
                      [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
+                     {{ el.createHTMLTag('label', { for: item.slug }, [{ block: 'blog-archive', element: 'label' }], item.name ) }}
                   </div>
 
                {% endfor %}
 
             </div>
          </div>
-      </div>
+         <div class="filter--mobile grid grid--row grid--gutter-xs-right">
+            <div class="grid__50-of-100">
+               {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'apply-filters'}], '' ) }}
+            </div>
+            <div class="grid__50-of-100">
+               {{ el.createHTMLTag( 'a', { id: 'clearTagFilters' }, [{ block: 'blog-archive', element: 'clear-filters' }], 'clear filters' ) }}
+            </div>
+         </div>
 
-      <div class="filter--mobile grid grid--row grid--gutter-xs-right">
-         <div class="grid__50-of-100">
-            {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'apply-filters'}], '' ) }}
-         </div>
-         <div class="grid__50-of-100">
-            {{ el.createHTMLTag( 'a', { id: 'clearTagFilters' }, [{ block: 'blog-archive', element: 'clear-filters' }], 'clear filters' ) }}
-         </div>
       </div>
 
    </div>
@@ -130,18 +131,16 @@
 {% set year_checkboxes %}
 
    <div class="grid grid--col grid--gutter-lg-bottom">
-      <div class="block--is-mobile">
+      <div class="block--is-mobile grid grid--col grid--gutter-md-bottom">
          <div class="grid-desktop grid-desktop--col grid-desktop--gutter-xs-bottom">
             <div class="grid-desktop grid-desktop--row grid-desktop--gutter-sm-right">
 
                {% for item in years.terms %}
 
                   <div class="grid-desktop__25-of-100">
-
-                     {{ el.createHTMLTag('label', { for: item }, [{ block: 'blog-archive', element: 'label' }], item ) }}
                      {{ el.createHTMLTag( 'input', { type: 'checkbox', value: item, name: 'years[]', id: item },
                      [{ block: 'blog-archive', element: 'checkbox'}], '' ) }}
-
+                     {{ el.createHTMLTag('label', { for: item }, [{ block: 'blog-archive', element: 'label' }], item ) }}
                   </div>
 
                   {% if loop.index % 4 == 0 and not loop.last %}
@@ -165,14 +164,13 @@
                {% endfor %}
 
          </div>
-      </div>
-
-      <div class="filters--mobile grid grid--row grid--gutter-xs-right">
-         <div class="grid__50-of-100">
-            {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'apply-filters'}], '' ) }}
-         </div>
-         <div class="grid__50-of-100">
-            {{ el.createHTMLTag( 'a', { id: 'clearYearFilters' }, [{ block: 'blog-archive', element: 'clear-filters' }], 'clear filters' ) }}
+         <div class="filters--mobile grid grid--row grid--gutter-xs-right">
+            <div class="grid__50-of-100">
+               {{ el.createHTMLTag( 'input', { type: 'submit', value: 'apply filters', name: 'submit', id: 'apply-filters' }, [{ block: 'blog-archive', element: 'apply-filters'}], '' ) }}
+            </div>
+            <div class="grid__50-of-100">
+               {{ el.createHTMLTag( 'a', { id: 'clearYearFilters' }, [{ block: 'blog-archive', element: 'clear-filters' }], 'clear filters' ) }}
+            </div>
          </div>
       </div>
    </div>
@@ -186,43 +184,48 @@
 
 <div class="main-content page two-cols">
     <div class="blog-archive">
-        <div class="blog-archive__form">
-           <form class="" action="" method="post">
+           <form class="blog-archive__form" action="" method="post">
 
-               <div class="wrap--break-sm">
-                   <input type="text" name="blog-archive__keyword" placeholder="Search the archive:" class="blog-archive__keyword">
-               </div>
-
-               <div class="blog-archive__clear wrap--break-sm">
-                   <a href="#" class="btn btn--"></a>
-               </div>
-
-               <div class="blog-archive__filter wrap--break-md">
-                  <div class="wrap--break-sm grid-desktop grid-desktop--row grid-desktop--gutter-md-right
-                  grid-mobile grid-mobile--col grid-mobile--gutter-sm-bottom">
-                     <div class="grid-desktop__50-of-100 blog-archive__tags">
-
-                        {# include the variable block defined above #}
-                        {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion--mobile' }],  accordionButtonHTML: cats.labels.name, accordionContentHTML: cat_checkboxes } %}
-
-                     </div>
-                     <div class="grid-desktop__50-of-100 blog-archive__categories">
-
-                        {# include the variable block defined above #}
-                        {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion--mobile' }], accordionButtonHTML: tags.labels.name , accordionContentHTML: tag_checkboxes } %}
-
-                     </div>
+               <div class="blog-archive__term wrap--break-sm">
+                  <div class="blog-archive__field">
+                     {% include '_atoms/icon/icon.twig' with { icon: 'icon-search', bem: [{block: 'blog-archive__search'}] } %}
+                     <input type="text" name="blog-archive__keyword" placeholder="Search the Archive: type keywords here..." class="blog-archive__keyword">
+                     {% include '_atoms/icon/icon.twig' with { icon: 'icon-clear-field', bem: [{block: 'blog-archive__clear-keyword'}] } %}
                   </div>
-                  <div class="blog-archive__years">
+               </div>
 
-                     {# include the variable block defined above #}
-                      {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion--mobile' }], accordionButtonHTML: years.name , accordionContentHTML: year_checkboxes } %}
+               <div class="blog-archive__filters">
+                  <div class="blog-archive__clear wrap--break-sm grid grid--row flex--just-end">
+                      {% include '_molecules/btn/btn.twig' with { bem: [ { block: 'btn', modifier: ['icon-after'] }, { block: 'blog-archive', element: 'clear-all-filters' }
+                      ], icon: { name: 'icon-clear' }, text: { value: 'clear filters' } } %}
+                  </div>
 
-                   </div>
+                  <div class="blog-archive__filter wrap--break-md">
+                     <div class="wrap--break-sm grid-desktop grid-desktop--row grid-desktop--gutter-md-right
+                     grid-mobile grid-mobile--col grid-mobile--gutter-sm-bottom">
+                        <div class="grid-desktop__50-of-100 blog-archive__tags">
+
+                           {# include the variable block defined above #}
+                           {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion--mobile' }],  accordionButtonHTML: cats.labels.name, accordionContentHTML: cat_checkboxes } %}
+
+                        </div>
+                        <div class="grid-desktop__50-of-100 blog-archive__categories">
+
+                           {# include the variable block defined above #}
+                           {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion--mobile' }], accordionButtonHTML: tags.labels.name , accordionContentHTML: tag_checkboxes } %}
+
+                        </div>
+                     </div>
+                     <div class="blog-archive__years">
+
+                        {# include the variable block defined above #}
+                         {% include '_molecules/accordion/accordion.twig' with { bem: [{block: 'accordion--mobile' }], accordionButtonHTML: years.name , accordionContentHTML: year_checkboxes } %}
+
+                      </div>
+                  </div>
                </div>
 
            </form>
-        </div>
         {% include '_organisms/blog-archive-results/blog-archive-results.twig' %}
     </div>
 

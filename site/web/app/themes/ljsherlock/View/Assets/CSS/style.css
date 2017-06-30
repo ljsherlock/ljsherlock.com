@@ -2843,6 +2843,27 @@ svg, .svg {
 /*---------------------------------------------*\
 *    MODIFIER
 /*---------------------------------------------*/
+/*---------------------------------------------*\
+ * Name: styled checkbox
+ * Description: a not so normal checkbox
+ * Dependancies: []
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+ *    RELATIONSHIPS
+/*---------------------------------------------*/
+.styled-checkbox, .blog-archive__checkbox {
+  position: absolute;
+  opacity: 0; }
+
+/*---------------------------------------------*\
+ *    BLOCK
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+ *    ELEMENT
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+ *    MODIFIER
+/*---------------------------------------------*/
 /*---------------------------------------------
     button.scss
 ---------------------------------------------*/
@@ -2897,7 +2918,7 @@ svg, .svg {
 /*---------------------------------------------*\
 *    RELATIONSHIPS
 /*---------------------------------------------*/
-.btn.btn--text svg, .btn.btn--regular svg, .btn.btn--small svg, .select-js .select-js__list .btn--text.select-js__item svg, .accordion .select-js__list .btn--text.select-js__item svg, .btn--text.btn--wide svg, .select-js .select-js__list .btn--regular.select-js__item svg, .accordion .select-js__list .btn--regular.select-js__item svg, .select-js .select-js__list .btn--small.select-js__item svg, .accordion .select-js__list .btn--small.select-js__item svg, .btn--wide.btn--regular svg, .btn--wide.btn--small svg {
+.btn.btn--text svg, .btn.btn--regular svg, .btn.btn--small svg, .btn.btn--icon-after svg, .btn.btn--icon-before svg, .select-js .select-js__list .btn--text.select-js__item svg, .accordion .select-js__list .btn--text.select-js__item svg, .btn--text.btn--wide svg, .select-js .select-js__list .btn--regular.select-js__item svg, .accordion .select-js__list .btn--regular.select-js__item svg, .select-js .select-js__list .btn--small.select-js__item svg, .accordion .select-js__list .btn--small.select-js__item svg, .select-js .select-js__list .btn--icon-after.select-js__item svg, .accordion .select-js__list .btn--icon-after.select-js__item svg, .select-js .select-js__list .btn--icon-before.select-js__item svg, .accordion .select-js__list .btn--icon-before.select-js__item svg, .btn--wide.btn--regular svg, .btn--wide.btn--small svg, .btn--wide.btn--icon-after svg, .btn--wide.btn--icon-before svg {
   position: absolute;
   top: 0;
   bottom: 0; }
@@ -2970,6 +2991,31 @@ svg, .svg {
   height: 30px; }
   .btn--small span {
     line-height: 30px; }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    button--icon.scss
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+.btn--icon-after {
+  padding-right: 34px; }
+  .btn--icon-after svg {
+    right: 10px; }
+
+.btn--icon-before {
+  padding-left: 34px; }
+  .btn--icon-before svg {
+    left: 10px; }
 
 /*---------------------------------------------*\
 *    BLOCK
@@ -3381,12 +3427,125 @@ svg, .svg {
 /*------------------------------------*\
  *  PROJECT
 \*------------------------------------*/
+/*---------------------------------------------*\
+ * Name: styled checkbox
+ * Description: a not so normal checkbox
+ * Dependancies: []
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+ *    RELATIONSHIPS
+/*---------------------------------------------*/
+.styled-checkbox + label, .blog-archive__checkbox + label {
+  position: relative;
+  cursor: pointer;
+  padding: 0; }
+.styled-checkbox + label:before, .blog-archive__checkbox + label:before {
+  content: '';
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: text-top;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #b1bfca; }
+.styled-checkbox:hover + label, .blog-archive__checkbox:hover + label {
+  color: #5288ba; }
+.styled-checkbox:checked + label, .blog-archive__checkbox:checked + label {
+  color: #5288ba; }
+.styled-checkbox:disabled + label, .blog-archive__checkbox:disabled + label {
+  color: #b8b8b8;
+  cursor: auto; }
+.styled-checkbox:disabled + label:before, .blog-archive__checkbox:disabled + label:before {
+  box-shadow: none;
+  background: #ddd; }
+.styled-checkbox:checked + label:after, .blog-archive__checkbox:checked + label:after {
+  content: '';
+  position: absolute;
+  top: 4;
+  left: 4;
+  background: #5288ba;
+  width: 8px;
+  height: 8px; }
+
+/*---------------------------------------------*\
+ *    BLOCK
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+ *    ELEMENT
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+ *    MODIFIER
+/*---------------------------------------------*/
 .blog-archive .blog-post {
   margin: 0; }
   .blog-archive .blog-post > div {
     margin: 0;
     padding: 0; }
 
+/*---------------------------------------------*\
+ * Name: [partial_name]
+ * Description: [your_description]
+ * Dependancies: [drop-down, select-js]
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+ *    RELATIONSHIPS
+/*---------------------------------------------*/
+.blog-archive__field {
+  position: relative;
+  height: 70px;
+  width: 100%;
+  background-color: #b2d0eb; }
+  .blog-archive__field .icon {
+    position: absolute;
+    right: 25px;
+    top: 30px;
+    width: 16px;
+    height: 16px; }
+  .blog-archive__field .blog-archive__clear-all-filters {
+    cursor: pointer; }
+  .blog-archive__field .blog-archive__keyword {
+    border: 0 none;
+    height: 100%;
+    width: 100%;
+    padding: 20px 25px 20px 70px;
+    background-color: #b2d0eb;
+    font-size: 27px;
+    color: white; }
+    .blog-archive__field .blog-archive__keyword::-webkit-input-placeholder {
+      color: white; }
+    .blog-archive__field .blog-archive__keyword:-moz-placeholder {
+      color: white; }
+    .blog-archive__field .blog-archive__keyword::-moz-placeholder {
+      color: white; }
+    .blog-archive__field .blog-archive__keyword:-ms-input-placeholder {
+      color: white; }
+    .blog-archive__field .blog-archive__keyword:focus::-webkit-input-placeholder {
+      color: #b2d0eb; }
+    .blog-archive__field .blog-archive__keyword:focus::-moz-placeholder {
+      color: #b2d0eb; }
+    .blog-archive__field .blog-archive__keyword:focus::-moz-placeholder {
+      color: #b2d0eb; }
+    .blog-archive__field .blog-archive__keyword:focus::-ms-input-placeholder {
+      color: #b2d0eb; }
+    .blog-archive__field .blog-archive__keyword:focus {
+      outline: none; }
+  .blog-archive__field .blog-archive__search {
+    height: 25px;
+    width: 25px;
+    left: 25px;
+    top: 24.5px; }
+
+/*---------------------------------------------*\
+ *    BLOCK
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+ *    ELEMENT
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+ *    MODIFIER
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+ *    SELECTORS
+/*---------------------------------------------*/
 /*---------------------------------------------*\
  *    name: blog-archive
  *    extends:

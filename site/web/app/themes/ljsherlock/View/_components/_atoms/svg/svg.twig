@@ -6,7 +6,7 @@
 	* @requires     component.twig, _MUSTARD
 #}
 
-{% set href = icon ? function('get_template_directory_uri') ~ 'assets/icons/icons.svg#' ~ icon : '' %}
+{% set href = icon ? function('get_template_directory_uri') ~ '/View/Assets/icons/icons.svg#' ~ icon : '' %}
 
 {% set _use %}
    {{ el.createHTMLTag( 'use', { href: href, id: 'use--' ~ icon }, [], '', true ) }}

@@ -7,13 +7,13 @@
    {% include '_molecules/btn/btn.twig' with {
       attrs: { href: '#accordion' ~ loop.index, },
       bem: [
-         { block: 'btn', modifier: ['regular', 'wide', 'text'] },
+         { block: 'btn', modifier: ['icon-after', 'regular', 'wide', 'text'] },
          { block: 'accordion', element: 'button' }
       ],
       text: { value: accordionButtonHTML },
       icons: [
          { name: 'icon-plus', bem: [{ block: 'icon', element: 'plus' }] },
-         { name: 'icon-plus', bem:[{block: 'icon', element: 'minus'}] }
+         { name: 'icon-minus', bem:[{ block: 'icon', element: 'minus'}] }
       ]
    } %}
 

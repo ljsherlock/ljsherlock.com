@@ -64,9 +64,15 @@ define(['Util'], function( Util )
     }
 
     return {
-        form: function( els, component, responseLocation )
+
+        getPosts : function(component, responseLocation)
         {
-            // loop through all of the checkboxes to attached the event to each one.
+            get_posts(component, responseLocation);
+        },
+
+        setFormEvents: function( els, component, responseLocation )
+        {
+            // Attach click event to checkboxes
             [].forEach.call(els, function(el)
             {
                 // on Change event handler
@@ -76,9 +82,11 @@ define(['Util'], function( Util )
                 });
             });
 
+            // Add events to the keyword field
             require(['Utils/Events'], function(events)
             {
-                typingTimer = events.actionAfterTyping(document.querySelector('.blog-archive__keyword'), function() {
+                typingTimer = events.actionAfterTyping(document.querySelector('.blog-archive__keyword'), function()
+                {
                     get_posts(component, responseLocation)
                 });
 
@@ -93,6 +101,7 @@ define(['Util'], function( Util )
                     }
                 });
             });
+
         }
     }
 
