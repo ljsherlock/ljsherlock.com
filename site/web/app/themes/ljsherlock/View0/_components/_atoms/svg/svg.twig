@@ -1,0 +1,15 @@
+{#
+	* @desc         Create svgs!
+	* @name         SVG
+	* @author       ljsherlock
+	* @tested       Twig
+	* @requires     component.twig, _MUSTARD
+#}
+
+{% set href = icon ? function('get_template_directory_uri') ~ '/View/Assets/icons/icons.svg#' ~ icon : '' %}
+
+{% set _use %}
+   {{ el.createHTMLTag( 'use', { href: href, id: 'use--' ~ icon }, [], '', true ) }}
+{% endset %}
+
+{{ el.createHTMLTag( 'svg', {}, bem, _use ) }}

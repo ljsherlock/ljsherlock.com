@@ -1,0 +1,26 @@
+{% import 'el.twig' as el %}
+
+{% set accordionHTML %}
+
+   {{ el.createHTMLTag( 'div', {}, [{ block: 'accordion', block:'event' }, { block: 'events-overlay' } ] ) }}
+
+   {% include '_molecules/btn/btn.twig' with {
+      attrs: { href: '#accordion' ~ loop.index, },
+      bem: [
+         { block: 'btn', modifier: ['icon-after', 'regular', 'wide', 'text'] },
+         { block: 'accordion', element: 'button' }
+      ],
+      text: { value: accordionButtonHTML },
+      icons: [
+         { name: 'icon-plus', bem: [{ block: 'icon', element: 'plus' }] },
+         { name: 'icon-minus', bem:[{ block: 'icon', element: 'minus'}] }
+      ]
+   } %}
+
+   {{ el.createHTMLTag( 'div', {}, [{ block: 'accordion', element: 'content' }], accordionContentHTML ) }}
+
+{% endset %}
+
+{% set tmpBEM = ( bem ) ? bem : [{block: 'accordion'}] %}
+
+{{ el.createHTMLTag( 'div', {}, tmpBEM, accordionHTML ) }}

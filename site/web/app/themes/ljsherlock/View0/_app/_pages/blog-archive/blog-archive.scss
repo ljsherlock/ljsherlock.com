@@ -1,0 +1,151 @@
+/*---------------------------------------------*\
+ *    name: blog-archive
+ *    extends:
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    @include keyframes (hide) {
+        100% {
+            opacity: 0;
+        }
+    };
+
+    @include keyframes (show) {
+        100% {
+            opacity: 1;
+        }
+    };
+
+    %break-line {
+        bottom:auto;
+        left: auto;
+        top: auto;
+        bottom:initial;
+        left: initial;
+        top: initial;
+        background-color: #e8e8e8;
+    }
+
+    %blog-archive
+    {
+        height: auto;
+
+        %blog-archive__filters
+        {
+            padding: 0 25px;
+        }
+        %blog-archive__apply-filters {
+            @extend %btn;
+            background-color: #717171;
+            color: white;
+        }
+        %blog-archive__clear-filters {
+            background-color: #d4d4d4;
+            @extend %btn;
+            color: #717171;
+        }
+
+        %blog-archive__apply-filters,
+        %blog-archive__clear-filters,
+        {
+            display: none;
+            @include mobile()
+            {
+                display: block;
+            };
+        }
+        %blog-archive__matches
+        {
+            display: none;
+        }
+        %blog-archive__num-posts
+        {
+            color: #9bc0e1;
+        }
+
+        %blog-archive__results
+        {
+            &--loading
+            {
+                %articles
+                {
+                    opacity: 0;
+                }
+            }
+            &--loaded
+            {
+                %articles
+                {
+                    opacity: 1;
+                }
+            }
+            &--matches
+            {
+                %blog-archive__matches
+                {
+                    display: block;
+                }
+            }
+            &--no-matches
+            {
+                %blog-archive__matches
+                {
+                    display: block;
+                }
+            }
+        }
+
+        %articles
+        {
+            @include transition( .5s opacity ease );
+            %articles__article
+            {
+                p {
+                    padding: 0;
+                }
+                a, %date
+                {
+                    text-decoration: none;
+                }
+                %date {
+                    color: #9bc0e1;
+                }
+            }
+            hr {
+                left: initial; right: initial;
+                top: initial; bottom: initial;
+            }
+
+        }
+    }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    .blog-archive { @extend %blog-archive; }
+    .articles { @extend %articles; }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+
+    .articles__article { @extend %articles__article; }
+    // .blog-archive__results { @extend %blog-archive__results; }
+    .blog-archive__apply-filters { @extend %blog-archive__apply-filters; }
+    .blog-archive__clear-filters { @extend %blog-archive__clear-filters; }
+    .date { @extend %date; }
+
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/
+
+    .blog-archive__results--matches { @extend %blog-archive__results--matches; }
+    .blog-archive__num-posts { @extend %blog-archive__num-posts; }
+    .blog-archive__results--no-matches { @extend %blog-archive__results--no-matches; }
+    .blog-archive__results--loading { @extend %blog-archive__results--loading; }
+    .blog-archive__results--loaded { @extend %blog-archive__results--loaded; }
+
+    .main-content .break-line { @extend %break-line; }
