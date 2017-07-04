@@ -1,0 +1,18 @@
+
+   {% set hamburger %}
+      {% include '_molecules/hamburger/hamburger--html.twig' %}
+   {% endset %}
+
+   {% set hamburger_btn %}
+      {% include '_molecules/btn/btn.twig' with {
+         non_anchor: true,
+         bem :[
+            { block: 'btn'},
+         ],
+         attrs: { href: item.link },
+         texts: [ { text: 'menu', bem : [{block: 'btn', element: 'text'}, {block: 'h3'} ] } ],
+         innerHTML: hamburger
+      } %}
+   {% endset %}
+
+   {{ el.createHTMLTag( 'label', { for: 'nav__check--hamburger' }, [{ block: 'hamburger__label' }], hamburger_btn ) }}

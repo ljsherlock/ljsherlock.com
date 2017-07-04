@@ -1,0 +1,41 @@
+{#
+	* @desc         Archive Template!
+	* @name         Archive
+	* @author       ljsherlock
+	* @tested       Twig
+	* @requires     component.twig
+#}
+
+{% embed 'component.twig' with { el: 'div', bem: [{block: 'archive'}] } %}
+   {% block component %}
+
+      {% block header %}{% endblock %}
+
+      {% block body %}
+
+         {% embed 'component.twig' with { el: 'div' bem : [
+            { block: 'grid', modifier: [ 'row', 'gutter-rg-bottom' ] }
+         ] } %}
+            {% block component %}
+               {% block grid %}
+
+                  {% for item in posts|default( posts|slice(0, 9) ) %}
+                     {% block loop %}
+
+                        {# your archive template ie latest and others #}
+
+                     {% endblock %}
+                  {% endfor %}
+
+               {% endblock %}
+            {% endblock %}
+         {% endembed %}
+
+      {% endblock %}
+
+      {% include '_organisms/pagination/pagination.twig' %}
+
+      {% block footer %}{% endblock %}
+
+   {% endblock %}
+{% endembed %}

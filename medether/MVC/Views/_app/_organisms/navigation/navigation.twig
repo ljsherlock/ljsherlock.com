@@ -1,0 +1,35 @@
+{#
+	* @desc         multi-level navigation that uses checkboxes to determine open/close
+	* @name         Vertical Navigation
+	* @author       ljsherlock
+	* @tested       Twig
+	* @requires     component.twig, grid.twig, btn.twig
+#}
+
+<div class="navigation">
+
+	{% set navigation %}
+		<div class="grid-desktop grid-desktop--col
+		grid-tablet grid-tablet--col
+		grid-mobile grid-mobile--col flex--just-center">
+
+			<div class="navigation__mid grid-desktop__100-of-100">
+
+				{% block nav %}
+
+					{% include '_app/_organisms/menu/menu.twig' %}
+
+				{% endblock %}
+
+			</div>
+			<div class="navigation__lower grid-desktop__100-of-100 grid grid--col grid--gutter-rg-bottom">
+				{{ sidebar__footer }}
+			</div>
+		</div>
+	{% endset %}
+
+	{% include '_atoms/block/block.twig' with {innerHTML: navigation } %}
+
+</div>
+
+{# nav #}

@@ -1,0 +1,64 @@
+{% extends 'project_fps/_templates/tmpl--paginated-page-lg.twig' %}
+
+{% block content %}
+
+   <div class="post post--{{post.post_type}} grid grid--col grid--gutter grid--gutter-rg-bottom">
+      <div class="grid__100-of-100">
+            {% include 'project_fps/_molecules/content/block--content-headline.twig' %}
+      </div>
+      <div class="grid__100-of-100">
+         {% if posts %}
+         <div class="grid grid--col grid--gutter grid--gutter-lg-bottom">
+
+            {% for type in posts %}
+               <div class="grid__100-of-100">
+
+                  <div class="grid grid--col grid--gutter grid--gutter-sm-bottom">
+                     {% include '_atoms/content/heading.twig' with { size: 'h3', heading: type.term_name, bem: [ {block:'heading--tt-none'} ] } %}
+                     <div class="grid-desktop grid-desktop-row grid-desktop--continuous grid-desktop--gutter-xlg-bottom grid-desktop--gutter-full
+                                 grid-tablet grid-tablet--row grid-tablet--continuous grid-tablet--gutter-xlg-bottom grid-tablet--gutter-full
+                                 grid-mobile gird-mobile--col grid-mobile--continuous grid-mobile--gutter-xlg-bottom grid-mobile--gutter-full">
+                           {% for post in type.posts %}
+                           <div class="grid-desktop__50-of-100 grid-tablet__100-of-100 grid-mobile__100-of-100">
+                              <div class="article__post">
+
+                                   <div class="grid-desktop grid-desktop--row grid--gutter grid-desktop--gutter-rg-right
+                                   grid-tablet grid-tablet--row grid--gutter grid-tablet--gutter-rg-right
+                                   grid-mobile grid-mobile--col grid--gutter grid-mobile--gutter-rg-bottom">
+                                      <div class="grid-desktop__25-of-100">
+
+                                         {% include '_atoms/media/image.twig' with {
+                                         src: attribute( post.get_field('member_info').0.logo.sizes, 'tile-' ~ device ),
+                                         alt: post.title } %}
+                                      </div>
+                                      <div class="grid-desktop__75-of-100">
+                                         {% for item in post.get_field('member_info') %}
+                                            <div class="grid grid--col grid--gutter grid--gutter-sm-bottom content">
+                                                {% include '_atoms/content/heading.twig' with { size: 'h4', heading: post.name, bem: [ {block:'heading--tt-none font--primary'}, {block:'member__name'} ]} %}
+                                               {% include 'project_fps/_molecules/content/member-info.twig' %}
+                                            </div>
+                                         {% endfor %}
+
+                                      </div>
+                                   </div>
+                                 
+                              </div>
+                           </div>
+
+
+                           {% endfor %}
+
+                     </div>
+                  </div>
+
+
+
+               </div>
+             {% endfor %}
+          </div>
+         {% endif %}
+      </div>
+   </div>
+
+
+{% endblock %}

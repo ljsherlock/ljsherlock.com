@@ -1,0 +1,109 @@
+%search {
+    %search__field {
+        @include transition(0.5s all ease);
+       background: none;
+       border:0 none;
+       outline: none;
+       color: $white;
+       width: 0;
+       padding: 0;
+       margin:0;
+       line-height: 28px;
+       font-weight: map-deep-get($type, font-weight, bold);
+       text-transform: uppercase;
+       letter-spacing: 1.5px;
+    }
+
+    %search__input {
+        width: 100%;
+    }
+    %search__btn {
+        @extend %line-below-hover;
+        margin-right: 0;
+        overflow:visible;
+        &:after {
+            background-color: $darkPastelRed;
+            height: 2px;
+            bottom: 0;
+        }
+        svg {
+            fill-rule: evenodd;
+        }
+    }
+    &%search--show {
+        %search__field {
+            width: 350px;
+            border-bottom: 2px solid $upsdellRed;
+        }
+        %search__btn {
+            border-bottom: 2px solid $upsdellRed;
+            margin-right: 0;
+            span {
+                display: none;
+            }
+            &:after {
+                height: 0;
+            }
+        }
+    }
+    &%search--large {
+        %search__field {
+            @include em($h4-size);
+            width: 100%;
+            // to conpensate for the border 2px on all other .fields.
+            margin-top: 2px;
+            padding: auto;
+            background: none;
+            outline: none;
+            @include transition(0.5s all ease);
+            color: $white;
+            @include placeholder {
+                color: $white;
+            };
+        }
+        svg {
+            height: 20px;
+            width: 20px;
+            fill: $white;
+        }
+    }
+    &%search--light {
+        %search__field {
+            color: $dainTree;
+        }
+        svg {
+            fill: $dainTree
+        }
+    }
+}
+
+.search {
+    @extend %search;
+}
+.search__input {
+    @extend %search__input;
+}
+.search__field {
+    @extend %search__field;
+}
+.search__btn {
+    @extend %search__btn;
+}
+.search--light {
+    @extend %search--light;
+}
+// .search__icon {
+//     @extend %search__icon;
+// }
+.search--large {
+    @extend %search--large;
+}
+.search--show {
+    @extend %search--show;
+}
+
+%uncut-mustard {
+    %search {
+        @extend %search--show;
+    }
+}

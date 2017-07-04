@@ -1,0 +1,78 @@
+/*---------------------------------------------*\
+*    list .scss
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %list {
+
+        &--center {
+            text-align: center;
+        }
+
+        %li {
+            text-indent: .25em;
+            line-height: 20px;
+            position: relative;
+            margin-left: 20px;
+            margin-bottom: 15px;
+
+            %ul {
+                margin-top: 5px;
+
+                %li {
+                    &:before {
+                        content: "- ";
+                    }
+                    margin-bottom: 5px;
+                }
+            }
+
+            &:before {
+                content: "• ";
+                position: absolute;
+                top: 0;
+                left: -20px;
+            }
+        }
+
+        &--center {
+            %ul {
+                %li {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    %address {
+        %list--center {
+            %address__line {
+                text-align: center;
+            }
+        }
+   }
+
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    // .content { @extend %content; }
+    ul { @extend %ul; }
+    .address { @extend %address; }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+
+    li { @extend %li; }
+    .address__line { @extend %address__line; }
+
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/
+
+
+    .list--center { @extend %list--center; }

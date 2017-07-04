@@ -1,0 +1,20 @@
+%bg {
+    @include absolute;
+    position: absolute;
+    height: 100vw;
+}
+
+%contact-us__bg {
+    background: rgba(56, 204, 210, 0.9);
+    @extend %bg;
+    z-index: -1;
+}
+
+%contact-us__bg-image {
+    @extend %bg;
+    z-index: -2;
+    background-size: cover;
+}
+
+.contact-us__bg { @extend %contact-us__bg; };
+.contact-us__bg-image { @extend %contact-us__bg-image; };

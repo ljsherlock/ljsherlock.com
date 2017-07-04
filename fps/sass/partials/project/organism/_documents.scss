@@ -1,0 +1,54 @@
+%documents {
+    &%theme--tomthumb {
+        $themeColor: $tomThumb;
+        &%documents {
+            border-color: $themeColor;
+        }
+        %documents__header {
+            background-color: $themeColor;
+        }
+    }
+    &%theme--danube {
+        $themeColor: $danube;
+        &%documents {
+            border-color: $themeColor;
+        }
+        %documents__header {
+            background-color: $themeColor;
+        }
+    }
+    &%theme--tahitigold {
+        $themeColor: $tahitiGold;
+        &%documents {
+            border-color: $themeColor;
+        }
+        %documents__header {
+            background-color: $themeColor;
+        }
+    }
+    &%theme--upsdellred {
+        $themeColor: $upsdellRed;
+        &%documents {
+            border-color: $themeColor;
+        }
+        %documents__header {
+            background-color: $themeColor;
+        }
+    }
+}
+
+.documents {
+    @extend %documents;
+}
+.documents--tomthumb {
+    @extend %theme--tomthumb;
+}
+.documents--danube {
+    @extend %theme--danube;
+}
+.documents--tahitigold {
+    @extend %theme--tahitigold;
+}
+.documents--upsdellred {
+    @extend %theme--upsdellred;
+}

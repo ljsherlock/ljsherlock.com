@@ -1,0 +1,11 @@
+// footer_-image.scss
+
+.footer-image {
+    @include padding-all($top: 200, $bottom:100);
+    @include mobile() {
+        @include padding-all($top: 85, $bottom:100);
+    };
+    background-position: center;
+    background-size: 95%;
+    background-repeat: no-repeat;
+}

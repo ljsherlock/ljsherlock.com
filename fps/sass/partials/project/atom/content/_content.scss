@@ -1,0 +1,41 @@
+.content {
+    h3, h4 {
+        text-transform: none;
+    }
+}
+
+%content--tomthumb {
+    h3, h4, h5 {
+        color: $tomThumb;
+    }
+}
+
+%content--danube {
+    h3, h4, h5 {
+        color: $danube;
+    }
+}
+
+%content--tahitigold {
+    h3, h4, h5 {
+        color: $tahitiGold;
+    }
+}
+
+%content--upsdellred {
+    h3, h4, h5 {
+        color: $upsdellRed;
+    }
+}
+.content--tomthumb {
+    @extend %content--tomthumb;
+}
+.content--danube {
+    @extend %content--danube;
+}
+.content--tahitigold {
+    @extend %content--tahitigold;
+}
+.content--upsdellred {
+    @extend %content--upsdellred;
+}

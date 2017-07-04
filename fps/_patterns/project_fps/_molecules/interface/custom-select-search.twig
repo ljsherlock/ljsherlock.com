@@ -1,0 +1,27 @@
+{# only default hard-coded here #}
+
+<div class="grid grid--col grid--gutter-rg-bottom">
+   <h4> {{ label }} </h4>
+
+   {% embed '_molecules/interface/form.twig' with { bem: [{block:'member-search'}], method: "post", form_name: 'search-member', attrs: [{name:'data-action', value: action}] } %}
+      {% block fields %}
+
+         <div class="grid grid--row grid--gutter grid--gutter-sm-right content">
+            <div class="grid__70-of-100">
+               {% include '_molecules/interface/custom-select.twig' %}
+            </div>
+            <div class="grid__30-of-100">
+               {% include '_atoms/interface/input.twig' with { input_name: 'search-by', input_type: 'hidden', input_value: loop_index } %}
+               {% include '_atoms/interface/input.twig' with {
+               bem : [
+                  { block: 'btn btn__text btn--regular btn--wide btn--danube' }
+               ],
+               input_type: 'submit',
+               input_title: 'Search',
+               input_name: 'search' } %}
+            </div>
+         </div>
+
+      {% endblock %}
+   {% endembed %}
+</div>

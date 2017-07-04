@@ -1,0 +1,50 @@
+
+
+// h4 {
+//     margin-bottom:12px;
+//     font-family:'Trade Gothic W01 Bold', sans-serif;
+// }
+
+.btn, .btn span, input[type=submit] {
+    font-family:'Trade Gothic W01 Bold', sans-serif;
+}
+
+.content--lowercase {
+    h2, h3, h4, h5 {
+        text-transform: none;
+    }
+    h5 {
+      font-family: $secondary-font;
+    }
+}
+
+* {
+    color: inherit;
+}
+
+.why-use-an-fps-member h3 {
+    color: $danube;
+    @include em(30);
+    @include line-height(35);
+    font-family: $primary-font;
+    text-transform: none;
+}
+
+h1, h2, h3 {
+    text-transform: uppercase;
+}
+
+// .article--page {
+//     h2, h3, h4, h5 {
+//         text-transform: none;
+//         font-family: $primary-font;
+//     }
+// }
+
+%heading--tt-none{
+    text-transform: none;
+}
+
+.heading--tt-none {
+    @extend %heading--tt-none;
+}

@@ -1,0 +1,17 @@
+{#
+    * anchor_link
+    * anchor_text
+    * block
+    * element
+    * modifier
+    * ID
+ #}
+
+ {% import 'bem.twig' as bemify %}
+ {% set classname = bemify.bem(bem) %}
+
+<a href="{{ anchor_link }}" class="{{ classname }}" id="{{ id }}" target="{{target}}">
+    {% block link_block %}
+       {{ anchor_text }}
+    {% endblock %}
+</a>

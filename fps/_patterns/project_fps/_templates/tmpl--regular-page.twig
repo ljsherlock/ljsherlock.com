@@ -1,0 +1,17 @@
+
+{% extends 'project_fps/_templates/layout--regular.twig' %}
+
+{% block layout %}
+
+   <div class="post--{{post.post_type}}">
+
+      {% block content %}
+
+         {% include 'project_fps/_molecules/content/block--content-headline.twig' %}
+         {% include 'project_fps/_organisms/content/content.twig' %}
+
+      {% endblock %}
+
+   </div>
+
+{% endblock %}

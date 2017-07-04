@@ -1,0 +1,31 @@
+{% extends 'project_fps/_templates/layout--2-column-inverted.twig' %}
+
+   {% block column_before %}
+   {% endblock %}
+
+   {% block column_1 %}
+      <div class="post body-{{post.term}}">
+
+         {% include 'project_fps/_molecules/content/block--content-headline.twig' %}
+
+         <div class="post">
+            {{post.content}}
+         </div>
+
+         <div class="accordions accordions--{{ post.get_field('page_theme') }}">
+            {% for item in post.get_field('accordion') %}
+               <div class="wrap--break-sm">
+                  {% include '_molecules/interface/accordion.twig' with { accordion__content: item.content, anchor_text: item.title } %}
+               </div>
+            {% endfor %}
+         </div>
+      </div>
+   {% endblock %}
+
+   {% block column_2 %}
+
+      <div class="member-documents">
+         {% include 'project_fps/_organisms/interface/documents.twig' with { documents: fields.multiple_docs } %}
+      </div>
+
+   {% endblock %}

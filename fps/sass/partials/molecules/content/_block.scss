@@ -1,0 +1,58 @@
+/*---------------------------------------------*\
+*    ACCORDION
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %block {
+        width: 100%;
+        position: relative;
+        padding: $padding;
+
+        %block__header {
+            margin-bottom: 35px;
+        }
+        &--fill {
+            height: 100%;
+        }
+        &--dark {
+            color: $dainTree;
+        }
+        &--light {
+            color: $white;
+        }
+        &--no-pad {
+            padding: 0;
+        }
+        &--rg {
+            padding: 20px;
+        }
+        &--sm {
+            padding: 15px;
+        }
+    }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    .block { @extend %block; }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+
+    .block__header { @extend %block__header; }
+
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/
+
+    .block--sm { @extend %block--sm; }
+    .block--rg { @extend %block--rg; }
+    .block--no-pad { @extend %block--no-pad; }
+    .block--fill { @extend %block--fill; }
+
+    .block--dark { @extend  %block--dark };
+    .block--light { @extend  %block--light };

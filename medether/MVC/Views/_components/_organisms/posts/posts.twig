@@ -1,0 +1,12 @@
+
+   {% for item in posts %}
+
+        {% include '_molecules/content/block--content.twig' with {
+            content: item.content|excerpt(30),
+            heading: item.post_title,
+            date: item.post_date|date('jS M Y'),
+            anchor_link: item.link,
+            anchor_text: 'read full story'
+         } %}
+
+  {% endfor %}

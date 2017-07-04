@@ -1,0 +1,101 @@
+{% import 'bem.twig' as bemify %}
+{% set classname = bemify.bem(bem) %}
+
+{% for month in months|slice(1,1) %}
+
+{% set prev = months.0.weeks().1.days().0.date().format('m/Y')  %}
+{% set next = months.2.weeks().1.days().0.date().format('m/Y') %}
+
+<div class="{{classname}}">
+
+   <div class="calendar__title grid grid--row flex--align-items-center">
+
+      <div class="grid__20-of-100 grid flex flex--just-start">
+
+         {% include '_atoms/interface/button.twig' with {
+            bem : [ { block: 'btn' }, { block: 'calendar__btn' }], id: 'calendar_prev', icon: 'icon-arrow-left',  anchor_link: '/events/' ~ prev
+         } %}
+
+      </div>
+      <div class="grid__60-of-100 grid flex flex--just-center">
+
+         <h5 class="calendar__month">{{ month.title('F Y') }}</h5>
+
+      </div>
+      <div class="grid__20-of-100 grid flex flex--just-end">
+
+         {% include '_atoms/interface/button.twig' with {
+            bem : [ { block: 'btn' }, { block: 'calendar__btn' }], id: 'calendar_next', icon: 'icon-arrow', anchor_link: '/events/' ~ next
+         } %}
+
+      </div>
+   </div>
+
+   <table class="calendar__table">
+      <thead>
+         <tr>
+
+            {% for day in month.weeks().0.days() %}
+               <th class="calendar__heading">{{ day.date().format('D')|slice(0,1) }}</th>
+            {% endfor %}
+
+         </tr>
+      </thead>
+      <tbody>
+
+         {% for week in month.weeks() %}
+
+            <tr class="calendar__row">
+
+               {% for day in week.days() %}
+
+                  <td class="calendar__cell {{(day.isOverflow() and calendar.resolution().showOverflowDays ? 'calendar__cell--overflow' : '')}}" align="center">
+
+                     {% set this_date = day.date().format('Y-m-d 00:00:00') %}
+                     {% set even_count = 0 %}
+
+                     {% for event in events %}
+                        {% set start = event.get_field('start_date') %}
+                        {% set end = event.get_field('end_date') %}
+
+                        {# if start date is less than or equal to this date AND end date is larger than or equal to this date #}
+                        {# or start date is equal to this date and end date is equal to this date #}
+                        {% if (
+                           start|date("j") <= this_date|date("j")
+                           and end|date("j") >= this_date|date("j")
+                           or start|date("j") == this_date|date("j")
+                           and end|date("j") == this_date|date("j")
+                        ) and start|date('F') == this_date|date('F') %}
+
+                           {% set event_count = event_count + 1 %}
+                           {% include '_atoms/content/anchor.twig' with { bem: [
+                              {block: 'calendar__event' ~ ' calendar__event--' ~ event_count},
+                              {block: 'calendar__event--' ~  event.get_terms().0.slug }
+                           ], anchor_link: event.link,  } %}
+
+                        {% endif %}
+                     {% endfor %}
+
+                     {% if day.isOverflow() %}
+                        {% if calendar.resolution().showOverflowDays %}
+                            {{day.date().format('j')}}
+                        {% else %}
+                           {{'&nbsp'}}
+                        {% endif %}
+                     {% else %}
+                        {% include '_atoms/content/span.twig' with {bem: [{block: 'calendar__day'}], span_text: day.date().format('j') } %}
+                     {% endif %}
+
+                  </td>
+
+               {% endfor %}
+            </tr>
+
+         {% endfor %}
+
+      </tbody>
+   </table>
+
+</div>
+
+{% endfor %}

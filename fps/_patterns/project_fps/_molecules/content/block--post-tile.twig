@@ -1,0 +1,16 @@
+
+<a href="{{ post.link }}" class="grid-desktop__25-of-100 grid-tablet__33-of-100 grid-mobile__50-of-100">
+
+   {# set style using acf image array #}
+   {% if post.get_field('texture') %}
+      {% set style = 'background-image: url(' ~ attribute( post.get_field('texture').image.sizes, 'tile-' ~ device ) ~ ');' %}
+   {% endif %}
+
+   {# set custom class with color afc field #}
+   <div class="tile tile--{{post.post_type}} tile--{{ post.get_field('color').0 }}" style="{{ style }}">
+         <h4 class="font--primary">{{ post.post_title }}</h4>
+         <div class="tile__inner">
+             {% include '_atoms/media/svg.twig' with { icon : 'icon-' ~ post.get_field('icon').0, bem: [ {block: 'icon symbol--' ~ post.get_field('icon').0 } ] } %}
+         </div>
+  </div>
+</a>

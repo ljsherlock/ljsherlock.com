@@ -1,0 +1,9 @@
+{% if bem is defined %}
+   {% import 'bem.twig' as bemify %}
+   {% set class = bemify.bem(bem) %}
+{% endif %}
+
+{% if attrs is defined %}
+   {% import 'attrs.twig' as attrfy %}
+   {% set attrs_str = attrfy.attrs(attrs) %}
+{% endif %}

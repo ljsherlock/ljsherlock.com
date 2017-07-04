@@ -1,0 +1,19 @@
+{#
+	* @desc         Typographic Elements: tag name added to as a class.
+	* @name         Typography
+	* @author       ljsherlock
+	* @tested       Twig
+	* @requires     component.twig
+#}
+
+{% if bem is defined %}
+
+   {% set tmpClasses = [{block: tag}] | merge( bem )  %}
+
+{% else %}
+
+   {% set tmpClasses = [{block: tag}]  %}
+
+{% endif %}
+
+{{ el.createHTMLTag( tag, { }, tmpClasses, text ) }}

@@ -1,0 +1,174 @@
+/*---------------------------------------------*\
+*    SLIDESHOW
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+    %slideshow {
+        height: 470px;
+        min-height: 680px;
+        overflow: hidden;
+        z-index:0;
+        position: relative;
+        background-size: cover ;
+        background-position: center;
+        @include flexbox();
+        @include align-items(center);
+
+        %slideshow__item {
+            @extend %flex;
+            @extend %flex--align-items-center;
+            @extend %flex--just-start;
+            @extend %flex--just-center;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            z-index:2;
+            // left: calc(-100vw);
+        }
+
+        %slideshow__img {
+            position: absolute;
+            z-index:1;
+        }
+
+        %slideshow__content {
+            position: absolute;
+            right: 0;
+            width: 35%;
+            @include tablet() {
+                width: 80%;
+            };
+            padding:35px;
+            margin-right:10%;
+            z-index:3;
+            // theme
+            color: $white;
+            @include mobile {
+                width: 100%;
+                margin: 0;
+                bottom: 0;
+                position: absolute;
+            };
+        }
+
+        %slideshow__title {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 35%;
+            padding:35px;
+            margin-left:10%;
+            z-index:3;
+            // theme
+            color: $white;
+        }
+
+        %slideshow__header,
+        %slideshow__footer {
+            position: relative;
+        }
+
+        %slideshow__header {
+            h2 {
+                margin-bottom:12px;
+            }
+        }
+
+        %slideshow__footer {
+            height: 40px;
+            margin-top:25px;
+        }
+
+        %backstretch__slider {
+            position: relative !important;
+            z-index: 1 !important;
+            animation: slide 1s ease-in;
+        }
+
+        &--short {
+            height: 465px;
+        }
+
+        &--adjust {
+
+        }
+    }
+
+    .slideshow__item--active {
+        left: 0;
+
+    }
+
+    .backstretch__slider--slide {
+        @extend .backstretch__slider;
+    }
+
+
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+    .slideshow { @extend %slideshow; }
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+    .slideshow__item { @extend %slideshow__item; }
+    .slideshow__img { @extend %slideshow__img; }
+    .slideshow__content { @extend %slideshow__content; }
+    .slideshow__title { @extend %slideshow__title; }
+    .slideshow__header { @extend %slideshow__header; }
+    .slideshow__footer { @extend %slideshow__footer; }
+    .backstretch__slider { @extend %backstretch__slider; }
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/
+    .slideshow--short { @extend %slideshow--short; }
+    // .slideshow--adjust { @extend %slideshow--adjust; }
+
+
+.counter {
+    position: absolute;
+    margin: auto;
+    display: block;
+    height: 20px;
+    top:0;
+    bottom: 0;
+    right:0;
+    .counter__current {
+
+    }
+    .counter__max {
+
+    }
+}
+
+// .counter__arrow-l,
+// .counter__arrow-r {
+//     @extend %touch;
+//     width: 11px;
+//     fill: $LightPink;
+// }
+
+.counter__arrow-l {
+    margin-right: 7.5px;
+}
+
+.counter__arrow-r {
+    margin-left: 7.5px;
+}
+
+.counter {
+    font-style: italic;
+    font-size: 15px;
+}
+
+
+.counter__current {
+    color: $white;
+}
+.counter__max {
+    color:  $white;
+    opacity:0.5;
+}

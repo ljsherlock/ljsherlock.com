@@ -1,0 +1,17 @@
+
+<div class="grid grid--col grid--gutter grid--gutter-xlg-right grid--gutter grid--gutter-xlg-bottom">
+   {% for item in articles %}
+     <div class="grid__100-of-100">
+        {% include '_molecules/content/block--content.twig' with {
+         style : 'background-image: url(' ~ attribute( options.post_background.sizes, 'tile-' ~ device ) ~ ');',
+         content: item.post_content|excerpt(30),
+         heading: item.post_title,
+         date: item.post_date|date('jS M Y'),
+         anchor_link: item.link,
+         anchor_text: 'read full story'
+         } %}
+     </div>
+  {% endfor %}
+</div>
+
+{% set style = 'background-image: url(' ~ attribute( item.get_field('texture').image.sizes, 'tile-' ~ device ) ~ ');' %}

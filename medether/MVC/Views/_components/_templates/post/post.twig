@@ -1,0 +1,41 @@
+{#
+	* @desc         Post Template!
+	* @name         Post
+	* @author       ljsherlock
+	* @tested       Twig
+	* @requires     component.twig
+#}
+
+{% embed 'component.twig' with { el:'div', bem: [{block: 'post'}] } %}
+   {% block component %}
+
+      {% embed 'component.twig' with { el: 'div', bem : [
+            { block: 'grid', modifier: [ 'row', 'gutter-rg-bottom' ] }] } %}
+         {% block component %}
+
+            {% block header %}
+
+               {# header #}
+               {# date #}
+               {% include 'typography.twig' with { text: post.title } %}
+               {% include 'typography.twig' with { text: post.post_date|date('jS M Y') } %}
+
+            {% endblock %}
+
+            {# content #}
+            {% block body %}
+               {{post.content}}
+            {% endblock %}
+
+            {% include '_organisms/pagination/pagination.twig' %}
+
+            {# additional #}
+            {% block footer %}
+
+            {% endblock %}
+
+         {% endblock component %}
+      {% endembed %}
+
+   {% endblock component %}
+{% endembed %}

@@ -1,0 +1,28 @@
+%form {
+    %form--invalidated {
+        %fields {
+            border-color: $upsdellRed;
+        }
+    }
+    %field{
+        &:focus {
+            border-color: $danube;
+        }
+    }
+    %label%error {
+        color: $upsdellRed;
+    }
+}
+
+form {
+    @extend %form;
+}
+label {
+    @extend %label;
+}
+.error {
+    @extend %error;
+}
+.field {
+    @extend %field;
+}

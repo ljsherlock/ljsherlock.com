@@ -1,0 +1,173 @@
+/*---------------------------------------------*\
+*    NAV
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %menu__overlay {
+        background-color: rgba(0,0,0, 0.8);
+        z-index: 9998;
+        @include transform( matrix(1, 0, 0, 1, -9999, 0) );
+        @include transition(0.3s ease);
+    }
+
+    %nav__item--active {
+        %nav__btn-text {
+            color: $turquoise;
+        }
+    }
+
+    %nav {
+        %nav__item {
+            &:hover {
+                > %nav__btn {
+                    @extend %nav__item--active;
+                }
+                > %nav__label {
+                    @extend %nav__item--active;
+                }
+            }
+            %nav__btn {
+                %nav__btn-text {
+                    color: $white;
+                }
+                %icon {
+                    @include transition(.3s ease);
+                    opacity: 0;
+                }
+            }
+            %nav__label {
+                border: none;
+            }
+            %nav__check {
+                display: none;
+                &:checked {
+                    & ~ %nav__list {
+                        %nav__sub-item {
+                            @include transform( matrix(1, 0, 0, 1, 0, 0) );
+                        }
+                    }
+                    & ~ %nav__label {
+                        %nav__btn %icon {
+                            opacity: 1;
+                            @include transform( matrix(1, 0, 0, 1, 100, 0) );
+                        }
+                        %nav__btn-text {
+                            @extend %nav__item--active;
+                        }
+                    }
+                }
+            }
+        }
+
+        %nav__list {
+            position: absolute;
+            z-index: -1;
+            left: em(285);
+            top: 0;
+            overflow: hidden;
+            width: em(990);
+            &--open {
+
+            }
+            %nav__sub-item {
+                @include transition(0.75s ease);
+                // @include transform( matrix(1, 0, 0, 1, -330, 0) );
+                @for $i from 1 through 3 {
+                   &:nth-child(#{$i}) {
+                    @include transition-delay(0.2s * $i);
+                   }
+               }
+                z-index: 100;
+                %nav__block {
+                    width: 330px;
+                    height: 330px;
+                    @include transition(.3s ease);
+                    &:hover {
+                        %svg {
+                            opacity: 0.25;
+                            fill: $white;
+                        }
+                    }
+                    &--pigmentGreen {
+                        background-color: $pigmentGreen;
+                        &:hover {
+                            background-color: $darkPigmentGreen;
+                        }
+                    }
+                    &--flame {
+                        background-color: $flame;
+                        &:hover {
+                            background-color: $sinopia;
+                        }
+                    }
+                    &--turquoise {
+                        background-color: $turquoise;
+                        &:hover {
+                            background-color: $lightSeaGreen;
+                        }
+                    }
+                    %nav__text {
+                        color: $white;
+                        font-family: sofia_prolight;
+                    }
+                    %svg {
+                        fill: $dainTree;
+                        opacity: 0.15;
+                    }
+                    %nav__icon {
+                        width: 75px;
+                        height: 75px;
+                    }
+                }
+            }
+        }
+        %nav__btn {
+            svg {
+                fill: $turquoise;
+            }
+            %nav__btn-text {
+                color: $white;
+                font-family: map-get( $type_family, body );
+            }
+        }
+    }
+
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+    nav { @extend %nav; }
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+
+    .nav__item { @extend %nav__item; }
+    .nav__label { @extend %nav__label; }
+
+    .nav__check { @extend %nav__check; }
+
+    .nav__list { @extend %nav__list; }
+    .nav__sub-item { @extend %nav__sub-item; }
+
+    .nav__block { @extend %nav__block; }
+    .nav__block--pigmentGreen { @extend %nav__block--pigmentGreen; }
+    .nav__block--flame { @extend %nav__block--flame; }
+    .nav__block--turquoise { @extend %nav__block--turquoise; }
+
+    .nav__icon { @extend %nav__icon; }
+    .nav__text { @extend %nav__text; }
+
+    .nav__btn { @extend %nav__btn; }
+    .nav__btn-text { @extend %nav__btn-text; }
+
+    .menu__overlay { @extend %menu__overlay; }
+
+     .hamburger__check { @extend %hamburger__check; }
+
+    svg { @extend %svg; }
+
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/

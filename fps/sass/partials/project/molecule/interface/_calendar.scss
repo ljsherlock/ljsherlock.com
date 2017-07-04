@@ -1,0 +1,88 @@
+/*---------------------------------------------*\
+*    CALENDAR
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %calendar {
+        max-width: 300px;
+        min-width: 285px;
+    }
+
+    %calendar__title {
+        background-color: $emporer;
+        color: $white;
+
+        %calendar__button {
+            fill: $white;
+            color: $white;
+            svg {
+                @include transition(all .3s ease-out) ;
+                &:hover {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+
+    %calendar__month {
+        text-transform: uppercase;
+    }
+
+    %calendar__table {
+        width: 100%;
+        %calendar__heading {
+            background-color: $gainsboro;
+            border-right-color: $almostWhite;
+            border-left-color: $almostWhite;
+        }
+        %calendar__cell,
+        %calendar__heading {
+            color: $emporer;
+            font-family: $primary-font;
+            font-size: rem(map-deep-get($type, font-size, button));
+        }
+        %calendar__row {
+            %calendar__cell {
+                %calendar__day {
+                    font-family: $primary-font;
+                }
+                border-color: $iron;
+                %calendar__event {
+                    ~ %calendar__day {
+                        color: $white;
+                    }
+                    // &%calendar__event--1 {
+                    //     border-left-color: $darkPastelRed;
+                    // }
+                    // &:only-of-type%calendar__event--1 {
+                    //     background-color: $equator;
+                    // }
+                    // &%calendar__event--2 {
+                    //     border-right-color: $equator;
+                    // }
+                }
+                &%calendar__cell--overflow {
+                    color: $magnesium;
+                }
+            }
+        }
+    }
+
+    %calendar__terms {
+        text-transform: capitalize;
+    }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+    .calendar { @extend %calendar; }
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+    .calendar__month { @extend %calendar__month; }
+    .calendar__terms { @extend %calendar__terms; }
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/

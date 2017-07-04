@@ -1,0 +1,16 @@
+%breadcrumbs {
+    %btn {
+        %btn__text {
+            color: $magnesium;
+            fill: $danube;
+            text-transform: capitalize;
+        }
+        &--naked-before {
+            padding-left: 18px;
+        }
+    }
+}
+
+.breadcrumbs { @extend %breadcrumbs; }
+.btn { @extend %btn; }
+.btn--naked-before { @extend %btn--naked-before; }

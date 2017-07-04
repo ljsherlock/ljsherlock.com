@@ -1,0 +1,10 @@
+%html
+{
+    &%restrict {
+        overflow: hidden;
+    }
+}
+
+html { @extend %html; }
+
+.restrict { @extend %restrict; }

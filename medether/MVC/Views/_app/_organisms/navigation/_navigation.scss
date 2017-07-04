@@ -1,0 +1,89 @@
+/*---------------------------------------------*\
+*    NAV
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %nav--active {
+        left: em(0);
+        overflow: visible;
+    }
+
+    %items--away {
+        @include transform( translateX(-330px) );
+        opacity: 0;
+    }
+
+    %items--show {
+        @include transform( initial);
+        opacity: 1;
+    }
+
+    %hamburger__check:checked {
+        & ~ %navigation {
+            @extend %nav--active;
+            %navigation__mid {
+                @extend %items--show;
+            }
+            %navigation__lower {
+                @extend %items--show;
+            }
+        }
+    }
+
+    %navigation
+    {
+        width: em(285);
+        left: em(-235);
+        height: 100%;
+        position: fixed;
+        top: 0;
+        overflow: hidden;
+        z-index: map-get($zindex, 'menu');
+        background-color: $atomic;
+        @include transition(.3s ease);
+
+        .block, .block > div
+        {
+            height: 100%;
+        }
+
+        // %hamburger {
+        //     @include transition-delay(0.2s * 1);
+        //     @extend %items--away;
+        // }
+        %navigation__mid {
+            @include transition-delay(0.2s * 2);
+            @include transition(0.75s ease);
+            @extend %items--away;
+        }
+        %navigation__lower {
+            position: absolute;
+            bottom: 20px;
+            @include transition-delay(0.2s * 3);
+            @include transition(0.75s ease);
+            @extend %items--away;
+            color: $nevada;
+            a {
+                color: $regentGrey
+            }
+        }
+    }
+
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+    .navigation { @extend %navigation; }
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+
+    .navigation__mid { @extend %navigation__mid; }
+    .navigation__lower { @extend %navigation__lower; }
+
+
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/

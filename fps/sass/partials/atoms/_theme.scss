@@ -1,0 +1,53 @@
+/*---------------------------------------------*\
+*    THEME
+*
+*   light and dark are theme classnames
+*   They specify a default light and dark background color, background etc
+*   and foreground: font colour, icons etc
+
+*   The most powerful use of these classes will be by using it to change sublings
+*   globally or individually.
+*
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %light {
+        background-color: $white;
+        h1, h2, h3, h4, h5, h6 {
+            color: $dainTree;
+        }
+        h5 {
+            color: $magnesium;
+        }
+        %custom-select__button {
+            @extend %btn--border;
+            border-color: $magnesium;
+            border-width: 2px;
+        }
+    }
+
+    %dark {
+        background-color: $dark;
+        color: $white;
+        h1, h2, h3, h4, h5, h6 {
+            color: $white;
+        }
+
+    }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    .light { @extend %light; }
+
+    .dark { @extend %dark; }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/

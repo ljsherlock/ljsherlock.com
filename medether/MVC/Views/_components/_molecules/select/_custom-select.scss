@@ -1,0 +1,115 @@
+/*---------------------------------------------*\
+*    CUSTOM SELECT
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %custom-select {
+        @extend %drop-down;
+        position: relative;
+
+        %custom-select__button {
+            @extend %drop-down__button;
+            text-transform: none;
+            background: $white;
+            %button__text {
+                color: $magnesium;
+            }
+            svg {
+                @include transition(.5s all ease);
+                right:20px;
+                fill: grey;
+            }
+            &:hover {
+                background: $white;
+            }
+            &%btn--active {
+                &~%custom-select__list {
+                    animation: slide-down 1.25s ease-out forwards;
+                }
+                svg {
+                    @include transform(rotate(180deg));
+                }
+            }
+            &%btn--inactive {
+                &~%custom-select__list {
+                    animation: slide-up 0.5s ease-out forwards;
+                }
+            }
+        }
+        %custom-select__list
+        {
+            @extend %drop-down__list;
+            @extend %flex;
+            @extend %flex--col;
+            @include transition(.5s max-height ease);
+
+            width: 100%;
+            top:49px;
+            background-color: white;
+            border: 1px solid grey;
+            border-top: 0 none;
+
+            /*---------------------------------------------*\
+            *   give the list a large max-height to transition
+            *   with a dynamic height value.
+            /*---------------------------------------------*/
+            @for $i from 0 through 25 {
+                &.custom-select__list--#{$i} {
+                    // Math!
+                    // --25 will be z-index: 400
+                    z-index: #{100 / ($i + 1) };
+                }
+            }
+
+            %custom-select__item {
+                @extend %drop-down__item;
+                @include padding-all($left:34, $right:34);
+                height: 50px;
+                margin: 0;
+                // font-size: em( map-get($type_size, button) );
+                line-height: 50px;
+                background-color: white;
+                color: grey;
+
+                &:nth-child(odd) {
+                    background-color: #f9f9f9;
+                }
+                &%custom-select__item--selected {
+                    background-color: rgba(grey, 0.75);
+                    color: white;
+                }
+                &:hover {
+                    background-color: rgba(grey, 0.5);
+                    color: white;
+                }
+            }
+
+            &--hidden { display: none; }
+        }
+    }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    .custom-select { @extend %custom-select; }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+
+    .custom-select__list { @extend %custom-select__list; }
+    .custom-select__button { @extend %custom-select__button; }
+    .custom-select__item { @extend %custom-select__item; }
+    .button__text { @extend %button__text; }
+
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/
+
+    .btn--active { @extend %btn--active; }
+    .btn--inactive { @extend %btn--inactive; }
+    .custom-select__item--selected { @extend %custom-select__item--selected; }
+    .custom-select__list--hidden { @extend %custom-select__list--hidden; }

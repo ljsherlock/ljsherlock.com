@@ -1,0 +1,5 @@
+
+{% import 'bem.twig' as bemify %}
+{% set classname = bemify.bem(bem) %}
+
+<small class="copyright {{ classname }}">&copy; {{ sitename ~ ' ' ~ year }} </small>

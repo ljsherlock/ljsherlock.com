@@ -1,0 +1,52 @@
+%btn {
+    color: $dainTree;
+    fill: $dainTree;
+}
+
+%dark {
+    %btn {
+        color: $white;
+        fill: $white;
+    }
+}
+
+// .btn--regular {
+//     color: $white;
+//     &.btn--dark {
+//         background-color: $dainTree;
+//     }
+//     &:hover {
+//         background-color: $danube;
+//     }
+// }
+
+%btn--dark {
+    border-color: $dainTree;
+    color: $dainTree;
+    fill: $dainTree;
+    &:after {
+
+    }
+    &:hover {
+        color: $white;
+        fill: $white;
+    }
+}
+
+%btn--light {
+    border-color: $white;
+    color: $white;
+    fill: $white;
+    &:after {
+        background-color: $white;
+    }
+    &:hover {
+        color: $dainTree;
+        fill: $dainTree;
+    }
+}
+
+
+.btn {
+    @extend %btn;
+}

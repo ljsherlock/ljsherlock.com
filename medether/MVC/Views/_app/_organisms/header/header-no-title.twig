@@ -1,0 +1,43 @@
+
+
+{% set headerInner %}
+
+   {% import 'el.twig' as el %}
+
+   <div class="overlay"></div>
+
+   {% set innerHTML %}
+
+
+         <div class="grid grid--col grid--gutter-xlg-bottom">
+            <div class="header__head grid__100-of-100">
+
+               <div class="grid grid--row">
+                  <div class="grid__50-of-100">
+
+                     {% block head__logo %}
+                        {% include '_molecules/logo-link/logo-link.twig' %}
+                     {% endblock %}
+
+                  </div>
+                  <div class="grid__50-of-100">
+
+                     {% block head__right %}
+                        {{ sidebar__header }}
+                     {% endblock %}
+
+                  </div>
+               </div>
+
+            </div>
+         </div>
+
+   {% endset %}
+
+   {% include '_atoms/block/block.twig' %}
+
+{% endset %}
+
+
+{{ el.createHTMLTag('header', {style: 'background-image: url(' ~ banner_image ~ ');'},
+ [{ block: 'header', modifier: ['small', colour] }, bem], headerInner) }}

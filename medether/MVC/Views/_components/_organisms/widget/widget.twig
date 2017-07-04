@@ -1,0 +1,45 @@
+{#
+   * @requires widget {obj)
+   * @desc
+#}
+
+{% if widget.type == 'widget' %}
+
+   {% include widget.template ~ '.twig' %}
+
+{% else %}
+
+   {% for item in widget.instances %}
+
+      {% embed 'component.twig' with { el: 'p' } %}
+         {% block component %}
+
+            {% include 'component.twig' with { el: 'label', text: item.title,
+               attrs: { for: item.id }
+            } %}
+
+            {% set type = (item.type) ?: 'text' %}
+
+            {% if type != 'select' %}
+
+               {% include 'component.twig' with { el: 'input',
+                  bem: [{block: 'widefat'}],
+                  attrs: { type: item.type, id: item.id, name: item.name, value: item.value }
+               } %}
+
+            {% else %}
+
+               {% include '_molecules/select/select.twig' with {
+                  bem: [{ block: 'widefat' }],
+                  attrs: { id: item.id, name: item.name },
+                  options: item.options
+               } %}
+
+            {% endif %}
+
+         {% endblock %}
+      {% endembed %}
+
+   {% endfor %}
+
+{% endif %}

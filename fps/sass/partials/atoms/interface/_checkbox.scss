@@ -1,0 +1,43 @@
+/*---------------------------------------------*\
+*    CHECKBOX
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %checkbox {
+        %checkbox__label {
+            font-size: 14px;
+            color: #777777;
+            margin-bottom: 7px;
+            display: block;
+            line-height: 18px;
+            margin-left: 40px;
+        }
+        %checkbox__input {
+            margin-right:10px;
+            position: absolute;
+            left:0;
+            top:0;
+            bottom:0;
+            height:20px;
+            width:20px;
+        }
+    }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    .checkbox { @extend %checkbox; }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+
+    .checkbox__label { @extend %checkbox__label; }
+    .checkbox__input { @extend %checkbox__input; }
+
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/

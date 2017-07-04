@@ -1,0 +1,252 @@
+
+/*----------------------------------------------
+    BLOCK
+----------------------------------------------*/
+/*----------------------------------------------
+    ELEMENT
+----------------------------------------------*/
+/*----------------------------------------------
+    MODIFIER
+----------------------------------------------*/
+
+%nav--primary {
+    .btn {
+        font-size: rem(map-deep-get($type, font-size, primary_nav));
+        color: $white;
+        fill: $white;
+        margin: 0;
+        padding:0;
+        svg {
+            opacity: 0;
+        }
+    }
+    %line-below-hover {
+        &:after {
+            bottom:2px;
+        }
+    }
+}
+
+.line-below-hover {
+    @extend %line-below-hover;
+    &:after {
+        @include transition( 0.5s cubic-bezier(0.68, 0.55, 0.265, 1) );
+    }
+}
+
+%columnar-navigation {
+    position: absolute;
+    display: none;
+    width: 100%;
+    @include desktop() {
+        top: 175px;
+    };
+    @include mobile() {
+        position: relative;
+    };
+    // left: 20px;
+    right: 0;
+    margin: auto;
+    %nav__drop-down {
+        @include flexbox();
+        @extend %flex--col;
+        %nav__label {
+            width: 100%;
+            %nav__btn {
+                width: 45%;
+                height: 35px;
+                &:before {
+                    content: '';
+                    height: 100%;
+                    width: 2px;
+                    display: block;
+                    background: white;
+                    position: absolute;
+                    right: -25px;
+                    left: auto;
+                }
+                &%drop-down__button--has-children {
+                    svg {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        %nav__check {
+            // &~%nav__list {
+            //     animation:
+            //         closeItem .45s ease-out forwards;
+            // }
+            &:checked {
+                // & ~ %nav__label svg {
+                //     opacity: 1;
+                // }
+                & ~ %nav__list {
+                    animation:
+                        openItem .75s ease-out forwards;
+                }
+            }
+        }
+        > %nav__btn {
+            width: 45%;
+            height: 35px;
+            &:before {
+                content: '';
+                height: 100%;
+                width: 2px;
+                display: block;
+                background: white;
+                position: absolute;
+                right: -25px;
+                left: auto;
+            }
+            &.btn--active {
+                svg {
+                    opacity: 1;
+                }
+                &~%nav__list {
+                    animation:
+                        openItem .75s ease-out forwards;
+                }
+            }
+            &.btn--inactive {
+                &~%nav__list {
+                    animation:
+                        closeItem .45s ease-out forwards;
+                }
+            }
+        }
+    }
+    %nav__list {
+        left: 60%;
+    }
+    %nav__item {
+        padding: 0;
+    }
+}
+
+%singular-navigation {
+    position: absolute;
+    display: none;
+    width: 100%;
+    @include desktop() {
+        top: 175px;
+    };
+    @include mobile() {
+        position: relative;
+    };
+    // left: 20px;
+    right: 0;
+    margin: auto;
+    %nav__drop-down {
+        @include flexbox();
+        @extend %flex--col;
+        %nav__btn {
+            width: 100%;
+            padding: 5px 0;
+            %button__text {
+                font-size: #{ rem( map-deep-get($type, font-size, h5) ) };
+                line-height: rem(30);
+            }
+        }
+        %nav__label {
+            width: 100%;
+            %nav__btn {
+                &%drop-down__button--has-children {
+                    svg {
+                        opacity: 1;
+                        @include transition(.3s transform ease);
+                        @include transform(rotate(90deg));
+                        @include transform-origin(initial);
+                    }
+                }
+            }
+        }
+        %nav__check {
+            &:checked {
+                & ~ %nav__label svg {
+                    opacity: 0.7;
+                    @include transform(rotate(270deg));
+                }
+                & ~ %nav__list {
+                    animation:
+                        openItem .75s ease-out forwards;
+                }
+            }
+        }
+        > %nav__btn {
+            width: 100%;
+            height: 35px;
+            &.btn--active {
+                svg {
+                    opacity: 1;
+                }
+                &~%nav__list {
+                    animation:
+                        openItem .75s ease-out forwards;
+                }
+            }
+            &.btn--inactive {
+                &~%nav__list {
+                    animation:
+                        closeItem .45s ease-out forwards;
+                }
+            }
+        }
+    }
+    %nav__list {
+        position: relative;
+        background-color: $dainTreeLight;
+    }
+    %nav__item {
+        padding: 0;
+        padding-left: 20px;
+        &:first-child {
+            padding-top: 5px;
+        }
+        &:last-child {
+            border-bottom: 2px solid $sail;
+        }
+    }
+}
+
+// %nav--toggle {
+//     &.nav--open {
+//         display: block;
+//     }
+// }
+
+.hamburger-button__checkbox {
+    @extend %hamburger-button__checkbox;
+}
+
+
+/*----------------------------------------------
+    BLOCK
+----------------------------------------------*/
+
+.nav--primary {
+    @extend %nav--primary;
+    @extend %singular-navigation;
+    // @extend %nav--toggle;
+}
+
+/*----------------------------------------------
+    ELEMENT
+----------------------------------------------*/
+
+.nav__drop-down { @extend %nav__drop-down; }
+
+.nav__list { @extend %nav__list; }
+.nav__item { @extend %nav__item; }
+.nav__check { @extend %drop-down__check; @extend %nav__check; }
+.nav__btn { @extend %nav__btn; }
+.nav__label { @extend %nav__label; }
+
+.button__text { @extend %button__text; }
+
+/*----------------------------------------------
+    MODIFIER
+----------------------------------------------*/
+
+.drop-down__button--has-children { @extend %drop-down__button--has-children; }

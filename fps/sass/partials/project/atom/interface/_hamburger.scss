@@ -1,0 +1,33 @@
+.hamburger {
+    top: 6px;
+    left: -5px;
+    .hamburger__layer {
+        height: 2px;
+        width: 18px;
+        margin:6px auto 0;
+        background-color: $white;
+    }
+}
+
+// .btn--hamburger:not(.btn--active):hover {
+//     .hamburger__layer:first-child {
+//         @include transform( translateY(-1.5px) );
+//     }
+//
+//     .hamburger__layer:nth-child(2) {
+//         width: 75%;
+//     }
+//
+//     .hamburger__layer:last-child {
+//         @include transform( translateY(1.5px) );
+//     }
+// }
+
+//active transformations
+%rotate-right-and-center-from-top {
+    @include transform( rotate(45deg) translateX(4px) translateY(7px) );
+}
+
+%rotate-left-and-center-from-bottom {
+    @include transform( rotate(-45deg) translateX(5px) translateY(-8px) );
+}

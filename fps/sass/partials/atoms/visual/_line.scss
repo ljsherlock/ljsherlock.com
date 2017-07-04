@@ -1,0 +1,69 @@
+/*---------------------------------------------*\
+*    lines.scss
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %line-below {
+        position: relative;
+        @include positional-pseudo($pseudo:'after', $top: auto, $right: 100%, $bottom: -2px, $left: 0%) {
+            height: 2px;
+            background-color: $sail;
+        };
+    }
+
+    %line-below--left-to-right {
+        @extend %line-below;
+
+        &:before {
+            left: 0;
+            right: 0;
+        };
+
+        &:after {
+            @include transition( 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) );
+            @include transform( translate3d(0, 0, 0) );
+            left: 0%;
+            right: 100%;
+        };
+
+        &.hover,
+        &:hover,
+        &.btn--active {
+            &:after {
+                left: 0;
+                right: 0;
+            }
+        }
+    }
+
+    %line-below--outwards {
+        @extend %line-below;
+        @include positional-pseudo($pseudo: 'before', $bottom: 0, $left: 0, $right: 0) {
+            background-color: $dainTreeLight;
+        };
+        @include positional-pseudo($pseudo: 'after', $bottom: 0, $left: 50%, $right: 50%) {
+            @include transition( 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) );
+            @include transform( translate3d(0, 0, 0) );
+            background-color: $magnesium;
+        }
+    }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    .line-below-hover {
+        @extend %line-below--left-to-right;
+        &:after {
+            background: $capeCod;
+        }
+    }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/

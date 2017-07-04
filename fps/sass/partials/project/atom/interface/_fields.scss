@@ -1,0 +1,22 @@
+
+input, select {
+    color: $delta;
+}
+%field {
+    &%field--primary {
+        border-width: 2px;
+        border-color: $delta;
+        border-style:solid;
+        color: $dainTree;
+        border-width: 2px;
+        line-height: 44px;
+        min-height: 50px;
+        @include placeholder {
+            color: $delta;
+        };
+    }
+}
+.field { @extend %field; }
+.field--primary {
+    @extend %field--primary;
+}

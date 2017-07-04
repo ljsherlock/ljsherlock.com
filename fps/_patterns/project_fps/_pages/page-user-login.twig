@@ -1,0 +1,11 @@
+{% extends 'project_fps/_templates/tmpl--regular-page.twig' %}
+
+{% block content %}
+
+   <div class="grid-desktop flex--just-center">
+      <div class="grid-desktop__40-of-100">
+            {% include '_molecules/interface/login.twig' with { action:  constant('RW_URL') ~ '/wp/wp-login.php' } %}
+      </div>
+   </div>
+
+{% endblock %}

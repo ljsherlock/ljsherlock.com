@@ -1,0 +1,21 @@
+<div class="grid grid--col grid--gutter grid--gutter-xlg-bottom">
+
+   {# Latest articles #}
+   {# Firt 3 articles in here #}
+   <div class="grid__100-of-100">
+      {% include 'project_fps/_organisms/content/fps-latest-articles.twig' with { unique : [
+            { block: 'block', modifier : ['dark'] },
+            { block: 'post', modifier : [post.slug] }
+         ], articles: posts|slice(0, 3) }%}
+   </div>
+
+   {# Articles #}
+   {# Remaining articles in here #}
+   <div class="grid__100-of-100">
+      {% include 'project_fps/_organisms/content/fps-articles.twig' with { unique : [
+            { block: 'block', modifier : ['dark'] },
+            { block: 'post', modifier : [post.slug] }
+         ], articles: posts|slice(3, 2) } %}
+   </div>
+
+</div>

@@ -1,0 +1,10 @@
+
+<label for="radio" class="checkbox__label{{ checkbox__class ? ' ' ~ checkbox__class : '' }}" >checkbox</label>
+
+{% include 'interface/i\nput.twig' with {
+   input_type: 'checkbox',
+   input_class: "checkbox__input",
+   input_title: 'Search',
+   input_name: 'radio',
+   input_value: '1'
+} %}

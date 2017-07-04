@@ -1,0 +1,49 @@
+{% for post in articles %}
+
+   {# Row open #}
+   {% if loop.index == 1 %}
+      <div class="grid grid--row grid--gutter grid--gutter-md-bottom ">
+         <div class="grid__100-of-100">
+            <div class="grid-desktop grid-desktop--row grid--gutter grid-desktop--gutter-md-right
+            grid-tablet grid-tablet--row grid--gutter grid-tablet--gutter-md-right
+            grid-mobile grid-mobile--col grid--gutter grid-mobile--gutter-md-bottom">
+
+   {% endif %}
+
+               <div class="grid-desktop__25-of-100 grid-tablet__25-of-100 grid-mobile__100-of-100">
+                  {% include 'project_fps/_molecules/content/block--post-tile.twig' %}
+               </div>
+
+   {% if loop.index % 4 == 0 and not loop.last %}
+
+      {# Close the current row and open another #}
+            </div>
+         </div>
+      </div>
+      <div class="grid grid--row grid--gutter grid--gutter-md-bottom ">
+         <div class="grid__100-of-100">
+            <div class="grid-desktop grid-desktop--row grid--gutter grid-desktop--gutter-md-right
+            grid-tablet grid-tablet--row grid--gutter grid-tablet--gutter-md-right
+            grid-mobile grid-mobile--col grid--gutter grid-mobile--gutter-md-bottom">
+
+   {% endif %}
+
+   {% if loop.last %}
+
+      {# Add additional grid if not a full row #}
+      {% if loop.index % 4 != 0 %}
+
+         {% set num = (loop.index % 4) == 3 ? 1 : (loop.index % 4) == 2 ? 2 : (loop.index % 4) == 1 ? 3 : 0 %}
+
+         {% for item in 1..num %}
+             <div class="grid-desktop__25-of-100 grid-tablet__25-of-100 grid-mobile__100-of-100"></div>
+         {% endfor %}
+      {% endif %}
+
+      {# Close the row #}
+            </div>
+         </div>
+      </div>
+   {% endif %}
+
+{% endfor %}

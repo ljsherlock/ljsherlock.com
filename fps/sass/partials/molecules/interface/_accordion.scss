@@ -1,0 +1,59 @@
+/*---------------------------------------------*\
+*    ACCORDION
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %accordion {
+        @extend %custom-select;
+
+        %accordion__button {
+            @extend %custom-select__button;
+            z-index: 11;
+            background-color: $halfColonialWhite;
+
+            &:hover {
+                background-color: $halfColonialWhite;
+            }
+
+            %button__text {
+                color: $dainTree;
+                @include em(30);
+            }
+
+            %accordion__minus {
+                opacity: 0;
+            }
+
+            %svg {
+                fill: $dainTree;
+                @include transition(.3s all cubic-bezier(0.250, 0.460, 0.450, 0.940));
+            }
+        }
+        %accordion__content {
+            @extend %drop-down__list;
+            position: relative;
+            @include transition(1s all cubic-bezier(0.250, 0.460, 0.450, 0.940));
+            z-index:11;
+        }
+    }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    .accordion { @extend %accordion; }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+
+    .accordion__button { @extend %accordion__button; }
+    .accordion__content { @extend %accordion__content; }
+    .button__text { @extend %button__text; }
+    .accordion__minus { @extend %accordion__minus; }
+
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/

@@ -1,0 +1,21 @@
+{# feed-list.twig #}
+
+{% embed 'content/list.twig' with { items: feed_list|slice(0,3), ordered: false } %}
+   {% block list__item %}
+
+      {% embed 'content/anchor.twig' with {
+      anchor_link: item.link,
+      date: item.date|date('jS M Y'),
+      heading: item.name,
+      bem: [ {block: 'article__link'} ]
+      } %}
+
+         {% block link_block %}
+
+            {% include 'content/heading--dated.twig' with { size: 'h4' } %}
+
+         {% endblock %}
+      {% endembed %}
+
+   {% endblock %}
+{% endembed %}

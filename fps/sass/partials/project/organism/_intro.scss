@@ -1,0 +1,22 @@
+
+@include desktop() {
+    %intro
+    {
+        %intro__block {
+
+        }
+        %intro__left {
+            z-index: 1;
+        }
+        %intro__right {
+            @include transform( translateY( 175px ) );
+            // margin-bottom:110px;
+            z-index: 0;
+        }
+    }
+};
+
+.intro { @extend %intro; }
+// .intro__block { @extend %intro__block; }
+.intro__left { @extend %intro__left; }
+.intro__right { @extend %intro__right; }

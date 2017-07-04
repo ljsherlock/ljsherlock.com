@@ -1,0 +1,12 @@
+{#  SVG.twig  #}
+
+{% import 'bem.twig' as bemify %}
+{% set classname = bemify.bem(bem) %}
+
+{% if constant('_MUSTARD') %}
+   <svg {{ viewbox ? 'viewBox="'~ viewbox ~'"' : '' }} class="{{classname}}">
+      <use xlink:href="{{ constant('RW_ICONS') ~ '/icons.svg#' ~ icon }}" id="use-{{ icon }}" />
+   </svg>
+{% else %}
+   <img src="{{ constant('RW_ICONS') ~ '/' ~ icon}}.png" class="{{ class }}" id="use-{{ icon }}"/>
+{% endif %}

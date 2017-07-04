@@ -1,0 +1,10 @@
+{# contact #}
+
+{% embed '_atoms/content/list.twig' with { items: options.contact } %}
+   {% block list__item %}
+
+      {% set anchor_link = item.link_type ~ ':' ~ item.value %}
+      {% include '_atoms/content/anchor.twig' with { anchor_text: item.prefix ~ item.value, bem: [ {block: 'smaller'} ] } %}
+
+   {% endblock %}
+{% endembed %}

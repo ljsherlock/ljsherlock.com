@@ -1,0 +1,14 @@
+
+{% extends 'template/global.twig' %}
+
+   {% block main %}
+
+      <h2>Page: {{ post.post_title }}</h2>
+
+      {{ post.post_content }}
+
+      {{ sidebar__header }}
+
+      {{ year }}
+
+   {% endblock %}

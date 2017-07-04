@@ -1,0 +1,15 @@
+%dark {
+    %line-below-hover {
+        &:after {
+            background-color: $white;
+        }
+    }
+
+}
+
+%line-below-hover {
+    &:after {
+        height: 2px;
+        bottom: -2px
+    }
+}

@@ -1,0 +1,43 @@
+
+{# attribute( hero.0.image.sizes, image_size)
+
+* background image backup
+* caption
+
+#}
+
+<div class="slideshow slideshow--adjust backstretch" style="background-image: url({{ slideshow_img }})">
+   {% block slideshow__body %}
+      {% for item in fields.hero %}
+
+         {# video is independant from backstretch #}
+         {% if constant('_MUSTARD') and device != 'mobile' and item.hero__item_video is not empty %}
+
+            {% include '_molecules/media/background_video.twig' with {
+            autoplay: 'loop',
+            uniquename: 'homeBackgroundVideo',
+            bem : [
+               { block: 'video--background' },
+               {block: 'video--inactive'}
+            ],
+            image: item.slideshow_img,
+            source: item.hero__item_video } %}
+
+         {% endif %}
+
+          {% if item.hero__item_caption %}
+
+            <div class="slideshow__item {% if loop.first %} slideshow__item--active {% endif %}">
+               <div class="slideshow__content content slideshow__content--inactive">
+
+                  <div class="slideshow__body">
+                     <h1> {{ item.hero__item_caption }} </h1>
+                  </div>
+
+               </div>
+            </div>
+         {% endif %}
+      {% endfor %}
+
+   {% endblock %}
+</div>

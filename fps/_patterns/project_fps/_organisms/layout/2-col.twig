@@ -1,0 +1,39 @@
+
+{% block column_before %}
+   <div class="grid grid--row">
+      <div class="grid__100-of-100 light">
+         {# smaller heading #}
+         {% include '_atoms/content/heading.twig' with { size: 'h5', heading: post.parent} only  %}
+      </div>
+   </div>
+{% endblock %}
+
+<div class="grid-desktop grid-desktop--row grid--gutter grid-desktop--gutter-rg-right
+   grid-tablet grid-tablet--row grid--gutter grid-tablet--gutter-rg-right
+   grid-mobile grid-mobile--col grid--gutter grid-mobile--gutter-lg-bottom">
+   <div class="grid-desktop__{{column_1_size}}-of-100
+   grid-tablet__{{column_1_size}}-of-100
+   grid-mobile__100-of-100">
+
+      {% block column_1 %}
+
+         <div class="article__body">
+
+            {% include '_atoms/content/heading.twig' with { size: 'h1', heading: post.name} only  %}
+            {{post.content}}
+
+         </div>
+
+      {% endblock %}
+
+   </div>
+   <div class="grid-desktop__{{column_2_size}}-of-100
+   grid-tablet__{{column_2_size}}-of-100
+   grid-mobile__100-of-100">
+
+      {% block column_2 %}
+
+      {% endblock %}
+
+   </div>
+</div>

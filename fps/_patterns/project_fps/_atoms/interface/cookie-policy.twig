@@ -1,0 +1,13 @@
+{% embed 'project_fps/_atoms/interface/overlay.twig' with { bem: [ { block: 'overlay', modifier: ['cookies'] } ] } %}
+   {% block overlay %}
+
+      <div class="wrap">
+         {% embed '_molecules/content/block.twig' only %}
+            {% block body %}
+               <p>This is some info</p>
+            {% endblock %}
+         {% endembed %}
+      </div>
+
+   {% endblock %}
+{% endembed %}

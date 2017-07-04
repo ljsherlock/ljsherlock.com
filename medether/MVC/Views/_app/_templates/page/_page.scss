@@ -1,0 +1,37 @@
+
+%theme
+{
+    &--turquoise {
+        %page__intro {
+            color: $turquoise;
+        }
+    }
+    &--pigmentGreen {
+        %page__intro {
+            color: $pigmentGreen;
+        }
+    }
+    &--flame {
+        %page__intro {
+            color: $flame;
+        }
+    }
+}
+
+%text--highlight {
+    color: $turquoise;
+}
+%text--marked {
+    color: $flame;
+}
+
+.page__intro { @extend %page__intro; }
+
+.theme { @extend %theme; }
+
+.text--highlight { @extend %text--highlight; }
+.text--marked { @extend %text--marked; }
+
+.theme--pigmentGreen { @extend %theme--pigmentGreen; }
+.theme--turquoise { @extend %theme--turquoise; }
+.theme--flame { @extend %theme--flame; }

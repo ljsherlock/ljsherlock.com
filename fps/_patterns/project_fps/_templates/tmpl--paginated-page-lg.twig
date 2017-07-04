@@ -1,0 +1,22 @@
+{% extends 'project_fps/_templates/layout--large.twig' %}
+{% block layout %}
+
+<div class="grid grid--col grid--gutter grid--gutter-rg-bottom">
+   <div class="grid__100-of-100">
+
+      {% block content %}
+
+         {% include 'project_fps/_molecules/content/block--content-headline.twig' %}
+         {% include 'project_fps/_organisms/content/content.twig' %}
+
+      {% endblock content %}
+
+   </div>
+   <div class="grid__100-of-100">
+
+      {% include '_organisms/interface/simple-pagination.twig' %}
+
+   </div>
+</div>
+
+{% endblock layout %}

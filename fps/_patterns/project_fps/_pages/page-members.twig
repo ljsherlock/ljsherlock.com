@@ -1,0 +1,46 @@
+{% extends 'project_fps/_templates/tmpl--paginated-page-lg.twig' %}
+
+{% block content %}
+
+   {% include 'project_fps/_molecules/content/block--content-headline.twig' %}
+
+   <div class="grid-desktop grid-desktop--col grid--gutter grid-desktop--gutter-lg-bottom
+   grid-tablet grid-tablet--col grid--gutter grid-tablet--gutter-lg-bottom
+   grid-mobile grid-mobile--col grid--gutter grid-mobile--gutter-lg-bottom
+   light">
+      {% if post.post_type == 'page' and post.content is not empty %}
+         <div class="grid__100-of-100">
+             {{post.content}}
+         </div>
+      {% endif %}
+      <div class="grid__100-of-100">
+         {% for select in members_filter.select %}
+            <div class="grid-desktop grid-tablet grid-mobile">
+               <div class="grid-desktop__50-of-100
+               grid-tablet__70-of-100
+               grid-mobile__100-of-100">
+                  {% include 'project_fps/_molecules/interface/custom-select-search.twig' with {
+                     label: select.label,
+                     select_title: select.label,
+                     select_name: 'member_search',
+                     select_default: select.default,
+                     options: systems,
+                     anchor_text: select.placeholder,
+                     loop_index: loop.index,
+                     val_attr: 'slug',
+                     title_attr: 'name',
+                     action: '/member/system/'
+                  } %}
+               </div>
+            </div>
+         {% endfor %}
+      </div>
+      <div class="grid__100-of-100">
+
+         {% include 'project_fps/_organisms/content/tiles-members.twig' with { articles: posts } %}
+
+      </div>
+   </div>
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+
+<div class="post post--{{post.post_type}}">
+   <div class="grid grid--col grid--gutter grid--gutter-xlg-bottom">
+      <div class="grid__100-of-100">
+
+         {% include '_organisms/interface/breadcrumbs.twig' with { breadcrumb_icon: "icon-seperator" } %}
+
+      </div>
+      <div class="grid__100-of-100">
+
+         {% include '_atoms/content/date.twig' with { bem:
+         [ { block:'dated-heading', element: 'date' } ],
+          date : post.date|date('j M Y') } %}
+
+      </div>
+      <div class="grid__100-of-100">
+         {% include '_atoms/content/heading.twig' with { size: 'h1', heading: post.name}  %}
+      </div>
+   </div>
+</div>

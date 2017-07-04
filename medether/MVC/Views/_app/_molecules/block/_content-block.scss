@@ -1,0 +1,63 @@
+
+
+
+%content-block
+{
+    %content-block__image
+    {
+        max-height: 300px;
+        overflow: hidden;
+
+    }
+    %content-block__icon {
+        @include transform( translate( -37px, -40px ) );
+    }
+    %content-block__tag {
+        @include transform( translateX( -30px ) );
+    }
+}
+
+%theme--pigmentGreen
+{
+    %content-block
+    {
+        %content-block__icon {
+            fill: $pigmentGreen;
+        }
+        %content-block__tag {
+            color: $pigmentGreen;
+        }
+    }
+}
+%theme--turquoise
+{
+    %content-block
+    {
+        %content-block__icon {
+            fill: $turquoise;
+        }
+        %content-block__tag {
+            color: $turquoise;
+        }
+    }
+}
+%theme--flame
+{
+    %content-block
+    {
+        %content-block__icon {
+            fill: $flame;
+        }
+        %content-block__tag {
+            color: $flame;
+        }
+    }
+}
+
+.theme--pigmentGreen{ @extend %theme--pigmentGreen; }
+.theme--pigmentGreen{ @extend %theme--flame; }
+.theme--pigmentGreen{ @extend %theme--turquoise; }
+.content-block { @extend %content-block; }
+.content-block__image { @extend %content-block__image; }
+.content-block__icon { @extend %content-block__icon; }
+.content-block__tag { @extend %content-block__tag; }

@@ -1,0 +1,20 @@
+<div class="custom-select">
+   <div class="events-overlay custom-select__event"></div>
+   {# only default hard-coded here #}
+
+   {# js button #}
+   {% include '_atoms/interface/button.twig' with {
+      bem: [
+         { block: 'btn', modifier: ['regular', 'wide', 'text'] },
+         { block: 'custom-select', element: 'button' }
+      ],
+      anchor_link: '#select',
+      icon: 'icon-down-arrow' } %}
+
+
+   {# form select #}
+   {% include '_atoms/interface/select-menu.twig' with {
+      select_default: "Drop down.." } %}
+      {# search_options #}
+
+</div>

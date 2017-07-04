@@ -1,0 +1,188 @@
+{% extends 'project_fps/_templates/tmpl--regular-page-lg.twig' %}
+
+{% block content %}
+
+<div class="wrap--break-lg grid grid--col grid--gutter grid--gutter-xlg-bottom">
+   <div class="grid__100-of-100">
+      {% include '_organisms/interface/breadcrumbs.twig' with { breadcrumb_icon: "icon-seperator" } %}
+   </div>
+   <div class="grid__100-of-100">
+      {% include '_atoms/interface/button.twig' with {
+         bem : [
+            { block: 'btn', modifier: ['naked-before'] }
+         ],
+         icon: 'icon-arrow-left',
+         anchor_text: 'All Members',
+         anchor_link: '/members'
+      } %}
+   </div>
+   <div class="grid__100-of-100">
+         {% include '_atoms/content/heading.twig' with { size: 'h1', heading: post.name}  %}
+   </div>
+   <div class="grid__100-of-100">
+      <div class="post post--{{post.post_type}} post--{{post.post_type}}-single">
+         <div class="grid grid--col grid--gutter grid--gutter-lg-bottom">
+            <div class="grid__100-of-100">
+               <div class="article__post">
+
+                  <div class="grid-desktop grid-desktop--row grid--gutter grid-desktop--gutter-rg-right
+                  grid-tablet grid-tablet--row grid--gutter grid-tablet--gutter-rg-right
+                  grid-mobile grid-mobile--col grid--gutter grid-mobile--gutter-rg-bottom">
+                     <div class="grid-desktop__25-of-100
+                     grid-tablet__25-of-100
+                     grid-mobile__100-of-100">
+                        <div class="article__image">
+                           {% include '_atoms/media/image.twig' with { src: attribute( fields.member_info.0.logo.sizes, 'tile-' ~ device ) , alt: post.title } %}
+                        </div>
+                     </div>
+                     <div class="grid-desktop__75-of-100
+                     grid-tablet__75-of-100
+                     grid-mobile__100-of-100">
+
+                        {% for item in fields.member_info %}
+                           {% include 'project_fps/_molecules/content/member-info.twig' %}
+                        {% endfor %}
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="grid__100-of-100">
+
+               {% include '_atoms/content/heading.twig' with { bem: [{block: 'font--capitalize' }], size: 'h3', heading: post.title ~ ' offers the following Geotechnical Engineering Techniques:' } %}
+
+            </div>
+            <div class="grid__100-of-100">
+
+               <div class="grid-desktop grid-desktop--row grid--gutter grid-desktop--gutter-rg-right
+               grid-tablet grid-tablet--row grid--gutter grid-tablet--gutter-rg-right
+               grid-mobile grid-mobile--col grid--gutter grid-mobile--gutter-rg-bottom">
+                  <div class="grid-desktop__50-of-100">
+
+                     {% embed '_molecules/interface/accordion.twig' with { anchor_text: 'Primary Provider',
+                     bem: [ {block: 'accordion--danube accordion--member'} ] } %}
+                        {% block accordion__button %}
+
+                           {% embed '_atoms/interface/button.twig' with {
+                              bem: [
+                                 { block: 'block', modifier: ['rg'] },
+                                 { block: 'btn', modifier: ['regular', 'wide', 'text', 'content'] },
+                                 { block: 'accordion', element: 'button', modifier: [''] }
+                              ],
+                              anchor_link: '#accordion' ~ loop.index,
+                              icon: 'icon-plus',
+                              secondary_icon: 'icon-minus',
+                              icon_bem: [{ block: 'accordion__plus' }],
+                              icon_2_bem: [{ block: 'accordion__minus' }] } %}
+                              {% block btn_block %}
+                                 <div class="grid grid--col grid--gutter-sm-bottom">
+                                    <h4>{{anchor_text}}</h4>
+                                    <p>The Member provides the technique using their own plant, personnel etc.</p>
+                                 </div>
+                              {% endblock %}
+                           {% endembed %}
+
+                        {% endblock %}
+
+                        {% block accordion__content %}
+
+                           {% embed '_molecules/content/block.twig' with {bem :''} %}
+                              {% block body %}
+
+                                 <div class="grid grid--col grid--gutter-rg-bottom">
+                                    {% for parent in primary_provider %}
+
+                                       <div class="grid__100-of-100">
+
+                                          {% include '_atoms/content/heading.twig' with { size: 'h4', heading: parent.name, bem: []} %}
+
+                                          <div class="grid grid--col grid--gutter-sm-bottom grid--gutter-rg-left grid--gutter-full">
+
+                                             {% for item in parent.children %}
+                                                <div class="gird__100-of-100">
+                                                   {{ item.name }}
+                                                </div>
+                                             {% endfor %}
+
+                                          </div>
+
+                                       </div>
+                                    {% endfor %}
+                                 </div>
+
+                              {% endblock body %}
+                           {% endembed %}
+
+                        {% endblock accordion__content %}
+
+                     {% endembed %}
+                  </div>
+
+                  <div class="grid-desktop__50-of-100">
+
+                     {% embed '_molecules/interface/accordion.twig' with { anchor_text: 'Secondary Provider',
+                     bem: [ {block: 'accordion--danube'} ] } %}
+                        {% block accordion__button %}
+                           {% embed '_atoms/interface/button.twig' with {
+                              bem: [
+                                 { block: 'block', modifier: ['rg'] },
+                                 { block: 'btn', modifier: ['regular', 'wide', 'text', 'content'] },
+                                 { block: 'accordion', element: 'button' }
+                              ],
+                              anchor_link: '#accordion' ~ loop.index,
+                              icon: 'icon-plus',
+                              secondary_icon: 'icon-minus',
+                              icon_bem: [{ block: 'accordion__plus' }],
+                              icon_2_bem: [{ block: 'accordion__minus' }] } %}
+                              {% block btn_block %}
+                                 <div class="grid grid--col grid--gutter-sm-bottom">
+                                    <h4>{{anchor_text}}</h4>
+                                    <p>The Member provides the technique using their own plant, personnel etc.</p>
+                                 </div>
+                              {% endblock %}
+                           {% endembed %}
+                        {% endblock %}
+
+                        {% block accordion__content %}
+
+                           {% embed '_molecules/content/block.twig' %}
+                              {% block body %}
+
+                                 <div class="grid grid--col grid--gutter-rg-bottom">
+                                    {% for parent in primary_provider %}
+
+                                       <div class="grid__100-of-100">
+
+                                          {% include '_atoms/content/heading.twig' with { size: 'h4', heading: parent.name, bem: []} %}
+
+                                          <div class="grid grid--col grid--gutter-sm-bottom grid--gutter-rg-left grid--gutter-full">
+
+                                             {% for item in parent.children %}
+                                                <div class="gird__100-of-100">
+                                                   {{ item.name }}
+                                                </div>
+                                             {% endfor %}
+
+                                          </div>
+
+                                       </div>
+                                    {% endfor %}
+                                 </div>
+
+                              {% endblock body %}
+                           {% endembed %}
+
+                        {% endblock accordion__content %}
+                     {% endembed %}
+                  </div>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+{% endblock %}

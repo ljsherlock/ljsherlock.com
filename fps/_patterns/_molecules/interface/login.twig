@@ -1,0 +1,49 @@
+{% import 'bem.twig' as bemify %}
+{% set classname = bemify.bem(bem) %}
+
+   <div class="documents">
+      {% embed '_molecules/content/block.twig' with { bem: [{ block: 'block--light' }, {block: 'documents__header'}] } %}
+         {% block body %}
+            {% include '_atoms/content/heading.twig' with { size: 'h4', heading: 'Members Login', bem : '' } %}
+         {% endblock %}
+      {% endembed %}
+
+      {% embed '_molecules/content/block.twig' with { content: docs_title, bem: [ {block: 'documents__body'}] } %}
+         {% block body %}
+
+            {% embed '_molecules/interface/form.twig' with { method: 'post', name: 'loginform', bem: [{block: 'newsletter'}] } %}
+               {% block fields %}
+
+                  <div class="grid grid--col grid--gutter grid--gutter-sm-bottom">
+
+                     <div class="grid__100-of-100">
+                        {% include '_atoms/interface/input.twig' with {
+                        input_type:'text',
+                        input_placeholder: 'Email' ,
+                        input_name: 'log',
+                        input_value: user_login,
+                        bem:[ { block:'field' } ] } %}
+                     </div>
+                     <div class="grid__100-of-100">
+                        {% include '_atoms/interface/input.twig' with {
+                        input_type:'password',
+                        input_placeholder: 'Password' ,
+                        input_name: 'pwd',
+                        bem:[ { block:'field' } ] } %}
+                     </div>
+                     <div class="grid__100-of-100">
+                        {% include '_atoms/interface/input.twig' with {
+                        input_type: 'submit',
+                        bem: [ {block: 'btn--regular btn--wide btn--dark'},
+                        {block: 'newsletter__btn'} ],
+                        input_title: 'Log In',
+                        input_name: 'wp-submit' } %}
+                     </div>
+
+                  </div>
+               {% endblock %}
+            {% endembed %}
+
+         {% endblock %}
+      {% endembed %}
+   </div>

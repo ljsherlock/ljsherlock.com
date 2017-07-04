@@ -1,0 +1,6 @@
+// Because we had to re-register the "post" post-type, it appears twice in the menu.
+// The code below hides it.
+
+li#menu-posts.menu-top-first {
+    display: none;
+}

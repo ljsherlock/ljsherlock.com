@@ -1,0 +1,124 @@
+/*---------------------------------------------*\
+*    ACCORDION
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+
+    %accordion--mobile
+    {
+        %accordion__button
+        {
+            text-decoration: none;
+            %btn__text
+            {
+                font-size: 15px;
+                line-height: 45px;
+                color: #415361;
+                font-weight: bold;
+            }
+            %svg
+            {
+                display: none;
+            }
+        }
+    }
+
+    %accordion
+    {
+        box-sizing: border-box;
+        > * {
+            box-sizing: border-box;
+        }
+        %accordion__button
+        {
+            text-decoration: none;
+            %btn__text
+            {
+                font-size: 15px;
+                line-height: 45px;
+                color: #415361;
+                font-weight: bold;
+            }
+            border: 1px solid #b1bfca;
+            &:hover
+            {
+                background-color: $white;
+            }
+            &%btn--active
+            {
+                &~%accordion__content
+                {
+                    animation: slide-down 1.25s ease-out forwards;
+                }
+                svg
+                {
+                    @include transform(none);
+                }
+                %accordion__plus
+                {
+                    animation: rotate-hide 0.3s forwards;
+                }
+                %accordion__minus
+                {
+                    animation: show .3s .2s forwards;
+                }
+            }
+            &%btn--inactive {
+                &~%accordion__content
+                {
+                    animation: slide-up 0.5s ease-out forwards;
+                }
+                %accordion__plus
+                {
+                    animation: rotate-show 0.3s forwards;
+                }
+                %accordion__minus
+                {
+                    animation: hide 0.3s 0.15s forwards;
+                }
+            }
+            %button__text
+            {
+                color: $black;
+                @include em(30);
+            }
+            %accordion__minus
+            {
+                opacity: 0;
+            }
+            %svg
+            {
+                fill: $black;
+                @include transition(.3s all cubic-bezier(0.250, 0.460, 0.450, 0.940));
+            }
+        }
+        %accordion__content
+        {
+            @include transition(1s all cubic-bezier(0.250, 0.460, 0.450, 0.940));
+        }
+    }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    .accordion { @extend %accordion; }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+
+    .accordion__button { @extend %accordion__button; }
+    .accordion__content { @extend %accordion__content; }
+    .btn__text { @extend %btn__text; }
+    .accordion__minus { @extend %accordion__minus; }
+
+    .btn--active { @extend %btn--active; }
+    .btn--inactive { @extend %btn--inactive; }
+    .accordion--mobile { @extend %accordion--mobile; }
+
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/

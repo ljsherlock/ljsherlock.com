@@ -1,0 +1,86 @@
+{% extends 'project_fps/_templates/tmpl--regular-page.twig' %}
+
+{% block content %}
+
+
+<div class="grid grid--col grid--gutter grid--gutter-rg-bottom">
+   <div class="grid__100-of-100">
+      {% include 'project_fps/_molecules/content/block--content-headline.twig' %}
+      {{post.content}}
+   </div>
+   <div class="grid__100-of-100">
+
+      <div class="grid grid--col grid--gutter grid--gutter-rg-bottom content--lowercase">
+         <div class="grid__100-of-100 ">
+            {% embed 'project_fps/_organisms/layout/2-col.twig' with { column_1_size: '50', column_2_size: '50'} %}
+            {% block column_before %}
+            {{''}}
+            {% endblock %}
+               {% block column_1 %}
+                  <div class="grid grid--col grid--gutter grid--gutter-lg-bottom">
+                     <div class="grid__100-of-100">
+
+                        {% include '_atoms/content/heading.twig' with {size: 'h6', bem: [{block: 'font--primary'}], heading: officers_term.name } %}
+
+                     </div>
+                     <div class="grid__100-of-100">
+                        <div class="grid grid--col grid--gutter grid--gutter-rg-bottom">
+
+                           {% for officer in officers %}
+                              <div class="grid__100-of-100">
+                                 <div class="grid grid--col grid--gutter grid--gutter-sm-bottom">
+                                    <div class="officer--term content--danube">
+                                       {% include '_atoms/content/heading.twig' with { size: 'h4',
+                                       bem: [{ block: 'font--primary' }], heading: officer.terms('position') | join(', ')} %}
+                                    </div>
+                                    <div class="officer">
+                                       {% include '_atoms/content/heading.twig' with {size: 'h5', heading: officer.name} %}
+                                    </div>
+                                 </div>
+                              </div>
+
+                           {% endfor %}
+                        </div>
+                     </div>
+                  </div>
+
+               {% endblock %}
+
+               {% block column_2 %}
+                  <div class="grid grid--col grid--gutter grid--gutter-lg-bottom">
+                     <div class="grid__100-of-100">
+                        {% include '_atoms/content/heading.twig' with {size: 'h6', bem: [{block: 'font--primary'}], heading: committee_chairmen_term.name } %}
+                     </div>
+                     <div class="grid__100-of-100">
+                        <div class="grid grid--col grid--gutter grid--gutter-rg-bottom">
+                           {% for chairman in committee_chairmen %}
+                              <div class="grid__100-of-100">
+
+                                 <div class="grid grid--col grid--gutter grid--gutter-sm-bottom">
+                                    <div class="officer--term content--danube">
+                                       {% include '_atoms/content/heading.twig' with { size: 'h4', bem: [{ block: 'font--primary' }], heading: chairman.terms('position') | join(', ')} %}
+                                    </div>
+                                    <div class="officer">
+                                       {% include '_atoms/content/heading.twig' with {size: 'h5', heading: chairman.name} %}
+                                    </div>
+                                 </div>
+
+                              </div>
+                           {% endfor %}
+                        </div>
+                     </div>
+                  </div>
+
+               {% endblock %}
+            {% endembed %}
+         </div>
+      </div>
+
+   </div>
+</div>
+
+
+
+
+
+{% endblock %}

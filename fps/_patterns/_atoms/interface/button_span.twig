@@ -1,0 +1,23 @@
+{# 00-atom
+   / 06-interface
+      / 01-button.twig #}
+
+{% if icon %}
+
+    {% embed '_atoms/content/span.twig' %}
+        {% block content %}
+          <span class="button__text"> {{ anchor_text }} </span>
+          {% set bem = '' %}
+          {% include '_atoms/media/svg.twig'  with { bem: icon_bem, icon: icon } %}
+          {% if secondary_icon %}
+            {% include '_atoms/media/svg.twig' with { bem: icon_2_bem, icon: secondary_icon } %}
+          {% endif %}
+
+      {% endblock %}
+   {% endembed %}
+
+{% else %}
+
+   {% include '_atoms/content/span.twig' %}
+
+{% endif %}

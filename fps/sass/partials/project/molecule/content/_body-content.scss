@@ -1,0 +1,9 @@
+%body_content {
+    h2, h3, h4, h5 {
+        text-transform: none;
+    }
+}
+
+.accordion__content {
+    @extend %body_content;
+}

@@ -1,0 +1,18 @@
+ // logo.scss
+
+a.logo {
+    @extend %flex;
+    @extend %flex--center;
+}
+
+@include desktop() {
+    a .symbol--logo-mobile {
+        display: none;
+    }
+};
+
+@include portable() {
+    .symbol--logo {
+        display: none;
+    }
+};

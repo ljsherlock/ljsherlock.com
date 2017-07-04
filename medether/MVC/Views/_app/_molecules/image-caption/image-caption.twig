@@ -1,0 +1,14 @@
+{#
+{% set tmpAttributesFigcaption = tmp.tmpData( bemFigcaption, [{}] ) %}
+{% set tmpAttributesFigure = tmp.tmpData( bemFigure, [{}] ) %} #}
+
+{% set figure %}
+   {{ el.createHTMLTag('img', { src: src }, [], '') }}
+   {{ figureHTML }}
+{% endset %}
+
+{% set figcaption %}
+   {{ el.createHTMLTag('figcaption', {}, bemFigcaption, caption) }}
+{% endset %}
+
+{{ el.createHTMLTag('figure', [], bemFigure, figure ~ figcaption) }}

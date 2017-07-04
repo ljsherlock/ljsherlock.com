@@ -1,0 +1,20 @@
+{#
+	* @desc         Create svgs!
+	* @name         SVG
+	* @author       ljsherlock
+	* @tested       Twig
+	* @requires     component.twig, _MUSTARD
+#}
+
+{% if constant('_MUSTARD') %}
+
+   {% set href = icon ? constant('LJS_ICONS') ~ '/icons.svg#' ~ icon : '' %}
+   {% set _use %}
+      {{ el.createHTMLTag( 'use', { href: href, id: 'use--' ~ icon }, [], '', true ) }}
+   {% endset %}
+   {{ el.createHTMLTag( 'svg', {}, bem, _use ) }}
+{% else %}
+
+   {{ el.createHTMLTag( 'use', { src: constant('LJS_ICONS') ~ '/' ~ icon ~ '.png', id: 'use--' ~ icon }, [], '', true ) }}
+
+{% endif %}

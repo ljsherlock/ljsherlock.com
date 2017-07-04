@@ -1,0 +1,17 @@
+{#
+*  @name Global
+*  @requires ajax.twig, template.twig
+#}
+
+{% import 'el.twig' as el %}
+{% import 'tmp.twig' as tmp %}
+
+{% extends ajax.method == true ? 'template/ajax.twig': 'template/template.twig' %}
+
+   {% block body %}
+
+      {% block main %}
+
+      {% endblock %}
+
+   {% endblock %}

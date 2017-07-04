@@ -1,0 +1,37 @@
+{% import 'bem.twig' as bemify %}
+{% set classname = bemify.bem(bem) %}
+
+<div class="newsletter content">
+
+   {% include '_atoms/content/heading.twig' with {size: 'h4', heading: label} %}
+
+   {% embed '_molecules/interface/form.twig' with { action:'subscribe', method: 'post', form_name: 'newsletter', bem: [{block: 'newsletter'}] } %}
+      {% block fields %}
+
+         <div class="grid-desktop grid-desktop--row
+         grid-tablet grid-tablet--row
+         grid-mobile grid-mobile--row grid-mobile--gutter-rg-right">
+            <div class="grid-desktop__90-of-100
+            grid-tablet__80-of-100
+            grid-mobile__85-of-100">
+               {% include '_atoms/interface/input.twig' with {
+               input_type:'text',
+               input_placeholder: 'Email address' ,
+               input_name: 'newsletter__subscribe',
+               bem:[ { block:'field' } ] } %}
+            </div>
+
+            <div class="grid-desktop__20-of-100
+            grid-tablet__20-of-100
+            grid-mobile__15-of-100">
+               {% include '_atoms/interface/input.twig' with {
+               input_type: 'submit',
+               bem: [ {block: 'btn btn--fill btn--regular btn--dark btn__text'},
+               {block: 'newsletter__btn'} ],
+               input_name: 'submit' } %}
+            </div>
+         </div>
+      {% endblock %}
+   {% endembed %}
+
+</div>

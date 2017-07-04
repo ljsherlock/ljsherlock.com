@@ -1,0 +1,14 @@
+
+{% if posts %}
+
+   <div class="grid grid--col grid--gutter-sm-bottom">
+
+      {% for post in posts %}
+
+         {% include '_molecules/blog-archive-post/blog-archive-post.twig' %}
+
+      {% endfor %}
+
+   </div>
+
+{% endif %}

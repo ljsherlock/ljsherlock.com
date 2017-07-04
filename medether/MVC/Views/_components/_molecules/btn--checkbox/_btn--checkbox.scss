@@ -1,0 +1,70 @@
+/*---------------------------------------------*\
+*    hamburger--buton.scss
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %button-checkbox {
+        display: none;
+
+        &:checked {
+
+            ~ %button__overlay {
+                display: block;
+            }
+            ~ %header {
+
+                @extend %hamburger--active;
+
+                %hamburger__layer:nth-child(2) {
+                    background:transparent;
+                }
+
+                %btn__text-open {
+                    opacity: 0;
+                }
+
+                %btn__text-close {
+                    opacity: 1;
+                }
+
+                %nav--primary {
+                    display: block;
+                }
+
+            }
+
+        }
+
+        &:not(:checked) {
+
+            label {
+                @extend %hamburger--inactive;
+            }
+        }
+
+    }
+
+    %hamburger-button__overlay {
+        background-color: $dainTree;
+        z-index: -10;
+    }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    .button-checkbox {
+        @extend %button-checkbox;
+    }
+    .button-checkbox__button-overlay {
+        @extend %button__overlay;
+    }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/

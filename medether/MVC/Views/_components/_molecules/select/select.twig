@@ -1,0 +1,33 @@
+{#
+	* @desc         Select Menu
+	* @name         Select
+	* @author       ljsherlock
+	* @tested       Twig
+	* @requires     component.twig
+#}
+
+{% embed 'component.twig' with { el: 'select' } %}
+   {% block component %}
+
+         {% include 'component.twig' with { el: 'option', text: deafult_option|default('Select'),
+         attrs : { value: '0', selected: 'selected', disabled: 'disabled' } } %}
+
+         {% if options %}
+            {% for item in options %}
+                  {{item.selected}}
+                  {% if item.selected %}
+                     {% include 'component.twig' with { el: 'option',
+                        text: item.text,
+                        attrs : { value: item.value, selected: 'selected' }
+                     } %}
+                  {% else %}
+                     {% include 'component.twig' with { el: 'option',
+                        text: item.text,
+                        attrs : { value: item.value }
+                     } %}
+                  {% endif %}
+            {% endfor %}
+         {% endif %}
+
+   {% endblock %}
+{% endembed %}

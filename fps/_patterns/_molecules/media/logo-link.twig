@@ -1,0 +1,8 @@
+
+
+{% embed '_atoms/content/anchor.twig' %}
+    {% block link_block %}
+         {% include '_atoms/media/svg.twig' with { icon : 'icon-logo', bem: [ { block: "symbol", modifier: ['logo'] } ]} %}
+         {% include '_atoms/media/svg.twig' with { icon : 'icon-logo-mobile', bem: [ { block: "symbol", modifier: ['logo-mobile'] } ]} %}
+    {% endblock %}
+ {% endembed %}

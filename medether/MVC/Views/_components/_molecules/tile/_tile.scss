@@ -1,0 +1,84 @@
+//  TILE.SCSS
+
+.tile {
+  @extend %tile;
+  height: 300px;
+  color: $white;
+  > * {
+      margin-bottom:0;
+  }
+  .tile__inner {
+
+      @include transition(all .5s ease);
+      @extend %tile;
+      position: absolute;
+      @include absolute($top: 97.5%);
+      width: 100%;
+      height: 100%;
+      fill: $white;
+  }
+  &:hover .tile__inner {
+    top: 0;
+  }
+}
+
+.tile {
+  &.tile--upsdellRed {
+      background-color: $pohutukawa;
+      .tile__inner {
+          background-color: rgba($upsdellRed,0.95);
+      }
+  }
+  &.tile--emporer {
+      background-color: $montana;
+      .tile__inner {
+          background-color: rgba($emporer,0.95);
+      }
+  }
+  &.tile--danube {
+      background-color: $chembray;
+      .tile__inner {
+          background-color: rgba($danube,0.95);
+      }
+  }
+  &.tile--equator {
+      background-color: $goBen;
+      .tile__inner {
+          background-color: rgba($equator,0.95);
+      }
+  }
+  &.tile--tomThumb {
+      background-color: $timberGreen;
+      .tile__inner {
+          background-color: rgba($tomThumb,0.95);
+      }
+  }
+  &.tile--tahitiGold {
+      background-color: $korma;
+      .tile__inner {
+          background-color: rgba($tahitiGold,0.95);
+      }
+  }
+  &.tile--white {
+      background-color: $white;
+      .tile__inner {
+          background-color: rgba($white, 0.95);
+      }
+  }
+  &.tile--member {
+      background-color: $white;
+      .tile__inner {
+          background-color: rgba($danube, 0.95);
+      }
+  }
+}
+
+
+%tile--member {
+    height: 150px;
+    background-color: $gainsboro;
+}
+
+.tile--member {
+    @extend %tile--member;
+}

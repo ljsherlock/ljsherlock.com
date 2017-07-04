@@ -1,0 +1,48 @@
+/*---------------------------------------------*\
+*    lines.scss
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    @mixin line-below( $pseudo:'after', $height : 2, $color: $white, $transition: '0.75s cubic-bezier(0.68, -0.55, 0.265, 1.55)', $trigger: '&:hover') {
+
+            position: relative;
+            @include positional-pseudo($pseudo, $top: auto, $right: 100%, $bottom: 0px, $left: 0%) {
+                height: #{$height}px;
+                background-color: $color;
+            };
+
+            &:before {
+                left: 0;
+                right: 0;
+            };
+
+            &:after {
+                @include transition( $transition );
+                @include transform( translate3d(0, 0, 0) );
+                left: 0%;
+                right: 100%;
+            };
+
+            #{$trigger} {
+                &:after {
+                    left: 0;
+                    right: 0;
+                }
+            }
+
+            @content;
+
+    }
+
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/

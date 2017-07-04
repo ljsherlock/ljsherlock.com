@@ -1,0 +1,242 @@
+
+/*------------------------------------------
+    COLORS
+------------------------------------------*/
+
+$dainTree: #022326;
+$outerSpace: #2F3B41;
+$atomic: #3D4C53;
+$nevada: #627178;
+$regentGrey: #88979E;
+$white: #ffffff;
+
+$pigmentGreen: #1BB554;
+$darkPigmentGreen: #159C48;
+$turquoise: #38CCD2;
+$lightSeaGreen: #29B0B5;
+$flame: #E1531D;
+$sinopia: #CC4817;
+
+$dark: $dainTree;
+$onDark: $white;
+
+$light: $white;
+$onLight: $atomic;
+
+
+
+/*---------------------------------------------*\
+*   @ LAYOUT
+*
+*   @ block %wrap
+*
+*   @ description wrap categorized by device and
+*   sub-categorized by shorthand size.
+*
+/*---------------------------------------------*/
+
+    $layout : (
+        padding: 35,
+        wrap : (
+            padding: 15,
+            mobile: (
+                width: 100%,
+                squash: (
+                    sm: 0
+                )
+            ),
+            tablet: (
+                width: 100%,
+                squash: (
+                    sm: 225,
+                    md: 175,
+                    rg: 125
+                )
+            ),
+            desktop: (
+                width: 1200,
+                squash: (
+                    sm: 400,
+                    md: 225,
+                    rg: 175
+                )
+            ),
+            squash : (
+                value: 50,
+            )
+        ),
+    );
+
+/*---------------------------------------------*\
+*   @ WRAP BREAK
+*
+*   @ description:
+*
+/*---------------------------------------------*/
+
+    $wrap-mobile-multiplier: 0.50;
+    $wrap-tablet-multiplier: 0.75;
+
+    $wrap_break: (
+        sm: 30,
+        rg: 50,
+        md: 60,
+        lg: 90,
+        xlg: 120,
+    );
+
+    $wrap_break_tablet: (
+        sm: map_get($wrap_break, sm) * $wrap-tablet-multiplier,
+        rg: map_get($wrap_break, rg) * $wrap-tablet-multiplier,
+        md: map_get($wrap_break, md) * $wrap-tablet-multiplier,
+        lg: map_get($wrap_break, lg) * $wrap-tablet-multiplier,
+        xlg: map_get($wrap_break, xlg) * $wrap-tablet-multiplier,
+    );
+
+    $wrap_break_mobile: (
+        sm: map_get($wrap_break, sm) * $wrap-mobile-multiplier,
+        rg: map_get($wrap_break, rg) * $wrap-mobile-multiplier,
+        md: map_get($wrap_break, md) * $wrap-mobile-multiplier,
+        lg: map_get($wrap_break, lg) * $wrap-mobile-multiplier,
+        xlg: map_get($wrap_break, xlg) * $wrap-mobile-multiplier,
+    );
+
+
+/*---------------------------------------------*\
+*   @ BREAK POINTS
+*
+*   @ description: used by mixins:
+*   mobile(), tablet(), desktop(), wrapper()
+*   sub-categorized by shorthand size.
+*
+/*---------------------------------------------*/
+
+    $media : (
+        mobile : 0,
+        tablet : 48,
+        desktop : 64,
+    );
+
+/*---------------------------------------------*\
+*   @ GRID
+*
+*   @ description:
+*
+/*---------------------------------------------*/
+
+    $grid : (
+        gutter : (
+            sm : 10,
+            rg : 20,
+            md : 30,
+            lg : 40,
+            xlg : 80
+        )
+    );
+
+/*---------------------------------------------*\
+*   @ TYPOGRPHAY
+*
+*   @ description:
+*
+/*---------------------------------------------*/
+
+    $block_margin: 1.5em;
+
+    $type_family : (
+        dir: '../typography',
+        body: 'sofia_prolight',
+        heading: 'sofia_promedium',
+        fixed: '',
+    );
+
+    @font-face {
+        font-family: 'sofia_prolight';
+        src: url('#{ map-get($type_family, dir)}/sofia_pro_light-webfont.woff2') format('woff2'),
+             url('#{ map-get($type_family, dir)}/sofia_pro_light-webfont.woff') format('woff'),
+             url('#{ map-get($type_family, dir)}/sofia_pro_light-webfont.otf') format('otf');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'sofia_promedium';
+        src: url('#{ map-get($type_family, dir)}/sofia_pro_medium-webfont.woff2') format('woff2'),
+             url('#{ map-get($type_family, dir)}/sofia_pro_medium-webfont.woff') format('woff'),
+             url('#{ map-get($type_family, dir)}/sofia_pro_medium-webfont.otf') format('otf');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    $type_scale : (
+        scale: 1.4,
+        min: 14,
+        max: 16,
+        screen: (
+            min: em(360),
+            max: map_get($media, tablet),
+        ),
+    );
+
+    $root: 15;
+
+    $type_size : (
+        scale: '1.333',
+        base: 0.9375,
+        size: (
+            base: 15,
+        )
+    );
+
+    $type_weight : (
+        light: 100,
+        regular: 400,
+        bold: 600,
+    );
+
+    //
+    $base-font-size: map_get( $type_size, base );
+    $base-line-height: $base-font-size * map_get( $type_scale, scale );
+    $base-font-family: map_get($type_family, body);
+
+    // No CSS weight because fonts are both light and medium weights.
+    // $base-font-weight: map_get($type_weight, regular);
+
+    $base-font-color: $atomic;
+
+
+/*---------------------------------------------*\
+*    ICONS
+/*---------------------------------------------*/
+
+    $svg: (
+        logo: (
+            h: 70px,
+            w: 169px
+        ),
+        fill: $white,
+    );
+
+    $icon : (
+        sm: 15,
+        rg: 23,
+        md: 75,
+        lg: 150,
+    );
+
+/*---------------------------------------------*\
+*    ANIMATIONS
+/*---------------------------------------------*/
+
+    $default_transition: '3s all ease';
+
+/*---------------------------------------------*\
+*   Z-INDEX
+/*---------------------------------------------*/
+
+    $zindex : (
+        menu: 9999,
+    );
+
+
+@import "../modules/all";

@@ -1,0 +1,62 @@
+{# molecules-simple-pagination #}
+
+{# paginate post #}
+{% if post.prev.link and pagination is empty %}
+	{% set prev = post.prev.link %}
+{% endif %}
+{% if post.next.link and pagination is empty %}
+	{% set next = post.next.link %}
+{% endif %}
+
+{# paginate post query #}
+{% if pagination.prev.link %}
+	{% set prev = pagination.prev.link %}
+{% endif %}
+{% if pagination.next.link %}
+	{% set next = pagination.next.link %}
+{% endif %}
+
+{% if post.prev.name and prev_text is empty %}
+	{% set prev_text = post.prev.name %}
+{% endif %}
+{% if post.next.name and next_text is empty %}
+	{% set next_text = post.next.name %}
+{% endif %}
+
+<div class="article__pagination">
+
+	<div class="grid-desktop grid-desktop--row grid-tablet grid-tablet--row grid-mobile grid-mobile--row grid-mobile--gutter-bottom">
+
+			<div class="grid-desktop__50-of-100 grid-tablet__50-of-100 grid-mobile__50-of-100">
+
+				{% if prev %}
+
+					{% include '_atoms/interface/button.twig' with {
+						bem : [
+							{ block: 'btn', modifier: ['naked-before'] }, { block: 'line-below-hover'}
+						],
+						anchor_text: prev_text, anchor_link: prev, icon: 'icon-arrow-left'
+					} %}
+
+				{% endif %}
+
+			</div>
+
+			<div class="grid-desktop__50-of-100 grid-tablet__50-of-100 grid-mobile__50-of-100 flex flex--just-end">
+
+				{% if next %}
+
+					{% include '_atoms/interface/button.twig' with {
+					   bem : [
+					      { block: 'btn', modifier: ['naked-after'] }, { block: 'line-below-hover'}
+					   ],
+						anchor_text: next_text, anchor_link: next, icon: 'icon-arrow'
+					} %}
+
+				{% endif %}
+
+			</div>
+
+	</div>
+
+</div>

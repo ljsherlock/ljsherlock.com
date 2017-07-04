@@ -1,0 +1,8 @@
+{% import 'bem.twig' as bemify %}
+{% set classname = bemify.bem(bem) %}
+
+<label for="{{for}}" class="{{classname}}">
+   {% block content %}
+      {{ label }}
+   {% endblock %}
+</label>

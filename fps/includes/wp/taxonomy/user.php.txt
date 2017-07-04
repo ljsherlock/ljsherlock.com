@@ -1,0 +1,76 @@
+<?php
+/**
+ * Plugin Name:	Arts Westchester User Taxonomies and Custom Post Types
+ * Plugin URI:	http://tadpole.cc
+ * Author:		Tadpole Collective LLC
+ * Author URI:	http://tadpole.cc
+ * Description:	Adds Artist, Teaching Artist and Cultural Orginzation (user) taxonomies.  Creates Artist Opportunities custom post type with its own custom taxonomy. Also modifies default 'author' slug.
+ * Version:		0.5.1
+ * License:		GPLv2
+ *
+ *
+ * This is heavily inspired by previous work by Justin Tadlock
+ * http://justintadlock.com/archives/2011/10/20/custom-user-taxonomies-in-wordpress
+ *
+ * Contributions by Damian Gostomski
+ * http://gostomski.co.uk/code/wordpress-user-taxonomies
+ *
+ * Tadpole Collective gratefully acknowledges the work of the above developers for inspiration and guidance in this plugin.
+ *
+ */
+
+/**
+ * Remove author slug, replace with 'profile', e.g. https://artswestchester.org/profile/demoartist/
+ *
+ */
+
+function tc_author_base() {
+    global $wp_rewrite;
+    $wp_rewrite->author_base = 'profile';
+}
+add_action('init', 'tc_author_base');
+
+/**
+ * Registers the 'artist' taxonomy for users.  This is a taxonomy for the 'user' object type rather than a
+ * post being the object type.
+ */
+add_action( 'init', 'fps_register_system_taxonomy', 0 );
+
+function fps_register_system_taxonomy()
+{
+	register_taxonomy(
+		'system',
+		'user',
+		array(
+			'public' => true,
+            'show_admin_column' => true,
+            'show_ui'               => true,
+			'hierarchical' => true,
+			'labels' => array(
+				'name' => __( 'System Categories' ),
+				'singular_name' => __( 'System Category' ),
+				'menu_name' => __( 'Systems Categories' ),
+				'search_items' => __( 'Search System Categories' ),
+				'popular_items' => __( 'Popular System Categories' ),
+				'all_items' => __( 'All System Categories' ),
+				'edit_item' => __( 'Edit System Category' ),
+				'update_item' => __( 'Update System Category' ),
+				'add_new_item' => __( 'Add New System Category' ),
+				'new_item_name' => __( 'New System Category Name' ),
+				'separate_items_with_commas' => __( 'Separate System Categories with commas' ),
+				'add_or_remove_items' => __( 'Add or remove System Category' ),
+				'choose_from_most_used' => __( 'Choose from the most popular System Categories' ),
+			),
+			'rewrite' => array(
+				'with_front' => true,
+				'slug' => 'systems' // Careful with slugs :^)
+			),
+			'capabilities' => array(
+				'manage_terms' => 'edit_users', // Using 'edit_users' cap to keep this simple.
+				'edit_terms'   => 'edit_users',
+				'delete_terms' => 'edit_users',
+				'assign_terms' => 'assign_system',
+			),
+		)
+	);
+}

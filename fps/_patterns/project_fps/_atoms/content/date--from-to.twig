@@ -1,0 +1,12 @@
+{% set start_date = post.get_field('start_date') %}
+{% set end_date = post.get_field('end_date') %}
+
+{% if start_date|date("j") != end_date|date("j") %}
+   {% set post_date = start_date|date("j") ~ '-' ~ end_date|date("j")
+   ~ ' ' ~ start_date|date("F") ~ ' ' ~ start_date|date("Y") %}
+{% else %}
+   {% set post_date = start_date|date("j") ~ ' ' ~ start_date|date("F")
+   ~ ' '~ start_date|date("Y") %}
+{% endif %}
+
+{% include '_atoms/content/date.twig' with { date: post_date  } %}

@@ -1,0 +1,117 @@
+{#
+	* @desc         multi-level navigation that uses checkboxes to determine open/close
+	* @name         Vertical Navigation
+	* @author       ljsherlock
+	* @tested       Twig
+	* @requires     component.twig, grid.twig, btn.twig
+#}
+
+{# nav #}
+{% embed 'component.twig' with { el: 'nav', bem: [{block: 'nav'}] } %}
+	{% block component %}
+
+      {# grid #}
+      {% embed 'component.twig' with { bem: [ { block: 'grid', modifier: ['col', 'gutter-rg-bottom'] } ] } %}
+         {% block component %}
+
+            {# loop #}
+         	{% for item in menu %}
+
+               {# div #}
+               {% embed 'component.twig' with {el: 'div', bem: [{block: 'nav__drop-down'}] } %}
+                  {% block component %}
+
+                     {# div #}
+                     {% include 'component.twig' with { el: 'div', bem: [{block: 'drop-down'}, {block: 'events-overlay'}] } %}
+
+                     {% if item.children %}
+
+								{% include 'component.twig' with { el: 'input', bem: [{ block: 'nav__label' }],
+									attrs: {
+								 		type: 'checkbox', name: 'nav__check--' ~ loop.index, id: 'nav__check--' ~ loop.index
+									}
+						 	 	} %}
+								{% embed 'component.twig' with { el: 'label', bem: [{ block: 'nav__check' }], attrs: { for: 'nav__check--' ~ loop.index } } %}
+									{% block component %}
+
+										{# btn #}
+										{% include '_molecules/btn/btn.twig' with {
+											anchor: false,
+											bem :[
+												{ block: 'btn', modifier: ['icon-after'] },
+												{ block: 'drop-down__button' },
+												{ block: 'line-below-hover' },
+												{ block: 'nav__btn'},
+												{ block: 'drop-down__button--has-children'}
+											],
+											attrs: { href: item.link },
+											texts: [{ text: item.title }],
+											icons: [{ icon: 'icon-arrow', bem :[ {block: 'btn', modifier : [ 'icon-after', 'dark' ] } ] }]
+										} %}
+
+									{% endblock %}
+								{% endembed %}
+
+                        {# ul #}
+                        {% embed 'component.twig' with {el: 'ul',
+                           bem: [
+                              { block: 'drop-down', element: 'list'},
+                              { block: 'nav', element: 'list'}
+                           ] } %}
+                           {% block component %}
+
+										{% for item in item.children %}
+
+											{# li #}
+											{% embed 'component.twig' with {el: 'li',
+												bem: [
+													{ block: 'drop-down', element: 'item'},
+													{ block: 'nav', element: 'item'}
+												] } %}
+												{% block component %}
+
+													{# btn #}
+													{% include '_molecules/btn/btn.twig' with {
+														bem :[
+															{ block: 'btn', modifier: ['naked'] },
+															{ block: 'drop-down', element: 'button' },
+															{ block: 'nav__btn'},
+														],
+														attrs: { href: item.link },
+														texts: [{ text: item.title }],
+													} %}
+
+												{% endblock component %}
+											{% endembed %}
+
+										{% endfor %}
+
+                           {% endblock component %}
+                        {% endembed %}
+
+                     {% else %}
+
+                        {# btn #}
+                        {% include '_molecules/btn/btn.twig' with {
+                           bem :[
+                              { block: 'btn', modifier: ['icon-after'] },
+                              { block: 'line-below-hover' },
+                              { block: 'nav__btn'},
+                           ],
+                           attrs: { href: item.link },
+                           texts: [{ text: item.title }],
+                           icons: [{ icon: 'icon-arrow' }]
+                        } %}
+
+                  	{% endif %}
+
+                  {% endblock component %}
+               {% endembed %}
+
+         	{% endfor %}
+
+         {% endblock component %}
+      {% endembed %}
+
+   {% endblock component %}
+{% endembed %}

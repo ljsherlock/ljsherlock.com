@@ -1,0 +1,50 @@
+{% extends 'project_fps/_templates/body.twig' %}
+
+{% block body %}
+
+   <div class="wrap--break-sm">
+      {% embed 'project_fps/_organisms/interface/slideshow-short.twig' %}
+         {% block slideshow__body %}
+
+            <div class="wrap wrap--rg">
+               {% include '_molecules/interface/search--large.twig' with {
+                  action: 'search',
+                  bem: [
+                     { block: 'search', modifier: ['site', 'show', 'large'] }
+                  ],
+                  placeholder: 'Search the site',
+                  size: 'large'
+               } %}
+            </div>
+
+         {% endblock %}
+      {% endembed %}
+   </div>
+
+   <div class="wrap wrap--rg">
+      <div class="articles articles--{{post.slug}}">
+
+         <div class="grid grid--col grid--gutter grid--gutter-rg-bottom">
+            <div class="grid__100-of-100">
+
+               <div class="grid grid--col grid--gutter grid--gutter-xlg-bottom">
+                  <div class="grid__100-of-100">
+                     {% include '_organisms/interface/breadcrumbs.twig' with { breadcrumb_icon: "icon-seperator" } %}
+                  </div>
+                  <div class="grid__100-of-100 content grid grid--row grid--gutter-sm-right flex--align-items-center">
+                     {% include '_atoms/content/heading.twig' with { size: 'h1', heading: 'results for: '}  %}
+                     {% include '_atoms/content/heading.twig' with { size: 'h2', heading: term, bem: [{block: "heading--tt-none" }] }  %}
+                  </div>
+               </div>
+
+               {% include 'project_fps/_organisms/content/posts.twig'  %}
+
+            </div>
+            <div class="grid__100-of-100">
+               {% include '_organisms/interface/simple-pagination.twig' %}
+            </div>
+         </div>
+      </div>
+   </div>
+
+{% endblock %}

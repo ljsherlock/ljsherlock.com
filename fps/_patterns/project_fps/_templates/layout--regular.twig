@@ -1,0 +1,13 @@
+{% extends ajax.method == true ? '_templates/ajax.twig': 'project_fps/_templates/body.twig' %}
+
+{% block body %}
+
+   {% include 'project_fps/_molecules/content/block--page-banner.twig' %}
+
+   <div class="wrap wrap--rg">
+
+      {% block layout %}{% endblock %}
+
+   </div>
+
+{% endblock body %}

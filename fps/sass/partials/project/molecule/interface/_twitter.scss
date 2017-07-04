@@ -1,0 +1,12 @@
+.twitter__tweet {
+    height: 100%;
+    @extend %flex;
+    @extend %flex--just-center;
+    .tweet__hours {
+        display: block;
+        color: $sail;
+    }
+    a {
+        color: $sail;
+    }
+}

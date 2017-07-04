@@ -1,0 +1,39 @@
+%dated-link {
+    @include transition(.3s all ease);
+    h4 {
+
+    }
+    span {
+        margin-bottom: 15px;
+    }
+}
+
+.dated-link--blue {
+    @extend %dated-link;
+    span {
+        color: $danube;
+    }
+    h4 {
+        color: $dainTree;
+    }
+    &:hover {
+        h4 {
+            color: $danube;
+        }
+    }
+}
+
+.dated-link--red {
+    @extend %dated-link;
+    span {
+        color: $tahitiGold;
+    }
+    h4 {
+        color: $dainTree;
+    }
+    &:hover {
+        h4 {
+            color: $upsdellRed;
+        }
+    }
+}

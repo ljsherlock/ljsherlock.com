@@ -1,0 +1,81 @@
+
+{% import 'el.twig' as el %}
+
+{% extends 'template/global.twig' %}
+
+{% block main %}
+
+   {% include '_molecules/hamburger/hamburger--check.twig' %}
+   {% include '_molecules/hamburger/hamburger.twig' %}
+
+   {{ el.createHTMLTag( 'div', {}, [{block: 'contact-us', element: 'bg'}], '' ) }}
+   {{ el.createHTMLTag( 'div', {style: 'background-image: url(' ~ banner_image ~');'}, [{block: 'contact-us', element: 'bg-image'}], '' ) }}
+
+   {% embed ['_app/_organisms/header/header.twig', '_app/_organisms/header/header.twig'] with { bem: { block: 'header', modifier: ['blank']}, banner_image: '' }%}
+      {% block page__title %}
+         <h1 class="h2"> {{post.get_field('sub_heading')}} </h1>
+         <div class="grid grid--col grid--gutter-rg-bottom">
+            {{ el.createHTMLTag('h1', [], [{block: 'h1'}], post.post_title) }}
+            {{ post.content }}
+         </div>
+      {% endblock %}
+   {% endembed %}
+
+   {% include ['_app/_organisms/navigation/navigation.twig', '_organisms/navigation/navigation.twig' ] %}
+
+   <main post_type="{{ post.post_type }}" page_id="{{ post.ID }}" parent_id="{{ function("wp_get_post_parent_id", post.id) }}">
+      <div class="wrap">
+         {% block app %}
+         <div class="grid grid--col grid--gutter-xlg-bottom">
+            {% for item in locations %}
+
+                  {% if loop.index is odd %}
+
+                        <div class="grid__100-of-100">
+                           <div class="grid-desktop grid-desktop---row grid-desktop--gutter-xlg-right
+                           grid-tablet grid-tablet--row grid-tablet--gutter-xlg-right
+                           grid-mobile grid-mobile--col grid-mobile--gutter-rg-bottom">
+                  {% endif %}
+
+                     <div class="grid-desktop__50-of-100 grid-tablet__50-of-100 grid-mobile__100-of-100">
+
+                        <div class="location">
+
+                           <div class="grid grid--col grid--gutter-sm-bottom">
+                              <div class="grid__100-of-100">
+
+                                 {% set figureHTML %}
+                                    {{ el.createHTMLTag('div', {}, [{block:'overlay'}, {block: 'location', element: 'overlay'}] ) }}
+                                 {% endset %}
+
+                                 {% include '_molecules/location/location.twig' with { item: item, figureHTML: figureHTML } %}
+
+                              </div>
+                              <div class="grid__100-of-100">
+
+                                 <div class="location__address typography">
+                                    {{ el.createHTMLTag('h3', {}, [{}], item.address) }}
+                                 </div>
+
+                              </div>
+                           </div>
+
+                        </div>
+
+                     </div>
+
+                  {% if loop.index is even %}
+                           </div>
+                        </div>
+                  {% endif %}
+
+            {% endfor %}
+            </div>
+
+         {% endblock %}
+      </div>
+   </main>
+
+   {% include ['_app/_organisms/footer/footer.twig', '_organisms/footer/footer.twig'] %}
+
+{% endblock %}

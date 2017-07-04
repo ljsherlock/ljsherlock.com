@@ -1,0 +1,21 @@
+{# feed-list.twig #}
+
+{% embed '_atoms/content/list--div.twig' with { items: feed_list|slice(0,3), bem: [{ block: 'grid--gutter-rg-bottom' }] } %}
+   {% block list__item %}
+
+      {% embed '_atoms/content/anchor.twig' with {
+      anchor_link: item.link,
+      date: item.date|date('jS M Y'),
+      heading: item.name,
+      bem: [ {block: 'post__link'} ]
+      } %}
+
+         {% block link_block %}
+
+            {% include '_molecules/content/dated-heading.twig' with { size: 'h4' } %}
+
+         {% endblock %}
+      {% endembed %}
+
+   {% endblock %}
+{% endembed %}

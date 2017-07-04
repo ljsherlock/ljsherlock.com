@@ -1,0 +1,71 @@
+/*---------------------------------------------*\
+*    Cookies
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %cookies {
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        padding: 18px 0;
+        text-align: center;
+        z-index: 999999999;
+        display: none;
+        max-width: 100%;
+        color: black;
+        background-color: $white;
+
+        div {
+            max-width: 1280px;
+            padding: 0 25px;
+            margin: auto;
+            p {
+                margin-bottom: 12px;
+                font-size: 13px;
+                color: $white;
+                font-weight: 200;
+                @include portable() {  display: inline-block;}
+                strong {
+                   display: block;
+                   @include mobile() {  display: inline-block;}
+                }
+            }
+
+            span {
+                display: block;
+                margin-top: 16px;
+                margin-bottom: 6px;
+                @include mobile() {  display: inline-block; margin-left: 12px; margin-top: 0px; margin-bottom: 0px;}
+                .button {
+                    font-size: 12px !important;
+                    padding: 12px;
+                    width: 102px;
+                    background-color: #2EB2D3;
+                    margin-right: 12px;
+                    color: white;
+                    text-decoration: none;
+                    cursor: pointer;
+                    &:hover {
+                        color:white!important;
+                    }
+                }
+            }
+        }
+    }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    // .cookies { @extend %cookies; }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+
+
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/

@@ -1,0 +1,164 @@
+
+@include keyframes (slide-down) {
+    0% {
+        max-height: 0;
+    }
+    100% {
+        max-height: 5000px;
+    }
+};
+
+// Theme
+%accordion {
+
+    &%accordion--member {
+        %accordion__button {
+            %svg {
+                top: 20px;
+                bottom: auto;
+            }
+        }
+    }
+
+    %accordion__content {
+        h1, h2, h3, h4 {
+            @extend %primary-font;
+        }
+    }
+
+    %accordion__button {
+        h4 {
+            @extend %primary-font;
+        }
+        background-color: $gainsboro;
+        & > * {
+            text-transform: none;
+        }
+        &:hover {
+            background-color: lighten($gainsboro, 5%);
+        }
+        &.btn--active {
+            &~.accordion__content {
+                animation: slide-down 1.25s ease-out forwards;
+            }
+            svg {
+                @include transform(none);
+            }
+            .accordion__plus {
+                animation: rotate-hide 0.3s forwards;
+            }
+            .accordion__minus {
+                animation: show .3s .2s forwards;
+            }
+        }
+        &.btn--inactive {
+            &~.accordion__content {
+                animation: slide-up 0.5s ease-out forwards;
+            }
+            .accordion__plus {
+                animation: rotate-show 0.3s forwards;
+            }
+            .accordion__minus {
+                animation: hide 0.3s 0.15s forwards;
+            }
+        }
+    }
+}
+
+%accordion--guidance {
+    %accordion__button {
+        background-color: $springGreen;
+        &:hover {
+            background-color: lighten($springGreen, 5%);
+        }
+    }
+}
+
+%accordion {
+    &%theme--tomthumb {
+        %accordion__content {
+            @extend %content--tomthumb;
+        }
+    }
+    &%theme--danube {
+        %accordion__content {
+            @extend %content--danube;
+        }
+    }
+    &%theme--tahitigold {
+        %accordion__content {
+            @extend %content--tahitigold;
+        }
+    }
+    &%theme--upsdellred {
+        %accordion__content {
+            @extend %content--upsdellred;
+        }
+    }
+}
+
+%accordion--grey {
+    %accordion__button {
+        background-color: $gainsboro;
+    }
+}
+
+%post--systems {
+    %accordion__content {
+        h1, h2, h3, h4 {
+            color: $tahitiGold;
+        }
+    }
+}
+
+.accordion--grey {
+    @extend %accordion--grey;
+}
+
+.post--single-member {
+    @extend %accordion--grey;
+}
+
+%accordion {
+    %btn {
+        height: auto;
+    }
+}
+
+
+.techniques .accordion__content {
+    h4 {
+        color: $tahitiGold;
+    }
+}
+
+
+.post--systems { @extend %post--systems; }
+
+.accordion { @extend %accordion; }
+
+.accordion--guidance { @extend %accordion--guidance; }
+.accordion--member { @extend %accordion--member; }
+
+
+// .accordions {
+//     @extend %accordions;
+// }
+.acordion__button {
+    @extend %accordion__button;
+}
+.accordion__content {
+    @extend %accordion__content;
+}
+.accordion--tomthumb {
+    @extend %theme--tomthumb;
+}
+.accordion--danube {
+    @extend %theme--danube;
+}
+.accordion--tahitigold {
+    @extend %theme--tomthumb;
+}
+.accordion--upsdellred {
+    @extend %theme--tomthumb;
+}

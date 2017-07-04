@@ -1,0 +1,7 @@
+%widget--join-our-network {
+    background-color: $dainTree;
+    @include padding-all( $top: 35, $bottom: 35 );
+    color: $white
+}
+
+.widget--join-our-network { @extend %widget--join-our-network; }

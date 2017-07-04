@@ -1,0 +1,96 @@
+{# footer.twig #}
+
+<{% if mustard == true %}footer{% else %}div{% endif %} class="footer">
+
+   {{wp_footer}}
+
+   <div class="grid grid--col grid--gutter grid--gutter-lg-bottom">
+      <div class="wrap">
+         <div class="wrap wrap-tablet wrap-mobile footer-image wrap--sm wrap--break-xlg"
+   		{{ 'style="background-image: url('~ attribute( options.footer_image.sizes, 'banner-' ~ device ) ~');"' }}>
+
+            <div class="grid-desktop grid-desktop--col grid-desktop--gutter-xlg-bottom
+            grid-tablet grid-tablet--col grid-tablet--gutter-md-bottom
+            grid-mobile grid-mobile--col grid-mobile--gutter-rg-bottom">
+               <h3>{{ options.header_title }}</h3>
+
+               {# newsletter #}
+               {{ widget_footer_1 }}
+            </div>
+
+         </div>
+      </div>
+
+      <div class="wrap__footer-section">
+
+         <div class="wrap wrap-tablet wrap-mobile wrap--rg wrap--break-sm">
+            <div class="grid-mobile grid-mobile--col grid--gutter grid-mobile--gutter-md-bottom grid-tablet grid-tablet--row grid-desktop grid-desktop--row">
+
+               <!-- address -->
+               <!-- contact -->
+               <div class="grid-tablet__50-of-100 grid-desktop__50-of-100">
+                  <div class="list--center">
+                     {{ widget_footer_2 }}
+                  </div>
+               </div>
+
+               <div class="grid-tablet__50-of-100 grid-desktop__50-of-100">
+                  <div class="list--center">
+                     {{ widget_footer_3 }}
+                  </div>
+               </div>
+
+            </div>
+         </div>
+
+   		<div class="wrap wrap-tablet wrap-mobile wrap--rg wrap--break-sm list--center">
+
+   			{% include '_atoms/content/copyright.twig' %}
+
+
+            <nav class="nav--footer">
+               <ul class="grid-desktop grid-desktop--row grid--gutter grid-desktop--gutter-sm-right
+               grid-tablet grid-tablet--row grid--gutter grid-tablet--gutter-rg-right
+                 grid-mobile grid-mobile--row grid-mobile--gutter-rg-right
+                 flex--just-center flex--align-items-center flex--wrap">
+                  {% for item in options.legal %}
+                     <li>
+                        <small> {{ item.item }} </small>
+                     </li>
+                  {% endfor %}
+
+                  {% for item in footer_menu.items %}
+                     <li>
+                        <small>
+                        {% include '_atoms/content/anchor.twig' with { bem: [ { block:'nav__link' } ],
+                      anchor_text: item.title, anchor_link: item.link } %}</small>
+                      </li>
+                  {% endfor %}
+               </ul>
+   			</nav>
+
+
+
+   		</div>
+
+   		<div class="wrap wrap-tablet wrap-mobile wrap--rg wrap--break-sm">
+            <div class="grid-desktop grid-desktop--row grid--gutter grid-desktop--gutter-lg-right
+            flex--just-center flex--align-items-center flex--wrap
+            grid-tablet grid-tablet--row grid--gutter grid-tablet--gutter-sm-right
+            grid-mobile grid-mobile--row grid--gutter grid-mobile--gutter-sm-right">
+
+               {% for item in options.partners %}
+                  <div class="">
+                     {% if item.svg %}
+                        {{ item.svg }}
+                     {% else %}
+                        <img src="{{ item.image.url }}" alt=""/>
+                     {% endif %}
+                  </div>
+               {% endfor %}
+            </div>
+   		</div>
+      </div>
+   </div>
+
+</{% if mustard == true %}footer{% else %}div{% endif %}>

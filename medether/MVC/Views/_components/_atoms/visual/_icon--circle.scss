@@ -1,0 +1,7 @@
+$icon-radius: 40px;
+
+%circle-icon {
+    @extend %icon;
+    border-radius: $icon-radius;
+    margin: auto;
+}

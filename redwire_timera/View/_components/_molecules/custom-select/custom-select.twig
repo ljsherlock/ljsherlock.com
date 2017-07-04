@@ -1,0 +1,22 @@
+
+{% set selectHTML %}
+
+   {{ el.createHTMLTag( 'div', {}, [{block: 'events-overlay'}, {block:'select-js', element: 'event'}] ) }}
+
+   {% include '_molecules/btn/btn.twig' with {
+      attrs: { href: '#select' }
+      bem: [
+         { block: 'btn', modifier: ['regular', 'wide', 'text'] },
+         { block: 'select-js', element: 'button' }
+      ],
+      text: { value: buttonText },
+      icon: { name: 'icon-down-arrow' },
+   } %}
+
+   {#
+    * @param options Array(value, innerHTML)
+    #}
+   {% include '_atoms/select/select.twig' with { default: "Drop down.." } %}
+{% endset %}
+
+{{ el.createHTMLTag( 'div', {}, [{block: 'select'}], selectHTML ) }}

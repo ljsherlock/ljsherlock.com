@@ -1,0 +1,32 @@
+
+%custom-select {
+    %custom-select__button {
+        %button__text {
+            color: $atomic;
+            text-transform: uppercase;
+            font-family: map-get($type_family, heading);
+            font-size: 1em;
+            color: $turquoise;
+            &:hover {
+                color: $atomic;
+            }
+        }
+    }
+    %custom-select__list {
+        background-color: $white;
+        %custom-select__item {
+            font-family:'Trade Gothic W01 Roman', sans-serif;
+            font-size: 1em;
+            color: $atomic;
+            background-color: $white;
+            &:hover {
+                background-color: rgba($turquoise,0.5);
+                color: $white;
+            }
+            &.custom-select__item--selected {
+                background-color: rgba($turquoise,0.75);
+                color: $white;
+            }
+        }
+    }
+}

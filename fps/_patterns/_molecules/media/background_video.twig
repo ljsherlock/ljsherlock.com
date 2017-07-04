@@ -1,0 +1,8 @@
+{% import 'bem.twig' as bemify %}
+{% set classname = bemify.bem(bem) %}
+
+{% include 'project_fps/_atoms/interface/btn--video.twig' with {bem: [{block: 'video__btn--loading'}], button_text: 'Video Loading'} %}
+
+<div id="{{ uniquename }}" class="{{ classname }}">
+   {% include '_atoms/media/video.twig' with { source: source, autoplay: autoplay } %}
+</div>

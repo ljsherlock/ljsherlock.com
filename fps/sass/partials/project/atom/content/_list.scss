@@ -1,0 +1,7 @@
+.content {
+    li {
+        &:before {
+            color: $danube;
+        }
+    }
+}

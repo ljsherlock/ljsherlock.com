@@ -1,0 +1,13 @@
+{#
+   * heading (h1, h2, etc)
+   * bem
+#}
+
+{% import 'bem.twig' as bemify %}
+{% set classname = bemify.bem(bem) %}
+
+<{{size}} class="{{classname}}">
+   {% block block_heading %}
+      {{heading}}
+   {% endblock %}
+ </{{size}}>

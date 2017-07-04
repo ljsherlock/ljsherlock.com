@@ -1,0 +1,199 @@
+/*---------------------------------------------*\
+*    button--small.scss
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %wrap {
+        z-index:1;
+        // position: relative;
+        margin: 0 auto;
+        $pad: #{ map_deep_get( $layout, wrap, padding ) };
+        @include padding-all(null, $pad, null, $pad);
+    }
+
+
+    @include mobile {
+        %wrap {
+             width: 100%;
+             & > * {
+                width: 100%;
+             }
+         }
+    }
+
+    @include tablet {
+        %wrap {
+            @include wrap-size( tablet );
+            // @include flex-dir( column );
+            // @include flex-flow( column );
+
+            &--sm {
+                $pad: #{ map_deep_get($layout, wrap, tablet, squash, sm) };
+                @include padding-all(null, $pad, null, $pad);
+            }
+            &--md {
+                $pad: #{ map_deep_get($layout, wrap, tablet, squash, md) };
+                @include padding-all(null, $pad, null, $pad);
+            }
+            &--rg {
+                $pad: #{ map_deep_get($layout, wrap, tablet, squash, rg) };
+                @include padding-all(null, $pad, null, $pad);
+            }
+        }
+    }
+
+    @include desktop {
+      // SIZE
+        %wrap {
+            @include wrap-size( desktop );
+            // @include flex-dir( row );
+            // @include flex-flow( row );
+
+            &--sm {
+                $pad: #{ map_deep_get($layout, wrap, desktop, squash, sm) };
+                @include padding-all(null, $pad, null, $pad);
+            }
+            &--md {
+                $pad: #{ map_deep_get($layout, wrap, desktop, squash, md) };
+                @include padding-all(null, $pad, null, $pad);
+            }
+            &--rg {
+                $pad: #{ map_deep_get($layout, wrap, desktop, squash, rg) };
+                @include padding-all(null, $pad, null, $pad);
+            }
+        }
+    }
+
+    @include wrapper {
+        %wrap {
+            width: 100%;
+        }
+        %wrap--sm {
+            @include padding-all(null, 150, null, 150);
+        }
+    };
+
+    %wrap {
+        &--break-sm {
+            @include padding-all(null, null, map_get($wrap_break, sm), null);
+        }
+        &--break-rg {
+            @include padding-all(null, null, map_get($wrap_break, rg), null);
+        }
+        &--break-md {
+            @include padding-all(null, null, map_get($wrap_break, md), null);
+        }
+        &--break-lg {
+            @include padding-all(null, null, map_get($wrap_break, lg), null);
+        }
+        &--break-xlg {
+            @include padding-all(null, null, map_get($wrap_break, xlg), null);
+        }
+    }
+
+    %wrap-tablet {
+        @include tablet() {
+            &%wrap {
+                &--break-sm {
+                    @include padding-all(null, null, map_get($wrap_break_tablet, sm), null);
+                }
+                &--break-rg {
+                    @include padding-all(null, null, map_get($wrap_break_tablet, rg), null);
+                }
+                &--break-md {
+                    @include padding-all(null, null, map_get($wrap_break_tablet, md), null);
+                }
+                &--break-lg {
+                    @include padding-all(null, null, map_get($wrap_break_tablet, lg), null);
+                }
+                &--break-xlg {
+                    @include padding-all(null, null, map_get($wrap_break_tablet, xlg), null);
+                }
+            }
+        };
+    }
+
+    %wrap-mobile {
+        @include mobile() {
+            &%wrap {
+                &--break-sm {
+                    @include padding-all(null, null, map_get($wrap_break_mobile, sm), null);
+                }
+                &--break-rg {
+                    @include padding-all(null, null, map_get($wrap_break_mobile, rg), null);
+                }
+                &--break-md {
+                    @include padding-all(null, null, map_get($wrap_break_mobile, md), null);
+                }
+                &--break-lg {
+                    @include padding-all(null, null, map_get($wrap_break_mobile, lg), null);
+                }
+                &--break-xlg {
+                    @include padding-all(null, null, map_get($wrap_break_mobile, xlg), null);
+                }
+            }
+        };
+    }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    .wrap {
+        @extend %wrap;
+    }
+    .wrap-tablet {
+        @extend %wrap-tablet;
+    }
+    .wrap-mobile {
+        @extend %wrap-mobile;
+    }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/
+
+    .wrap--sm {
+        @extend %wrap--sm;
+    }
+    .wrap--md {
+        @extend %wrap--md;
+    }
+    .wrap--rg {
+        @extend %wrap--rg;
+    }
+
+    .wrap--break-sm {
+        @extend %wrap--break-sm;
+    }
+    .wrap--break-rg {
+        @extend %wrap--break-rg;
+    }
+    .wrap--break-md {
+        @extend %wrap--break-md;
+    }
+    .wrap--break-lg {
+        @extend %wrap--break-lg;
+    }
+    .wrap--break-xlg {
+        @extend %wrap--break-xlg;
+    }
+
+
+
+
+
+
+/*----------------------------------------------
+    NOT SURE IF IN USE
+----------------------------------------------*/
+// @include infinite {
+//     .wrap--medium {
+//         @include padding-all(null, 205, null, 205);
+//     }
+// };

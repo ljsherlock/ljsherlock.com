@@ -1,0 +1,6 @@
+
+{% set icon %}
+   {% include '_atoms/icon/icon.twig' with { icon : 'icon-logo', bem: [ { block: "symbol", modifier: ['logo'] } ] } %}
+{% endset %}
+
+{{ el.createHTMLTag('a', { href: '/' }, [], icon ) }}

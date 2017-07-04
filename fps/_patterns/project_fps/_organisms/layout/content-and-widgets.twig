@@ -1,0 +1,26 @@
+{# Content and Widgets #}
+<div class="post">
+   <div class="grid grid--col grid--gutter grid--gutter-lg-bottom">
+      <div class="grid__100-of-100">
+         <div class="post-content post-content--{{post.slug}}">
+            <div class="content content--upsdellred">
+               {{post.content}}
+            </div>
+         </div>
+      </div>
+      <div class="grid__100-of-100">
+         <div class="grid grid--col grid--gutter grid--gutter-rg-bottom">
+
+            {% for widget in widgets %}
+
+               <div class="grid__100-of-100">
+                  {{widget}}
+               </div>
+
+            {% endfor %}
+
+         </div>
+      </div>
+   </div>
+
+</div>

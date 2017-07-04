@@ -1,0 +1,20 @@
+%btn--border-before {
+    border-left: 6px solid;
+    padding-left: 10px;
+    &%industry-event {
+        border-color: $equator
+    }
+    &%fps-meeting {
+        border-color: $upsdellRed;
+    }
+}
+
+.btn--border-before {
+    @extend %btn--border-before;
+}
+.fps-meeting {
+    @extend %fps-meeting;
+}
+.industry-event {
+    @extend %industry-event;
+}
