@@ -1,10 +1,7 @@
 <?php
 
-require_once 'includes/include.php';
+require 'vendor/autoload.php';
 
-Redwire\App::setup();
+Includes\Core::init();
 
-add_action('wp_ajax_archivesFilterSearch', array('Redwire\ArchivesFilter', 'search_ajax') );
-add_action('wp_ajax_nopriv_archivesFilterSearch', array('Redwire\ArchivesFilter', 'search_ajax') );
-
-?>
+Includes\App::init();

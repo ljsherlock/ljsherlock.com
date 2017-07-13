@@ -1,0 +1,193 @@
+/*---------------------------------------------*\
+ *  BASE
+ *
+ *  1. Media
+ *  2. Section Breaks
+ *  3. Grid
+ *  4. Colours
+ *  5. Typography
+ *  6. Components
+ *
+/*---------------------------   ------------------*/
+/*---------------------------------------------*\
+ *    1. Layout
+/*---------------------------------------------*/
+
+    $layout : (
+        padding: 35,
+        wrap : (
+            padding: 15,
+            mobile: (
+                width: 100%,
+                squash: (
+                    sm: 0
+                )
+            ),
+            tablet: (
+                width: 100%,
+                squash: (
+                    sm: 225,
+                    md: 175,
+                    rg: 125
+                )
+            ),
+            desktop: (
+                width: 1400,
+                squash: (
+                    sm: 400,
+                    md: 225,
+                    rg: 175
+                )
+            ),
+            squash : (
+                value: 50,
+            )
+        ),
+    );
+
+/*---------------------------------------------*\
+ *    1. Media
+/*---------------------------------------------*/
+
+    $media : (
+        width: (
+            mobile: 0,
+            tablet: 768,
+            desktop: 1024
+        )
+    );
+
+/*---------------------------------------------*\
+ *    2. Section Breaks
+/*---------------------------------------------*/
+
+    $wrap-padding--xs: 15;
+    $wrap-padding--sm: 25;
+    $wrap-padding--md: 30;
+    $wrap-padding--lg: 40;
+    $wrap-padding--xlg: 50;
+
+    $wrap-mobile-multiplier: 0.50;
+    $wrap-tablet-multiplier: 0.75;
+
+    $wrap-padding-tablet--xs: $wrap-padding--xs * $wrap-tablet-multiplier;
+    $wrap-padding-tablet--sm: $wrap-padding--sm * $wrap-tablet-multiplier;
+    $wrap-padding-tablet--md: $wrap-padding--md * $wrap-tablet-multiplier;
+    $wrap-padding-tablet--lg: $wrap-padding--lg * $wrap-tablet-multiplier;
+    $wrap-padding-tablet--xlg: $wrap-padding--xlg * $wrap-tablet-multiplier;
+
+    $wrap-padding-mobile--xs: $wrap-padding--xs * $wrap-mobile-multiplier;
+    $wrap-padding-mobile--sm: $wrap-padding--sm * $wrap-mobile-multiplier;
+    $wrap-padding-mobile--md: $wrap-padding--md * $wrap-mobile-multiplier;
+    $wrap-padding-mobile--lg: $wrap-padding--lg * $wrap-mobile-multiplier;
+    $wrap-padding-mobile--xlg: $wrap-padding--xlg * $wrap-mobile-multiplier;
+
+/*---------------------------------------------*\
+ *    3. Grid
+/*---------------------------------------------*/
+
+    $grid : (
+        gutter : (
+            xs : 5,
+            sm : 15,
+            md : 20,
+            lg : 25,
+            xlg : 50
+        )
+    );
+
+/*---------------------------------------------*\
+ *    4. Colours
+/*---------------------------------------------*/
+
+    $white: white;
+    $doveWhite: #d2d2d2;
+    $cloudGrey: #a7a7a7;
+    $sureBlack: #373737;
+    $dustyOlive: #6f7451;
+
+
+/*---------------------------------------------*\
+ *    5. Typography
+/*---------------------------------------------*/
+
+    @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700|Zilla+Slab:400,700');
+
+    $type: (
+        scale: '1.333',
+        base: 0.9375,
+        size: (
+            base: 16,
+        ),
+    );
+
+    $fonts: (
+        serif: (
+            family: 'Zilla Slab', serif,
+        ),
+        sans-serif: (
+            family: 'Source Sans Pro', sans-serif,
+        )
+    );
+
+    $type_size : (
+        scale: '1.333',
+        base: 0.9375,
+        size: (
+            base: 15,
+        )
+    );
+
+
+/*---------------------------------------------*\
+ *    6. Components
+/*---------------------------------------------*/
+    /*---------------------------------------------*\
+     *    1. Button
+    /*---------------------------------------------*/
+
+        $button: (
+            icon: (
+                dimensions: (
+                    width: 16px,
+                    height: 16px
+                )
+            ),
+            font-size: 13px,
+            line-height: 15px,
+            padding: (
+                side: 20px,
+
+            )
+        );
+    /*---------------------------------------------*\
+     *    2. Block
+    /*---------------------------------------------*/
+
+        $block: (
+            padding: (
+                xs: 10px,
+                sm: 15px,
+                md: 20px,
+                lg: 25px
+            ),
+            font-size: 13px,
+            line-height: 15px
+        );
+
+    /*---------------------------------------------*\
+     *    3. Icon
+    /*---------------------------------------------*/
+
+        $icon: (
+            sm: 5,
+            md: 10,
+            lg: 15
+        );
+
+/*---------------------------------------------*\
+ *   Includes
+/*---------------------------------------------*/
+
+    @import "functions/functions";
+    @import "mixins/all";

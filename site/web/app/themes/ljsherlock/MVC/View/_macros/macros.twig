@@ -1,0 +1,8 @@
+{% if createHTMLTag is defined %}
+   {% import 'el.twig' as createHTMLTag %}
+{% endif %}
+
+{% if bem is defined %}
+   {% import 'bem.twig' as bemify %}
+   {% set class = bemify.bem(bem) %}
+{% endif %}
