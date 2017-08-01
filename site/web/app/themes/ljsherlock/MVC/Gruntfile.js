@@ -115,6 +115,9 @@ module.exports = function(grunt) {
              'View/_components/***/*.twig',
              'View/_app/**/*.twig',
              'View/_app/***/*.twig',
+             '*.php',
+             '**/*.php',
+             '**/**/*.php'
            ],
            options: {
              spawn: false,

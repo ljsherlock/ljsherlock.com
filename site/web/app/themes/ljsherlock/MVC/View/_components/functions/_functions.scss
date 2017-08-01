@@ -15,10 +15,10 @@
 
 @function em( $px )
 {
-    @return #{ ( $px / map-deep-get($type, font-size, base) ) }em;
+    @return #{ ( $px / map-deep-get($type, root) ) }em;
 }
 
 @function rem( $px )
 {
-    @return #{ ( $px / map-deep-get($type, font-size, base) ) }rem;
+    @return #{ ( $px / map-deep-get($type, root) ) }rem;
 }

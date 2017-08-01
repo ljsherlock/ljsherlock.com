@@ -23,7 +23,7 @@ define('LJS_URL', get_stylesheet_directory_uri());
 //Client Side
 
 define('LJS_VIEW_DIR', LJS_ROOT . '/MVC/View');
-define('LJS_VIEW', LJS_ROOT . '/MVC/View');
+define('LJS_VIEW', LJS_URL . '/MVC/View');
 
 define('LJS_ASSETS_DIR', LJS_VIEW_DIR . '/Assets');
 define('LJS_ASSETS', LJS_VIEW . '/Assets');
@@ -40,6 +40,8 @@ define('LJS_CSS', LJS_ASSETS . '/CSS');
 define('LJS_FAV', LJS_ICONS . '/favicon');
 
 define('LJS_AJAXURL', admin_url('admin-ajax.php'));
+define('LJS_INSTAGRAM_AT', '4735961676.3f1743c.4ea5be6a77c2493f912875e8ace885cd');
+
 
 if (!defined('LJS_ASSET_LOADING_ENABLE_CACHE_BUSTING')) {
     define('LJS_ASSET_LOADING_ENABLE_CACHE_BUSTING', false);

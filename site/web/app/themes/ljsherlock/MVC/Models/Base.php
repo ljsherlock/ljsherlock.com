@@ -23,8 +23,9 @@ abstract class Base
     public $timber = null;
 
     /**
-    * __construct
-    * @param array $args Model arguments
+    * @method __construct
+    *
+    * @param Array $args Model arguments
     */
     public function __construct( $args )
     {
@@ -37,15 +38,16 @@ abstract class Base
     }
 
     /**
-    * Fetch data to pass to template for rendering
-    * @return array
+    * @method get returns data to the controller
+    *
+    * @param void
+    *
+    * @return $this->data
     */
     public function get()
     {
         // put timber context in the $data variable
         $this->data = $this->timber->context;
-
-        // var_dump( $this->data );
 
         // force array for twig
         return $this->data;

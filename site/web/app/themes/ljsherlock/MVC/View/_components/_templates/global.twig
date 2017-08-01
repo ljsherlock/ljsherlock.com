@@ -3,8 +3,6 @@
 *  @requires ajax.twig, template.twig
 #}
 
-{% import 'macros.twig' as macros %}
-
 {% extends ajax.method == true ? '_components/_templates/template/ajax.twig': '_components/_templates/template.twig' %}
 
    {% block body %}

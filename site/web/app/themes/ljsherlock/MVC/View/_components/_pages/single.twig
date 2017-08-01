@@ -1,0 +1,19 @@
+{% extends '_templates/app.twig' %}
+
+{% import 'macros.twig' as mcro %}
+
+   {% block app %}
+
+      {{ mcro.createHTMLTag('h3', {}, [],  post.title) }}
+
+      {{ post.post_excerpt }}
+
+      {% include '_organisms/terms/listTerms.twig' with { terms: post.terms, postObj: postObj, taxObj: taxObj } %}
+
+      {{ dump( pagination ) }}
+
+   {% endblock %}
+
+   {% block after_app %}
+
+   {% endblock %}

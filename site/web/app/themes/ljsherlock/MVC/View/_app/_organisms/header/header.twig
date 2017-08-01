@@ -1,0 +1,20 @@
+{% import 'macros.twig' as mcro %}
+
+{% set innerHTML %}
+
+   <div class="grid-desktop flex--just-space-between">
+      {% include '_molecules/logo-link/logo-link.twig' %}
+
+      <div class="grid-desktop grid-desktop--gutter-md-right">
+         {% include ['_app/_organisms/navigation/navigation.twig', '_components/_organisms/navigation/navigation.twig' ] with {
+            bem: { item: [{ block: 'btn', modifier: ['menu'] }, { block: 'nav', element: 'item' }] } 
+          } %}
+         // hamburger
+         // search
+      </div>
+
+   </div>
+
+{% endset %}
+
+{{ mcro.createHTMLTag('header', {}, [{ block: 'header', modifier: ['start', colour] }, bem], innerHTML) }}

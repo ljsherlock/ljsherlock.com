@@ -6,10 +6,12 @@
 	* @requires     component.twig, _MUSTARD
 #}
 
-{% set href = icon ? function('get_template_directory_uri') ~ '/View/Assets/icons/icons.svg#' ~ icon : '' %}
+{% import 'macros.twig' as mcro %}
+
+{% set href = icon ? function('get_template_directory_uri') ~ '/MVC/View/Assets/Icons/icons.svg#' ~ icon : '' %}
 
 {% set _use %}
-   {{ el.createHTMLTag( 'use', { href: href, id: 'use--' ~ icon }, [], '', true ) }}
+   {{ mcro.createHTMLTag( 'use', { href: href, id: 'use--' ~ icon }, [], '', true ) }}
 {% endset %}
 
-{{ el.createHTMLTag( 'svg', {}, bem, _use ) }}
+{{ mcro.createHTMLTag( 'svg', {}, bem, _use ) }}

@@ -1,0 +1,14 @@
+{#
+ * @name Navigation
+ * @requires menu
+#}
+
+{% import 'macros.twig' as mcro %}
+
+{% set navItems %}
+   {% for item in items %}
+      {% include '_molecules/btn/btn.twig' with { text: { value: item.title } , attrs: { href: item.link }, bem: bem.item } %}
+   {% endfor %}
+{% endset %}
+
+{{ mcro.createHTMLTag( 'nav', {}, [ { block: 'nav' }, { block: 'grid-desktop', modifier: ['gutter-lg-right'] }], navItems ) }}

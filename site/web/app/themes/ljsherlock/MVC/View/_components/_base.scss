@@ -1,20 +1,34 @@
 /*---------------------------------------------*\
  *  BASE
  *
- *  1. Media
- *  2. Section Breaks
- *  3. Grid
- *  4. Colours
+ *  1. Section Breaks
+ *  2. Layout
+ *  3. Media
+ *  4. Grid
  *  5. Typography
- *  6. Components
+ *  6. Colours
+ *  7. Components
  *
-/*---------------------------   ------------------*/
+/*---------------------------------------------*/
+
+@import "functions/functions";
+
 /*---------------------------------------------*\
- *    1. Layout
+ *    1. Media
+/*---------------------------------------------*/
+
+    $media: (
+        mobile: 0,
+        tablet: 768,
+        desktop: 1024,
+    );
+
+/*---------------------------------------------*\
+ *    2. Layout
 /*---------------------------------------------*/
 
     $layout : (
-        padding: 35,
+        padding: 25px,
         wrap : (
             padding: 15,
             mobile: (
@@ -46,20 +60,20 @@
     );
 
 /*---------------------------------------------*\
- *    1. Media
+ *    3. Section Breaks
 /*---------------------------------------------*/
 
-    $media : (
-        width: (
-            mobile: 0,
-            tablet: 768,
-            desktop: 1024
-        )
+    $wrap : (
+        mobile: 0.5,
+        tablet: 0.75,
+        padding: (
+            xs: 15,
+            sm: 25,
+            md: 30,
+            lg: 40,
+            xlg: 50,
+        ),
     );
-
-/*---------------------------------------------*\
- *    2. Section Breaks
-/*---------------------------------------------*/
 
     $wrap-padding--xs: 15;
     $wrap-padding--sm: 25;
@@ -67,23 +81,12 @@
     $wrap-padding--lg: 40;
     $wrap-padding--xlg: 50;
 
+    // device multipliers
     $wrap-mobile-multiplier: 0.50;
     $wrap-tablet-multiplier: 0.75;
 
-    $wrap-padding-tablet--xs: $wrap-padding--xs * $wrap-tablet-multiplier;
-    $wrap-padding-tablet--sm: $wrap-padding--sm * $wrap-tablet-multiplier;
-    $wrap-padding-tablet--md: $wrap-padding--md * $wrap-tablet-multiplier;
-    $wrap-padding-tablet--lg: $wrap-padding--lg * $wrap-tablet-multiplier;
-    $wrap-padding-tablet--xlg: $wrap-padding--xlg * $wrap-tablet-multiplier;
-
-    $wrap-padding-mobile--xs: $wrap-padding--xs * $wrap-mobile-multiplier;
-    $wrap-padding-mobile--sm: $wrap-padding--sm * $wrap-mobile-multiplier;
-    $wrap-padding-mobile--md: $wrap-padding--md * $wrap-mobile-multiplier;
-    $wrap-padding-mobile--lg: $wrap-padding--lg * $wrap-mobile-multiplier;
-    $wrap-padding-mobile--xlg: $wrap-padding--xlg * $wrap-mobile-multiplier;
-
 /*---------------------------------------------*\
- *    3. Grid
+ *    4. Grid
 /*---------------------------------------------*/
 
     $grid : (
@@ -97,36 +100,64 @@
     );
 
 /*---------------------------------------------*\
- *    4. Colours
+ *    5. Colours
 /*---------------------------------------------*/
 
+    $grey: grey;
+    $black: black;
     $white: white;
-    $doveWhite: #d2d2d2;
-    $cloudGrey: #a7a7a7;
-    $sureBlack: #373737;
-    $dustyOlive: #6f7451;
+    $lagunaSecaBlue: #2E9BDA;
+
+    $link-color: $lagunaSecaBlue;
+    $link-visited-color: darken($link-color, 25%);
+    $link-hover-color: lighten($link-color, 10%);
+
+    $base-color: $black;
 
 
 /*---------------------------------------------*\
- *    5. Typography
+ *    6. Typography
 /*---------------------------------------------*/
 
-    @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700|Zilla+Slab:400,700');
+    $type : (
+        scale: 1.333,
+        base: 1,
+        root: 16,
+        margins: (
+            heading: 1em 0 0.5em,
+            content: 1em 0,
+        )
+    );
 
-    $type: (
-        scale: '1.333',
-        base: 0.9375,
-        size: (
-            base: 16,
+    $adaptive-font : (
+        scale: 1.4,
+        min: 14,
+        max: 16,
+        screen: (
+            min: em(360),
+            max: map_get($media, tablet),
         ),
     );
 
-    $fonts: (
+
+    /*---------------------------------------------*\
+     *   SASS Modular Scale
+     *   https://github.com/modularscale/modularscale-sass
+    /*---------------------------------------------*/
+    $modularscale: (
+      base: 1em,
+      ratio: 1.3
+    );
+
+    $fonts : (
         serif: (
-            family: 'Zilla Slab', serif,
+            family: "serif"
         ),
         sans-serif: (
-            family: 'Source Sans Pro', sans-serif,
+            family: "sans-serif",
+        ),
+        fixed: (
+            family: '"Lucida Console", Monaco, monospace'
         )
     );
 
@@ -134,34 +165,34 @@
         scale: '1.333',
         base: 0.9375,
         size: (
-            base: 15,
+            base: 16,
         )
     );
 
 
 /*---------------------------------------------*\
- *    6. Components
+ *    7. Components
 /*---------------------------------------------*/
     /*---------------------------------------------*\
-     *    1. Button
+     *    1. Buttons
     /*---------------------------------------------*/
 
-        $button: (
+        $btn: (
             icon: (
                 dimensions: (
                     width: 16px,
                     height: 16px
-                )
+                ),
+                color: $lagunaSecaBlue,
             ),
             font-size: 13px,
             line-height: 15px,
             padding: (
                 side: 20px,
-
             )
         );
     /*---------------------------------------------*\
-     *    2. Block
+     *    2. Blocks
     /*---------------------------------------------*/
 
         $block: (
@@ -176,7 +207,7 @@
         );
 
     /*---------------------------------------------*\
-     *    3. Icon
+     *    3. Icons
     /*---------------------------------------------*/
 
         $icon: (
@@ -189,5 +220,5 @@
  *   Includes
 /*---------------------------------------------*/
 
-    @import "functions/functions";
+    @import "../../node_modules/modularscale-sass/stylesheets/modularscale";
     @import "mixins/all";

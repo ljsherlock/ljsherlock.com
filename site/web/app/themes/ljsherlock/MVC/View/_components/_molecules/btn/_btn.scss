@@ -1,5 +1,5 @@
 /*---------------------------------------------
-    button.scss
+    btn.scss
 ---------------------------------------------*/
 /*---------------------------------------------
     RELATIONSHIPS
@@ -22,10 +22,10 @@
         width: 100%;
     }
     %svg {
-        fill: $grey;
+        fill: map-deep-get($btn, icon, color);
         margin: auto;
-        width: map-deep-get($button, icon, dimensions, width);
-        height: map-deep-get($button, icon, dimensions, height);
+        width: map-deep-get($btn, icon, dimensions, width);
+        height: map-deep-get($btn, icon, dimensions, height);
     }
     %svg, %span {
         z-index: 10;
@@ -33,8 +33,8 @@
     // outside of %btn so that can be used on input elements.??
     %btn__text
     {
-        font-size: map-deep-get( $button, font-size );
-        line-height: map-deep-get( $button, line-height );
+        font-size: map-deep-get( $btn, font-size );
+        line-height: map-deep-get( $btn, line-height );
         display: block;
         position: relative;
         @include transition(color .3s ease-out) ;

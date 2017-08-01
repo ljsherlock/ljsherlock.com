@@ -53,7 +53,7 @@
             %select-js__item
             {
                 @extend %btn--wide;
-                font-size: map-deep-get($button, font-size);
+                font-size: map-deep-get($btn, font-size);
                 background-color: $white;
                 color: grey;
 

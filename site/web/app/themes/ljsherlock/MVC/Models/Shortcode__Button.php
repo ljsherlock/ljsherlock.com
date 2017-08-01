@@ -12,17 +12,20 @@ class Shortcode__Button extends Shortcode
 
     public function add_attributes()
     {
-        $this->timber->addContext( array(
+        $context = array(
             'attrs' => array(
                 'href' => $this->attrs['href'],
             ),
             'bem' => array(
-                array( 'block' => 'btn--primary' )
+                array( 'block' => 'btn btn--primary' )
             ),
-            'texts' => array(
-                array( 'text' => $this->attrs['title'] ),
-            ),
-        ));
+            'text' => array( 'value' => $this->attrs['title'] ),
+        );
+
+        if(isset( $this->attrs['icon'] ))
+            $context['icon']['name'] = $this->attrs['icon'];
+
+        $this->timber->addContext( $context );
 
     }
 

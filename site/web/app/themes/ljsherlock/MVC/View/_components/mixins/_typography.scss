@@ -1,28 +1,35 @@
 @mixin adaptive_font( $min_font, $max_font, $line: 1.5 )
 {
-   font-size: calc( #{$min_font}px + (#{$max_font} - #{$min_font}) * ( (100vw - #{$min_screen_width}px) / ( #{$max_screen_width} - #{$min_screen_width}) ) );
+   font-size: calc( #{$min_font}px + (#{$max_font} - #{$min_font}) * ( (100vw - #{map_deep_get($adaptive-font, screen, min)}px) / ( #{ map_deep_get($adaptive-font, screen, max) } - #{map_deep_get($adaptive-font, screen, min)}) ) );
 
-   line-height: calc( (#{$min_font}px + (#{$max_font} - #{$min_font}) * ( (100vw - #{$min_screen_width}px) / ( #{$max_screen_width} - #{$min_screen_width}) ) ) * #{$line} );
+   line-height: calc( (#{$min_font}px + (#{$max_font} - #{$min_font}) * ( (100vw - #{map_deep_get($adaptive-font, screen, min)}px) / ( #{ map_deep_get($adaptive-font, screen, max) } - #{map_deep_get($adaptive-font, screen, min)}) ) ) * #{$line} );
 }
 
-@mixin adaptive-root-font-size() {
-    @media (max-width: #{map_deep_get($type_scale, screen, min)}){
-        %root {
-            font-size: #{map_deep_get($type_scale, min)};
-            line-height: #{ map_deep_get($type_scale, min) * map_deep_get($type_scale, scale) };
+@mixin adaptive-root-font-size()
+{
+    @media (max-width: #{map_deep_get($adaptive-font, screen, min)})
+    {
+        %root
+        {
+            font-size: #{map_deep_get($adaptive-font, min)};
+            line-height: #{ map_deep_get($adaptive-font, min) * map_deep_get($adaptive-font, scale) };
         }
     }
 
-    @media (min-width: #{map_deep_get($type_scale, screen, min)}) and (max-width: #{map_deep_get($type_scale, screen, max)}){
-        %root {
-            @include adaptive_font( map_deep_get($type_scale, min), map_deep_get($type_scale, max), map_deep_get($type_scale, scale) );
+    @media (min-width: #{map_deep_get($adaptive-font, screen, min)}) and (max-width: #{map_deep_get($adaptive-font, screen, max)})
+    {
+        %root
+        {
+            @include adaptive_font( map_deep_get($adaptive-font, min), map_deep_get($adaptive-font, max), map_deep_get($adaptive-font, scale) );
         }
     }
 
-    @media (min-width: #{map_deep_get($type_scale, screen, max)}) {
-        %root {
-            font-size: #{map_deep_get($type_scale, max)};
-            line-height: #{map_deep_get($type_scale, max) * map_deep_get($type_scale, scale)};
+    @media (min-width: #{map_deep_get($adaptive-font, screen, max)})
+    {
+        %root
+        {
+            font-size: #{map_deep_get($adaptive-font, max)};
+            line-height: #{map_deep_get($adaptive-font, max) * map_deep_get($adaptive-font, scale)};
         }
     }
 }

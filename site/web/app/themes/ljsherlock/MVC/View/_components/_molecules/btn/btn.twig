@@ -7,7 +7,7 @@
 #}
 {% set button = ( non_anchor == true ) ? 'span' : 'a' %}
 
-{% import 'el.twig' as el %}
+{% import 'macros.twig' as mcro %}
 
 {% set btnHTML %}
 
@@ -20,7 +20,7 @@
             {% set tmpAttributes = [ {block: 'btn', element: 'text' } ] %}
          {% endif %}
 
-         {{ el.createHTMLTag( 'span', item.attrs, tmpAttributes, item.text ) }}
+         {{ mcro.createHTMLTag( 'span', item.attrs, tmpAttributes, item.text ) }}
 
       {% endfor %}
    {% elseif text is defined %}
@@ -31,7 +31,7 @@
          {% set tmpAttributes = [ {block: 'btn', element: 'text' } ] %}
       {% endif %}
 
-      {{ el.createHTMLTag( 'span', text.attrs, tmpAttributes, text.value ) }}
+      {{ mcro.createHTMLTag( 'span', text.attrs, tmpAttributes, text.value ) }}
 
    {% endif %}
 
@@ -53,4 +53,4 @@
 
 {% endset %}
 
-{{ el.createHTMLTag( button, attrs, bem, innerHTML ~ btnHTML ) }}
+{{ mcro.createHTMLTag( button, attrs, bem, innerHTML ~ btnHTML ) }}

@@ -1,8 +1,8 @@
-{% import 'el.twig' as el %}
+{% import 'macros.twig' as mcro %}
 
 {% set accordionHTML %}
 
-   {{ el.createHTMLTag( 'div', {}, [{ block: 'accordion', block:'event' }, { block: 'events-overlay' } ] ) }}
+   {{ mcro.createHTMLTag( 'div', {}, [{ block: 'accordion', block:'event' }, { block: 'events-overlay' } ] ) }}
 
    {% include '_molecules/btn/btn.twig' with {
       attrs: { href: '#accordion' ~ loop.index, },
@@ -17,10 +17,10 @@
       ]
    } %}
 
-   {{ el.createHTMLTag( 'div', {}, [{ block: 'accordion', element: 'content' }], accordionContentHTML ) }}
+   {{ mcro.createHTMLTag( 'div', {}, [{ block: 'accordion', element: 'content' }], accordionContentHTML ) }}
 
 {% endset %}
 
 {% set tmpBEM = ( bem ) ? bem : [{block: 'accordion'}] %}
 
-{{ el.createHTMLTag( 'div', {}, tmpBEM, accordionHTML ) }}
+{{ mcro.createHTMLTag( 'div', {}, tmpBEM, accordionHTML ) }}

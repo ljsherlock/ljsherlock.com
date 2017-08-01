@@ -1,8 +1,0 @@
-{
-    "require": {
-        "mobiledetect/mobiledetectlib": "^2.8",
-        "timber/timber": "^1.1",
-        "solution10/calendar": "^1.1",
-        "abraham/twitteroauth": "^0.7.2"
-    }
-}

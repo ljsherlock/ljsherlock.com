@@ -1,0 +1,7 @@
+{% import 'macros.twig' as mcro %}
+
+{% set icon %}
+   {% include '_atoms/icon/icon.twig' with { icon : 'icon-logo', bem: [ { block: "symbol", modifier: ['logo'] } ] } %}
+{% endset %}
+
+{{ mcro.createHTMLTag('a', { href: '/' }, [], icon ) }}

@@ -1,9 +1,0 @@
-// %main {
-//     @include padding-all( $top: 40 );
-// }
-//
-// main { @extend %main; }
-
-%wrap {
-    @include padding-all($top:35);
-}

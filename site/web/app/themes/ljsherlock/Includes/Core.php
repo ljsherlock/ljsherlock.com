@@ -16,6 +16,7 @@ class Core
 
         // POSTS
         $content_block = new \MVC\ContentTypes\Content_Block();
+        $content_block->register();
 
         /**
         * Setup ACF

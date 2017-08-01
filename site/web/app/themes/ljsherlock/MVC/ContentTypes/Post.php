@@ -5,38 +5,46 @@ namespace MVC\ContentTypes;
 abstract class Post
 {
     /**
-    * @type (string)
-    * @desc post type name
+    * @var String $name Post type name
     */
     protected $name = '';
 
     /**
-    * @type (string)
-    * @desc Nice Singular name
+    * @var String $singular Nice Singular name
     */
     protected $singular = '';
 
     /**
-    * @type (string)
-    * @desc Nice plural name
+    * @var String $plural Nice plural name
     */
     protected $plural = '';
 
     /**
-    * @type (string)
-    * @desc Taxonomy type name
+    * @var String $taxonomy Taxonomy type name
     */
     protected $taxonomy = '';
 
     /**
-    * @type (string)
-    * @desc Taxonomy type name
+    * @var String $taxonomy_name Taxonomy type name
     */
     protected $taxonomy_name = '';
 
+    /**
+    *   @var Array $args Query arguments
+    */
+    public $args = '';
+
+    /**
+    *   @var Array $args Query arguments
+    */
+    public $labels = '';
+
+    /**
+    *   @method __construct Build the args and labels for registering the post type
+    */
     public function __construct()
     {
-        $labels = array(
+        $this->labels = array(
             'name'               => _x($this->plural, 'post type general name', LJS_TEXT_DOMAIN),
             'singular_name'      => _x($this->singular, 'post type singular name', LJS_TEXT_DOMAIN),
             'menu_name'          => _x($this->plural, 'admin menu', LJS_TEXT_DOMAIN),
@@ -53,8 +61,8 @@ abstract class Post
             'not_found_in_trash' => __("No {$this->plural} found in Trash.", LJS_TEXT_DOMAIN)
         );
 
-        $args = array(
-            'labels'             => $labels,
+        $this->args = array(
+            'labels'             => $this->labels,
             'public'             => true,
             'publicly_queryable' => true,
             'show_ui'            => true,
@@ -69,12 +77,35 @@ abstract class Post
             'menu_icon'          => 'dashicons-align-left'
         );
 
-        register_post_type( $this->name , $args );
+        $this->taxonomy_args = array(
+            'labels' => array(
+                'name'          => 'Types',
+                'singular_name' => 'Type',
+                'search_items'  => 'Search Types',
+                'edit_item'     => 'Edit Type',
+                'add_new_item'  => 'Add New Type',
+            ),
+            'hierarchical' => true,
+            'query_var'    => true,
+            'label' => __($this->taxonomy_name . ' Category', LJS_TEXT_DOMAIN),
+            'show_admin_column' => true
+        );
+    }
 
-        if( $this->taxonomy != null )
-        {
+    public function register()
+    {
+        if(!empty($this->taxonomy)){
             $this->register_taxonomy();
         }
+        $this->register_post_type();
+    }
+
+    /**
+    *   @method register_posttype
+    */
+    public function register_post_type()
+    {
+        register_post_type( $this->name , $this->args );
     }
 
     /**
@@ -85,12 +116,7 @@ abstract class Post
         register_taxonomy(
             $this->taxonomy,
             $this->name,
-            array(
-                'label' => __($this->taxonomy_name . ' Category', LJS_TEXT_DOMAIN),
-                'hierarchical' => true,
-                'show_admin_column' => true,
-            )
+            $this->taxonomy_args
         );
     }
-
 }

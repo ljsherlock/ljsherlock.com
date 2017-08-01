@@ -7,7 +7,7 @@
 
     %btn--wide {
         @extend %btn;
-        $paddingSide: map-deep-get($button, padding, side);
+        $paddingSide: map-deep-get($btn, padding, side);
         @include padding-all($left: $paddingSide, $right: $paddingSide );
         width: 100%;
     }

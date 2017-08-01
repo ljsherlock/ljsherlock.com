@@ -1,0 +1,42 @@
+{#
+   * @requires widget {obj)
+   * @desc
+#}
+
+{% import 'macros.twig' as mcro %}
+
+{% if widget.type == 'widget' %}
+
+   {% include widget.template ~ '.twig' with { innerHTML: post } %}
+
+{% else %}
+
+   {% for item in widget.instances %}
+
+      {% set inner %}
+
+         {{ mcro.createHTMLTag( 'label', { for: item.id }, [], item.title ) }}
+
+         {% set type = (item.type) ?: 'text' %}
+
+         {% if type != 'select' %}
+
+            {{ mcro.createHTMLTag( 'input', { type: item.type, id: item.id, name: item.name, value: item.value }, [ {block: 'widefat'} ] ) }}
+
+         {% else %}
+
+            {% include '_atoms/select/select.twig' with {
+               bem: [{ block: 'widefat' }],
+               attrs: { id: item.id, name: item.name },
+               options: item.options
+            } %}
+
+         {% endif %}
+
+      {% endset %}
+
+      {{ mcro.createHTMLTag( 'p', [], {}, inner ) }}
+
+   {% endfor %}
+
+{% endif %}

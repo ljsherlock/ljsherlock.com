@@ -12,34 +12,49 @@ P"Ybmmd"  `Mbmo`Ybmd9'  MMbmmd'      .JMML.   .JMML.YMMMMMb .JMML  JMML.`Mbmo   
 
 This theme utilizes Sass and this CSS file is the output of it. Instead of editing this file,
 please run "grunt watch" in the theme directory and change the .scss files in the sass directory.
-
 */
 
 /*------------------------------------*\
  *  LEGACY
 \*------------------------------------*/
-    @import "_app/_legacy/all";
+    //@import "_app/_legacy/all";
+
 /*------------------------------------*\
  *  BASE
 \*------------------------------------*/
+
     @import "_components/base";
+    @import "_app/base";
+
+/*------------------------------------*\
+ *  TYPOGRAPHY
+\*------------------------------------*/
+
+    @import "_components/typography/typography";
+    @import "_app/typography/typography";
+
 /*------------------------------------*\
  *  LAYOUT
 \*------------------------------------*/
+
     @import "_components/layout/all";
+
 /*------------------------------------*\
  *  RE-USEABLE COMPONENTS
 \*------------------------------------*/
+
     @import "_components/_atoms/all";
-    @import "_components/_molecules/all";
-    @import "_components/_organisms/all";
-    // @import "_components/_templates/all";
-    // @import "_components/_pages/all";
-/*------------------------------------*\
- *  PROJECT
-\*------------------------------------*/
     @import "_app/_atoms/all";
+
+    @import "_components/_molecules/all";
     @import "_app/_molecules/all";
+
+    @import "_components/_organisms/all";
     @import "_app/_organisms/all";
+
+    @import "_components/_templates/all";
+
+    @import "_components/_pages/all";
     @import "_app/_pages/all";
+
 ;
