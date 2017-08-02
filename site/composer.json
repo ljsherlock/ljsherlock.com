@@ -4,6 +4,8 @@
   "license": "MIT",
   "description": "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure",
   "homepage": "https://roots.io/bedrock/",
+  "minimum-stability": "dev",
+  "prefer-stable" : true,
   "authors": [
     {
       "name": "Scott Walkinshaw",
@@ -34,12 +36,14 @@
   ],
   "require": {
     "php": ">=5.6",
-    "composer/installers": "~1.2.0",
+    "composer/installers": "~1.0.12",
     "vlucas/phpdotenv": "^2.0.1",
     "johnpbloch/wordpress": "4.8.0",
     "oscarotero/env": "^1.0",
-    "roots/wp-password-bcrypt": "1.0.0"
-  },
+    "roots/wp-password-bcrypt": "1.0.0",
+    "wp-sync-db/wp-sync-db": "*",
+    "wp-sync-db/wp-sync-db-media-files": "*"
+  }, 
   "require-dev": {
     "squizlabs/php_codesniffer": "^2.5.1"
   },
