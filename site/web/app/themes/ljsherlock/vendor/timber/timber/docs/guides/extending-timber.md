@@ -1,8 +1,15 @@
-# Extending Objects
+---
+title: "Extending Timber"
+menu:
+  main:
+    parent: "guides"
+---
 
 Myth: Timber is for making simple themes. Fact: It's for making incredibly complex themes _look_ easy. But yes, you can also make simple sites from it.
 
 The beauty of Timber is that the object-oriented nature lets you extend it to match the exact requirements of your theme.
+
+## An example that extends TimberPost
 
 Timber's objects like `TimberPost`, `TimberTerm`, etc. are a great starting point to build your own subclass from. For example, on this project each post was a part of an "issue" of a magazine. I wanted an easy way to reference the issue in the twig file:
 
@@ -107,7 +114,7 @@ This is the correct formation for when you need to add custom functions, filters
 add_filter('timber/twig', 'add_to_twig');
 
 function add_to_twig($twig) {
-	/* this is where you can add your own fuctions to twig */
+	/* this is where you can add your own functions to twig */
 	$twig->addExtension(new Twig_Extension_StringLoader());
 	$twig->addFilter(new Twig_SimpleFilter('whatever', 'my_whatever'));
 	return $twig;

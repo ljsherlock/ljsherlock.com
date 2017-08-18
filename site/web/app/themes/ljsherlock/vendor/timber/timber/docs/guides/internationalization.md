@@ -1,4 +1,9 @@
-# Internationalization
+---
+title: "Internationalization"
+menu:
+  main:
+    parent: "guides"
+---
 
 Internationalization of a Timber theme works pretty much the same way as it does for default WordPress themes. Follow the guide in the [WordPress Theme Handbook](https://developer.wordpress.org/themes/functionality/internationalization/) to setup i18n for your theme.
 
@@ -47,7 +52,7 @@ You can use sprintf-type placeholders, using the `format` filter:
 <p class="entry-meta">{{ __('Posted on %s', 'my-text-domain')|format(posted_on_date) }}</p>
 ```
 
-If you want to use the `sprintf` function in Twig, you have to [add it yourself](http://timber.github.io/timber/#make-functions-available-in-twig).
+If you want to use the `sprintf` function in Twig, you have to [add it yourself](https://timber.github.io/docs/guides/functions/#make-functions-available-in-twig).
 
 ## Generating localization files
 

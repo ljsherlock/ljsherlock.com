@@ -1,8 +1,12 @@
-# Functions
+---
+title: "Functions"
+menu:
+  main:
+    parent: "guides"
+---
 
-My theme/plugin has some functions I need! Do I really have to re-write all of them?
-
-No.
+My theme/plugin has some functions I need! Do I really have to re-write all of them?  
+No, you don’t.
 
 ## function()
 
@@ -50,7 +54,7 @@ Nice! Any gotchas? Unfortunately yes. While the above example will totally work 
 
 ## Make functions available in Twig
 
-If you have functions that you use a lot and want to improve readability of your code, you can make a function available in Twig by using `Twig_SimpleFunction` inside the `timber/twig` hook.
+If you have functions that you use a lot and want to improve readability of your code, you can make a function available in Twig by using `Timber\Twig_Function` inside the `timber/twig` hook.
 
 ```php
 /**
@@ -60,7 +64,7 @@ If you have functions that you use a lot and want to improve readability of your
  * @return $twig
  */
 add_filter( 'timber/twig', function( \Twig_Environment $twig ) {
-	$twig->addFunction( new \Twig_SimpleFunction( 'edit_post_link', 'edit_post_link' ) );
+	$twig->addFunction( new Twig_Function( 'edit_post_link', 'edit_post_link' ) );
 } );
 ```
 
@@ -88,7 +92,7 @@ In Timber versions lower than 1.3, you could use `function_wrapper` to make func
 
 The concept of Timber (and templating engines like Twig in general) is to prepare all the data before you pass it to a template. Some functions in WordPress echo their output directly. We don’t want this, because the output of this function would be echoed before we call `Timber:render()` and appear before every else on your website. There are two ways to work around this:
 
-- If you have a function where you want to bypass the output and instead save it as a string, so that you can add it to your context, use [`Helper::ob_function`](http://timber.github.io/timber/#ob_function).
+- If you have a function where you want to bypass the output and instead save it as a string, so that you can add it to your context, use [`Helper::ob_function`](https://timber.github.io/docs/reference/timber-helper/#ob-function).
 - If you have a function that needs to be called exactly where you use it in your template (e.g. because it depends on certain global values) you can use `FunctionWrapper`:
 
 ```php
