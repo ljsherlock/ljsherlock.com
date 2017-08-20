@@ -2,7 +2,7 @@
 
 require 'vendor/autoload.php';
 
-$sidebars = new \MVC\ContentTypes\Sidebar();
+new \Timber\Timber;
 
 Includes\Core::init();
 

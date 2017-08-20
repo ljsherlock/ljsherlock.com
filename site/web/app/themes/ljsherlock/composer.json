@@ -8,9 +8,9 @@
     },
     "autoload": {
         "psr-4": {
-            "MVC\\": "MVC/",
-            "Utils\\": "Utils/",
-            "Includes\\": "Includes/"
+            "MVC\\" : "MVC",
+            "Utils\\" : "Utils",
+            "Includes\\" : "Includes"
         }
     }
 }
