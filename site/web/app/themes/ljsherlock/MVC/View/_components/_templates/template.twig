@@ -35,10 +35,6 @@
 
             {{ wp_head }}
 
-            <script type="text/javascript">
-               var ajax_url = "{{ constant('LJS_AJAXURL') }}";
-            </script>
-
         {% endblock %}
     </head>
       <!--[if lt IE 7]>      <body class="ie6">    <![endif]-->
@@ -56,7 +52,23 @@
 
          {% endblock %}
 
-         {{ wp_footer }}
+         <script>
+         var ajax_url = "{{ constant('LJS_AJAXURL') }}";
+
+         var require = {
+             baseUrl: "{{ constant('LJS_VIEW') ~ '/Assets/Scripts'}}",
+             paths: {
+                 Polyfills: 'Lib/polyfills',
+                 Util: 'Utils/util',
+                 Mustard: 'Lib/mustard',
+                 Core: 'Core',
+                 App: 'App',
+                 Config: 'Lib/appConfig',
+             }
+         };
+         </script>
+         <script src="{{ constant('LJS_VIEW') ~ '/Assets/Scripts/Lib/require.js'}}" data-main="Main"></script>
+
 
      </body>
 </html>
