@@ -25,10 +25,10 @@ class Core
         Classes\Scripts::setup();
 
         /**
-        * Setup ACF
+        * Setup CMB2
         * Add options pages
         */
-        Classes\ACF::setup();
+        Classes\CMB2::init();
 
         /**
         * WP Images
