@@ -17,5 +17,8 @@
     "grunt-svgstore": "^1.0.0",
     "uglifycss": "0.0.21",
     "webpack": "^2.6.1"
+  },
+  "dependencies": {
+    "plumber-sass": "0.7.7"
   }
 }
