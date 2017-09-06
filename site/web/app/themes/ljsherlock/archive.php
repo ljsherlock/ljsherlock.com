@@ -1,8 +1,8 @@
 <?php
 
 /**
-*   Template Name: Archives
+*   Template Name: Work
 */
 
-$archive = new MVC\Controllers\Archive(array('post_type' => get_query_var('name')));
-$archive->show();
+$work = new MVC\Controllers\Archive__Work(array( 'post_type' => 'work' )); 
+$work->show();
