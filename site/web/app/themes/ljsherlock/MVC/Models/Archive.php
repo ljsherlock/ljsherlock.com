@@ -2,7 +2,7 @@
 
 namespace MVC\Models;
 
-class Archive extends Base
+class Archive extends Single
 {
     /**
     *   @property Array $args archive query
@@ -30,37 +30,41 @@ class Archive extends Base
     {
         $posts = $this->query($this->args);
 
-        $this->timber->addContext(array( 'posts' => $this->addTerms($posts) ) );
-        $this->timber->addContext(array( 'pagination' => \TImber::get_pagination() ));
-
-        $this->get_post_type_obj();
-        $this->get_term_obj();
-        $this->get_tax_obj();
+        $this->timber->addContext(array(
+            'posts' => $this->addTerms( $posts ),
+            'pagination' => \TImber::get_pagination(),
+            'postObj' => $this->get_post_type_obj(),
+            'termObj' => $this->get_term_obj(),
+            'taxObj' => $this->get_tax_obj(),
+        ));
 
         return parent::get();
     }
 
     public function get_post_type_obj()
     {
-        if(isset($this->args['post_type']))
-            $this->timber->addContext( array( 'postObj' => get_post_type_object( $this->args['post_type'] )) );
+        if( isset($this->args['post_type']) )
+            return get_post_type_object( $this->args['post_type'] );
+
+        return null;
+
     }
 
     public function get_term_obj()
     {
-        if(isset( $this->args['tax'], $this->args['term'] ))
-        {
-            $this->timber->addContext(
-                //array( 'termObj' => get_term_by('slug', $this->args['term'],    $this->args['tax']->name )
-                array( 'termObj' => new \TimberTerm($this->args['term'], $this->args['tax']->name ) )
-            );
-        }
+        if( isset( $this->args['tax'], $this->args['term'] ) )
+            return new \TimberTerm($this->args['term'], $this->args['tax']->name );
+
+        return null;
+
     }
 
     public function get_tax_obj()
     {
-        if(isset( $this->args['tax'] ))
-            $this->timber->addContext( array( 'taxObj' => $this->args['tax'] ) );
+        if( isset( $this->args['tax'] ) )
+            return get_taxonomy($this->args['tax']);
+
+        return null;
     }
 
     /**
@@ -76,7 +80,8 @@ class Archive extends Base
             'posts_per_page' => \get_option( 'posts_per_page' ),
             'paged' => \get_query_var('paged'),
         );
-        if( isset($args['post_type']) ) {
+        if( isset($args['post_type']) )
+        {
             $query['post_type'] = $args['post_type'];
         }
         if( isset($args['query']) )
