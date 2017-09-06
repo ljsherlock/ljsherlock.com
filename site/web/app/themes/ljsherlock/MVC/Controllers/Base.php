@@ -2,8 +2,6 @@
 
 namespace MVC\Controllers;
 
-use Includes\Utils\Utils as Utils;
-
 abstract class Base
 {
     /**
@@ -51,9 +49,11 @@ abstract class Base
     */
     public function __construct($args = array())
     {
+        // Allows for a custom template string to be defined in the Controller call argument.
         $this->template = ( isset( $args['template'] ) ) ? $args['template'] : $this->template;
 
-        // initialize the Timber Worker & Pass base template locations
+        // initialize the Timber Workers
+        // Pass base template locations
         $this->timber = new \MVC\Workers\Timber( array(
             dirname(__DIR__) . "/View",
             dirname(__DIR__) . "/View/_components",
@@ -69,16 +69,6 @@ abstract class Base
 
         // Add the timber object to Model
         $this->model->timber = $this->timber;
-
-        // Add core context data.
-        $this->timber->addContext(
-            array(
-                'ajax' => false,
-                'year' => date('Y'),
-                'device' => Utils::isDevice(),
-                'mustard' => (_MUSTARD != null && _MUSTARD == 'true') ? true : '',
-            )
-        );
     }
 
     /**

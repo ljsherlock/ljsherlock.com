@@ -46,6 +46,16 @@ abstract class Base
     */
     public function get()
     {
+        // Add core context data.
+        $this->timber->addContext(
+            array(
+                'ajax' => false,
+                'year' => date('Y'),
+                'device' => Utils::isDevice(),
+                'mustard' => (_MUSTARD != null && _MUSTARD == 'true') ? true : '',
+            )
+        );
+        
         // put timber context in the $data variable
         $this->data = $this->timber->context;
 
