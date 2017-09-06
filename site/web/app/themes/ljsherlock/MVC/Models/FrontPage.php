@@ -2,6 +2,8 @@
 
 namespace MVC\Models;
 
+use Includes\Classes\CMB2 as CMB2;
+
 class Frontpage extends Page
 {
     /**
@@ -20,25 +22,31 @@ class Frontpage extends Page
         $args = array( 'post_type' => 'work', 'query' => array( 'posts_per_page' => 1 ) );
         $work = $archive->query($args)[0];
 
-
         $single = new \MVC\Models\Single(array());
+
         $this->timber->addContext( array(
             'work' => array('post' => $work, 'terms' => $single->terms($work) ),
             'instagram' => $this->instagram(),
-        ));
+            'captions ' => array(
+                'left' => get_post_meta( $this->post->ID, CMB2::$prefix . 'hero_caption_left', true ),
+                'right' => get_post_meta( $this->post->ID, CMB2::$prefix . 'hero_caption_right', true )
+            ),
+        ) );
 
         return parent::get();
     }
 
     private function instagram()
     {
-        $recents = json_decode( file_get_contents('https://api.instagram.com/v1/users/self/media/recent/?access_token='. LJS_INSTAGRAM_AT) );
+        $access_token = CMB2::myprefix_get_option( 'instagram_at' );
+
+        $recents = json_decode( file_get_contents('https://api.instagram.com/v1/users/self/media/recent/?access_token='. $access_token) );
         $images = array();
 
         foreach ($recents->data as $key => $item)
         {
             # code...
-            $image = json_decode( file_get_contents('https://api.instagram.com/v1/media/'.$item->id.'?access_token='. LJS_INSTAGRAM_AT) );
+            $image = json_decode( file_get_contents('https://api.instagram.com/v1/media/'.$item->id.'?access_token='. $access_token) );
             array_push($images, array( 'url' => $image->data->images->standard_resolution->url, 'caption' => $item->caption->text ));
         }
 
