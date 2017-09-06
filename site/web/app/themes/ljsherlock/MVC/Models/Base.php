@@ -2,6 +2,8 @@
 
 namespace MVC\Models;
 
+use Includes\Utils\Utils as Utils;
+
 abstract class Base
 {
     /**
@@ -55,7 +57,7 @@ abstract class Base
                 'mustard' => (_MUSTARD != null && _MUSTARD == 'true') ? true : '',
             )
         );
-        
+
         // put timber context in the $data variable
         $this->data = $this->timber->context;
 

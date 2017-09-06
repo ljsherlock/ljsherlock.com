@@ -64,7 +64,7 @@ class Single extends Base
             'social_media' => CMB2::myprefix_get_option( CMB2::$prefix . 'social_media_links'),
             'footer_posts' => $posts,
             'footer_menu' => new \TimberMenu('Footer'),
-            'copyright' => 'Copyright ' . Date('Y') . ' Sherlock Ltd',
+            'copyright' => 'Copyright ' . date('Y') . ' Sherlock Ltd',
         ));
 
         return parent::get();
