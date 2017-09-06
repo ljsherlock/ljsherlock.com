@@ -27,7 +27,7 @@ class Single__Work extends Single
     public function get()
     {
         $this->timber->addContext( array(
-            'produce' => get_post_meta( $this->post->ID, CMB2::$prefix . 'produced', true ),
+            'what_i_did' => $this->wp_get_terms_hierarchy('stats')['what-i-did'],
             'project_colours' => get_post_meta( $this->post->ID, CMB2::$prefix . 'project_colours', true ),
             'browser_image' => get_post_meta( $this->post->ID, CMB2::$prefix . 'browser_image', true ),
             'primary_image' => get_post_meta( $this->post->ID, CMB2::$prefix . 'primary_image', true ),
