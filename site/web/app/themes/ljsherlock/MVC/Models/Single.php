@@ -56,6 +56,7 @@ class Single extends Base
             // content
             'subtitle' => get_post_meta( $this->post->ID, CMB2::$prefix . 'subtitle', true ),
             'post' => $this->post,
+            'terms' => $this->terms(),
             //header
             'menu' => new \TimberMenu('Primary'),
             // footer
@@ -78,17 +79,51 @@ class Single extends Base
         }
     }
 
-    public function terms($post)
+    public function terms($args = array(), $output = 'names')
     {
-        $terms = wp_get_object_terms( $post->ID, get_taxonomies('', 'names'));
+        $terms = wp_get_object_terms( $this->post->ID, get_taxonomies($args, $output));
+
         $timberTerms = array();
+
         foreach ($terms as $key => $term)
         {
             $timberTerms[$key] = new \TimberTerm( $term->term_id );
         }
 
-        // die(var_dump($timberTerms));
-
         return $timberTerms;
+    }
+
+    public function wp_get_terms_hierarchy($tax)
+    {
+        $terms = get_terms( array('taxonomy' => $tax, 'parent' => 0, 'hide_empty' => true) );
+        $sorted_terms = [];
+
+        $sorted_terms = $this->wp_get_terms_hierarchy_loop($tax, $terms, $sorted_terms);
+
+        unset( $sorted_terms['children'] );
+
+        return $sorted_terms['sorted_terms'];
+    }
+
+    public function wp_get_terms_hierarchy_loop($tax, $terms, $sorted_terms = array())
+    {
+        foreach ($terms as $key => &$term)
+        {
+            // get children at current level.
+            $children = get_terms($tax, array( 'parent' => $term->term_id, 'hide_empty' => true) );
+
+            if( count($children) > 0 )
+            {
+                // loop through indefinite children (scary).
+                $loop = $this->wp_get_terms_hierarchy_loop($tax, $children, $sorted_terms);
+
+                // add returned children to current term.
+                $term->children = $loop['children'];
+            }
+            // Add the current term to final array.
+            $sorted_terms[$term->slug] = $term;
+        }
+
+        return array('children' => $terms, 'sorted_terms' => $sorted_terms);
     }
 }
