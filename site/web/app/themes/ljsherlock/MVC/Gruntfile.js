@@ -107,6 +107,7 @@ module.exports = function(grunt) {
            // No task. Just reload.
          html: {
            files: [
+             '../*.php',
              '*.php',
              'View/_components/*.twig',
              'View/_app/*.twig',
