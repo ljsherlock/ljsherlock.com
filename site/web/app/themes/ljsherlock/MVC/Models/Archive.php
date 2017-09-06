@@ -17,6 +17,8 @@ class Archive extends Single
     public function __construct($args)
     {
         parent::__construct($args);
+
+        $this->postObj = $this->get_post_type_obj();
     }
 
     /**
@@ -33,7 +35,7 @@ class Archive extends Single
         $this->timber->addContext(array(
             'posts' => $this->addTerms( $posts ),
             'pagination' => \TImber::get_pagination(),
-            'postObj' => $this->get_post_type_obj(),
+            'postObj' => $this->postObj,
             'termObj' => $this->get_term_obj(),
             'taxObj' => $this->get_tax_obj(),
         ));
