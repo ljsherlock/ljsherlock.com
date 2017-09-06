@@ -31,7 +31,22 @@ class Timber
 
   public function render($path, $data)
   {
-    \Timber::render($path . ".twig", (array)$data);
+      if( is_array( $path ) ) {
+          $path = $this->createPath($path);
+      } else {
+          $path .= '.twig';
+      }
+    \Timber::render($path, (array)$data);
+  }
+
+  private function createPath($paths)
+  {
+      $tempPaths = array();
+      foreach ($paths as $key => $path)
+      {
+          array_push( $tempPaths, $path . '.twig' );
+      }
+      return $tempPaths;
   }
 
   public function compile($path, $data)
