@@ -4,25 +4,18 @@ namespace MVC\Models;
 
 class Search extends Page
 {
-    public $sidebars = array();
-
     public function __construct( $args )
     {
+        $this->search_args = $this->search();
+
         parent::__construct( $args );
-
-        $this->sidebars = array( 'sidebar', 'sidebar__header', 'sidebar__footer' );
-
-        if( isset( $this->args['sidebars'] ) )
-        {
-            array_merge( $this->sidebars, $this->args['sidebars'] ) ;
-        }
     }
 
     public function get()
     {
-        if( isset( $this->data['term'] ) )
+        if( isset( $this->search_args ) )
         {
-            $this->timber->addContext( array( 'posts' => \Timber::get_posts($args) ) );
+            $this->timber->addContext( array( 'posts' => \Timber::get_posts($this->search_args) ) );
         }
 
         return parent::get();
@@ -30,13 +23,14 @@ class Search extends Page
 
     public function search()
     {
-        $args = array(
-            'post_type' => get_post_types(),
-            'post_status' => 'publish',
-            's' => $this->data['term'],
-        );
-
-        return \Timber::get_posts( $args );
+        if( isset( $this->data['s'] ) )
+        {
+            return array(
+                'post_type' => get_post_types(),
+                'post_status' => 'publish',
+                's' => $this->data['s'],
+            );
+        }
     }
 
 }

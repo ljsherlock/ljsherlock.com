@@ -13,9 +13,9 @@ class Search extends Page
     {
         parent::__construct();
 
-        if( $_GET )
+        if( $s = get_query_var('s') !== '' )
         {
-            $this->model->add('term', $_GET['term']);
+            $this->model->add('s', $s);
         }
     }
 }
