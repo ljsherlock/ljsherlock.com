@@ -32,6 +32,7 @@ class Archive__Work extends Archive
     {
         $this->timber->addContext(array(
             'featured_image' => get_post_meta( $this->post->ID, CMB2::$prefix . 'produced', true),
+            'stats' => $this->wp_get_terms_hierarchy('stats')['overview'],
         ));
 
         return parent::get();

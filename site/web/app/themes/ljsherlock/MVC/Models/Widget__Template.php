@@ -10,8 +10,6 @@ class Widget__Template extends Widget
     {
         $res = file_get_contents( LJS_URL .'/' . $this->widget->template );
 
-        die(var_dump());
-
         $this->timber->addContext( array(
             'template' => $res
         ) );
