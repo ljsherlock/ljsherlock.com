@@ -36,10 +36,11 @@ class Widget__Recent_Posts_All extends Widget
         if(!empty($instance) )
         {
             // widget values
-            $this->title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Posts' );
-            $this->button_text = ( ! empty( $instance['button_text'] ) ) ? $instance['button_text'] : __( 'Read All' );
-            $this->posts_per_page = ( ! empty( $instance['posts_per_page'] ) ) ? absint( $instance['posts_per_page'] ) : '';
-            $this->selected_post_type = ( ! empty( $instance['post_type'] ) ) ? $instance['post_type'] : 'post';
+            $this->title = ( !empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Posts' );
+            $this->button_text = ( !empty( $instance['button_text'] ) ) ? $instance['button_text'] : __( 'Read All' );
+            $this->posts_per_page = ( !empty( $instance['posts_per_page'] ) ) ? absint( $instance['posts_per_page'] ) : '';
+            $this->selected_post_type = ( !empty( $instance['post_type'] ) ) ? $instance['post_type'] : 'post';
+            $this->template = ( !empty( $instance['template'] ) ) ? $instance['template'] : $this->template;
             $this->type = 'widget';
 
             // initiate Controller
@@ -59,6 +60,7 @@ class Widget__Recent_Posts_All extends Widget
         $instance['button_text'] = sanitize_text_field( $new_instance['button_text'] );
         $instance['posts_per_page'] = (int) $new_instance['posts_per_page'];
         $instance['post_type'] = ( ! empty( $new_instance['post_type'] ) ) ? strip_tags( $new_instance['post_type'] ) : '';
+        $instance['template'] = ( empty( $new_instance['template'] ) ? $this->template : sanitize_text_field( $new_instance['template'] ) );
 
         return $instance;
     }
@@ -82,16 +84,22 @@ class Widget__Recent_Posts_All extends Widget
         $this->instances->posts_per_page->title = 'Posts Per Page:';
 
         $this->instances->post_type->id = $this->get_field_id( 'post_type' );
-        $this->instances->post_type->value = ! empty( $instance['post_type'] ) ? $instance['post_type'] : esc_html__( 'post', 'text_domain' );
+        $this->instances->post_type->value = !empty( $instance['post_type'] ) ? $instance['post_type'] : esc_html__( 'post', 'text_domain' );
         $this->instances->post_type->name = $this->get_field_name( 'post_type' );
         $this->instances->post_type->title = 'Post Type:';
         $this->instances->post_type->type = 'select';
-        foreach( get_post_types( array( 'public'   => true ), 'name', 'and' ) as $key => $item ) {
+        foreach( get_post_types( array( 'public'   => true ), 'name', 'and' ) as $key => $item )
+        {
             $options[$key]['value'] = $item->name;
             $options[$key]['text'] = $item->label;
             $options[$key]['selected'] = ($item->name == $instance['post_type']) ? true : false;
         }
         $this->instances->post_type->options = $options;
+
+        $this->instances->template->id = $this->get_field_id( 'template' );
+        $this->instances->template->value = isset( $instance['template'] ) ? esc_attr( $instance['template'] ) : '';
+        $this->instances->template->name = $this->get_field_name( 'template' );
+        $this->instances->template->title = 'Custom Template:';
 
         $this->type = 'form';
 
