@@ -32,12 +32,21 @@ abstract class Base
     public function __construct( $args )
     {
         $this->args = $args;
+        $this->add('args', $args);
     }
 
+    /**
+    * @method Stores all model data
+    *
+    * @param String $name key
+    * @param Mixed $value array value
+    */
     public function add( $name, $value )
     {
         $this->data[ $name ] = $value;
     }
+
+
 
     /**
     * @method get returns data to the controller
@@ -65,8 +74,19 @@ abstract class Base
         return $this->data;
     }
 
+    public function context()
+    {
+        // put timber context in the $data variable
+        $this->data = $this->timber->context;
+
+        // force array for twig
+        return $this->data;
+    }
+
     /**
-    * Twig has trouble with object data,
+    * @method forceArray
+    * The WP widget class does have trouble
+    * see Models/Widget->get()
     * so force the data to be an array.
     * @param mixed $data Array/object
     * @return array
@@ -75,27 +95,4 @@ abstract class Base
     {
         return json_decode(json_encode($data), true);
     }
-
-    /**
-    * Get data needed for all post/page rendering
-    * @return array
-    */
-    protected function getSiteData()
-    {
-        return array(
-          "charset" => get_bloginfo("charset"),
-        //   "body_classes" => $this->getBodyClasses()
-        );
-    }
-
-    /**
-    * Fetch WordPress-generated body classes
-    * @return array Array of class names
-    */
-    protected function getBodyClasses()
-    {
-        $string = str_replace(array('class=', '"'), "", $string);
-        return explode(" ", $string);
-    }
-
 }
