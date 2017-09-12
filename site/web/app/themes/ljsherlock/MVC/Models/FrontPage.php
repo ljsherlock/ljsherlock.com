@@ -18,16 +18,14 @@ class Frontpage extends Page
     public function get()
     {
         // Work Posts: most recent.
-        // $archive = new \MVC\Models\Archive(array());
-        // $args = array( 'post_type' => 'work', 'query' => array( 'posts_per_page' => 1 ) );
-        // $work = $archive->query($args)[0];
-
-        $single = new \MVC\Models\Single(array());
+        $archive = new \MVC\Models\Archive(array());
+        $args = array( 'post_type' => 'work', 'query' => array( 'posts_per_page' => 1 ) );
+        $work = $archive->query($args)[0];
 
         $this->timber->addContext( array(
-            // 'work' => array('post' => $work, 'terms' => $single->terms($work) ),
-            'instagram' => $this->instagram(),
+            'work' => array('post' => $work, 'terms' => $archive->get_hierachical_terms($work, 'stats')['overview'] ),
             'captions ' => array(
+                // 'instagram' => $this->instagram(),
                 'left' => get_post_meta( $this->post->ID, CMB2::$prefix . 'hero_caption_left', true ),
                 'right' => get_post_meta( $this->post->ID, CMB2::$prefix . 'hero_caption_right', true )
             ),
