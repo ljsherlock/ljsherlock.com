@@ -50,7 +50,7 @@ abstract class Base
     public function __construct($args = array())
     {
         // Allows for a custom template string to be defined in the Controller call argument.
-        $this->template = ( isset( $args['template'] ) ) ? $args['template'] : $this->template;
+        $this->args = $args;
 
         // initialize the Timber Workers
         // Pass base template locations
@@ -79,6 +79,9 @@ abstract class Base
     {
         // get data
         $data = $this->model->get();
+
+        // Allows for a custom template string to be defined in the Controller call argument.
+        $this->template = ( isset( $args['template'] ) ) ? $args['template'] : $this->template;
 
         // render data
         $this->timber->render($this->template, $data);
