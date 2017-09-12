@@ -1,14 +1,44 @@
+{# _components/_organisms/menu/menu.twig #}
+
 {#
- * @name Navigation
- * @requires menu
+   Menu
+   From the menu object create a menu
+   @param {Array} bem (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @param {Array} attrs (optional)
+   {
+      Mixed
+   }
+   @param {Timber Menu Object}
 #}
 
-{% import 'macros.twig' as mcro %}
+{# Parameters #}
+{% set navMenu = menu ?? null %}
+{% set navAttrs = attrs ?? null %}
+{% set navBem = bem ?? null %}
 
-{% set navItems %}
-   {% for item in items %}
-      {% include '_molecules/btn/btn.twig' with { text: { value: item.title } , attrs: { href: item.link }, bem: bem.item } %}
-   {% endfor %}
-{% endset %}
+{# Variables #}
+{% set navBemDefault = [{ block: 'nav' }] %}
+{% set navBtnBem = [{block: 'nav', element: 'item'}] %}
+{% set navBem = (navBem) ? navBem|merge( navBemDefault ) : navBemDefault %}
 
-{{ mcro.createHTMLTag( 'nav', {}, [ { block: 'nav' }, { block: 'grid-desktop', modifier: ['gutter-lg-right'] }], navItems ) }}
+{# Output #}
+{% if navMenu %}
+
+   {% import 'macros.twig' as mcro %}
+
+   {% set navHTML %}
+
+      {% for item in navMenu %}
+         {% include '_molecules/btn/btn.twig' with { text: { value: item.title } , attrs: { href: item.link }, bem: navBtnBem } %}
+      {% endfor %}
+
+   {% endset %}
+
+   {{ mcro.createHTMLTag( 'nav', navAttrs, navBem, navHTML ) }}
+
+{% endif %}

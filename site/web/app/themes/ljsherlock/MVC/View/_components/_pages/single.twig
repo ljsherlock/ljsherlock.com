@@ -4,13 +4,19 @@
 
    {% block app %}
 
-      {{ mcro.createHTMLTag('h3', {}, [],  post.title) }}
+      <div class="wrap post">
 
-      {{ post.post_excerpt }}
+         <div class="wrap--md  typography">
+            {{ mcro.createHTMLTag('h1', {}, [],  post.title) }}
 
-      {% include '_organisms/terms/listTerms.twig' with { terms: post.terms, postObj: postObj, taxObj: taxObj } %}
+            {{ mcro.createHTMLTag('h2', {}, [{block: 'h3'}],  subtitle) }}
+         </div>
 
-      {{ dump( pagination ) }}
+         <div class="wrap--sm  typography">
+            {{ post.content }}
+            {% include '_organisms/terms/listTerms.twig' with { terms: post.terms, postObj: postObj, taxObj: taxObj } %}
+         </div>
+      </div>
 
    {% endblock %}
 

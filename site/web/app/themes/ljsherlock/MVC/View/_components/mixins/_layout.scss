@@ -1,9 +1,10 @@
 // Padding longhand version
-@mixin padding-all($top: null, $right: null, $bottom: null, $left: null, $remain: null) {
-  @if $top != null { padding-top: #{($top)}px } @else if $remain != null { padding-top: #{($remain)}px }
-  @if $right != null { padding-right: #{($right)}px } @else if $remain != null { padding-right: #{($remain)}px }
-  @if $bottom != null { padding-bottom: #{($bottom)}px } @else if $remain != null { padding-bottom: #{($remain)}px }
-  @if $left != null { padding-left: #{($left)}px } @else if $remain != null { padding-left: #{($remain)}px }
+@mixin padding-all($top: null, $right: null, $bottom: null, $left: null, $remain: null, $units: 'px')
+{
+  @if $top != null { padding-top: #{$top}#{$units} } @else if $remain != null { padding-top: #{$remain}#{$units} }
+  @if $right != null { padding-right: #{$right}#{$units} } @else if $remain != null { padding-right: #{$remain}#{$units} }
+  @if $bottom != null { padding-bottom: #{$bottom}#{$units} } @else if $remain != null { padding-bottom: #{$remain}#{$units} }
+  @if $left != null { padding-left: #{$left}#{$units} } @else if $remain != null { padding-left: #{$remain}#{$units} }
 }
 
 
@@ -23,7 +24,8 @@
       right:$right;
       bottom: $bottom;
       left: $left;
-      @extend %pseudo;
+      position: absolute;
+      content: "";
       @content;
   }
 }
@@ -44,6 +46,6 @@
     @if $size == 100%  {
         width: $size;
     } @else {
-        width: #{ $size / 16 }em;
+        width: #{ $size / $gh }em;
     }
 };

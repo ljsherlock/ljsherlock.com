@@ -15,6 +15,10 @@
 
     @include adaptive-root-font-size();
 
+    :root {
+        @extend %root;
+    }
+
 /*---------------------------------------------*\
 *   Margins
 /*---------------------------------------------*/
@@ -26,13 +30,13 @@
 *   Base Type
 /*---------------------------------------------*/
 
-    :root { @extend %root; }
-
-    body {
-        font-size: #{ map-deep-get($type, base) }em;
-        font-family: map-deep-get($fonts, sans-serif, family);
-        color: $base-color;
-    }
+    // :root { @extend %root; }
+    //
+    // body {
+    //     font-size: #{ map-deep-get($type, base) }em;
+    //     font-family: map-deep-get($fonts, sans-serif, family);
+    //     color: $base-color;
+    // }
 
 /*---------------------------------------------*\
 *   Typographic Classes
@@ -78,55 +82,48 @@
 *   Headings
 /*---------------------------------------------*/
 
-    %heading
-    {
-        margin: #{ map-deep-get( $type, margins, heading ) };
-        line-height: 1;
-        @if $headings
-        {
-            font-family: #{ map-get($headings, font-family) };
-            color: #{ map-get($headings, color) };
-        }
-    }
-
-    %h1 {
-        @extend %heading;
-        font-size: ms(6);
-    }
-    %h2 {
-        @extend %heading;
-        font-size: ms(5);
-    }
-    %h3 {
-        @extend %heading;
-        font-size: ms(4);
-    }
-    %h4 {
-        @extend %heading;
-        font-size: ms(3);
-    }
-    %h5 {
-        @extend %heading;
-        font-size: ms(2);
-    }
-    %h6 {
-        @extend %heading;
-        font-size: ms(1);
-    }
-
-    @for $i from 1 through 6
-    {
-        .h#{$i} { @extend %h#{$i}; }
-    }
+    // %heading {
+    //     line-height: 1.5
+    // }
+    //
+    // %h1 {
+    //     @extend %heading;
+    //     font-size: ms(6);
+    // }
+    // %h2 {
+    //     @extend %heading;
+    //     font-size: ms(5);
+    // }
+    // %h3 {
+    //     @extend %heading;
+    //     font-size: ms(4);
+    // }
+    // %h4 {
+    //     @extend %heading;
+    //     font-size: ms(3);
+    // }
+    // %h5 {
+    //     @extend %heading;
+    //     font-size: ms(2);
+    // }
+    // %h6 {
+    //     @extend %heading;
+    //     font-size: ms(1);
+    // }
+    //
+    // @for $i from 1 through 6
+    // {
+    //     .h#{$i} { @extend %h#{$i}; }
+    // }
 
 /*---------------------------------------------*\
 *   Other Sizes
 /*---------------------------------------------*/
 
-    %p {
-        font-size: em(15);
-        line-height: em(20);
-    }
+    // %p {
+    //     font-size: em(15);
+    //     line-height: em(20);
+    // }
 
     %input {
         font-size: em(12);
@@ -141,44 +138,44 @@
 
     %menu
     {
-        color: $notSoWhite;
+        color: $lagunaSecaBlue;
         font-size: ms(2);
         line-height: 1;
     }
 
-    p, .p { @extend %p; }
-    input, .input { @extend %input; }
-    small, .small { @extend %small; }
+    // p, .p { @extend %p; }
+    // input, .input { @extend %input; }
+    // small, .small { @extend %small; }
 
 
 /*---------------------------------------------*\
 *   Typesetting Content
 /*---------------------------------------------*/
 
-    .typography
-    {
-        color: $notSoWhite;
-        a { @extend %link; }
-
-        i, em { @extend %italic; }
-        b, strong { @extend %bold; }
-
-        @for $i from 1 through 6
-        {
-            h#{$i} {
-                @extend %h#{$i};
-            }
-        }
-
-        p, ul, ol, pre {
-            @extend %block-margins;
-        }
-
-        ol { @extend %unordered-list; }
-        ul { @extend %ordered-list; }
-
-        pre, code { @extend %fixed; }
-    }
+    // .typography
+    // {
+    //     color: $grey;
+    //     a { @extend %link; }
+    //
+    //     i, em { @extend %italic; }
+    //     b, strong { @extend %bold; }
+    //
+    //     @for $i from 1 through 6
+    //     {
+    //         h#{$i} {
+    //             @extend %h#{$i};
+    //         }
+    //     }
+    //
+    //     p, ul, ol, pre {
+    //         @extend %block-margins;
+    //     }
+    //
+    //     ol { @extend %unordered-list; }
+    //     ul { @extend %ordered-list; }
+    //
+    //     pre, code { @extend %fixed; }
+    // }
 
 /*---------------------------------------------*\
 *    FONT FAMILY

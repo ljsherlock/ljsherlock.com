@@ -1,18 +1,35 @@
 {#
-	* @desc         Create icons!
-	* @name         icon
-	* @author       ljsherlock
-	* @tested       Twig
-	* @requires     svg.twig
+   _components/_atoms/icon/icon.twig
+   Icon
+   Create an icon using the svg component and simply add the 'icon' class so that
+   css defines size, colour, etc.
+
+   @bem {Array} ()
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @param {String} icon
 #}
-{% if bem is defined and bem is iterable %}
 
-   {% set tmpClasses = [{block: 'icon'}] | merge( bem )  %}
+{# Parameters #}
+{% set iconBem = bem ?? null %}
+{% set iconAttrs = attrs ?? null %}
+{% set iconName = icon ?? null %}
 
+{# Variables #}
+{% set iconID = iconName %}
+{% set iconBemDefault = [{block: 'icon'}] %}
+{% if iconBem is defined and iconBem is iterable %}
+   {% set iconBem = iconBemDefault | merge( iconBem )  %}
 {% else %}
-
-   {% set tmpClasses = [{block: 'icon'}]  %}
-
+   {% set iconBem = iconBemDefault %}
 {% endif %}
 
-{% include '_atoms/svg/svg.twig' with { bem: tmpClasses, icon: icon } %}
+{# Output #}
+{% if iconID %}
+
+   {% include '_atoms/svg/svg.twig' with { bem: iconBem, attrs: iconAttrs, icon: iconID } %}
+
+{% endif %}

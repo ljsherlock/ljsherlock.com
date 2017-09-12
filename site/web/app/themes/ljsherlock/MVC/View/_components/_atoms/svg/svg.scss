@@ -27,10 +27,10 @@
 
     %svg {
         // height: map-get( $svg, h );
-        width: auto;
+        // width: auto;
         // fill: map-get( $svg, fill );
         &%symbol--logo {
-            width: 100%;
+            // width: 100%;
             // max-height: map-deep-get( $svg, logo, h );
             // max-width: map-deep-get( $svg, logo, w );
         }
@@ -41,8 +41,6 @@
 /*---------------------------------------------*\
 *    BLOCK
 /*---------------------------------------------*/
-
-    .symbol--logo { @extend %symbol--logo; }
 
     svg, .svg { @extend %svg; }
 

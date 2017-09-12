@@ -1,17 +1,56 @@
-{% import 'macros.twig' as mcro %}
+{# _components/select/select.twig #}
 
-{# atoms/forms/select-menu.twig #}
+{#
+   Select
+   From the provided options, we generate a select elemnt.
+   @bem {Array} (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @attrs {Array} (optional)
+   {
+      Mixed
+   }
+   @options {array} ()
+      {
+         value {String}
+         text {String}
+         default {bolean} true/false (Whether or not the option is the default to be displayed)
+      }
+#}
 
-{% set selectHTML %}
+{# Parameters #}
+{% set selectBem = bem ?? null %}
+{% set selectAttrs = attrs ?? null %}
+{% set selectOptions = options ?? null %}
 
-   {% if default %}
-      {{ mcro.createHTMLTag( 'option', { selected: 'selected', disabled: 'disabled', value: '0' }, selectBEM, default ) }}
-   {% endif %}
+{# Variables #}
+{% set selectDefaultAttrs = { 'selected', disabled: 'disabled', value: '0' } %}
 
-   {% for option in options %}
-      {{ mcro.createHTMLTag( 'option', { value: option.value }, optionBEM, option.text ) }}
-   {% endfor %}
+{# Output #}
+{% if selectOptions %}
 
-{% endset %}
+   {% import 'macros.twig' as mcro %}
 
-{{ mcro.createHTMLTag( 'select', attrs, bem, selectHTML ) }}
+   {% set selectHTML %}
+
+      {% for option in options %}
+
+         {% if option.default == true %}
+            {{ mcro.createHTMLTag( 'option', selectDefaultAttrs, [], option.text ) }}
+         {% endif %}
+         {% if option.selected == true %}
+            {{ mcro.createHTMLTag( 'option', { value: option.value, selected: true }, [], option.text ) }}
+         {% else %}
+            {{ mcro.createHTMLTag( 'option', { value: option.value }, [], option.text ) }}
+         {% endif %}
+
+      {% endfor %}
+
+   {% endset %}
+
+   {{ mcro.createHTMLTag( 'select', selectAttrs, Selectbem, selectHTML ) }}
+
+{% endif %}

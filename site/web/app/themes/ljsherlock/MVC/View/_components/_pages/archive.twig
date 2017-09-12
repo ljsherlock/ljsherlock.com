@@ -4,17 +4,35 @@
 
    {% block app %}
 
-      {% for post in posts %}
+      <div class="wrap">
+         <div class="wrap--md archive">
 
-         {{ mcro.createHTMLTag('h3', {}, [],  post.title) }}
+            {% include '_molecules/heading--prefix/heading--prefix.twig' with { icon: 'heading-prefix' } %}
 
-         {% include '_organisms/terms/listTerms.twig' with { terms: post.terms, postObj: postObj, taxObj: taxObj } %}
+               {% for post in posts %}
 
-         {{ post.get_preview(40) }}
+                  <div class="archive__post">
 
-      {% endfor %}
+                     {{ mcro.createHTMLTag('h3', {}, [],  post.title) }}
 
-      {{ dump( pagination ) }}
+                     {% include '_organisms/terms/listTerms.twig' with { terms: post.terms, postObj: postObj, taxObj: taxObj } %}
+
+                     <div class="typography">
+
+                        {{ mcro.createHTMLTag('p', {}, [], post.get_preview(40, false, '') ) }}
+
+                     </div>
+
+                  </div>
+
+               {% endfor %}
+
+            <div class="">
+               {{ dump( pagination ) }}
+            </div>
+
+         </div>
+      </div>
 
    {% endblock %}
 

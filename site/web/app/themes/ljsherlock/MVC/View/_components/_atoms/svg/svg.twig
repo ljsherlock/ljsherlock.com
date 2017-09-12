@@ -1,17 +1,30 @@
 {#
-	* @desc         Create svgs!
-	* @name         SVG
-	* @author       ljsherlock
-	* @tested       Twig
-	* @requires     component.twig, _MUSTARD
+   _components/_atoms/svg/svg.twig
+   SVG
+   Create an SVG element
+
+   @bem {Array} ()
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @param {String} icon
 #}
 
+{# Parameters #}
+{% set svgIcon = icon ?? null %}
+{% set svgBem = bem ?? null %}
+
+{# Variables #}
+{% set svgHref = svgIcon ? function('get_template_directory_uri') ~ '/MVC/View/Assets/Icons/icons.svg#' ~ svgIcon : '' %}
+{% set svgID = 'use--' ~ svgIcon %}
+
+{# Output #}
 {% import 'macros.twig' as mcro %}
 
-{% set href = icon ? function('get_template_directory_uri') ~ '/MVC/View/Assets/Icons/icons.svg#' ~ icon : '' %}
-
-{% set _use %}
-   {{ mcro.createHTMLTag( 'use', { href: href, id: 'use--' ~ icon }, [], '', true ) }}
+{% set useHTML %}
+   {{ mcro.createHTMLTag( 'use', { href: svgHref, id: svgID }, [], '', true ) }}
 {% endset %}
 
-{{ mcro.createHTMLTag( 'svg', {}, bem, _use ) }}
+{{ mcro.createHTMLTag( 'svg', {}, svgBem, useHTML ) }}

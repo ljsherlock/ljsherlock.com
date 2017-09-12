@@ -22,13 +22,13 @@
     %btn--naked-before {
         @extend %btn--naked;
         @extend %btn--icon-before;
-        @extend %line-below-hover;
+        // @extend %line-below-hover;
     }
 
     %btn--naked-after {
         @extend %btn--naked;
         @extend %btn--icon-after;
-        @extend %line-below-hover;
+        // @extend %line-below-hover;
     }
 
 /*---------------------------------------------*\

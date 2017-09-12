@@ -1,6 +1,0 @@
-
-{% for term in terms %}
-   {{ dump(term.path) }}
-   {{ dump(term.link) }}
-    {% include '_molecules/btn/btn.twig' with { attrs : { href: term.path  }, bem : [{}], text: { value: term.name } } %}
-{% endfor %}

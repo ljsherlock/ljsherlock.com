@@ -66,18 +66,18 @@
 
             &--sm
             {
-                $pad: #{ map_deep_get($layout, wrap, tablet, squash, sm) };
-                @include padding-all(null, $pad, null, $pad);
+                $pad: #{ (map_deep_get($layout, wrap, tablet, squash, sm) / map_get($media,tablet)) *  100 };
+                @include padding-all(null, $pad, null, $pad, null, '%');
             }
             &--md
             {
-                $pad: #{ map_deep_get($layout, wrap, tablet, squash, md) };
-                @include padding-all(null, $pad, null, $pad);
+                $pad: #{ (map_deep_get($layout, wrap, tablet, squash, md) / map_get($media,tablet)) *  100 };
+                @include padding-all(null, $pad, null, $pad, null, '%');
             }
-            &--xs
+            &--rg
             {
-                $pad: #{ map_deep_get($layout, wrap, tablet, squash, xs) };
-                @include padding-all(null, $pad, null, $pad);
+                $pad: #{ (map_deep_get($layout, wrap, tablet, squash, rg) / map_get($media,tablet)) *  100 };
+                @include padding-all(null, $pad, null, $pad, null, '%');
             }
         }
     }
@@ -91,18 +91,18 @@
 
             &--sm
             {
-                $pad: #{ map_deep_get($layout, wrap, desktop, squash, sm) };
-                @include padding-all(null, $pad, null, $pad);
+                $pad: #{ (map_deep_get($layout, wrap, desktop, squash, sm) / map_deep_get($layout, wrap, desktop, width)) *  100 };
+                @include padding-all(null, $pad, null, $pad, null, '%');
             }
             &--md
             {
-                $pad: #{ map_deep_get($layout, wrap, desktop, squash, md) };
-                @include padding-all(null, $pad, null, $pad);
+                $pad: #{ (map_deep_get($layout, wrap, desktop, squash, md) / map_deep_get($layout, wrap, desktop, width)) *  100 };
+                @include padding-all(null, $pad, null, $pad, null, '%');
             }
-            &--xs
+            &--rg
             {
-                $pad: #{ map_deep_get($layout, wrap, desktop, squash, xs) };
-                @include padding-all(null, $pad, null, $pad);
+                $pad: #{ (map_deep_get($layout, wrap, desktop, squash, rg) / map_deep_get($layout, wrap, desktop, width)) *  100 };
+                @include padding-all(null, $pad, null, $pad, null, '%');
             }
         }
     }
@@ -111,11 +111,23 @@
         %wrap
         {
             width: 100%;
+            &--sm
+            {
+                $pad: #{ (map_deep_get($layout, wrap, desktop, squash, sm) / map_deep_get($layout, wrap, desktop, width)) *  100 };
+                @include padding-all(null, $pad, null, $pad, null, '%');
+            }
+            &--md
+            {
+                $pad: #{ (map_deep_get($layout, wrap, desktop, squash, md) / map_deep_get($layout, wrap, desktop, width)) *  100 };
+                @include padding-all(null, $pad, null, $pad, null, '%');
+            }
+            &--rg
+            {
+                $pad: #{ (map_deep_get($layout, wrap, desktop, squash, rg) / map_deep_get($layout, wrap, desktop, width)) *  100 };
+                @include padding-all(null, $pad, null, $pad, null, '%');
+            }
         }
-        %wrap--sm
-        {
-            @include padding-all(null, 150, null, 150);
-        }
+
     };
 
     /*---------------------------------------------*\
@@ -223,7 +235,7 @@
 
     .wrap--sm { @extend %wrap--sm; }
     .wrap--md { @extend %wrap--md; }
-    .wrap--xs { @extend %wrap--xs; }
+    .wrap--rg { @extend %wrap--rg; }
 
     .wrap--break-sm { @extend %wrap--break-sm; }
     .wrap--break-xs { @extend %wrap--break-xs; }

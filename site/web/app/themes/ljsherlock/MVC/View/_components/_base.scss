@@ -12,6 +12,8 @@
 /*---------------------------------------------*/
 
 @import "functions/functions";
+@import "../../node_modules/modularscale-sass/stylesheets/modularscale";
+@import "../../node_modules/plumber-sass/plumber";
 
 /*---------------------------------------------*\
  *    1. Media
@@ -122,7 +124,7 @@
     $type : (
         scale: 1.333,
         base: 1,
-        root: 16,
+        root: 8,
         margins: (
             heading: 1em 0 0.5em,
             content: 1em 0,
@@ -131,12 +133,23 @@
 
     $adaptive-font : (
         scale: 1.4,
-        min: 14,
-        max: 16,
+        min: 6,
+        max: 8,
         screen: (
-            min: em(360),
+            min: 360,
             max: map_get($media, tablet),
         ),
+    );
+
+    // Plumber Defaults
+    @include plumber-set-defaults
+    (
+        $grid-height: 1rem,
+        $baseline: 0.158203,
+        $font-size: 1.75,
+        $line-height: 3,
+        $leading-top: 1,
+        $leading-bottom: 2
     );
 
 
@@ -219,6 +232,4 @@
 /*---------------------------------------------*\
  *   Includes
 /*---------------------------------------------*/
-
-    @import "../../node_modules/modularscale-sass/stylesheets/modularscale";
     @import "mixins/all";

@@ -1,24 +1,59 @@
+{# _components/_molecules/custom-select/custom-select.twig #}
 
-{% import 'macros.twig' as mcros %}
+{#
+   Custom Select
+   JS Select element
+   @bem {Array} ()
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @options {array} ()
+      {
+         value {String}
+         text {String}
+         default {bolean} true/false (Whether or not the option is the default to be displayed)
+      }
+   @btnText {String} (Text for button)
+   @btnIcon {String} (Icon ID use by <use> element)
+#}
 
-{% set selectHTML %}
+{# Parameters #}
+{% set jsSelectOptions = options ?? null %}
+{% if bem %}
+   {% set jsSelectBem = bem|merge( [{block: 'select'}] ) %}
+{% else %}
+    {% set jsSelectBem = null ) %}
+{% endif %}
+{% set jsSelectBtnText = btnText ?? 'Select Option..' %}
+{% set jsSelectBtnIcon = btnIcon ?? 'icon-down-arrow' %}
 
-   {{ mcro.createHTMLTag( 'div', {}, [{block: 'events-overlay'}, {block:'select-js', element: 'event'}] ) }}
+{# Variables #}
+{% set jsSelectHTML = null %}
+{% set jsSelectOverlayBem = [ { block: 'events-overlay'}, { block:'select-js', element: 'event' } ] %}
+{% set jsSelectBtnBem = [ { block: 'select-js', element: 'button' } ] %}
 
-   {% include '_molecules/btn/btn.twig' with {
-      attrs: { href: '#select' }
-      bem: [
-         { block: 'btn', modifier: ['regular', 'wide', 'text'] },
-         { block: 'select-js', element: 'button' }
-      ],
-      text: { value: buttonText },
-      icon: { name: 'icon-down-arrow' },
-   } %}
+{# Output #}
+{% if jsSelectOptions %}
 
-   {#
-    * @param options Array(value, innerHTML)
-    #}
-   {% include '_atoms/select/select.twig' with { default: "Drop down.." } %}
-{% endset %}
+   {% import 'macros.twig' as mcro %}
 
-{{ mcro.createHTMLTag( 'div', {}, [{block: 'select'}], selectHTML ) }}
+   {% set jsSelectHTML %}
+
+      {{ mcro.createHTMLTag( 'div', {}, jsSelectOverlayBem ) }}
+
+      {% include '_molecules/btn/btn.twig' with {
+         attrs: { href: '#jsSelect' }
+         jsSelectBtnBem,
+         text: { value: jsSelectBtnText },
+         icon: { name: jsSelectBtnIcon },
+      } %}
+
+      {% include '_atoms/select/select.twig' with { options: jsSelectOptions } %}
+
+   {% endset %}
+
+   {{ mcro.createHTMLTag( 'div', {}, jsSelectBem, jsSelectHTML ) }}
+
+{% endif %}

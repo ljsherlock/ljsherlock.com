@@ -1,41 +1,78 @@
+{# _components/_organisms/widget/widget.twig #}
+
 {#
-   * @requires widget {obj)
-   * @desc
+   Select
+   From the provided options, we generate a select elemnt.
+   @bem {Array} (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @attrs {Array} (optional)
+   {
+      Mixed
+   }
+   @param {Array} widget ()
+      {
+         {String} template
+         {String} type ( required ) Widget Form / Widget
+         {Array} instances (optional) Form data
+            {
+               {String} type
+               {String} id
+               {String} name
+               {String} value
+               {Array} options (optional)
+                  {
+                     {String} value
+                     {String} text
+                  }
+            }
+      }
 #}
+
+{# Parameters #}
+{% set widgetObj = widget ?? null %}
+{% set selectAttrs = attrs ?? null %}
+{% set selectOptions = options ?? null %}
+{% set widgetObj = widget ?? null %}
+
+{# Variables #}
+{% set widgetObjType = widgetObj.type ?? null %}
+{% set widgetObjTemplate = widgetObj.template ?? null %}
+{% set widgetObjInstances = widgetObj.instances ?? null %}
+{% set widgetFromBem = [ {block: 'widefat'} ] %}
+
+{# Output #}
 
 {% import 'macros.twig' as mcro %}
 
-{% if widget.type == 'widget' %}
+{% if widgetObjType == 'widget' %}
 
-   {% include widget.template ~ '.twig' with { innerHTML: post } %}
+   {% include widgetObjTemplate ~ '.twig' %}
 
 {% else %}
 
-   {% for item in widget.instances %}
+   {% for item in widgetObjInstances %}
 
-      {% set inner %}
+      {% set widgetInnerHTML %}
 
          {{ mcro.createHTMLTag( 'label', { for: item.id }, [], item.title ) }}
 
-         {% set type = (item.type) ?: 'text' %}
+         {% if item.type != 'select' %}
 
-         {% if type != 'select' %}
-
-            {{ mcro.createHTMLTag( 'input', { type: item.type, id: item.id, name: item.name, value: item.value }, [ {block: 'widefat'} ] ) }}
+            {{ mcro.createHTMLTag( 'input', { type: item.type, id: item.id, name: item.name, value: item.value }, widgetFromBem ) }}
 
          {% else %}
 
-            {% include '_atoms/select/select.twig' with {
-               bem: [{ block: 'widefat' }],
-               attrs: { id: item.id, name: item.name },
-               options: item.options
-            } %}
+            {% include '_atoms/select/select.twig' with { bem: widgetFromBem, attrs: { id: item.id, name: item.name }, options: item.options } %}
 
          {% endif %}
 
       {% endset %}
 
-      {{ mcro.createHTMLTag( 'p', [], {}, inner ) }}
+      {{ mcro.createHTMLTag( 'p', [], {}, widgetInnerHTML ) }}
 
    {% endfor %}
 

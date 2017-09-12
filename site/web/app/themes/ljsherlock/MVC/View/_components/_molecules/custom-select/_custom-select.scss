@@ -43,6 +43,11 @@
 
             &--hidden { display: none; }
         }
+
+        %select-js__event
+        {
+            // @extend %events-overlay;
+        }
     }
 
 /*---------------------------------------------*\
@@ -56,7 +61,7 @@
 /*---------------------------------------------*/
 
     .select-js__list { @extend %select-js__list; }
-    // .select-js__button { @extend %select-js__button; }
+    .select-js__button { @extend %select-js__button; }
     .select-js__item { @extend %select-js__item; }
     // .button__text { @extend %button__text; }
 
