@@ -30,11 +30,23 @@ class Archive__Work extends Archive
     */
     public function get()
     {
+        parent::get();
+
+        $posts = $this->addToPosts($this->posts, 'terms', function( $post ) {
+            return $this->get_hierachical_terms($post, 'stats');
+        });
+        $posts = $this->addToPosts($this->posts, 'primary_image', function( $post ) {
+            return get_post_meta( $post->ID, CMB2::$prefix . 'browser_image', true );
+        });
+
         $this->timber->addContext(array(
-            'featured_image' => get_post_meta( $this->post->ID, CMB2::$prefix . 'produced', true),
-            'stats' => $this->wp_get_terms_hierarchy('stats')['overview'],
+            'posts' => $posts,
         ));
 
-        return parent::get();
+        // put timber context in the $data variable
+        $this->data = $this->timber->context;
+
+        // force array for twig
+        return $this->data;
     }
 }

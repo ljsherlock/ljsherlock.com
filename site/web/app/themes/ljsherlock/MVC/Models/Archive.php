@@ -2,6 +2,8 @@
 
 namespace MVC\Models;
 
+use Includes\Classes\CMB2 as CMB2;
+
 class Archive extends Single
 {
     /**
@@ -30,10 +32,10 @@ class Archive extends Single
     */
     public function get()
     {
-        $posts = $this->query($this->args);
+        $this->posts = $this->query($this->args);
 
         $this->timber->addContext(array(
-            'posts' => $this->addTerms( $posts ),
+            'posts' => $this->addTerms( $this->posts ),
             'pagination' => \TImber::get_pagination(),
             'postObj' => $this->postObj,
             'termObj' => $this->get_term_obj(),
@@ -110,6 +112,25 @@ class Archive extends Single
             $post->terms = $single->terms($post);
         }
 
+        return $posts;
+    }
+
+    protected function addHierarchicalTerms($posts = array(), $taxonomy)
+    {
+        foreach ($posts as $key => $post)
+        {
+            $post->terms = $this->get_hierachical_terms($post, $taxonomy);
+        }
+
+        return $posts;
+    }
+
+    protected function addToPosts($posts = array(), $propertyName, $propertyValue)
+    {
+        foreach ($posts as $key => $post)
+        {
+            $post->{$propertyName} = $propertyValue($post);
+        }
         return $posts;
     }
 }
