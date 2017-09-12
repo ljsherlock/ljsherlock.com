@@ -56,7 +56,7 @@ class Single extends Base
             // content
             'subtitle' => get_post_meta( $this->post->ID, CMB2::$prefix . 'subtitle', true ),
             'post' => $this->post,
-            'terms' => $this->terms(),
+            'terms' => $this->terms($this->post),
             //header
             'menu' => new \TimberMenu('Primary'),
             // footer
@@ -79,9 +79,9 @@ class Single extends Base
         }
     }
 
-    public function terms($args = array(), $output = 'names')
+    public function terms($post, $args = array(), $output = 'names')
     {
-        $terms = wp_get_object_terms( $this->post->ID, get_taxonomies($args, $output));
+        $terms = wp_get_object_terms( $post->ID, get_taxonomies($args, $output));
 
         $timberTerms = array();
 
@@ -93,29 +93,30 @@ class Single extends Base
         return $timberTerms;
     }
 
-    public function wp_get_terms_hierarchy($tax)
+    public function get_hierachical_terms($post, $tax)
     {
-        $terms = get_terms( array('taxonomy' => $tax, 'parent' => 0, 'hide_empty' => true) );
+        $terms = wp_get_post_terms( $post->ID, $tax, array( 'parent' => 0, 'hide_empty' => true) );
         $sorted_terms = [];
 
-        $sorted_terms = $this->wp_get_terms_hierarchy_loop($tax, $terms, $sorted_terms);
+        $sorted_terms = $this->get_hierachical_terms_loop($post, $tax, $terms, $sorted_terms);
 
         unset( $sorted_terms['children'] );
 
         return $sorted_terms['sorted_terms'];
     }
 
-    public function wp_get_terms_hierarchy_loop($tax, $terms, $sorted_terms = array())
+    public function get_hierachical_terms_loop($post, $tax, $terms, $sorted_terms = array())
     {
         foreach ($terms as $key => &$term)
         {
             // get children at current level.
-            $children = get_terms($tax, array( 'parent' => $term->term_id, 'hide_empty' => true) );
+            // $children = wp_get_post_terms($tax, array( 'parent' => $term->term_id, 'hide_empty' => true) );
+            $children = wp_get_post_terms( $post->ID, $tax, array( 'parent' => $term->term_id, 'hide_empty' => true) );
 
             if( count($children) > 0 )
             {
                 // loop through indefinite children (scary).
-                $loop = $this->wp_get_terms_hierarchy_loop($tax, $children, $sorted_terms);
+                $loop = $this->get_hierachical_terms_loop($post, $tax, $children, $sorted_terms);
 
                 // add returned children to current term.
                 $term->children = $loop['children'];
