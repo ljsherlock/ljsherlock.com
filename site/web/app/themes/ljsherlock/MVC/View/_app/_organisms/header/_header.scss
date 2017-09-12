@@ -1,4 +1,8 @@
-header
+%header
 {
-    padding: map_deep_get($layout, padding);
+    padding: 25px 25px 0;
+    @extend %grid;
+    @extend %flex--just-space-between;
 }
+
+header{ @extend %header; }

@@ -1,20 +1,36 @@
+{# _components/_organisms/header/header.twig #}
+
+{#
+   Menu
+   From the menu object create a menu
+   @@param {Array} bem (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @@param {Array} attrs (optional)
+   {
+      Mixed
+   }
+   @param {Timber Menu Object}
+#}
+
+{# Parameters #}
+{% set menuItems = menu.items ?? null %}
+
+{# Variables #}
+{% set headerBem = [{ block: 'header' }] %}
+
+{# Output #}
 {% import 'macros.twig' as mcro %}
 
 {% set innerHTML %}
 
-   <div class="grid-desktop flex--just-space-between">
-      {% include '_molecules/logo-link/logo-link.twig' %}
+   {% include '_molecules/icon-link/icon-link.twig' with { icon: 'icon-logo' } %}
 
-      <div class="grid-desktop grid-desktop--gutter-md-right">
-         {% include ['_app/_organisms/navigation/navigation.twig', '_components/_organisms/navigation/navigation.twig' ] with {
-            bem: { item: [{ block: 'btn', modifier: ['menu'] }, { block: 'nav', element: 'item' }] } 
-          } %}
-         // hamburger
-         // search
-      </div>
-
-   </div>
+   {% include ['_app/_organisms/menu/menu.twig', '_components/_organisms/menu/menu.twig' ] with { menu: menu.items } %}
 
 {% endset %}
 
-{{ mcro.createHTMLTag('header', {}, [{ block: 'header', modifier: ['start', colour] }, bem], innerHTML) }}
+{{ mcro.createHTMLTag('header', {}, headerBem, innerHTML) }}

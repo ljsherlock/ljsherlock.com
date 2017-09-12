@@ -1,0 +1,38 @@
+{% import 'macros.twig' as mcro %}
+
+{% set innerHTML %}
+
+      <div class="grid grid--col grid--gutter-lg-bottom flex--align-items-center">
+
+         {% include '_molecules/icon-link/icon-link.twig' with { icon: 'icon-logo' } %}
+
+         <div class="grid grid--col grid--gutter-sm-bottom flex--align-items-center">
+            {{ mcro.createHTMLTag('a', {'href': 'mailto:' ~ email }, [], 'Send an Email' ) }}
+            {{ mcro.createHTMLTag('a', {'href': 'tel:' ~ telephone }, [], 'Call Me' ) }}
+         </div>
+
+         <div class="grid-desktop grid--gutter-md-right">
+            {% for item in social_media %}
+                  {% include '_molecules/icon-link/icon-link.twig' with { icon: 'icon-' ~ item } %}
+            {% endfor %}
+         </div>
+
+         <div class="recent-posts wrap--break-lg">
+            <div class="grid grid--col grid--gutter-lg-bottom flex--align-items-center">
+               {{ sidebar__footer }}
+            </div>
+         </div>
+
+         <div class="grid grid--gutter-lg-right">
+            <span>{{ copyright }}</span>
+
+            {% include ['_app/_organisms/menu/menu.twig', '_components/_organisms/menu/menu.twig' ] with { menu: footer_menu.items,
+                  bem: { item: [{ block: 'btn', modifier: ['menu'] }, { block: 'nav', element: 'item' }] }
+             } %}
+         </div>
+
+      </div>
+
+{% endset %}
+
+{{ mcro.createHTMLTag('footer', {}, [], innerHTML) }}

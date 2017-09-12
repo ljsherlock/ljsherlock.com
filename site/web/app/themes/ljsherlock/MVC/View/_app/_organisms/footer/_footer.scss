@@ -1,0 +1,16 @@
+%footer
+{
+    background-color: $tundora;
+    %posts__post
+    {
+        %btn
+        {
+            @extend %btn--line-below;
+        }
+    }
+}
+
+
+footer { @extend %footer; }
+.btn { @extend %btn; }
+.posts__post { @extend %posts__post; }

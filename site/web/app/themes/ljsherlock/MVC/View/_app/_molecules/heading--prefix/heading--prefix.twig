@@ -1,0 +1,15 @@
+{% import 'macros.twig' as mcro %}
+
+<div class="heading--prefix">
+
+      {% set innerHTML %}
+
+         {% include '_atoms/icon/icon.twig' with { icon : 'icon-' ~ icon, bem: [ { block: "symbol", modifier: [icon] } ] } %}
+
+         {{ mcro.createHTMLTag('h1', {}, [], title) }}
+
+      {% endset %}
+
+      {{ mcro.createHTMLTag('div', {}, [{ block: 'grid', modifier: ['gutter-md-right'] }, { block: 'flex', modifier: ['align-items-center'] } ], innerHTML ) }}
+
+</div>

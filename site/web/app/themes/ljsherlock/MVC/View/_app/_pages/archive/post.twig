@@ -1,0 +1,26 @@
+{% extends ['_app/_templates/app.twig', '_compon/_templates/app.twig' ] %}
+
+{% import 'macros.twig' as mcro %}
+
+   {% block app %}
+
+      <div class="archive">
+
+         <div class="wrap--md">
+
+            {% include '_organisms/posts/posts.twig' with { posts: posts, template: '_molecules/post-preview/post-preview.twig' } %}
+
+            <div class="pagination">
+
+            </div>
+
+         </div>
+
+      </div>
+
+
+   {% endblock %}
+
+   {% block after_app %}
+
+   {% endblock %}

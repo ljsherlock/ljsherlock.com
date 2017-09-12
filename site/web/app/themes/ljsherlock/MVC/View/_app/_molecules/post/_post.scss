@@ -1,0 +1,9 @@
+%posts__post
+{
+    &--work {
+        @extend %wrap--break-lg;
+    }
+}
+
+.posts__post { @extend %posts__post; }
+.posts__post--work { @extend %posts__post--work; }

@@ -1,0 +1,15 @@
+%nav
+{
+    @extend %grid-desktop;
+    @extend %grid-desktop--gutter-lg-right;
+    @extend %flex--align-items-center;
+
+    %nav__item
+    {
+        @extend %btn--menu;
+    }
+}
+
+.nav { @extend %nav; }
+
+.nav__item { @extend %nav__item; }

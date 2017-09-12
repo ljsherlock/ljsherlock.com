@@ -6,10 +6,6 @@
 
       <section class="intro wrap">
 
-         <div class="sidebar typography">
-            {{ sidebar__homepage_main }}
-         </div>
-
          <div class="typography">
             {{ post.content }}
          </div>
@@ -17,45 +13,47 @@
       </section>
 
       <section class="newest-project">
+         <div class="wrap--rg">
 
-         {{ mcro.createHTMLTag( 'h2', {}, [{block: 'h2'}], 'Newest Project' ) }}
+            <div class="newest-project__head">
+               {% include '_molecules/heading--prefix/heading--prefix.twig' with { icon: 'heading-prefix', title: 'Newest Project' } %}
 
-         <div class="newest-project__head">
-            {{ mcro.createHTMLTag( 'h3', {}, [{block: 'h4'}], work.post.post_title ) }}
+               {{ sidebar__homepage_main }}
+            </div>
+
+            <div class="newest-project__body typography">
+               {% set tags %}
+                  {% include '_organisms/terms/terms.twig' with { post_type: 'work', terms: work.terms.children } %}
+               {% endset %}
+
+               {{ mcro.createHTMLTag('p', {}, [], tags) }}
+               {{ work.post_excerpt }}
+            </div>
+
+            {% include '_molecules/btn/btn.twig' with { attrs: { href: constant('LJS_URL') ~ 'work' }, bem: [ {block: 'btn', modifier: ['primary']} ], text: { value: 'View All'} } %}
          </div>
-
-         <div class="newest-project__body typography">
-
-            {% set tags %}
-               {% include '_organisms/tags/tags.twig' with { items: work.terms } %}
-            {% endset %}
-
-            {{ mcro.createHTMLTag('p', {}, [], tags) }}
-            {{ work.post_excerpt }}
-
-         </div>
-
-         {% include '_molecules/btn/btn.twig' with { attrs: { href: constant('LJS_URL') ~ 'work' }, bem: [ {block: 'btn', modifier: ['primary']} ], text: { value: 'View All'} } %}
 
       </section>
 
       <section class="photography">
+         <div class="wrap--rg">
 
-         {{ mcro.createHTMLTag( 'h2', {}, [{block: 'h2'}], 'Photography' ) }}
+            {% include '_molecules/heading--prefix/heading--prefix.twig' with { icon: 'heading-prefix', title: 'Photography' } %}
 
-         {% set bem = [{ block: 'grid-desktop', element: '33-of-100' },
-         { block: 'grid-tablet', element: '50-of-100' },
-         { block: 'grid-mobile', element: '100-of-100' }] %}
+            {% set bem = [{ block: 'grid-desktop', element: '33-of-100' },
+            { block: 'grid-tablet', element: '50-of-100' },
+            { block: 'grid-mobile', element: '100-of-100' }] %}
 
-         {% set images %}
-            {% for item in instagram %}
-                {{mcro.createHTMLTag('img', { src: item.url, alt: item.caption }, bem, '', true)}}
-            {% endfor %}
-         {% endset %}
+            {% set images %}
+               {% for item in instagram %}
+                   {{mcro.createHTMLTag('img', { src: item.url, alt: item.caption }, bem, '', true)}}
+               {% endfor %}
+            {% endset %}
 
-         {{ mcro.createHTMLTag('div', {}, [ { block: 'grid-desktop', modifier: ['continuous', 'gutter-md-right'] },
-         { block: 'grid-tablet', modifier: ['continuous', 'gutter-md-right'] }, { block: 'grid-mobile', modifier: ['continuous', 'gutter-sm-bottom'] }], images) }}
+            {{ mcro.createHTMLTag('div', {}, [ { block: 'grid-desktop', modifier: ['continuous', 'gutter-md-right'] },
+            { block: 'grid-tablet', modifier: ['continuous', 'gutter-md-right'] }, { block: 'grid-mobile', modifier: ['continuous', 'gutter-sm-bottom'] }], images) }}
 
+         </div>
       </section>
 
    {% endblock %}

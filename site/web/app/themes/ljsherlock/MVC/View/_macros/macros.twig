@@ -27,3 +27,8 @@
 {% for modifier in item.modifier %}
 {% set classname = classname ~ (' ' ~ block__element ~ '--' ~ modifier) %}
 {% endfor %}{% endif %}{% endfor %}{{classname}}{% endmacro %}
+
+{% macro dump(value) %}
+   {% import _self as mcro %}
+   {{ mcro.createHTMLTag('pre', {}, [], dump(value) ) }}
+{% endmacro %}

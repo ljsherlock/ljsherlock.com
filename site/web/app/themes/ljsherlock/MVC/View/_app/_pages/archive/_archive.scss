@@ -1,0 +1,6 @@
+%archive
+{
+    @extend %post;
+}
+
+.archive {@extend %archive;}

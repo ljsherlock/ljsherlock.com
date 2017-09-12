@@ -1,0 +1,17 @@
+{% extends ['_app/_templates/app.twig', '_compon/_templates/app.twig' ] %}
+
+{% import 'macros.twig' as mcro %}
+
+   {% block app %}
+
+      <div class="wrap--rg">
+
+         {% include '_organisms/posts/posts.twig' with { posts: posts, template: '_molecules/work-preview/work-preview.twig', bem: [{ block: 'posts', element: 'post', modifier: ['work'] }] } %}
+
+      </div>
+
+   {% endblock %}
+
+   {% block after_app %}
+
+   {% endblock %}

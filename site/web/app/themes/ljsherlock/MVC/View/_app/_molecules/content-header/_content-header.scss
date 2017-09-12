@@ -1,0 +1,9 @@
+%content-header
+{
+    margin-top: 20em;
+    h2, .h2 {
+        font-weight: 400;
+    }
+}
+
+.content-header { @extend %content-header; }

@@ -18,3 +18,8 @@ web/.htaccess
 # Composer
 vendor/*
 !vendor/.gitkeep
+
+
+# Sass
+web/app/themes/*/MVC/.sass-cache/
+web/app/themes/*/MVC/.sass-cache/*

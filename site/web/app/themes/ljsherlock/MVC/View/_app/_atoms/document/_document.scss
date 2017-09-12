@@ -1,4 +1,26 @@
+html {
+    background-color: $tundora;
+}
+
 body
 {
-    background-color: $cloudGrey;
+    background-color: white;
+    margin:0;
+    padding: 15px;
 }
+
+::selection {
+    background: $shilo;
+    color: $white;
+}
+
+    @include desktop() {
+        html {
+            margin: 40px;
+        }
+    };
+    @include tablet() {
+        html {
+            margin: 20px;
+        }
+    };

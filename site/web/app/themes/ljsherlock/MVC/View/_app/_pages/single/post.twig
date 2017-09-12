@@ -1,0 +1,21 @@
+{% extends ['_app/_templates/app.twig', '_components/_templates/app.twig' ] %}
+
+{% import 'macros.twig' as mcro %}
+
+   {% block app %}
+
+      <div class="wrap post">
+
+         <div class="wrap--sm  typography">
+            
+            {{ post.content }}
+
+            {% include '_organisms/terms/terms.twig' with { terms: post.terms, postObj: postObj, taxObj: taxObj } %}
+         </div>
+      </div>
+
+   {% endblock %}
+
+   {% block after_app %}
+
+   {% endblock %}

@@ -1,0 +1,17 @@
+{% extends ['_app/_templates/app.twig', '_components/_templates/app.twig' ] %}
+
+{% import 'macros.twig' as mcro %}
+
+   {% block app %}
+
+      {{ mcro.dump( what_i_did ) }}
+      {{ mcro.dump( project_colours ) }}
+      {{ mcro.dump( browser_image ) }}
+      {{ mcro.dump( primary_image ) }}
+      {{ mcro.dump( secondary_images ) }}
+
+   {% endblock %}
+
+   {% block after_app %}
+
+   {% endblock %}
