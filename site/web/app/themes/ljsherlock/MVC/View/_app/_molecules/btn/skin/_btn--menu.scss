@@ -3,6 +3,7 @@
     color: $tundora;
     text-transform: uppercase;
     font-weight: 700;
+    @include plumber($font-size: 1.5);
 }
 
 .btn--menu { @extend %btn--menu;}

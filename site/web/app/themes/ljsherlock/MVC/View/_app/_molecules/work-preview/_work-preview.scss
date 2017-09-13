@@ -1,0 +1,19 @@
+%posts__post--work
+{
+    %post__header
+    {
+        @extend %wrap--md;
+    }
+    %post__body
+    {
+        @extend %wrap--rg;
+    }
+    %post__footer{
+        @extend %wrap--md;
+    }
+}
+
+.posts__post--work  { @extend %posts__post--work  };
+.post__header { @extend %post__header };
+.post__body  { @extend %post__body  };
+.post__footer { @extend %post__footer };

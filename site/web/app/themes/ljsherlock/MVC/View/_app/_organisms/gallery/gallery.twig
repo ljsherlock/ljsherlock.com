@@ -1,0 +1,37 @@
+{# _ogranisms/photography/photography.twig #}
+
+{#
+   Photography
+   Show the first Item in Work Posts
+   @param {Array} instagram
+   {
+      image
+      caption
+   }
+#}
+
+{# Parameters #}
+{% set galleryArray = images ?? null %}
+
+{# Variables #}
+{% set galleryBem = [{ block: 'gallery'}] %}
+{% set galleryImageBem = [{ block: 'gallery', element: 'image' }] %}
+
+{# Output #}
+{% import 'macros.twig' as mcro %}
+
+   {% if galleryArray %}
+
+      {% set galleryInnerHTML %}
+
+         {% for item in galleryArray %}
+
+             {{ mcro.createHTMLTag('img', { src: item.url, alt: item.caption }, galleryImageBem, '', true) }}
+
+         {% endfor %}
+
+      {% endset %}
+
+      {{ mcro.createHTMLTag('div', {}, galleryBem, galleryInnerHTML) }}
+
+   {% endif %}

@@ -29,8 +29,10 @@
 
    {% include '_molecules/icon-link/icon-link.twig' with { icon: 'icon-logo' } %}
 
-   {% include ['_app/_organisms/menu/menu.twig', '_components/_organisms/menu/menu.twig' ] with { menu: menu.items } %}
-
+   {% include ['_app/_organisms/menu/menu.twig', '_components/_organisms/menu/menu.twig' ] with {
+      menu: menu.items,
+      bem: [{block: 'nav', modifier: ['primary'] } ]
+   } %}
 {% endset %}
 
 {{ mcro.createHTMLTag('header', {}, headerBem, innerHTML) }}

@@ -1,0 +1,43 @@
+%intro
+{
+    @extend %wrap;
+    %intro__logo
+    {
+        width: 50%;
+    }
+    %captions
+    {
+        > * {
+            position: absolute;
+        }
+        %caption__left
+        {
+            left: 20px
+        }
+        %caption__right
+        {
+            right: 20px;
+        }
+    }
+    %intro__content
+    {
+        @extend %wrap--rg;
+        %intro__content-inner
+        {
+            @include padding-all($top: 4.5, $bottom: 4.5, $units: 'em');
+            background: $doveGrey;
+            color: white;
+            > * {
+                @extend %wrap--md;
+            }
+        }
+    }
+}
+
+.intro { @extend %intro; }
+.intro__logo { @extend %intro__logo; }
+.captions { @extend %captions; }
+.caption__left { @extend %caption__left; }
+.caption__right { @extend %caption__right; }
+.intro__content { @extend %intro__content; }
+.intro__content-inner { @extend %intro__content-inner; }

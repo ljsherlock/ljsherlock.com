@@ -1,0 +1,15 @@
+%newest-project
+{
+    %newest-project__head
+    {
+        @extend %wrap--md;
+    }
+    %newest-project__body
+    {
+        @extend %wrap--rg;
+    }
+}
+
+.newest-project { @extend %newest-project };
+.newest-project__head { @extend %newest-project__head };
+.newest-project__body { @extend %newest-project__body };

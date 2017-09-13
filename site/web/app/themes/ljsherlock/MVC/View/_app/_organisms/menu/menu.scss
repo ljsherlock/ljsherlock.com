@@ -4,12 +4,25 @@
     @extend %grid-desktop--gutter-lg-right;
     @extend %flex--align-items-center;
 
-    %nav__item
+    &--primary {
+        %nav__item
+        {
+            @extend %btn--menu;
+        }
+    }
+
+    &--footer
     {
-        @extend %btn--menu;
+        %nav__item
+        {
+            @extend span;
+            color: $silver;
+            font-weight: 400;
+        }
     }
 }
 
 .nav { @extend %nav; }
-
 .nav__item { @extend %nav__item; }
+.nav--primary { @extend %nav--primary; }
+.nav--footer { @extend %nav--footer; }

@@ -1,15 +1,24 @@
-{% import 'macros.twig' as mcro %}
+{# _molecules/heading--prefix/heading--prefix.twig #}
 
-<div class="heading--prefix">
+{# Parameters #}
+{% set headingTitle = title %}
 
-      {% set innerHTML %}
+{# Variables #}
+{% set headingBem = [{ block:'heading', modifier: ['prefix'] }] %}
 
-         {% include '_atoms/icon/icon.twig' with { icon : 'icon-' ~ icon, bem: [ { block: "symbol", modifier: [icon] } ] } %}
+{# Output #}
+{% if headingTitle %}
 
-         {{ mcro.createHTMLTag('h1', {}, [], title) }}
+   {% import 'macros.twig' as mcro %}
 
-      {% endset %}
+   {% set innerHTML %}
 
-      {{ mcro.createHTMLTag('div', {}, [{ block: 'grid', modifier: ['gutter-md-right'] }, { block: 'flex', modifier: ['align-items-center'] } ], innerHTML ) }}
+      {% include '_atoms/icon/icon.twig' with { icon : 'icon-' ~ icon, bem: [ { block: "symbol", modifier: [icon] } ] } %}
 
-</div>
+      {{ mcro.createHTMLTag('h1', {}, [], headingTitle) }}
+
+   {% endset %}
+
+   {{ mcro.createHTMLTag('div', {}, headingBem, innerHTML ) }}
+
+{% endif %}

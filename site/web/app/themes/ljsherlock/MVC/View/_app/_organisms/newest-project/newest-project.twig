@@ -1,0 +1,30 @@
+{# _ogranisms/newest-project/newest-project.twig #}
+
+{#
+   Newest Project
+   Show the first Item in Work Posts
+   @param {Post Object} work
+   {
+      Mixed
+   }
+#}
+
+{# Parameters #}
+{% set newestProjectPosts = work ?? null %}
+
+{# Variables #}
+{% set newestProjectPostsTemplate = '_molecules/work-preview/work-preview.twig' %}
+{% set newestProjectPostsBem = [{ block: 'posts', element: 'post', modifier: ['work'] }] %}
+
+{# Output #}
+   <div class="newest-project">
+      {% include '_organisms/posts/posts.twig' with {
+      posts: newestProjectPosts,
+      template: newestProjectPostsTemplate,
+      bem: newestProjectPostsBem } %}
+
+      {% include '_molecules/btn/btn.twig' with {
+         attrs: { href: constant('LJS_URL') ~ 'work' },
+         text: { value: 'View All'},
+         bem: [ {block: 'btn', modifier: ['primary']} ] } %}
+   </div>

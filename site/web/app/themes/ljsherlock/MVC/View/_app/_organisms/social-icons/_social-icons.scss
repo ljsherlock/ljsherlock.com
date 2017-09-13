@@ -1,0 +1,10 @@
+%nav--social-media
+{
+    %nav__item
+    {
+        @extend %grid--gutter-sm-right;
+    }
+}
+
+.nav--social-media { @extend %nav--social-media; }
+.nav__item { @extend %nav__item; }

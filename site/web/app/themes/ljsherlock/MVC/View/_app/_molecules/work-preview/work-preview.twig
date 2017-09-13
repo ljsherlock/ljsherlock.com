@@ -37,21 +37,25 @@
 
    {% set postInnerHTML %}
 
-      <div class="wrap--md">
+      <div class="post__header">
+
          {{ mcro.createHTMLTag('h3', {}, [],  postObj.title) }}
 
-         {% include '_organisms/terms/terms.twig' with { post_type: 'work', terms: postObj.terms.overview.children } %}
+         {% include '_organisms/terms/terms.twig' with { post_type: 'work', terms: postObj.terms.overview.children, bem: [] } %}
 
          <div class="typography">
-
             {{ mcro.createHTMLTag('p', {}, [], postObj.get_preview(40, false, '') ) }}
-
          </div>
+
       </div>
 
-      {{mcro.dump(postPreviewImage)}}
+      <div class="post__body">
+         {% include '_molecules/browser-mockup/browser-mockup.twig' with { attrs: {}, bem: [], image: postPreviewImage } %}
+      </div>
 
-      {% include '_molecules/btn/btn.twig' with { attrs: { href: post.link }, text: { value: 'Read More' } } %}
+      <div class="post__footer">
+         {% include '_molecules/btn/btn.twig' with { attrs: { href: post.link }, bem: {}, text: { value: 'Read More' } } %}
+      </div>
 
    {% endset %}
 
