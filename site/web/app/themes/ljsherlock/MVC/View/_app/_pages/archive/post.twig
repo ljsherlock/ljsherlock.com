@@ -1,26 +1,39 @@
-{% extends ['_app/_templates/app.twig', '_compon/_templates/app.twig' ] %}
+{# _pages/archive/post.twig #}
+
+{#
+   Archive Post Page
+   @param {Post Object} post
+#}
+
+{# Parameters #}
+{% set postPosts = posts ?? null %}
+
+{# Variables #}
+{# {% set archivePostBem = [{ block: 'posts', element: 'post', modifier: ['work'] }] %} #}
+{% set archivePostPostsTemplate = '_molecules/work-preview/work-preview.twig' %}
+{% set postArchiveBem = [{ block: 'archive' }] %}
+
+{# Output #}
+{% extends '_app/_templates/page.twig' %}
 
 {% import 'macros.twig' as mcro %}
 
-   {% block app %}
+   {% block page %}
 
-      <div class="archive">
+      {% set postArchiveHTML %}
 
-         <div class="wrap--md">
+         {% include '_organisms/posts/posts.twig' with {
+            posts: postPosts,
+            template: archivePostPostsTemplate,
+            bem: ''
+         } %}
 
-            {% include '_organisms/posts/posts.twig' with { posts: posts, template: '_molecules/post-preview/post-preview.twig' } %}
-
-            <div class="pagination">
-
-            </div>
+         <div class="pagination">
 
          </div>
 
-      </div>
+      {% endset %}
 
-
-   {% endblock %}
-
-   {% block after_app %}
+      {{ mcro.createHTMLTag( 'div', {}, postArchiveBem, postArchiveHTML ) }}
 
    {% endblock %}

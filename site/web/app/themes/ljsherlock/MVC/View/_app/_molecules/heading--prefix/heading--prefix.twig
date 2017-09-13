@@ -1,7 +1,25 @@
 {# _molecules/heading--prefix/heading--prefix.twig #}
 
+{#
+   Page Header
+   From the menu object create a menu
+   @param {Array} bem (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @param {Array} attrs (optional)
+   {
+      Mixed
+   }
+   @param {String} image
+#}
+
 {# Parameters #}
-{% set headingTitle = title %}
+{% set headingAttrs = attrs ?? null %}
+{% set headingBem = bem ?? null %}
+{% set headingTitle = title ?? null %}
 
 {# Variables #}
 {% set headingBem = [{ block:'heading', modifier: ['prefix'] }] %}
@@ -19,6 +37,6 @@
 
    {% endset %}
 
-   {{ mcro.createHTMLTag('div', {}, headingBem, innerHTML ) }}
+   {{ mcro.createHTMLTag('div', headingAttrs, headingBem, innerHTML ) }}
 
 {% endif %}

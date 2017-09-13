@@ -1,6 +1,7 @@
 %posts__post
 {
-    &--work {
+    &--work
+    {
         @extend %wrap--break-lg;
     }
 }

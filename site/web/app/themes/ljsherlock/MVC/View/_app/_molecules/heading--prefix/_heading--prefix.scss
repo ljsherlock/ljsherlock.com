@@ -3,6 +3,7 @@
     @extend %wrap--md;
     @extend %grid--gutter-md-right;
     @extend %flex--align-items-center;
+    @extend %grid;
 
 }
 .heading--prefix  { @extend %heading--prefix;}

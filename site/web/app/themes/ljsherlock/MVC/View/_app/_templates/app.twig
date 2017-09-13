@@ -1,31 +1,53 @@
+{# _templates/app.twig #}
 
+{#
+   Single Post Page
+   @param {Post Object} post
+#}
+
+{# Parameters #}
+{% set appPost = post ?? null %}
+{% set appFooter = footer ?? null %}
+{% set appHeader = header ?? null %}
+
+{# Variables #}
+{% set appAttrs = { post_type: appPost.post_type, post_id: appPost.ID, parent_id: function("wp_get_post_parent_id", appPost.id) } %}
+
+{# Output #}
 {% extends '_templates/global.twig' %}
 
 {% block main %}
 
-   {% include ['_app/_organisms/header/header.twig', '_components/_organisms/header/header.twig' ] %}
+   {% if appPost %}
 
-   <main class="theme--{{colour}}" post_type="{{ post.post_type }}" page_id="{{ post.ID }}" parent_id="{{ function("wp_get_post_parent_id", post.id) }}">
+      {% import 'macros.twig' as mcro %}
 
-      <div class="wrap">
+      {% include ['_app/_organisms/header/header.twig', '_components/_organisms/header/header.twig' ] with { menu: appHeader.menu } %}
 
-         {% include '_molecules/content-header/content-header.twig' %}
+      {% set appInnerHTML %}
 
-         {% block app %}
+         <div class="wrap">
 
+            {% block app %}
 
+            {% endblock %}
 
+         </div>
+
+         {% block after_app %}
          {% endblock %}
-      </div>
 
-      {% block after_app %}
-
+      {% endset %}
 
 
-      {% endblock %}
+      {{ mcro.createHTMLTag( 'main', appAttrs, appBem, appInnerHTML ) }}
 
-   </main>
+      {% if appFooter %}
 
-   {% include ['_app/_organisms/footer/footer.twig', '_organisms/footer/footer.twig'] %}
+         {% include ['_app/_organisms/footer/footer.twig', '_organisms/footer/footer.twig'] %}
+
+      {% endif %}
+
+   {% endif %}
 
 {% endblock %}

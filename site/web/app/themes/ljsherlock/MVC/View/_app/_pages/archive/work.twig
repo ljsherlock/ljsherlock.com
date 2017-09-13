@@ -1,17 +1,28 @@
-{% extends ['_app/_templates/app.twig', '_compon/_templates/app.twig' ] %}
+{# _pages/archive/work.twig #}
+
+{#
+   Work Archive Page
+   @param {Post Object} post
+#}
+
+{# Parameters #}
+{% set archiveWorkPosts = posts ?? null %}
+
+{# Variables #}
+{% set archiveWorkBem = [{ block: 'posts', element: 'post', modifier: ['work'] }] %}
+{% set archiveWorkPostsTemplate = '_molecules/work-preview/work-preview.twig' %}
+
+{# Output #}
+{% extends '_app/_templates/page.twig' %}
 
 {% import 'macros.twig' as mcro %}
 
-   {% block app %}
+   {% block page %}
 
-      <div class="wrap--rg">
-
-         {% include '_organisms/posts/posts.twig' with { posts: posts, template: '_molecules/work-preview/work-preview.twig', bem: [{ block: 'posts', element: 'post', modifier: ['work'] }] } %}
-
-      </div>
-
-   {% endblock %}
-
-   {% block after_app %}
+      {% include '_organisms/posts/posts.twig' with {
+         posts: archiveWorkPosts,
+         template: archiveWorkPostsTemplate,
+         bem: archiveWorkBem
+      } %}
 
    {% endblock %}

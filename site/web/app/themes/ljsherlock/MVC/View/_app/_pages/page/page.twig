@@ -1,19 +1,29 @@
-{% extends ['_app/_templates/app.twig', '_components/_templates/app.twig' ] %}
+{# _pages/page/page.twig #}
+
+{#
+   Page
+   @param {Post Object} post
+#}
+
+{# Parameters #}
+
+
+{# Variables #}
+
+{# Output #}
+{% extends '_app/_templates/page.twig' %}
 
 {% import 'macros.twig' as mcro %}
 
-   {% block app %}
+   {% block page %}
 
       <div class="wrap post">
 
          <div class="wrap--sm  typography">
+
             {{ post.content }}
-            {% include '_organisms/terms/listTerms.twig' with { terms: post.terms, postObj: postObj, taxObj: taxObj } %}
+
          </div>
       </div>
-
-   {% endblock %}
-
-   {% block after_app %}
 
    {% endblock %}

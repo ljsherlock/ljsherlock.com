@@ -1,12 +1,31 @@
 {# _organisms/footer/footer.twig #}
 
+{#
+   Footer
+   @param {Array} bem (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @param {Array} attrs (optional)
+   {
+      Mixed
+   }
+   @param {Array} social_media
+#}
 
 {# Parameters #}
-{% set introSocialMedia = social_media ?? null %}
+{% set footerSocialMedia = footer.social_media ?? null %}
+{% set footerEmail = footer.email ?? null %}
+{% set footerTelephone = footer.telephone ?? null %}
+{% set footerPosts = footer.posts ?? null %}
+{% set footerMenu = footer.menu.items ?? null %}
+{% set footerCopyright = footer.copyright ?? null %}
 
 {# Varaibles #}
 
-[# Output #]
+{# Output #}
 {% import 'macros.twig' as mcro %}
 
 {% set innerHTML %}
@@ -16,11 +35,11 @@
       {% include '_molecules/icon-link/icon-link.twig' with { icon: 'icon-logo' } %}
 
       <div class="grid grid--col grid--gutter-sm-bottom flex--align-items-center">
-         {{ mcro.createHTMLTag('a', {'href': 'mailto:' ~ email }, [], 'Send an Email' ) }}
-         {{ mcro.createHTMLTag('a', {'href': 'tel:' ~ telephone }, [], 'Call Me' ) }}
+         {{ mcro.createHTMLTag('a', {'href': 'mailto:' ~ footerEmail }, [], 'Send an Email' ) }}
+         {{ mcro.createHTMLTag('a', {'href': 'tel:' ~ footerTelephone }, [], 'Call Me' ) }}
       </div>
 
-      {% include '_organisms/social-icons/social-icons.twig' with { icons: introSocialMedia } %}
+      {% include '_organisms/social-icons/social-icons.twig' with { icons: footerSocialMedia } %}
 
       <div class="recent-posts wrap--break-lg">
          <div class="grid grid--col grid--gutter-lg-bottom flex--align-items-center">
@@ -29,10 +48,10 @@
       </div>
 
       <div class="grid grid--gutter-lg-right">
-         <span>{{ copyright }}</span>
+         <span>{{ footerCopyright }}</span>
 
          {% include ['_app/_organisms/menu/menu.twig', '_components/_organisms/menu/menu.twig' ] with {
-          menu: footer_menu.items,
+          menu: footerMenu,
           bem: [{ block: 'nav', modifier: ['footer'] }]
           } %}
       </div>

@@ -1,5 +1,21 @@
 {# _molecules/browser-mockup/browser-mockup.twig #}
 
+{#
+   Page Header
+   From the menu object create a menu
+   @param {Array} bem (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @param {Array} attrs (optional)
+   {
+      Mixed
+   }
+   @param {String} image
+#}
+
 {# Parameters #}
 {% set browserImageBem = bem ?? null %}
 {% set browserImageAttrs = attrs ?? null %}

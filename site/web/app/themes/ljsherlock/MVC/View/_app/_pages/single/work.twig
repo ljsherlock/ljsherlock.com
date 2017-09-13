@@ -1,17 +1,40 @@
-{% extends ['_app/_templates/app.twig', '_components/_templates/app.twig' ] %}
+{# _pages/single/work.twig #}
+
+{#
+   Single Work Page
+   @param {Term Obj} what_i_did
+      {
+         children {Array}
+         {
+            {Term Ojb}
+         }
+      }
+   @param {Array} project_colours
+   @param {String} browser_image
+   @param {String} primary_image
+   @param {Array} secondary_images
+#}
+
+{# Parameters #}
+{% set workWhatIDid = what_i_did ?? null %}
+{% set workProjectColours = project_colours ?? null %}
+{% set workBrowserImage = browser_image ?? null %}
+{% set workPrimaryImage = primary_image ?? null %}
+{% set workSecondaryImages = secondary_images ?? null %}
+
+{# Varables #}
+
+{# Output #}
+{% extends '_app/_templates/page.twig' %}
 
 {% import 'macros.twig' as mcro %}
 
-   {% block app %}
+   {% block page %}
 
-      {{ mcro.dump( what_i_did ) }}
-      {{ mcro.dump( project_colours ) }}
-      {{ mcro.dump( browser_image ) }}
-      {{ mcro.dump( primary_image ) }}
-      {{ mcro.dump( secondary_images ) }}
-
-   {% endblock %}
-
-   {% block after_app %}
+      {{ mcro.dump( workWhatIDid ) }}
+      {{ mcro.dump( workProjectColours ) }}
+      {{ mcro.dump( workBrowserImage ) }}
+      {{ mcro.dump( workPrimaryImage ) }}
+      {{ mcro.dump( workSecondaryImages ) }}
 
    {% endblock %}

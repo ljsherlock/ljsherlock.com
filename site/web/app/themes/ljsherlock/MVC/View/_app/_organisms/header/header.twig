@@ -3,13 +3,13 @@
 {#
    Menu
    From the menu object create a menu
-   @@param {Array} bem (optional)
+   @param {Array} bem (optional)
       {
          block {String}
          element {String}
          modifier {Array}
       }
-   @@param {Array} attrs (optional)
+   @param {Array} attrs (optional)
    {
       Mixed
    }
@@ -17,6 +17,8 @@
 #}
 
 {# Parameters #}
+{% set headerAttrs = attrs ?? null %}
+{% set headerBem = bem ?? null %}
 {% set menuItems = menu.items ?? null %}
 
 {# Variables #}
@@ -30,7 +32,7 @@
    {% include '_molecules/icon-link/icon-link.twig' with { icon: 'icon-logo' } %}
 
    {% include ['_app/_organisms/menu/menu.twig', '_components/_organisms/menu/menu.twig' ] with {
-      menu: menu.items,
+      menu: menuItems,
       bem: [{block: 'nav', modifier: ['primary'] } ]
    } %}
 {% endset %}

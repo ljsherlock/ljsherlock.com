@@ -1,21 +1,39 @@
-{% extends ['_app/_templates/app.twig', '_components/_templates/app.twig' ] %}
+{# _pages/single/post.twig #}
 
-{% import 'macros.twig' as mcro %}
+{#
+   Single Post Page
+   @param {Post Object} post
+#}
 
-   {% block app %}
+{# Parameters #}
+{# {% set postPostObj = post ?? null %} #}
 
-      <div class="wrap post">
+{# Variables #}
+{% set postBem = [{ block: 'post'}] %}
 
-         <div class="wrap--sm  typography">
-            
-            {{ post.content }}
+{# Output #}
+{% extends '_app/_templates/page.twig' %}
 
-            {% include '_organisms/terms/terms.twig' with { terms: post.terms, postObj: postObj, taxObj: taxObj } %}
+   {% block page %}
+
+      {% import 'macros.twig' as mcro %}
+
+      {% set postInnerHTML %}
+
+         <div class="typography">
+
+            {{ appPost.content }}
+
+            {% include '_organisms/terms/terms.twig' with {
+               terms: appPost.terms,
+               postObj: postObj,
+               taxObj: taxObj
+            } %}
+
          </div>
-      </div>
 
-   {% endblock %}
+      {% endset %}
 
-   {% block after_app %}
+      {{ mcro.createHTMLTag( 'div', postAttrs, postBem, postInnerHTML ) }}
 
    {% endblock %}
