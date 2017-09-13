@@ -223,11 +223,31 @@ class CMB2
     		'type'    => 'text',
     	) );
 
-        $cmb_options->add_field( array(
-    		'name'    => __( 'Social Media Links ', 'cmb2' ),
+        $socialIcons = $cmb_options->add_field( array(
+            'name'    => __( 'Social Media Links ', 'cmb2' ),
     		'id'      => self::$prefix . 'social_media_links',
+        	'type'        => 'group',
+        	// 'description' => __( 'Generates reusable form entries', 'cmb2' ),
+        	// 'repeatable'  => false, // use false if you want non-repeatable group
+        	'options'     => array(
+        		'group_title'   => __( 'Entry {#}', 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
+        		'add_button'    => __( 'Add Another Icon', 'cmb2' ),
+        		'remove_button' => __( 'Remove Icon', 'cmb2' ),
+        		'sortable'      => true, // beta
+        		// 'closed'     => true, // true to have the groups closed by default
+        	),
+        ) );
+
+        $cmb_options->add_group_field($socialIcons, array(
+    		'name'    => __( 'Link ', 'cmb2' ),
+    		'id'      => 'link',
     		'type'    => 'text',
-            'repeatable' => true,
+    	) );
+
+        $cmb_options->add_group_field($socialIcons, array(
+    		'name'    => __( 'Icon Slug ', 'cmb2' ),
+    		'id'      => 'icon',
+    		'type'    => 'text',
     	) );
     }
 
