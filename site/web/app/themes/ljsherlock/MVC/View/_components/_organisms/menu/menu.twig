@@ -34,7 +34,22 @@
    {% set navHTML %}
 
       {% for item in navMenu %}
-         {% include '_molecules/btn/btn.twig' with { text: { value: item.title } , attrs: { href: item.link }, bem: navBtnBem } %}
+
+         {# Loop Variables #}
+         {% set btnIcons = item.icons ?? null %}
+         {% set btnIcon = item.icon ?? null %}
+         {% set btnTexts = item.texts ?? null %}
+         {% set btnText = item.title ?? null %}
+         {% set btnLink = item.link ?? null %}
+
+         {% include '_molecules/btn/btn.twig' with {
+         text: { value: btnText },
+         texts: btnTexts,
+         attrs: { href: btnLink },
+         icons: btnIcons,
+         icon: btnIcon,
+         bem: navBtnBem } %}
+
       {% endfor %}
 
    {% endset %}

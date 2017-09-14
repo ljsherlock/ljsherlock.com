@@ -48,6 +48,7 @@
 {% set btnElement = ( non_anchor == true ) ? 'span' : 'a' %}
 {% set btnRawSVG = rawSVG ?? '' %}
 {% set btnIcons = icons ?? null %}
+{% set btnIcon = icon ?? null %}
 
 {# Variables #}
 {% set btnBemDefault = [ { block: 'btn' } ] %}
@@ -85,14 +86,14 @@
 
    {% endif %}
 
-   {% if btnIcons is defined %}
+   {% if btnIcons %}
 
       {% for item in btnIcons %}
-         {% include '_atoms/icon/icon.twig' with { icon: item.name, bem: item.bem } %}
+         {% include '_atoms/icon/icon.twig' with { icon: item.name } %}
       {% endfor %}
 
-   {% elseif btnIcon is defined %}
-      {% include '_atoms/icon/icon.twig' with { icon: btnIcon.name, bem: btnIcon.bem } %}
+   {% elseif btnIcon %}
+      {% include '_atoms/icon/icon.twig' with { icon: btnIcon } %}
    {% endif %}
 
    {% if btnRawSVG %}
