@@ -57,15 +57,17 @@ class Single extends Base
             'subtitle' => get_post_meta( $this->post->ID, CMB2::$prefix . 'subtitle', true ),
             'post' => $this->post,
             'terms' => $this->terms($this->post),
-            //header
-            'menu' => new \TimberMenu('Primary'),
-            // footer
-            'email' => CMB2::myprefix_get_option( CMB2::$prefix . 'contact_email'),
-            'telephone' => CMB2::myprefix_get_option(CMB2::$prefix . 'contact_telephone'),
-            'social_media' => CMB2::myprefix_get_option( CMB2::$prefix . 'social_media_links'),
-            'footer_posts' => $posts,
-            'footer_menu' => new \TimberMenu('Footer'),
-            'copyright' => 'Copyright ' . date('Y') . ' Sherlock Ltd',
+            'header' => array(
+                'menu' => new \TimberMenu('Primary'),
+            ),
+            'footer' => array(
+                'email' => CMB2::myprefix_get_option( CMB2::$prefix . 'contact_email'),
+                'telephone' => CMB2::myprefix_get_option(CMB2::$prefix . 'contact_telephone'),
+                'social_media' => CMB2::myprefix_get_option( CMB2::$prefix . 'social_media_links'),
+                'posts' => $posts,
+                'menu' => new \TimberMenu('Footer'),
+                'copyright' => 'Copyright ' . date('Y') . ' Sherlock Ltd',
+            ),
         ));
 
         return parent::get();
