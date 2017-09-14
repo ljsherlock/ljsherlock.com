@@ -26,7 +26,7 @@ abstract class Base
     * Model object
     * @var object
     */
-    protected $model = null;
+    public $model = null;
 
     /**
     * Name of model to be used in Controller;
