@@ -8,6 +8,9 @@ class Core
     {
         require_once 'constants.php';
 
+        // Required by The SEO Framework 
+        add_theme_support( 'title-tag' );
+
         // Widgets
         $sidebars = new \MVC\ContentTypes\Sidebar();
         $widgets = new \MVC\ContentTypes\Widgets();
