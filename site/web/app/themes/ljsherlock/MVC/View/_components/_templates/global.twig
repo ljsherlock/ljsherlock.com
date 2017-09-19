@@ -3,7 +3,7 @@
 *  @requires ajax.twig, template.twig
 #}
 
-{% extends ajax.method == true ? '_components/_templates/template/ajax.twig': '_components/_templates/template.twig' %}
+{% extends request_body.ajax == 1 ? '_components/_templates/ajax.twig': '_components/_templates/template.twig' %}
 
    {% block body %}
 

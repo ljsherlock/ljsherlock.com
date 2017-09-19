@@ -52,18 +52,23 @@ class Single extends Base
         $args = array( 'query' => array( 'posts_per_page' => 3 ) );
         $posts = $archive->query($args);
 
+        //required to get ajax request input.
+        $request_body = file_get_contents('php://input');
+        $data = json_decode($request_body);
+
         $this->timber->addContext( array(
             // content
+            'request_body' => $data,
             'subtitle' => get_post_meta( $this->post->ID, CMB2::$prefix . 'subtitle', true ),
             'post' => $this->post,
             'terms' => $this->terms($this->post),
+            'social_media' => CMB2::myprefix_get_option( CMB2::$prefix . 'social_media_links'),
             'header' => array(
                 'menu' => new \TimberMenu('Primary'),
             ),
             'footer' => array(
                 'email' => CMB2::myprefix_get_option( CMB2::$prefix . 'contact_email'),
                 'telephone' => CMB2::myprefix_get_option(CMB2::$prefix . 'contact_telephone'),
-                'social_media' => CMB2::myprefix_get_option( CMB2::$prefix . 'social_media_links'),
                 'posts' => $posts,
                 'menu' => new \TimberMenu('Footer'),
                 'copyright' => 'Copyright ' . date('Y') . ' Sherlock Ltd',
