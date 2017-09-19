@@ -138,23 +138,23 @@
     {
         &--break-sm
         {
-            @include padding-all(null, null, $wrap-padding--sm, null);
+            margin-bottom: #{$wrap-padding--sm}rem;
         }
         &--break-xs
         {
-            @include padding-all(null, null, $wrap-padding--xs, null);
+            margin-bottom: #{$wrap-padding--xs}rem;
         }
         &--break-md
         {
-            @include padding-all(null, null, $wrap-padding--md, null);
+            margin-bottom: #{$wrap-padding--md}rem;
         }
         &--break-lg
         {
-            @include padding-all(null, null, $wrap-padding--lg, null);
+            margin-bottom: #{$wrap-padding--lg}rem;
         }
         &--break-xlg
         {
-            @include padding-all(null, null, $wrap-padding--xlg, null);
+            margin-bottom: #{$wrap-padding--xlg}rem;
         }
     }
 

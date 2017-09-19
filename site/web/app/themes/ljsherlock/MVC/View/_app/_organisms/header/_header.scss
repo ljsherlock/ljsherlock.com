@@ -1,8 +1,62 @@
+@include keyframes( slideDownHeader )
+{
+    0%
+    {
+        top: -50vh;
+    }
+    100%
+    {
+        top: 0;
+    }
+};
+
 %header
 {
-    padding: 25px 25px 0;
-    @extend %grid;
-    @extend %flex--just-space-between;
+    padding: 40px 40px 0px;
+    position: relative;
+    overflow: hidden;
+    top: 0;
+
+    %header__grid
+    {
+        position: relative;
+        @include transition( top .5s ease-out );
+        @extend %grid;
+        @extend %flex--just-space-between;
+    }
+
+    &--scroll-up
+    {
+        position: fixed;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        width: calc( 100% - 80px );
+        top: 0;
+        background: $tundora;
+        %logo
+        {
+            @extend %icon--sm;
+        }
+    }
 }
 
-header{ @extend %header; }
+%page--show-content
+{
+    %header__grid
+    {
+        @include animation( 2.15s ease-in 0.3s slideDownHeader forwards );
+    }
+}
+
+%header__grid
+{
+    top: -25%;
+    top: -25vh;
+}
+
+.page--show-content { @extend %page--show-content;}
+
+header { @extend %header; }
+.header__grid { @extend %header__grid; }
+.header--scroll-up { @extend %header--scroll-up; }
+.logo { @extend %logo; }

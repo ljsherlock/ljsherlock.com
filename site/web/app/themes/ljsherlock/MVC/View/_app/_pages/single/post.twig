@@ -12,11 +12,18 @@
 {% set postBem = [{ block: 'post'}] %}
 
 {# Output #}
-{% extends '_app/_templates/page.twig' %}
+{% extends '_app/_templates/app.twig' %}
 
-   {% block page %}
+   {% block app %}
 
       {% import 'macros.twig' as mcro %}
+
+      {% embed '_molecules/page-header/page-header.twig' with { title: post.title, subtitle: subtitle } %}
+         {% block pageHeaderBefore %}
+         {% import 'macros.twig' as mcro %}
+            {{ mcro.createHTMLTag('datetime', {}, [], post.date|date('j F Y')) }}
+         {% endblock %}
+      {% endembed %}
 
       {% set postInnerHTML %}
 
@@ -24,13 +31,13 @@
 
             {{ appPost.content }}
 
-            {% include '_organisms/terms/terms.twig' with {
-               terms: appPost.terms,
-               postObj: postObj,
-               taxObj: taxObj
-            } %}
-
          </div>
+
+         {% include '_organisms/terms/terms.twig' with {
+            terms: appPost.terms,
+            postObj: postObj,
+            taxObj: taxObj
+         } %}
 
       {% endset %}
 

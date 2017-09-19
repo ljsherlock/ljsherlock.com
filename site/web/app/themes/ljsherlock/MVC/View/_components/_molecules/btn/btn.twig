@@ -59,7 +59,7 @@
 {% import 'macros.twig' as mcro %}
 
 {% set btnHTML %}
-
+   {% spaceless %}
    {% if btnTexts %}
 
       {% for item in btnTexts %}
@@ -99,7 +99,7 @@
    {% if btnRawSVG %}
       {{ btnRawSVG }}
    {% endif %}
-
+   {% endspaceless %}
 {% endset %}
 
 {{ mcro.createHTMLTag( btnElement, btnAttrs, btnBem, innerHTML ~ btnHTML ) }}

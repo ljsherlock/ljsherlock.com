@@ -9,8 +9,8 @@
 {% set postPosts = posts ?? null %}
 
 {# Variables #}
-{# {% set archivePostBem = [{ block: 'posts', element: 'post', modifier: ['work'] }] %} #}
-{% set archivePostPostsTemplate = '_molecules/work-preview/work-preview.twig' %}
+{% set archivePostBem = [{ block: 'posts', modifier: ['post'] }] %}
+{% set archivePostPostsTemplate = '_molecules/article/post.twig' %}
 {% set postArchiveBem = [{ block: 'archive' }] %}
 
 {# Output #}
@@ -25,7 +25,7 @@
          {% include '_organisms/posts/posts.twig' with {
             posts: postPosts,
             template: archivePostPostsTemplate,
-            bem: ''
+            bem:  archivePostBem
          } %}
 
          <div class="pagination">

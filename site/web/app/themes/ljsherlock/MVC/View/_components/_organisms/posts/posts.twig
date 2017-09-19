@@ -38,12 +38,12 @@
 
       {% for post in postsArray %}
 
-         {% include postsTemplate with { post: post, attrs: postsAttrs } %}
+         {% include postsTemplate with { post: post, attrs: {}, bem: [] } %}
 
       {% endfor %}
 
    {% endset %}
 
-   {{ mcro.createHTMLTag('div', {}, postsBem, postsInnerHTML) }}
+   {{ mcro.createHTMLTag('div', postsAttrs, postsBem, postsInnerHTML) }}
 
 {% endif %}

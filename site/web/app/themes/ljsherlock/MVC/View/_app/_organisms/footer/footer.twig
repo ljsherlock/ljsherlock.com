@@ -16,7 +16,7 @@
 #}
 
 {# Parameters #}
-{% set footerSocialMedia = footer.social_media ?? null %}
+{% set footerSocialMedia = social_media ?? null %}
 {% set footerEmail = footer.email ?? null %}
 {% set footerTelephone = footer.telephone ?? null %}
 {% set footerPosts = footer.posts ?? null %}
@@ -30,33 +30,29 @@
 
 {% set innerHTML %}
 
-   <div class="grid grid--col grid--gutter-lg-bottom flex--align-items-center">
+   {% include '_molecules/icon-link/icon-link.twig' with { icon: 'icon-logo', bem : [{block: 'logo'}] } %}
 
-      {% include '_molecules/icon-link/icon-link.twig' with { icon: 'icon-logo' } %}
+   <section class="footer__contact wrap--break-md">
+      {{ mcro.createHTMLTag('a', {'href': 'mailto:' ~ footerEmail }, [], 'Send an Email' ) }}
+      {{ mcro.createHTMLTag('a', {'href': 'tel:' ~ footerTelephone }, [], 'Call Me' ) }}
+   </section>
 
-      <div class="grid grid--col grid--gutter-sm-bottom flex--align-items-center">
-         {{ mcro.createHTMLTag('a', {'href': 'mailto:' ~ footerEmail }, [], 'Send an Email' ) }}
-         {{ mcro.createHTMLTag('a', {'href': 'tel:' ~ footerTelephone }, [], 'Call Me' ) }}
-      </div>
-
+   <section class="footer__social wrap--break-md">
       {% include '_organisms/social-icons/social-icons.twig' with { icons: footerSocialMedia } %}
+   </section>
 
-      <div class="recent-posts wrap--break-lg">
-         <div class="grid grid--col grid--gutter-lg-bottom flex--align-items-center">
-            {{ sidebar__footer }}
-         </div>
-      </div>
+   <section class="wrap--break-md footer__recent-posts">
+      {{ sidebar__footer }}
+   </section>
 
-      <div class="grid grid--gutter-lg-right">
-         <span>{{ footerCopyright }}</span>
+   <section class="footer__copyright">
+      <span>{{ footerCopyright }}</span>
 
-         {% include ['_app/_organisms/menu/menu.twig', '_components/_organisms/menu/menu.twig' ] with {
-          menu: footerMenu,
-          bem: [{ block: 'nav', modifier: ['footer'] }]
-          } %}
-      </div>
-
-   </div>
+      {% include ['_app/_organisms/menu/menu.twig', '_components/_organisms/menu/menu.twig' ] with {
+       menu: footerMenu,
+       bem: [{ block: 'nav', modifier: ['footer'] }]
+       } %}
+   </section>
 
 {% endset %}
 

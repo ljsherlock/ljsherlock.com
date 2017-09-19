@@ -25,8 +25,8 @@
 {% set newestProjectPosts = work ?? null %}
 
 {# Variables #}
-{% set newestProjectPostsTemplate = '_molecules/work-preview/work-preview.twig' %}
-{% set newestProjectPostsBem = [{ block: 'posts', element: 'post', modifier: ['work'] }] %}
+{% set newestProjectPostsTemplate = '_molecules/article/work.twig' %}
+{% set newestProjectPostsBem = [ { block: 'newest-project', element: 'body' }, { block: 'posts', modifier: ['work'] }] %}
 
 {# Output #}
 {% if newestProjectPosts %}
@@ -40,13 +40,15 @@
       template: newestProjectPostsTemplate,
       bem: newestProjectPostsBem } %}
 
-      {% include '_molecules/btn/btn.twig' with {
-      attrs: { href: constant('LJS_URL') ~ 'work' },
-      text: { value: 'View All'},
-      bem: [ {block: 'btn', modifier: ['primary']} ] } %}
+      <div class="newest-project__footer">
+         {% include '_molecules/btn/btn.twig' with {
+         attrs: { href: constant('LJS_URL') ~ 'work' },
+         text: { value: 'View All Projects'},
+         bem: [ {block: 'btn', modifier: ['primary']} ] } %}
+      </div>
 
    {% endset %}
 
-   {{ mcro.createHTMLTag('div', newestProjectAttrs, newestProjectBem, newestProjectInnerHTML) }}
+   {{ mcro.createHTMLTag('div', newestProjectAttrs, [{block:'newest-project'}], newestProjectInnerHTML) }}
 
 {% endif %}

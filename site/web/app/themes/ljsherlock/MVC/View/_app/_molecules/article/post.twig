@@ -23,12 +23,11 @@
 {% set postBem = bem ?? null %}
 {% set postAttrs = attrs ?? null %}
 {% set postObj = post ?? null %}
-{% set postPreviewImage = post.primary_image ?? null %}
-{% set postStats = stats ?? null %}
 
 {# Variables #}
-{% set postBemDefault = [{ block: 'posts', element: 'post' }] %}
+{% set postBemDefault = [{ block: 'posts', element: 'post'}] %}
 {% set postBem = (postBem) ? bem|merge( postBemDefault ) : postBemDefault %}
+{% set postAttrs = { href: postObj.link } %}
 
 {# Output #}
 {% if postObj %}
@@ -36,29 +35,15 @@
    {% import 'macros.twig' as mcro %}
 
    {% set postInnerHTML %}
-
-      <div class="post__header">
-
+      <div class="post__body">
          {{ mcro.createHTMLTag('h3', {}, [],  postObj.title) }}
-
-         {% include '_organisms/terms/terms.twig' with { post_type: 'work', terms: postObj.terms.overview.children, bem: [] } %}
-
          <div class="typography">
             {{ mcro.createHTMLTag('p', {}, [], postObj.get_preview(40, false, '') ) }}
          </div>
-
       </div>
-
-      <div class="post__body">
-         {% include '_molecules/browser-mockup/browser-mockup.twig' with { attrs: {}, bem: [], image: postPreviewImage } %}
-      </div>
-
-      <div class="post__footer">
-         {% include '_molecules/btn/btn.twig' with { attrs: { href: post.link }, bem: {}, text: { value: 'Read More' } } %}
-      </div>
-
    {% endset %}
 
-   {{ mcro.createHTMLTag( 'div', postAttrs, postBem, postInnerHTML ) }}
+   {{ mcro.createHTMLTag( 'a', postAttrs, postBem, postInnerHTML ) }}
+
 
 {% endif %}

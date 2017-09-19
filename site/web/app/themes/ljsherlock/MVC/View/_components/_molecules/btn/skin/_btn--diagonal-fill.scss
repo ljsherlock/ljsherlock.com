@@ -8,7 +8,7 @@
     %btn--diagonal-fill {
         @extend %btn--icon-after;
         @extend %btn--border;
-        @extend %btn--text;
+        @extend %btn--menu;
         @extend %filling;
 
         padding-left: 17px;
@@ -25,37 +25,43 @@
         }
         &:hover {
             right: 0;
-            color: $white;
-            fill: $white;
+            color: white;
+            fill: white;
         }
     }
 
-    %light {
-        %btn--diagonal-fill {
-            border-color: $dainTree;
-            color: $dainTree;
-            fill: $dainTree;
-            &:after {
-                background-color: $dainTree;
+
+        %btn--diagonal-fill
+        {
+            border-color: $shilo;
+            color: $shilo;
+            fill: $shilo;
+            &:after
+            {
+                background-color: $shilo;
             }
-            &:hover {
-                color: $white;
-                fill: $white;
+            &:hover
+            {
+                fill: white;
+                %btn__text
+                {
+                    color: white;
+                }
             }
         }
-    }
+
 
     %dark {
-        %btn--diagonal-fill {
-            border-color: $white;
-            color: $white;
-            fill: $white;
+        %btn--diagonal-fill
+        {
+            border-color: white;
+            fill: white;
             &:after {
-                background-color: $white;
+                background-color: white;
             }
             &:hover {
-                color: $dainTree;
-                fill: $dainTree;
+                color: $shilo;
+                fill: $shilo;
             }
         }
     }
@@ -70,6 +76,5 @@
 *    MODIFIER
 /*---------------------------------------------*/
 
-    .btn--diagonal-fill {
-        @extend %btn--diagonal-fill;
-    }
+    .btn--diagonal-fill { @extend %btn--diagonal-fill; }
+    .btn__text { @extend %btn__text; }

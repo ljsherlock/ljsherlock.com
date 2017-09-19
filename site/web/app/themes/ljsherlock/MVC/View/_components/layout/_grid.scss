@@ -24,11 +24,14 @@
         {
             @include flex-wrap(wrap);
         }
+    }
+
+
         @for $iii from 1 through 100
         {
             @if ($iii % 5 == 0)
             {
-                > %grid__#{$iii}-of-100
+                %grid__#{$iii}-of-100
                 {
                     width: ($iii / 100) * 100%;
                 }
@@ -36,9 +39,9 @@
                 {
                     @each $i in (right, left)
                     {
-                        &%grid--gutter-#{$ii}-#{$i}
+                        %grid--gutter-#{$ii}-#{$i}
                         {
-                            > %grid__#{$iii}-of-100
+                            %grid__#{$iii}-of-100
                             {
                                 width: calc( #{ ( ($iii / 100) * 100% ) } - #{( ( map-deep-get($grid, gutter, $ii) / 16 ) * ( $iii / 100 ) )}em );
                             }
@@ -49,7 +52,7 @@
         }
         @each $iii in (33, 66)
         {
-            > %grid__#{$iii}-of-100
+            %grid__#{$iii}-of-100
             {
                 width: ($iii / 100) * 100%;
             }
@@ -57,9 +60,9 @@
             {
                 @each $i in (right, left)
                 {
-                    &%grid--gutter-#{$ii}-#{$i}
+                    %grid--gutter-#{$ii}-#{$i}
                     {
-                        > %grid__#{$iii}-of-100
+                        %grid__#{$iii}-of-100
                         {
                             width: calc( #{ ( ($iii / 100) * 100% ) } - #{( ( map-deep-get($grid, gutter, $ii) / 16 ) * ( $iii / 100 ) )}em );
                         }
@@ -69,62 +72,61 @@
         }
         @each $i in (top, right, bottom, left)
         {
-            &%grid--gutter-last-of-#{$i}
+            %grid--gutter-last-of-#{$i}
             {
                 @include grid--gutter-last-of($i, 0);
             }
 
-            &%grid--gutter-null-#{$i}
+            %grid--gutter-null-#{$i}
             {
                 @include grid--gutter($i, 0);
             }
-            &%grid--gutter-sm-#{$i}
+            %grid--gutter-sm-#{$i}
             {
                 @extend %grid--gutter-last-of-#{$i};
                 @include grid--gutter($i, map-deep-get($grid, gutter, sm));
-                &%grid--gutter-full
+                %grid--gutter-full
                 {
                     @include grid--gutter-last-of($i, map-deep-get($grid, gutter, sm));
                 }
             }
-            &%grid--gutter-xs-#{$i}
+            %grid--gutter-xs-#{$i}
             {
                 @extend %grid--gutter-last-of-#{$i};
                 @include grid--gutter($i, map-deep-get($grid, gutter, xs));
-                &%grid--gutter-full
+                %grid--gutter-full
                 {
                     @include grid--gutter-last-of($i, map-deep-get($grid, gutter, xs));
                 }
             }
-            &%grid--gutter-md-#{$i}
+            %grid--gutter-md-#{$i}
             {
                 @extend %grid--gutter-last-of-#{$i};
                 @include grid--gutter($i, map-deep-get($grid, gutter, md));
-                &%grid--gutter-full
+                %grid--gutter-full
                 {
                     @include grid--gutter-last-of($i, map-deep-get($grid, gutter, md));
                 }
             }
-            &%grid--gutter-lg-#{$i}
+            %grid--gutter-lg-#{$i}
             {
                 @extend %grid--gutter-last-of-#{$i};
                 @include grid--gutter($i, map-deep-get($grid, gutter, lg));
-                &%grid--gutter-full
+                %grid--gutter-full
                 {
                     @include grid--gutter-last-of($i, map-deep-get($grid, gutter, lg));
                 }
             }
-            &%grid--gutter-xlg-#{$i}
+            %grid--gutter-xlg-#{$i}
             {
                 @extend %grid--gutter-last-of-#{$i};
                 @include grid--gutter($i, map-deep-get($grid, gutter, xlg));
-                &%grid--gutter-full
+                %grid--gutter-full
                 {
                     @include grid--gutter-last-of($i, map-deep-get($grid, gutter, xlg));
                 }
             }
         }
-    }
 
 /*---------------------------------------------*\
 *    MOBILE
@@ -423,117 +425,122 @@
             &--continuous {
                 @include flex-wrap(wrap);
             }
-            @for $iii from 1 through 100
-            {
-                @if ($iii % 5 == 0)
-                {
-                    > %grid-desktop__#{$iii}-of-100
-                    {
-                        width: ($iii / 100) * 100%;
-                    }
-
-                    @each $ii in (xs, sm, md, lg, xlg)
-                    {
-                        @each $i in (right, left)
-                        {
-                            &%grid-desktop--gutter-#{$ii}-#{$i}
-                            {
-                                > %grid-desktop__#{$iii}-of-100
-                                {
-                                    width: calc( #{ ( ($iii / 100) * 100% ) } - #{( ( map-deep-get($grid, gutter, $ii) / 16 ) * ( $iii / 100 ) )}em );
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            @each $iii in (33, 66)
-            {
-                > %grid-desktop__#{$iii}-of-100
-                {
-                    width: ($iii / 100) * 100%;
-                }
-
-                @each $ii in (xs, sm, md, lg, xlg)
-                {
-                    @each $i in (right, left)
-                    {
-                        &%grid-desktop--gutter-#{$ii}-#{$i}
-                        {
-                            > %grid-desktop__#{$iii}-of-100
-                            {
-                                width: calc( #{ ( ($iii / 100) * 100% ) } - #{( ( map-deep-get($grid, gutter, $ii) / 16 ) * ( $iii / 100 ) )}em );
-                            }
-                        }
-                    }
-                }
-            }
-
-            // @extend %grid-desktop--gutter;
-            @each $i in (top, right, bottom, left)
-            {
-                &%grid-desktop--gutter-last-of-#{$i}
-                {
-                    @include grid--gutter-last-of($i, 0);
-                }
-
-                &%grid-desktop--gutter-null-#{$i}
-                {
-                    @include grid--gutter($i, 0);
-                }
-
-                &%grid-desktop--gutter-sm-#{$i}
-                {
-                    @extend %grid-desktop--gutter-last-of-#{$i};
-                    @include grid--gutter($i, map-deep-get($grid, gutter, sm));
-                    &%grid-desktop--gutter-full
-                    {
-                        @include grid--gutter-last-of($i, map-deep-get($grid, gutter, sm));
-                    }
-                }
-
-                &%grid-desktop--gutter-xs-#{$i}
-                {
-                    @extend %grid-desktop--gutter-last-of-#{$i};
-                    @include grid--gutter($i, map-deep-get($grid, gutter, xs));
-                    &%grid-desktop--gutter-full
-                    {
-                        @include grid--gutter-last-of($i, map-deep-get($grid, gutter, xs));
-                    }
-                }
-
-                &%grid-desktop--gutter-md-#{$i}
-                {
-                    @extend %grid-desktop--gutter-last-of-#{$i};
-                    @include grid--gutter($i, map-deep-get($grid, gutter, md));
-                    &%grid-desktop--gutter-full
-                    {
-                        @include grid--gutter-last-of($i, map-deep-get($grid, gutter, md));
-                    }
-                }
-
-                &%grid-desktop--gutter-lg-#{$i}
-                {
-                    @extend %grid-desktop--gutter-last-of-#{$i};
-                    @include grid--gutter($i, map-deep-get($grid, gutter, lg));
-                    &%grid-desktop--gutter-full
-                    {
-                        @include grid--gutter-last-of($i, map-deep-get($grid, gutter, lg));
-                    }
-                }
-
-                &%grid-desktop--gutter-xlg-#{$i}
-                {
-                    @extend %grid-desktop--gutter-last-of-#{$i};
-                    @include grid--gutter($i, map-deep-get($grid, gutter, xlg));
-                    &%grid-desktop--gutter-full
-                    {
-                        @include grid--gutter-last-of($i, map-deep-get($grid, gutter, xlg));
-                    }
-                }
-            }
         };
     }
+
+    @for $iii from 1 through 100
+    {
+        @if ($iii % 5 == 0)
+        {
+            %grid-desktop__#{$iii}-of-100
+            {
+                @include desktop {
+                    width: ($iii / 100) * 100%;
+                }
+            }
+
+            @each $ii in (xs, sm, md, lg, xlg)
+            {
+                @each $i in (right, left)
+                {
+                    %grid-desktop--gutter-#{$ii}-#{$i}
+                    {
+                        // > %grid-desktop__#{$iii}-of-100
+                        // {
+                        //     width: calc( #{ ( ($iii / 100) * 100% ) } - #{( ( map-deep-get($grid, gutter, $ii) / 16 ) * ( $iii / 100 ) )}em );
+                        // }
+                    }
+                }
+            }
+        }
+    }
+    @each $iii in (33, 66)
+    {
+        %grid-desktop__#{$iii}-of-100
+        {
+            width: ($iii / 100) * 100%;
+        }
+
+        @each $ii in (xs, sm, md, lg, xlg)
+        {
+            @each $i in (right, left)
+            {
+                %grid-desktop--gutter-#{$ii}-#{$i}
+                {
+                    // > %grid-desktop__#{$iii}-of-100
+                    // {
+                    //     width: calc( #{ ( ($iii / 100) * 100% ) } - #{( ( map-deep-get($grid, gutter, $ii) / 16 ) * ( $iii / 100 ) )}em );
+                    // }
+                }
+            }
+        }
+    }
+
+    // @extend %grid-desktop--gutter;
+    @each $i in (top, right, bottom, left)
+    {
+        %grid-desktop--gutter-last-of-#{$i}
+        {
+            @include desktop {
+                @include grid--gutter-last-of($i, 0);
+            }
+        }
+
+        %grid-desktop--gutter-null-#{$i}
+        {
+            @include grid--gutter($i, 0);
+        }
+
+        %grid-desktop--gutter-sm-#{$i}
+        {
+            @extend %grid-desktop--gutter-last-of-#{$i};
+            @include grid--gutter($i, map-deep-get($grid, gutter, sm));
+        }
+
+        %grid-desktop--gutter-xs-#{$i}
+        {
+            @extend %grid-desktop--gutter-last-of-#{$i};
+            @include grid--gutter($i, map-deep-get($grid, gutter, xs));
+        }
+
+        %grid-desktop--gutter-md-#{$i}
+        {
+            @extend %grid-desktop--gutter-last-of-#{$i};
+            @include grid--gutter($i, map-deep-get($grid, gutter, md));
+        }
+
+        %grid-desktop--gutter-lg-#{$i}
+        {
+            @extend %grid-desktop--gutter-last-of-#{$i};
+            @include grid--gutter($i, map-deep-get($grid, gutter, lg));
+        }
+
+        %grid-desktop--gutter-xlg-#{$i}
+        {
+            @extend %grid-desktop--gutter-last-of-#{$i};
+            @include grid--gutter($i, map-deep-get($grid, gutter, xlg));
+        }
+    }
+    // %grid-desktop--gutter-full
+    // {
+    // @include grid--gutter-last-of($i, map-deep-get($grid, gutter, sm));
+    // }
+    // %grid-desktop--gutter-full
+    // {
+    // @include grid--gutter-last-of($i, map-deep-get($grid, gutter, xs));
+    // }
+    // %grid-desktop--gutter-full
+    // {
+    // @include grid--gutter-last-of($i, map-deep-get($grid, gutter, md));
+    // }
+    // %grid-desktop--gutter-full
+    // {
+    // @include grid--gutter-last-of($i, map-deep-get($grid, gutter, lg));
+    // }
+    // %grid-desktop--gutter-full
+    // {
+    // @include grid--gutter-last-of($i, map-deep-get($grid, gutter, xlg));
+    // }
 
 /*---------------------------------------------*\
 *    BLOCK
@@ -590,7 +597,7 @@
     .grid-desktop--row { @extend %grid-desktop--row; }
     .grid-desktop--col { @extend %grid-desktop--col; }
     .grid-desktop--continuous { @extend %grid-desktop--continuous; }
-    .grid-desktop--gutter-full { @extend %grid-desktop--gutter-full; }
+    // .grid-desktop--gutter-full { @extend %grid-desktop--gutter-full; }
 
     @each $i in ('', -mobile, -tablet, -desktop)
     {

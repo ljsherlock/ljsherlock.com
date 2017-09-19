@@ -22,21 +22,26 @@
 {% set headingTitle = title ?? null %}
 
 {# Variables #}
-{% set headingBem = [{ block:'heading', modifier: ['prefix'] }] %}
+{% set headingBemDefault = [{ block:'heading', modifier: ['prefix'] }] %}
+{% set headingBem = (headingBem) ? headingBem|merge(headingBemDefault) : headingBemDefault %}
 
 {# Output #}
-{% if headingTitle %}
 
-   {% import 'macros.twig' as mcro %}
+{% import 'macros.twig' as mcro %}
 
-   {% set innerHTML %}
+{% set innerHTML %}
 
-      {% include '_atoms/icon/icon.twig' with { icon : 'icon-' ~ icon, bem: [ { block: "symbol", modifier: [icon] } ] } %}
-
+   {% block prefix %}
+      {% include '_atoms/icon/icon.twig' with { icon : 'icon-' ~ icon, bem: [ { block: "symbol", modifier: [icon] },
+      { block:'prefix', element: 'icon' } ] } %}
+   {% endblock %}
+   {% block heading %}
       {{ mcro.createHTMLTag('h1', {}, [], headingTitle) }}
+   {% endblock %}
+   {% block affix %}
 
-   {% endset %}
+   {% endblock %}
 
-   {{ mcro.createHTMLTag('div', headingAttrs, headingBem, innerHTML ) }}
+{% endset %}
 
-{% endif %}
+{{ mcro.createHTMLTag('div', headingAttrs, headingBem, innerHTML ) }}

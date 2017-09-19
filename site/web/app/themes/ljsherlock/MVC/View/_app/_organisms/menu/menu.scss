@@ -4,10 +4,27 @@
     @extend %grid-desktop--gutter-lg-right;
     @extend %flex--align-items-center;
 
-    &--primary {
+    %nav__item
+    {
+        @include transition( .3s color ease-in );
+        @include transition( .3s fill ease-in );    
+    }
+
+    &--primary
+    {
+        @extend %grid-tablet;
+        @extend %grid--gutter-lg-right;
+        margin-right: 2rem;
         %nav__item
         {
             @extend %btn--menu;
+            letter-spacing: 0.07em;
+            @extend %line-below--outwards;
+            &:after
+            {
+                bottom: -1rem;
+                background-color: $shilo;
+            }
         }
     }
 
@@ -18,6 +35,33 @@
             @extend span;
             color: $silver;
             font-weight: 400;
+            &:hover
+            {
+                color: $mercury;
+            }
+        }
+    }
+    &%nav--terms
+    {
+        @extend %grid--continuous;
+        @extend %flex--align-items-center;
+        @extend %grid--gutter-sm-right;
+        %nav__item
+        {
+            @extend %btn--menu;
+            letter-spacing: 0.07em;
+            color: $mercury;
+            &:hover
+            {
+                color: $shilo;
+            }
+        }
+        &%nav--what-i-did
+        {
+            %nav__item
+            {
+                color: $shilo;
+            }
         }
     }
 }
@@ -26,3 +70,5 @@
 .nav__item { @extend %nav__item; }
 .nav--primary { @extend %nav--primary; }
 .nav--footer { @extend %nav--footer; }
+.nav--terms { @extend %nav--terms; }
+.nav--what-i-did { @extend %nav--what-i-did; }

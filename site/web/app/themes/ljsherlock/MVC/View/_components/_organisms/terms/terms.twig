@@ -23,35 +23,27 @@
 {% set termsBem = bem ?? null %}
 {% set termsAttrs = attrs ?? null %}
 {% set termsArray = terms ?? null %}
-{% set termsPostType = post_type ?? null %}
+{% set termsPostType = post.slug ?? post_type %}
+{% set termsSpan = span ?? false %}
 
 {# Variables #}
 {% set termsBemDefault = [ { block: 'nav', modifier: ['terms'] } ] %}
 {% set termsBem = ( termsBem ) ? termsBem|merge( termsBemDefault ) : termsBemDefault %}
+{% set termsBtnBem = [{block: 'nav', element: 'item'}] %}
 
 {# Output #}
 {% if termsArray %}
-
    {% import 'macros.twig' as mcro %}
-
    {% set termsInnerHTML %}
-
       {% for term in termsArray %}
-
-         {% include '_molecules/btn/btn.twig' with { text: { value: term.name }, attrs: { href: termsPostType ~ '/' ~ term.taxonomy ~ '/' ~ term.slug } } %}
-
+         {% include '_molecules/btn/btn.twig' with { text: { value: term.name }, attrs: { href: termsPostType ~ '/' ~ term.taxonomy ~ '/' ~ term.slug },
+         bem: termsBtnBem, non_anchor: termsSpan } %}
          {% if term.children %}
             {% for term in term.children %}
-
-               {% include '_molecules/btn/btn.twig' with { text: { value: term.name }, attrs: { href: termsPostType ~ '/' ~ term.taxonomy ~ '/' ~ term.slug } } %}
-
+               {% include '_molecules/btn/btn.twig' with { text: { value: term.name }, attrs: { href: termsPostType ~ '/' ~ term.taxonomy ~ '/' ~ term.link }, bem: termsBtnBem, non_anchor: termsSpan } %}
             {% endfor %}
          {% endif %}
-
       {% endfor %}
-
    {% endset %}
-
    {{ mcro.createHTMLTag( 'nav', termsAttrs, termsBem, termsInnerHTML ) }}
-
 {% endif %}

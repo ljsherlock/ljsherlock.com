@@ -59,14 +59,11 @@ $layout : (
  *    3. Section Breaks
 /*---------------------------------------------*/
 
-    // $wrap-padding--xs: 15;
-    // $wrap-padding--sm: 25;
-    // $wrap-padding--md: 30;
-    // $wrap-padding--lg: 40;
-    // $wrap-padding--xlg: 50;
-    //
-    // $wrap-mobile-multiplier: 0.50;
-    // $wrap-tablet-multiplier: 0.75;
+    $wrap-padding--xs: 2.5;
+    $wrap-padding--sm: 5;
+    $wrap-padding--md: 10;
+    $wrap-padding--lg: 15;
+    $wrap-padding--xlg: 40;
 
 /*---------------------------------------------*\
  *    4. Grid
@@ -74,11 +71,11 @@ $layout : (
 
     $grid : (
         gutter : (
-            xs : 5,
-            sm : 15,
-            md : 20,
-            lg : 25,
-            xlg : 50
+            xs : 10,
+            sm : 30,
+            md : 40,
+            lg : 50,
+            xlg : 100
         )
     );
 

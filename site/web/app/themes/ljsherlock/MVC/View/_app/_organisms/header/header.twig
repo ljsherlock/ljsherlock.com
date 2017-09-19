@@ -29,12 +29,15 @@
 
 {% set innerHTML %}
 
-   {% include '_molecules/icon-link/icon-link.twig' with { icon: 'icon-logo' } %}
+   <div class="header__grid">
+      {% include '_molecules/icon-link/icon-link.twig' with { icon: 'icon-logo', attrs: { href: constant('LJS_URL') }, bem : [{block: 'logo'}] } %}
 
-   {% include ['_app/_organisms/menu/menu.twig', '_components/_organisms/menu/menu.twig' ] with {
-      menu: menuItems,
-      bem: [{block: 'nav', modifier: ['primary'] } ]
-   } %}
+      {% include ['_app/_organisms/menu/menu.twig', '_components/_organisms/menu/menu.twig' ] with {
+         menu: menuItems,
+         bem: [{block: 'nav', modifier: ['primary'] } ]
+      } %}
+   </div>
+
 {% endset %}
 
 {{ mcro.createHTMLTag('header', {}, headerBem, innerHTML) }}

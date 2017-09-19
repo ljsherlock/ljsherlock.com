@@ -1,6 +1,44 @@
 %archive
 {
-    @extend %post;
+    %posts
+    {
+        %posts__post
+        {
+            display: block;
+            @extend %wrap--break-md;
+            padding: 2rem;
+            @include transition(.3s background-color ease-out);
+
+        }
+
+        &--post
+        {
+            @extend %wrap--md;
+            margin-top: 5rem;
+
+            %posts__post
+            {
+                &:visited, &:hover
+                {
+                    background-color: rgba( $shilo, 0.6 );
+                }
+            }
+
+        }
+
+        &--work
+        {
+            margin-top: 10rem;
+            %posts__post
+            {
+                @extend %wrap--break-xlg;
+            }
+        }
+    }
 }
 
-.archive {@extend %archive;}
+.archive { @extend %archive; }
+.posts  { @extend %posts; }
+.posts--post { @extend %posts--post; }
+.posts--work { @extend %posts--work; }
+.posts__post { @extend %posts__post; }

@@ -27,7 +27,10 @@
             left: 0%;
             right: 100%;
         };
+        @extend %line-hover;
+    }
 
+    %line-hover {
         &.hover,
         &:hover,
         &.btn--active {
@@ -48,6 +51,7 @@
             @include transform( translate3d(0, 0, 0) );
             background-color: $white;
         }
+        @extend %line-hover;
     }
 
 /*---------------------------------------------*\

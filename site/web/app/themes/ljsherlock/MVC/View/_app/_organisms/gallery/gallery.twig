@@ -12,9 +12,12 @@
 
 {# Parameters #}
 {% set galleryArray = images ?? null %}
+{% set galleryBem = bem ?? null %}
 
 {# Variables #}
-{% set galleryBem = [{ block: 'gallery'}] %}
+{% set galleryBemDefault = [{ block: 'gallery'}] %}
+{% set galleryBem = ( galleryBem ) ? galleryBem|merge( galleryBemDefault ) : galleryBemDefault %}
+
 {% set galleryImageBem = [{ block: 'gallery', element: 'image' }] %}
 
 {# Output #}
@@ -26,7 +29,12 @@
 
          {% for item in galleryArray %}
 
-             {{ mcro.createHTMLTag('img', { src: item.url, alt: item.caption }, galleryImageBem, '', true) }}
+            {% if item.link %}
+               {{ mcro.createHTMLTag('a', {href: item.link, target: '_blank'}, galleryImageBem, mcro.createHTMLTag('img', { src: item.src, alt: item.alt }, [ {block : 'gallery', element: 'img'} ], '', true) ) }}
+            {% else %}
+               {{ mcro.createHTMLTag('div', {}, galleryImageBem, mcro.createHTMLTag('img', { src: item.src, alt: item.alt }, [ {block : 'gallery', element: 'img'} ], '', true) ) }}
+            {% endif %}
+
 
          {% endfor %}
 

@@ -1,0 +1,69 @@
+%overlay--loading
+{
+    @extend %overlay;
+
+    %overlay__block
+    {
+        position:absolute;
+        right:0;
+        left:0;
+        margin:auto;
+        bottom:25%;
+        top: 0;
+        width:15%;
+        height:15%;
+        overflow:hidden;
+
+        %overlay__object
+        {
+            bottom:-50%;
+            animation: rise 0.5s ease-out 0.3s forwards;
+            position:absolute;
+            left:0;
+            right: 0;
+            margin:auto;
+            width: 65px;
+            height: 65px;
+
+            svg
+            {
+                position: relative;
+                top: 0;
+                bottom:0;
+                left:0;
+                right:0;
+                width:100%;
+                height:100%;
+            }
+        }
+    }
+}
+
+%page--loading-close
+{
+    %overlay--loading
+    {
+        animation: overlay-close .7s ease 1s forwards;
+        -webkit-animation: overlay-close .7s ease 1s forwards;
+
+        %loading-overlay__object
+        {
+            bottom: 20px;
+            animation: fall 0.5s ease-out 0.3s forwards;
+        }
+    }
+}
+
+%uncut-mustard
+{
+    %loading-overlay
+    {
+        display: none;
+    }
+}
+
+.page--loading-close { @extend %page--loading-close; }
+
+.overlay--loading { @extend %overlay--loading; }
+.overlay__block { @extend %overlay__block; }
+.overlay__object { @extend %overlay__object; }

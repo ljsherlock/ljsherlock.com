@@ -21,15 +21,11 @@
 {% set iconLinkBem = bem ?? null %}
 {% set iconLinkAttrs = attrs ?? null %}
 {% set iconLinkID = icon ?? null %}
-{% set iconLinkHref = href ?? null %}
 
 
 {# Variables #}
-{% if iconBem is defined and iconBem is iterable %}
-   {% set iconSvgBem = [ {block: 'icon', modifier: ['link']} ]| merge( iconBem )  %}
-{% else %}
-   {% set iconSvgBem = [ {block: 'icon', modifier: ['link']} ]  %}
-{% endif %}
+{% set iconSvgBemDefault =  [ {block: 'icon', modifier: ['link'] }, { block: "symbol", modifier: [iconLinkID] } ] %}
+{% set iconSvgBem = (iconBem) ? iconBem|merge(iconSvgBemDefault) : iconSvgBemDefault %}
 
 {# Output #}
 {% if iconLinkID %}
@@ -37,9 +33,9 @@
    {% import 'macros.twig' as mcro %}
 
    {% set iconLinkInnerHTML %}
-      {% include '_atoms/icon/icon.twig' with { icon : iconLinkID, bem: [ { block: "symbol", modifier: [iconLinkID] } ] } %}
+      {% include '_atoms/icon/icon.twig' with { icon : iconLinkID, bem: iconSvgBem } %}
    {% endset %}
 
-   {{ mcro.createHTMLTag('a', { href: iconLinkHref }, [], iconLinkInnerHTML ) }}
+   {{ mcro.createHTMLTag('a', iconLinkAttrs, iconLinkBem, iconLinkInnerHTML ) }}
 
 {% endif %}

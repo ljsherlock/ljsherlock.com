@@ -22,7 +22,10 @@
 
       {% import 'macros.twig' as mcro %}
 
-      {% include ['_app/_organisms/header/header.twig', '_components/_organisms/header/header.twig' ] with { menu: appHeader.menu } %}
+      {% if request_body.ajax != 1 %}
+         {% include '_molecules/loading-screen/loading-screen.twig' %}
+         {% include ['_app/_organisms/header/header.twig', '_components/_organisms/header/header.twig' ] with { menu: appHeader.menu } %}
+      {% endif %}
 
       {% set appInnerHTML %}
 
@@ -39,10 +42,9 @@
 
       {% endset %}
 
-
       {{ mcro.createHTMLTag( 'main', appAttrs, appBem, appInnerHTML ) }}
 
-      {% if appFooter %}
+      {% if appFooter and request_body.ajax != 1 %}
 
          {% include ['_app/_organisms/footer/footer.twig', '_organisms/footer/footer.twig'] %}
 

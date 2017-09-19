@@ -1,26 +1,107 @@
-html {
+/*---------------------------------------------------*\
+*    Animations
+\*---------------------------------------------------*/
+
+    @include keyframes(slideInMarginDesktop)
+    {
+        0%
+        {
+            margin: 0;
+        }
+        100% {
+            margin: 40px;
+        }
+    };
+
+    @include keyframes(slideInMargin)
+    {
+        0%
+        {
+            margin: 0;
+        }
+        100% {
+            margin: 15px;
+        }
+    };
+
+    @include keyframes(fadeInMain)
+    {
+        0%
+        {
+            opacity: 0;
+        }
+        100%
+        {
+            opacity: 1;
+        }
+    };
+
+/*---------------------------------------------------*\
+*    BEM
+\*---------------------------------------------------*/
+/*---------------------------------------------------*\
+*    Relationships
+\*---------------------------------------------------*/
+
+@include desktop()
+{
+    html {
+        margin: 40px;
+    }
+};
+@include tablet()
+{
+    html
+    {
+        margin: 20px;
+    }
+};
+
+html
+{
     background-color: $tundora;
 }
 
 body
 {
     background-color: white;
-    margin:0;
+    margin: 0 !important;
+}
+
+main
+{
     padding: 15px;
+    position: relative;
+    overflow:hidden;
 }
 
-::selection {
-    background: $shilo;
-    color: $white;
+%smart-browser
+{
+    @include transition(margin .5s ease-in);
+    margin: 0 !important;
+
+    %main
+    {
+        position: relative;
+        opacity: 0;
+    }
 }
 
+%page--show-content
+{
     @include desktop() {
-        html {
-            margin: 40px;
-        }
+        @include animation( 0.3s ease-in 1.75s slideInMarginDesktop forwards );
     };
-    @include tablet() {
-        html {
-            margin: 20px;
-        }
+    @include portable() {
+        @include animation( 0.3s ease-in 1.75s slideInMargin forwards );
     };
+    %main
+    {
+        @include animation( 0.3s ease-in 2.45s fadeInMain forwards );
+    }
+}
+
+main { @extend %main; }
+.page--show-content { @extend %page--show-content; }
+.smart-browser { @extend %smart-browser; }
+.header__grid { @extend %header__grid; }

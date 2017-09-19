@@ -2,10 +2,23 @@
 {
     margin-top: 20em;
     @extend %wrap--break-md;
+    @extend %wrap--rg;
     %page-header__subtitle
     {
-        // @extend %typography;
-        @extend %wrap--md;
+        margin-top: 4rem;
+        @extend %flex--align-items-center;
+        @extend %grid;
+        @extend %grid--gutter-md-right;
+        %page-header__line
+        {
+            @include desktop()
+            {
+                flex-shrink: 0;
+                width: 20%;
+                height: 2px;
+                background-color: $shilo;
+            };
+        }
     }
     h2, .h2
     {
@@ -15,3 +28,4 @@
 
 .page-header { @extend %page-header; }
 .page-header__subtitle { @extend %page-header__subtitle; }
+.page-header__line { @extend %page-header__line; }

@@ -1,0 +1,16 @@
+{# _molecules/loading-icon/loading-icon.twig #}
+
+{# Output #}
+{% import 'macros.twig' as mcro %}
+
+{% set loadingInnerHTML %}
+   <div class="overlay__block loading-bar">
+      <div class="overlay__object">
+
+         {% include '_atoms/svg/svg.twig' with { icon: 'icon-logo' } %}
+
+      </div>
+   </div>
+{% endset %}
+
+{{ mcro.createHTMLTag( 'div', {}, [{ block: 'overlay', modifier: ['loading'] }], loadingInnerHTML ) }}

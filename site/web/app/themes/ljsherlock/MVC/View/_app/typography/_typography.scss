@@ -6,12 +6,7 @@
 * @requires     variables.scss
 */
 
-@include plumber-set-defaults(
-	$font-size: 2.5,
-    $line-height: 4,
-	$baseline: $body-baseline,
-	$grid-height: 1rem,
-);
+
 
 html {
     font-size: #{$gh}px;
@@ -26,12 +21,19 @@ body.base-grid {
 }
 
 
+::selection {
+    background: $shilo;
+    color: $white;
+}
+
 body {
+
 	// *** Headers ***
 	h1, h2, h3 {
 		font-family: $heading-font;
         font-weight: 700;
         color: $doveGrey;
+        margin: 0;
 		// @include font-smoothing;
 	}
 
@@ -59,42 +61,75 @@ body {
 		);
 	}
 
-	// *** Body text ***
-	p {
-		@include plumber($leading-top: 0, $leading-bottom: 2);
-	}
-
-    a
+    datetime
     {
-        @extend p;
-        text-decoration: none;
-        font-weight: 700;
-        color: $doveGrey;
-        &:hover
-        {
-            color: $shilo;
-        }
-        &.term, &.tag
-        {
-            font-weight: 400;
-            @include plumber(
-                $font-size: 1.5,
-                $line-height: 2,
-            );
-            color: $mercury;
-            text-transform: uppercase;
-        }
+        display: block;
+        letter-spacing: 0.6em;
+        text-transform: uppercase;
+        color: $silver;
+        @include plumber(
+            $font-size: 1.5,
+            $leading-bottom: 10,
+            $line-height: 2,
+        );
     }
 
 	span
 	{
 		@include plumber(
-			$font-size: 1.25
+			$font-size: 1.25,
+			$leading-top: 0,
+			$leading-bottom: 0
 		);
 	}
 
 	.typography
 	{
+		@include plumber-set-defaults
+		(
+			$font-size: 2.5,
+			$line-height: 4,
+			$baseline: $body-baseline,
+			$grid-height: 1rem,
+		);
+
+        h1, h2, h3
+        {
+            > a
+            {
+                font-size: inherit;
+                font-family: inherit;
+            }
+        }
+
+		p {
+			@include plumber($leading-top: 0, $leading-bottom: 2);
+            color: $doveGrey;
+		}
+
+		a
+		{
+			@extend p;
+            color: $shilo;
+            font-weight: 700;
+            @include transition(.3s color ease);
+            &:hover
+            {
+                color: lighten($shilo, 10%);
+            }
+		}
+
+        // a
+        // {
+        //     text-decoration: none;
+        //     font-weight: 700;
+        //     color: $doveGrey;
+        //     &:hover
+        //     {
+        //         color: $shilo;
+        //     }
+        // }
+
 		h1 {
 			@include plumber(
 				$baseline: $heading-baseline,

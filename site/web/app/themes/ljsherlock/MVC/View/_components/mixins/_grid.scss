@@ -19,7 +19,7 @@
 {
     > *
     {
-        margin-#{$dir}: #{ em($gut) };
+        margin-#{$dir}: #{ rem($gut) };
     }
 }
 

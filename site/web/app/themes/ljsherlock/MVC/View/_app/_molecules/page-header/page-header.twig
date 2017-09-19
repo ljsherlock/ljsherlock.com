@@ -32,12 +32,23 @@
    {% import 'macros.twig' as mcro %}
 
    {% set pageHeaderInnerHTML %}
+
+      {% block pageHeaderBefore %}{% endblock %}
+
       {% include '_molecules/heading--prefix/heading--prefix.twig' with { icon: 'heading-prefix', title: pageHeaderTitle } %}
 
       <div class="page-header__subtitle ">
-         <div class="typography">
-            {{ mcro.createHTMLTag('h2', {}, [{block: 'h3'}],  pageHeaderSubtitle) }}
+
+         <div class="page-header__line">
+
          </div>
+
+         {% block subtitle %}
+
+            {{ mcro.createHTMLTag('h2', {}, [{block: 'h3'}],  pageHeaderSubtitle) }}
+
+         {% endblock %}
+
       </div>
    {% endset %}
 

@@ -9,8 +9,9 @@
 {% set archiveWorkPosts = posts ?? null %}
 
 {# Variables #}
-{% set archiveWorkBem = [{ block: 'posts', element: 'post', modifier: ['work'] }] %}
-{% set archiveWorkPostsTemplate = '_molecules/work-preview/work-preview.twig' %}
+{% set archiveWorkBem = [ { block: 'posts', modifier: ['work'] }] %}
+{% set archiveWorkPostsTemplate = '_molecules/article/work.twig' %}
+{% set postArchiveBem = [{ block: 'archive' }] %}
 
 {# Output #}
 {% extends '_app/_templates/page.twig' %}
@@ -19,10 +20,16 @@
 
    {% block page %}
 
-      {% include '_organisms/posts/posts.twig' with {
-         posts: archiveWorkPosts,
-         template: archiveWorkPostsTemplate,
-         bem: archiveWorkBem
-      } %}
+      {% set archiveWorkHTML %}
+
+         {% include '_organisms/posts/posts.twig' with {
+            posts: archiveWorkPosts,
+            template: archiveWorkPostsTemplate,
+            bem: archiveWorkBem
+         } %}
+
+      {% endset %}
+
+      {{ mcro.createHTMLTag( 'div', {}, postArchiveBem, archiveWorkHTML ) }}
 
    {% endblock %}
