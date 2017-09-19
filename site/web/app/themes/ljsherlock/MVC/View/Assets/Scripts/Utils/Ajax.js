@@ -1,7 +1,6 @@
 define(['Util'], function( Util )
 {
-
-    return {
+    var Ajax = {
         put: function( url, json, success, fail )
         {
             var xhr = new XMLHttpRequest(),
@@ -43,73 +42,76 @@ define(['Util'], function( Util )
             return xhr;
         },
 
+        internalLinkBefore : function() {  },
+
         internalLinks : function()
         {
             var main = document.querySelector('main'),
             site_url = 'http://' + top.location.host.toString();
-            var internal_links = document.querySelectorAll("a[href^='" + site_url +"']");
+            var links = document.querySelectorAll("a");
 
-            // internal_links.classList.add('internal_links');
-
-            [].forEach.call(internal_links, function(el)
+            [].forEach.call(links, function(el)
             {
-                el.classList.add('internal_link');
+                var href = el.getAttribute('href');
 
-                el.addEventListener('click', function(event)
+                if( href !== null && href.match(site_url) )
                 {
-                    event.preventDefault();
+                    console.log( href.match("[href^='" + site_url +"']") );
 
-                    document.querySelector('html').style.overflow = 'auto';
+                    el.classList.add('internal_link');
 
-                    document.querySelector('html').classList.remove('page--loaded-signal');
-                    document.querySelector('html').classList.remove('page--loading-close');
-                    // window.onload = function()
-                    // {
-                        // document.querySelector('html').classList.remove('page--loaded-signal').remove('page--loading-close');
-                        // setTimeout(function() {
-                        //     document.querySelector('html').classList.add('overlay--loading-close');
-                        // }, 750);page--loading-close
-                    // };
-
-                    var url = el.getAttribute('href');
-
-                    // remove .main content
-                    // show Animations
-                    // insert ajax content in .main
-
-                    // AJAX
-                    var json_string = JSON.stringify({
-                        ajax: true
-                    });
-
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('PUT', url );
-                    xhr.setRequestHeader("Content-Type", "application/json");
-                    xhr.send(json_string);
-                    xhr.onload = function()
+                    el.addEventListener('click', function(e)
                     {
-                        if (xhr.status === 200)
+                        e.preventDefault();
+
+                        Ajax.internalLinkBefore();
+
+                        var target_url = el.getAttribute('href');
+                        var current_url = window.location;
+
+                        if( target_url !== current_url )
                         {
-                            var content = document.querySelector('main');
-                            var response = xhr.responseText;
-
-                            content.innerHTML = response;
-
-                            document.querySelector('html').classList.add('page--loaded-signal');
-                            document.querySelector('html').classList.add('page--loading-close');
-
-                            // App.page_setup();
-                            // Run page init.
+                            Ajax.getPage(target_url);
                         }
-                        else if (xhr.status !== 200)
-                        {
-                            alert('Request failed.  Returned status of ' + xhr.status);
-                        }
-                    };
 
-                });
+                        e.stopPropagation();
+                    });
+                }
+
             });
+        },
+
+        getPageCallback: function() { },
+
+        getPage : function(url)
+        {
+            var json_string = JSON.stringify({
+                ajax: true
+            });
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('PUT', url );
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(json_string);
+            xhr.onload = function()
+            {
+                if (xhr.status === 200)
+                {
+                    var response = xhr.responseText;
+
+                    history.pushState(null, null, url);
+
+                    Ajax.getPageCallback(response);
+
+                }
+                else if (xhr.status !== 200)
+                {
+                    alert('Request failed.  Returned status of ' + xhr.status);
+                }
+            };
         }
     }
+
+    return Ajax;
 
 });

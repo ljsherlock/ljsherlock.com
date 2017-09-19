@@ -16,8 +16,21 @@
 
                     Util.DOMReady(function()
                     {
+                        // runs loading screen then app with a callback which is to close the screen
                         Core.init();
-                        App.init();
+                        App.init(function()
+                        {
+                            console.log('loaded');
+                			//document.querySelector('.overlay--loading').classList.add('loading-bar--loaded-signal');
+                			document.querySelector('html').classList.add('page--loaded-signal');
+                			setTimeout(function()
+                			{
+                				//document.querySelector('.overlay--loading').classList.add('overlay--loading-close');
+                				document.querySelector('html').classList.add('page--loading-close');
+                				document.querySelector('html').classList.add('page--show-content');
+                			}, 750);
+                        });
+
                     });
                 }
                 else
@@ -39,7 +52,6 @@
          else
         {
             // Feature Browser
-
             var html = document.getElementsByTagName('html');
             for (var i = 0; i < html.length; i++)
             {
