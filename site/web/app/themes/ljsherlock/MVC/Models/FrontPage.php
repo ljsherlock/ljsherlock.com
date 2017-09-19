@@ -44,8 +44,9 @@ class Frontpage extends Page
             foreach ($recents->data as $key => $item)
             {
                 $caption = $item->caption->text ?? null;
+                $link = $item->link ?? null;
                 $image = $item->images->standard_resolution->url ?? null;
-                array_push($images, array( 'url' => $image, 'caption' => $caption ));
+                array_push($images, array( 'src' => $image, 'alt' => $caption, 'link' => $link ));
             }
             return $images;
         }
