@@ -26,8 +26,12 @@ class Single__Work extends Single
     **/
     public function get()
     {
+        $statsTerms = $this->get_hierachical_terms($this->post, 'stats');
+
         $this->timber->addContext( array(
-            'what_i_did' => $this->get_hierachical_terms($this->post, 'stats')['what-i-did'],
+            'what_i_did' => $statsTerms['what-i-did'],
+            'overview' => $statsTerms['overview'],
+            'builtWith' => $statsTerms['built-with'],
             'project_colours' => get_post_meta( $this->post->ID, CMB2::$prefix . 'project_colours', true ),
             'browser_image' => get_post_meta( $this->post->ID, CMB2::$prefix . 'browser_image', true ),
             'primary_image' => get_post_meta( $this->post->ID, CMB2::$prefix . 'primary_image', true ),
