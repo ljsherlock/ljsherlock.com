@@ -1,0 +1,45 @@
+@include keyframes(wave)
+{
+    0%
+    {
+        top: 0;
+        // @include transform(rotate(0));
+    }
+    40% {
+        top: 18px;
+    }
+    50%
+    {
+        top: 20px;
+        // @include transform(rotate(15deg));
+    }
+    90%{
+        top: 1px;
+    }
+    100%
+    {
+        top: 0;
+        // @include transform(rotate(0));
+    }
+};
+
+// %page--loading-close
+// {
+//     %overlay--loading
+//     {
+//         opacity: 0;
+//     }
+// }
+//
+// .page--loading-close { @extend %page--loading-close; }
+// .overlay--loading { @extend %overlay--loading; }
+
+%animation
+{
+    &--waving
+    {
+        @include animation( wave 2s ease-out infinite );
+    }
+}
+
+.animation--waving { @extend %animation--waving; }

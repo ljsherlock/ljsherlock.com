@@ -209,6 +209,10 @@ body.base-grid {
   background-image: linear-gradient(to top, rgba(242, 201, 76, 0.5) 0, rgba(242, 201, 76, 0.5) 1px, transparent 1px);
   background-size: 100% 8px; }
 
+::selection {
+  background: #e6a1a1;
+  color: #fff; }
+
 body h1, body h2, body h3 {
   font-family: "Zilla Slab", serif;
   font-weight: 700;
@@ -2743,7 +2747,7 @@ a {
   margin-bottom: 2.5rem; }
 .wrap--break-md, .page-header, .newest-project .newest-project__body, .archive .posts .posts__post {
   margin-bottom: 10rem; }
-.wrap--break-lg, .posts__post--work, footer .footer__recent-posts, .gallery--project .gallery__image {
+.wrap--break-lg, footer .footer__recent-posts, .gallery--project .gallery__image {
   margin-bottom: 15rem; }
 .wrap--break-xlg, .archive .posts--work .posts__post {
   margin-bottom: 40rem; }
@@ -2755,7 +2759,7 @@ a {
     padding-bottom: 1.875px; }
   .wrap-tablet.wrap--break-md, .wrap-tablet.page-header, .newest-project .wrap-tablet.newest-project__body, .archive .posts .wrap-tablet.posts__post {
     padding-bottom: 7.5px; }
-  .wrap-tablet.wrap--break-lg, .wrap-tablet.posts__post--work, footer .wrap-tablet.footer__recent-posts, .gallery--project .wrap-tablet.gallery__image {
+  .wrap-tablet.wrap--break-lg, footer .wrap-tablet.footer__recent-posts, .gallery--project .wrap-tablet.gallery__image {
     padding-bottom: 11.25px; }
   .wrap-tablet.wrap--break-xlg, .archive .posts--work .wrap-tablet.posts__post {
     padding-bottom: 30px; } }
@@ -2767,7 +2771,7 @@ a {
     padding-bottom: 1.25px; }
   .wrap-mobile.wrap--break-md, .wrap-mobile.page-header, .newest-project .wrap-mobile.newest-project__body, .archive .posts .wrap-mobile.posts__post {
     padding-bottom: 5px; }
-  .wrap-mobile.wrap--break-lg, .wrap-mobile.posts__post--work, footer .wrap-mobile.footer__recent-posts, .gallery--project .wrap-mobile.gallery__image {
+  .wrap-mobile.wrap--break-lg, footer .wrap-mobile.footer__recent-posts, .gallery--project .wrap-mobile.gallery__image {
     padding-bottom: 7.5px; }
   .wrap-mobile.wrap--break-xlg, .archive .posts--work .wrap-mobile.posts__post {
     padding-bottom: 20px; } }
@@ -2982,9 +2986,9 @@ a {
 /*---------------------------------------------*\
 *    RELATIONSHIPS
 /*---------------------------------------------*/
-.line-below-hover, .btn--line-below, .loading-bar, .nav--primary .nav__item {
+.line-below-hover, .btn--line-below, .nav--primary .nav__item {
   position: relative; }
-  .line-below-hover:after, .btn--line-below:after, .loading-bar:after, .nav--primary .nav__item:after {
+  .line-below-hover:after, .btn--line-below:after, .nav--primary .nav__item:after {
     top: auto;
     right: 100%;
     bottom: -2px;
@@ -3010,11 +3014,11 @@ a {
   left: 0%;
   right: 100%; }
 
-.hover.line-below-hover:after, .hover.btn--line-below:after, .hover.loading-bar:after, .nav--primary .hover.nav__item:after, .line-below-hover:hover:after, .btn--line-below:hover:after, .loading-bar:hover:after, .nav--primary .nav__item:hover:after, .btn--active.line-below-hover:after, .btn--active.btn--line-below:after, .btn--active.loading-bar:after, .nav--primary .btn--active.nav__item:after {
+.hover.line-below-hover:after, .hover.btn--line-below:after, .nav--primary .hover.nav__item:after, .line-below-hover:hover:after, .btn--line-below:hover:after, .nav--primary .nav__item:hover:after, .btn--active.line-below-hover:after, .btn--active.btn--line-below:after, .nav--primary .btn--active.nav__item:after {
   left: 0;
   right: 0; }
 
-.loading-bar:before, .nav--primary .nav__item:before {
+.nav--primary .nav__item:before {
   top: initial;
   right: 0;
   bottom: 0;
@@ -3022,7 +3026,7 @@ a {
   position: absolute;
   content: "";
   background-color: #fff; }
-.loading-bar:after, .nav--primary .nav__item:after {
+.nav--primary .nav__item:after {
   top: initial;
   right: 50%;
   bottom: 0;
@@ -3100,7 +3104,7 @@ a {
 /*---------------------------------------------*\
 *    RELATIONSHIPS
 /*---------------------------------------------*/
-.overlay, .overlay--loading {
+.overlay, .loading-screen {
   position: fixed;
   top: 0;
   left: 0;
@@ -3117,23 +3121,9 @@ a {
 /*---------------------------------------------*\
 *    MODIFIER
 /*---------------------------------------------*/
-html {
-  background-color: #4d4d4d; }
-
-body {
-  background-color: white;
-  margin: 0 !important; }
-
-::selection {
-  background: #e6a1a1;
-  color: #fff; }
-
-@media (min-width: 64em) {
-  html {
-    margin: 40px; } }
-@media (min-width: 48em) and (max-width: 63.9375em) {
-  html {
-    margin: 20px; } }
+/*---------------------------------------------------*\
+*    Animations
+\*---------------------------------------------------*/
 @-webkit-keyframes slideInMarginDesktop {
   0% {
     margin: 0; }
@@ -3209,6 +3199,25 @@ body {
     opacity: 0; }
   100% {
     opacity: 1; } }
+/*---------------------------------------------------*\
+*    BEM
+\*---------------------------------------------------*/
+/*---------------------------------------------------*\
+*    Relationships
+\*---------------------------------------------------*/
+@media (min-width: 64em) {
+  html {
+    margin: 40px; } }
+@media (min-width: 48em) and (max-width: 63.9375em) {
+  html {
+    margin: 20px; } }
+html {
+  background-color: #4d4d4d; }
+
+body {
+  background-color: white;
+  margin: 0 !important; }
+
 main {
   padding: 15px;
   position: relative;
@@ -4005,62 +4014,6 @@ main {
   width: 75px;
   height: 75px; }
 
-/*---------------------------------------------------*\
-*   BEM
-\*---------------------------------------------------*/
-/*---------------------------------------------------*\
-*   Animations
-\*---------------------------------------------------*/
-@-webkit-keyframes rise {
-  from {
-    bottom: -50%; }
-  to {
-    bottom: 20px; } }
-@-moz-keyframes rise {
-  from {
-    bottom: -50%; }
-  to {
-    bottom: 20px; } }
-@-o-keyframes rise {
-  from {
-    bottom: -50%; }
-  to {
-    bottom: 20px; } }
-@-ms-keyframes rise {
-  from {
-    bottom: -50%; }
-  to {
-    bottom: 20px; } }
-@keyframes rise {
-  from {
-    bottom: -50%; }
-  to {
-    bottom: 20px; } }
-@-webkit-keyframes fall {
-  from {
-    bottom: 20px; }
-  to {
-    bottom: -50%; } }
-@-moz-keyframes fall {
-  from {
-    bottom: 20px; }
-  to {
-    bottom: -50%; } }
-@-o-keyframes fall {
-  from {
-    bottom: 20px; }
-  to {
-    bottom: -50%; } }
-@-ms-keyframes fall {
-  from {
-    bottom: 20px; }
-  to {
-    bottom: -50%; } }
-@keyframes fall {
-  from {
-    bottom: 20px; }
-  to {
-    bottom: -50%; } }
 @-webkit-keyframes overlay-close {
   0% {
     top: 0; }
@@ -4101,182 +4054,25 @@ main {
   100% {
     z-index: -9999;
     top: 100%; } }
-@-webkit-keyframes load-1 {
-  from {
-    left: 50%;
-    right: 50%; }
-  to {
-    left: 40%;
-    right: 40%; } }
-@-moz-keyframes load-1 {
-  from {
-    left: 50%;
-    right: 50%; }
-  to {
-    left: 40%;
-    right: 40%; } }
-@-o-keyframes load-1 {
-  from {
-    left: 50%;
-    right: 50%; }
-  to {
-    left: 40%;
-    right: 40%; } }
-@-ms-keyframes load-1 {
-  from {
-    left: 50%;
-    right: 50%; }
-  to {
-    left: 40%;
-    right: 40%; } }
-@keyframes load-1 {
-  from {
-    left: 50%;
-    right: 50%; }
-  to {
-    left: 40%;
-    right: 40%; } }
-@-webkit-keyframes load-2 {
-  from {
-    left: 40%;
-    right: 40%; }
-  to {
-    left: 35%;
-    right: 35%; } }
-@-moz-keyframes load-2 {
-  from {
-    left: 40%;
-    right: 40%; }
-  to {
-    left: 35%;
-    right: 35%; } }
-@-o-keyframes load-2 {
-  from {
-    left: 40%;
-    right: 40%; }
-  to {
-    left: 35%;
-    right: 35%; } }
-@-ms-keyframes load-2 {
-  from {
-    left: 40%;
-    right: 40%; }
-  to {
-    left: 35%;
-    right: 35%; } }
-@keyframes load-2 {
-  from {
-    left: 40%;
-    right: 40%; }
-  to {
-    left: 35%;
-    right: 35%; } }
-@-webkit-keyframes load-3 {
-  from {
-    left: 35%;
-    right: 35%; }
-  to {
-    left: 0%;
-    right: 0%; } }
-@-moz-keyframes load-3 {
-  from {
-    left: 35%;
-    right: 35%; }
-  to {
-    left: 0%;
-    right: 0%; } }
-@-o-keyframes load-3 {
-  from {
-    left: 35%;
-    right: 35%; }
-  to {
-    left: 0%;
-    right: 0%; } }
-@-ms-keyframes load-3 {
-  from {
-    left: 35%;
-    right: 35%; }
-  to {
-    left: 0%;
-    right: 0%; } }
-@keyframes load-3 {
-  from {
-    left: 35%;
-    right: 35%; }
-  to {
-    left: 0%;
-    right: 0%; } }
-@-webkit-keyframes unload {
-  from {
-    left: 0%;
-    right: 0%; }
-  to {
-    left: 50%;
-    right: 50%; } }
-@-moz-keyframes unload {
-  from {
-    left: 0%;
-    right: 0%; }
-  to {
-    left: 50%;
-    right: 50%; } }
-@-o-keyframes unload {
-  from {
-    left: 0%;
-    right: 0%; }
-  to {
-    left: 50%;
-    right: 50%; } }
-@-ms-keyframes unload {
-  from {
-    left: 0%;
-    right: 0%; }
-  to {
-    left: 50%;
-    right: 50%; } }
-@keyframes unload {
-  from {
-    left: 0%;
-    right: 0%; }
-  to {
-    left: 50%;
-    right: 50%; } }
-/*---------------------------------------------------*\
-*   Relationships
-\*---------------------------------------------------*/
-.loading-bar:after {
-  background-color: #e6a1a1;
-  animation: load-1 0.1s linear 1.5s forwards, load-2 0.2s linear 1.95s forwards, load-3 10s linear 3.45s forwards; }
-
-.page--loaded-signal .loading-bar:after {
-  animation: load-3 0.9s ease-in forwards; }
-
-.page--loading-close .loading-bar:after, .page--loading-close .loading-bar:before {
-  animation: unload 0.6s ease-in forwards; }
-
-/*---------------------------------------------------*\
-*   Extend Relationships
-\*---------------------------------------------------*/
-.overlay--loading .overlay__block {
+.loading-screen .loading-screen__block {
   position: absolute;
   right: 0;
   left: 0;
   margin: auto;
-  bottom: 25%;
+  bottom: 0;
   top: 0;
   width: 15%;
   height: 15%;
   overflow: hidden; }
-  .overlay--loading .overlay__block .overlay__object {
-    bottom: -50%;
-    animation: rise 0.5s ease-out 0.3s forwards;
+  .loading-screen .loading-screen__block .loading-screen__object {
+    bottom: 50%;
     position: absolute;
     left: 0;
     right: 0;
     margin: auto;
     width: 65px;
     height: 65px; }
-    .overlay--loading .overlay__block .overlay__object svg {
+    .loading-screen .loading-screen__block .loading-screen__object .loading-screen__icon {
       position: relative;
       top: 0;
       bottom: 0;
@@ -4284,262 +4080,78 @@ main {
       right: 0;
       width: 100%;
       height: 100%; }
+.page--loading-close .loading-screen {
+  -webkit-animation: overlay-close 0.7s ease 1s forwards;
+  -moz-animation: overlay-close 0.7s ease 1s forwards;
+  -o-animation: overlay-close 0.7s ease 1s forwards;
+  -ms-animation: overlay-close 0.7s ease 1s forwards;
+  animation: overlay-close 0.7s ease 1s forwards; }
+  .page--loading-close .loading-screen .loading-screen__object {
+    bottom: 20px;
+    animation: fall 0.5s ease-out 0.3s forwards; }
 
-.page--loading-close .overlay--loading {
-  animation: overlay-close .7s ease 1s forwards;
-  -webkit-animation: overlay-close .7s ease 1s forwards; }
-/*---------------------------------------------------*\
-*   BEM
-\*---------------------------------------------------*/
-/*---------------------------------------------------*\
-*   Animations
-\*---------------------------------------------------*/
-@-webkit-keyframes rise {
-  from {
-    bottom: -50%; }
-  to {
-    bottom: 20px; } }
-@-moz-keyframes rise {
-  from {
-    bottom: -50%; }
-  to {
-    bottom: 20px; } }
-@-o-keyframes rise {
-  from {
-    bottom: -50%; }
-  to {
-    bottom: 20px; } }
-@-ms-keyframes rise {
-  from {
-    bottom: -50%; }
-  to {
-    bottom: 20px; } }
-@keyframes rise {
-  from {
-    bottom: -50%; }
-  to {
-    bottom: 20px; } }
-@-webkit-keyframes fall {
-  from {
-    bottom: 20px; }
-  to {
-    bottom: -50%; } }
-@-moz-keyframes fall {
-  from {
-    bottom: 20px; }
-  to {
-    bottom: -50%; } }
-@-o-keyframes fall {
-  from {
-    bottom: 20px; }
-  to {
-    bottom: -50%; } }
-@-ms-keyframes fall {
-  from {
-    bottom: 20px; }
-  to {
-    bottom: -50%; } }
-@keyframes fall {
-  from {
-    bottom: 20px; }
-  to {
-    bottom: -50%; } }
-@-webkit-keyframes overlay-close {
+@-webkit-keyframes wave {
   0% {
     top: 0; }
-  75% {
-    top: 100%; }
+  40% {
+    top: 18px; }
+  50% {
+    top: 20px; }
+  90% {
+    top: 1px; }
   100% {
-    z-index: -9999;
-    top: 100%; } }
-@-moz-keyframes overlay-close {
+    top: 0; } }
+@-moz-keyframes wave {
   0% {
     top: 0; }
-  75% {
-    top: 100%; }
+  40% {
+    top: 18px; }
+  50% {
+    top: 20px; }
+  90% {
+    top: 1px; }
   100% {
-    z-index: -9999;
-    top: 100%; } }
-@-o-keyframes overlay-close {
+    top: 0; } }
+@-o-keyframes wave {
   0% {
     top: 0; }
-  75% {
-    top: 100%; }
+  40% {
+    top: 18px; }
+  50% {
+    top: 20px; }
+  90% {
+    top: 1px; }
   100% {
-    z-index: -9999;
-    top: 100%; } }
-@-ms-keyframes overlay-close {
+    top: 0; } }
+@-ms-keyframes wave {
   0% {
     top: 0; }
-  75% {
-    top: 100%; }
+  40% {
+    top: 18px; }
+  50% {
+    top: 20px; }
+  90% {
+    top: 1px; }
   100% {
-    z-index: -9999;
-    top: 100%; } }
-@keyframes overlay-close {
+    top: 0; } }
+@keyframes wave {
   0% {
     top: 0; }
-  75% {
-    top: 100%; }
+  40% {
+    top: 18px; }
+  50% {
+    top: 20px; }
+  90% {
+    top: 1px; }
   100% {
-    z-index: -9999;
-    top: 100%; } }
-@-webkit-keyframes load-1 {
-  from {
-    left: 50%;
-    right: 50%; }
-  to {
-    left: 40%;
-    right: 40%; } }
-@-moz-keyframes load-1 {
-  from {
-    left: 50%;
-    right: 50%; }
-  to {
-    left: 40%;
-    right: 40%; } }
-@-o-keyframes load-1 {
-  from {
-    left: 50%;
-    right: 50%; }
-  to {
-    left: 40%;
-    right: 40%; } }
-@-ms-keyframes load-1 {
-  from {
-    left: 50%;
-    right: 50%; }
-  to {
-    left: 40%;
-    right: 40%; } }
-@keyframes load-1 {
-  from {
-    left: 50%;
-    right: 50%; }
-  to {
-    left: 40%;
-    right: 40%; } }
-@-webkit-keyframes load-2 {
-  from {
-    left: 40%;
-    right: 40%; }
-  to {
-    left: 35%;
-    right: 35%; } }
-@-moz-keyframes load-2 {
-  from {
-    left: 40%;
-    right: 40%; }
-  to {
-    left: 35%;
-    right: 35%; } }
-@-o-keyframes load-2 {
-  from {
-    left: 40%;
-    right: 40%; }
-  to {
-    left: 35%;
-    right: 35%; } }
-@-ms-keyframes load-2 {
-  from {
-    left: 40%;
-    right: 40%; }
-  to {
-    left: 35%;
-    right: 35%; } }
-@keyframes load-2 {
-  from {
-    left: 40%;
-    right: 40%; }
-  to {
-    left: 35%;
-    right: 35%; } }
-@-webkit-keyframes load-3 {
-  from {
-    left: 35%;
-    right: 35%; }
-  to {
-    left: 0%;
-    right: 0%; } }
-@-moz-keyframes load-3 {
-  from {
-    left: 35%;
-    right: 35%; }
-  to {
-    left: 0%;
-    right: 0%; } }
-@-o-keyframes load-3 {
-  from {
-    left: 35%;
-    right: 35%; }
-  to {
-    left: 0%;
-    right: 0%; } }
-@-ms-keyframes load-3 {
-  from {
-    left: 35%;
-    right: 35%; }
-  to {
-    left: 0%;
-    right: 0%; } }
-@keyframes load-3 {
-  from {
-    left: 35%;
-    right: 35%; }
-  to {
-    left: 0%;
-    right: 0%; } }
-@-webkit-keyframes unload {
-  from {
-    left: 0%;
-    right: 0%; }
-  to {
-    left: 50%;
-    right: 50%; } }
-@-moz-keyframes unload {
-  from {
-    left: 0%;
-    right: 0%; }
-  to {
-    left: 50%;
-    right: 50%; } }
-@-o-keyframes unload {
-  from {
-    left: 0%;
-    right: 0%; }
-  to {
-    left: 50%;
-    right: 50%; } }
-@-ms-keyframes unload {
-  from {
-    left: 0%;
-    right: 0%; }
-  to {
-    left: 50%;
-    right: 50%; } }
-@keyframes unload {
-  from {
-    left: 0%;
-    right: 0%; }
-  to {
-    left: 50%;
-    right: 50%; } }
-/*---------------------------------------------------*\
-*   Relationships
-\*---------------------------------------------------*/
-.loading-bar:after {
-  background-color: #e6a1a1;
-  animation: load-1 0.1s linear 1.5s forwards, load-2 0.2s linear 1.95s forwards, load-3 10s linear 3.45s forwards; }
+    top: 0; } }
+.animation--waving {
+  -webkit-animation: wave 2s ease-out infinite;
+  -moz-animation: wave 2s ease-out infinite;
+  -o-animation: wave 2s ease-out infinite;
+  -ms-animation: wave 2s ease-out infinite;
+  animation: wave 2s ease-out infinite; }
 
-.page--loaded-signal .loading-bar:after {
-  animation: load-3 0.9s ease-in forwards; }
-
-.page--loading-close .loading-bar:after, .page--loading-close .loading-bar:before {
-  animation: unload 0.6s ease-in forwards; }
-
-/*---------------------------------------------------*\
-*   Extend Relationships
-\*---------------------------------------------------*/
 .nav--terms .nav__item {
   letter-spacing: 0.07em;
   font-size: 1.5em;

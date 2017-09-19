@@ -1,23 +1,40 @@
-%overlay--loading
+// loading overlay
+@include keyframes (overlay-close)
+{
+   0%
+   {
+      top:0;
+   }
+   75%
+   {
+      top: 100%;
+   }
+   100%
+   {
+       z-index: -9999;
+       top: 100%;
+   }
+};
+
+%loading-screen
 {
     @extend %overlay;
 
-    %overlay__block
+    %loading-screen__block
     {
         position:absolute;
-        right:0;
-        left:0;
+        right: 0;
+        left: 0;
         margin:auto;
-        bottom:25%;
+        bottom: 0;
         top: 0;
         width:15%;
         height:15%;
         overflow:hidden;
 
-        %overlay__object
+        %loading-screen__object
         {
-            bottom:-50%;
-            animation: rise 0.5s ease-out 0.3s forwards;
+            bottom:50%;
             position:absolute;
             left:0;
             right: 0;
@@ -25,7 +42,7 @@
             width: 65px;
             height: 65px;
 
-            svg
+            %loading-screen__icon
             {
                 position: relative;
                 top: 0;
@@ -37,16 +54,25 @@
             }
         }
     }
+    // .loading-screen--rise { @extend %loading-screen--rise; }
+    &--rise
+    {
+        %loading-screen__block
+        {
+            %loading-screen__object
+            {
+                animation: rise 0.5s ease-out 0.3s forwards;
+            }
+        }
+    }
 }
 
 %page--loading-close
 {
-    %overlay--loading
+    %loading-screen
     {
-        animation: overlay-close .7s ease 1s forwards;
-        -webkit-animation: overlay-close .7s ease 1s forwards;
-
-        %loading-overlay__object
+        @include animation(overlay-close .7s ease 1s forwards);
+        %loading-screen__object
         {
             bottom: 20px;
             animation: fall 0.5s ease-out 0.3s forwards;
@@ -64,6 +90,7 @@
 
 .page--loading-close { @extend %page--loading-close; }
 
-.overlay--loading { @extend %overlay--loading; }
-.overlay__block { @extend %overlay__block; }
-.overlay__object { @extend %overlay__object; }
+.loading-screen { @extend %loading-screen; }
+.loading-screen__block { @extend %loading-screen__block; }
+.loading-screen__object { @extend %loading-screen__object; }
+.loading-screen__icon { @extend %loading-screen__icon; }

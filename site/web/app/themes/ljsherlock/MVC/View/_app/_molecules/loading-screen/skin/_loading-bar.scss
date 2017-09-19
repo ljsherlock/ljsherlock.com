@@ -33,24 +33,6 @@
     }
 };
 
-// loading overlay
-@include keyframes (overlay-close)
-{
-   0%
-   {
-      top:0;
-   }
-   75%
-   {
-      top: 100%;
-   }
-   100%
-   {
-       z-index: -9999;
-       top: 100%;
-   }
-};
-
 // loading bar
 @include keyframes (load-1)
 {
