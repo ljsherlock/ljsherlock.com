@@ -46,7 +46,7 @@ class CMB2
          $cmb_pages = new_cmb2_box( array(
              'id'           => self::$prefix . 'pages_metabox',
              'title'        => esc_html__( 'Pages Meta', 'cmb2' ),
-             'object_types' => array( 'page', 'post' ), // Post type
+             'object_types' => array( 'page', 'post', 'work' ), // Post type
              'context'      => 'normal',
              'priority'     => 'high',
              'show_names'   => true, // Show field names on the left
@@ -130,12 +130,27 @@ class CMB2
             //), // Specific post IDs to display this metabox
         ) );
 
-        $cmb_project->add_field( array(
+        $colours = $cmb_project->add_field( array(
             'name' => esc_html__( 'Project Colours', 'cmb2' ),
             'desc' => esc_html__( 'field description (optional)', 'cmb2' ),
             'id'   => self::$prefix . 'project_colours',
-            'type' => 'text',
+            'type' => 'group',
+            'options' => array(
+                'sortable'      => true, // beta
+            ),
             'repeatable' => true,
+        ) );
+
+        $cmb_project->add_group_field($colours, array(
+            'name'    => __( 'Colour Name ', 'cmb2' ),
+            'id'      => 'name',
+            'type'    => 'text',
+        ) );
+
+        $cmb_project->add_group_field($colours, array(
+            'name'    => __( 'Colour Hex ', 'cmb2' ),
+            'id'      => 'hex',
+            'type'    => 'colorpicker',
         ) );
 
         $cmb_project->add_field( array(
@@ -152,11 +167,25 @@ class CMB2
             'type' => 'file',
         ) );
 
-        $cmb_project->add_field( array(
+        $project_images = $cmb_project->add_field( array(
             'name' => esc_html__( 'Secondary Images', 'cmb2' ),
             'desc' => esc_html__( 'field description (optional)', 'cmb2' ),
             'id'   => self::$prefix . 'secondary_images',
-            'type' => 'file_list',
+            'type' => 'group',
+        ) );
+
+        $cmb_project->add_group_field($project_images, array(
+            'name' => esc_html__( 'Image', 'cmb2' ),
+            // 'desc' => esc_html__( 'field description (optional)', 'cmb2' ),
+            'id'   => 'src',
+            'type' => 'file',
+        ) );
+
+        $cmb_project->add_group_field($project_images, array(
+            'name' => esc_html__( 'Description (for alt)', 'cmb2' ),
+            // 'desc' => esc_html__( 'field description (optional)', 'cmb2' ),
+            'id'   => 'alt',
+            'type' => 'text',
         ) );
     }
 
