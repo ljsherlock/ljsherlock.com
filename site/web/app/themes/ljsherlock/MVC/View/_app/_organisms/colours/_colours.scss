@@ -1,14 +1,24 @@
 %colours
 {
-    @extend %grid;
+    @extend %grid-desktop;
+    @extend %grid-tablet;
+    @extend %grid-mobile;
+    @extend %grid-desktop--gutter-sm-right;
+    @extend %grid-tablet--gutter-sm-right;
+    @extend %grid-mobile--gutter-sm-bottom;
+    @extend %grid-desktop--continuous;
+    @extend %grid-tablet--continuous;
+    @extend %grid-mobile--continuous;
     %colour
     {
-        @extend %grid-desktop__10-of-100;
+        @extend %grid-desktop__20-of-100;
         @extend %grid-tablet__25-of-100;
-        @extend %grid-mobile__33-of-100;
+        @extend %grid-mobile__100-of-100;
+
         @extend %grid;
         @extend %grid--col;
         @extend %flex--center;
+
         %colour__fill
         {
             width: 100%;

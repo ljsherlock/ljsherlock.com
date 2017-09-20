@@ -8,6 +8,11 @@
             @extend %wrap--break-lg;
             width: 100%;
             height: auto;
+            %gallery__img
+            {
+                width: 100%;
+                height: auto;
+            }
         }
     }
     &--instagram
@@ -53,17 +58,12 @@
                     opacity: 1;
                 }
             }
-            %gallery__img
-            {
-                width: 100%;
-                height: auto;
-            }
         }
     }
 }
 
 .gallery { @extend %gallery; }
 .gallery__image { @extend %gallery__image; }
-img {@extend %gallery__img;}
+.gallery__img {@extend %gallery__img;}
 .gallery--project { @extend %gallery--project; }
 .gallery--instagram { @extend %gallery--instagram; }

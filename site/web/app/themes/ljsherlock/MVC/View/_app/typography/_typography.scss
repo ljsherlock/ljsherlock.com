@@ -61,7 +61,7 @@ body {
 		);
 	}
 
-    datetime
+    %datetime
     {
         display: block;
         letter-spacing: 0.6em;
@@ -100,6 +100,9 @@ body {
                 font-size: inherit;
                 font-family: inherit;
             }
+            @include mobile(){
+                text-align: center;
+            };
         }
 
 		p {
@@ -165,9 +168,14 @@ body {
 footer
 {
 	color: $silver;
+
 	a {
 		color: $silver;
+        :hover {
+            color: $shilo;
+        }
 	}
+
 	a {
 		@include plumber(
 			$font-size: 1.5,
@@ -175,8 +183,23 @@ footer
 			$leading-bottom:0,
 			$leading-top:0
 		);
+        &.stand-out
+        {
+            @extend %datetime;
+            @extend %line-below--outwards;
+            &:after
+            {
+                bottom: -1rem;
+                background-color: $shilo;
+            }
+        }
 	}
+
+
+
 	.btn--menu {
 		color: white;
 	}
 }
+
+datetime { @extend %datetime; }

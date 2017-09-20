@@ -120,24 +120,24 @@
     }
 }
 
-%page--loading-close
-{
-    %loading-bar
-    {
-        &:after,
-        &:before
-        {
-            animation: unload 0.6s ease-in forwards;
-        }
-    }
-}
+// %page--loading-close
+// {
+//     %loading-bar
+//     {
+//         &:after,
+//         &:before
+//         {
+//             animation: unload 0.6s ease-in forwards;
+//         }
+//     }
+// }
 
 /*---------------------------------------------------*\
 *   Extend Relationships
 \*---------------------------------------------------*/
 
 .page--loaded-signal { @extend %page--loaded-signal; }
-.page--loading-close { @extend %page--loading-close; }
+// .page--loading-close { @extend %page--loading-close; }
 .loading-bar { @extend %loading-bar; }
 // .loading-bar--loaded-signal { @extend %loading-bar--loaded-signal; }
 // .loading-bar--loading-close { @extend %loading-bar--loading-close; }

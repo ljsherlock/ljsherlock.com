@@ -33,10 +33,18 @@
             {
                 @extend %wrap--break-xlg;
             }
+            %heading--prefix
+            {
+                @include mobile()
+                {
+                    display: none;
+                };
+            }
         }
     }
 }
 
+.heading--prefix { @extend %heading--prefix; }
 .archive { @extend %archive; }
 .posts  { @extend %posts; }
 .posts--post { @extend %posts--post; }

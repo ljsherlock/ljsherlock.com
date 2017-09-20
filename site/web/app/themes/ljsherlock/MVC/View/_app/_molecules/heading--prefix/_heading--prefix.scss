@@ -4,6 +4,9 @@
     @extend %flex--align-items-center;
     @extend %grid;
     width: 100%;
+    @include portable() {
+        text-align: center;
+    }
     %prefix__icon
     {
         flex-shrink: 0;

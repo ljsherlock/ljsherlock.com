@@ -1,13 +1,12 @@
 %nav
 {
-    @extend %grid-desktop;
-    @extend %grid-desktop--gutter-lg-right;
+    @extend %grid;
     @extend %flex--align-items-center;
 
     %nav__item
     {
         @include transition( .3s color ease-in );
-        @include transition( .3s fill ease-in );    
+        @include transition( .3s fill ease-in );
     }
 
     &--primary
@@ -30,6 +29,7 @@
 
     &--footer
     {
+        @extend %grid--gutter-lg-right;
         %nav__item
         {
             @extend span;
@@ -43,9 +43,16 @@
     }
     &%nav--terms
     {
-        @extend %grid--continuous;
+        width: 100%;
+        @extend %grid-desktop--continuous;
+        @extend %grid-tablet--continuous;
         @extend %flex--align-items-center;
-        @extend %grid--gutter-sm-right;
+        @extend %grid-desktop--gutter-sm-right;
+        @extend %grid-tablet--gutter-sm-right;
+        @extend %grid-desktop--row;
+        @extend %grid-tablet--row;
+        @extend %grid-mobile--col;
+        @extend %grid-mobile--gutter-xs-bottom;
         %nav__item
         {
             @extend %btn--menu;

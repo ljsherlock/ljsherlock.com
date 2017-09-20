@@ -74,7 +74,6 @@
         @include animation(overlay-close .7s ease 1s forwards);
         %loading-screen__object
         {
-            bottom: 20px;
             animation: fall 0.5s ease-out 0.3s forwards;
         }
     }

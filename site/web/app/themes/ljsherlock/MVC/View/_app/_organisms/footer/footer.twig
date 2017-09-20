@@ -33,8 +33,7 @@
    {% include '_molecules/icon-link/icon-link.twig' with { icon: 'icon-logo', bem : [{block: 'logo'}] } %}
 
    <section class="footer__contact wrap--break-md">
-      {{ mcro.createHTMLTag('a', {'href': 'mailto:' ~ footerEmail }, [], 'Send an Email' ) }}
-      {{ mcro.createHTMLTag('a', {'href': 'tel:' ~ footerTelephone }, [], 'Call Me' ) }}
+      {{ mcro.createHTMLTag('a', {'href': 'mailto:' ~ footerEmail }, [{ block: 'stand-out' }], footerEmail ) }}
    </section>
 
    <section class="footer__social wrap--break-md">
