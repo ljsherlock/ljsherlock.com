@@ -41,7 +41,7 @@ class Frontpage extends Page
 
         if($recents->data)
         {
-            foreach ($recents->data as $key => $item)
+            foreach (array_slice($recents->data, 0, 9) as $key => $item)
             {
                 $caption = $item->caption->text ?? null;
                 $link = $item->link ?? null;
