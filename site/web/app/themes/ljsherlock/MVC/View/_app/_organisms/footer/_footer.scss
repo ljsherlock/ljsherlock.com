@@ -13,6 +13,7 @@
     @extend %grid--col;
     @extend %grid--gutter-sm-bottom;
     @extend %flex--align-items-center;
+
     %footer__contact
     {
         @extend %grid;
@@ -20,6 +21,7 @@
         @extend %grid--gutter-xs-bottom;
         @extend %flex--align-items-center;
     }
+
     %footer__recent-posts
     {
         @extend %wrap--break-lg;
@@ -38,11 +40,13 @@
             }
         }
     }
+
     %footer__copyright
     {
         @extend %grid;
         @extend %grid--gutter-lg-right;
     }
+    
     background-color: $tundora;
 }
 
