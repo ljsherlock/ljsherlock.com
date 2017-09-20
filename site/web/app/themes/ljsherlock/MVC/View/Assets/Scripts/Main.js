@@ -20,12 +20,8 @@
                         Core.init();
                         App.init(function()
                         {
-                            console.log('loaded');
-                			//document.querySelector('.overlay--loading').classList.add('loading-bar--loaded-signal');
-                			document.querySelector('html').classList.add('page--loaded-signal');
                 			setTimeout(function()
                 			{
-                				//document.querySelector('.overlay--loading').classList.add('overlay--loading-close');
                 				document.querySelector('html').classList.add('page--loading-close');
                 				document.querySelector('html').classList.add('page--show-content');
                 			}, 750);

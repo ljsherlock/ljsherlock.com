@@ -32,7 +32,6 @@ define([ "Util", 'Config' ], function( Util, appConfig )
 					document.querySelector('html').classList.add('page--show-content');
 		            setTimeout(function()
 		            {
-		                document.querySelector('html').classList.remove('page--loaded-signal');
 		                document.querySelector('html').classList.remove('page--loading-close');
 		            }, 750);
 				}
@@ -42,10 +41,10 @@ define([ "Util", 'Config' ], function( Util, appConfig )
 					var main = document.querySelector('main');
 					main.innerHTML = response;
 
-					document.querySelector('html').classList.add('page--loaded-signal');
 					setTimeout(function()
 					{
 						Ajax.internalLinks();
+						window.scroll(0, 0);
 						//document.querySelector('.overlay--loading').classList.add('overlay--loading-close');
 						document.querySelector('html').classList.add('page--loading-close');
 						document.querySelector('html').classList.add('page--show-content');
