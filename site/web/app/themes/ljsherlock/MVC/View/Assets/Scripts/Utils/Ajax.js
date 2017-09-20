@@ -47,7 +47,7 @@ define(['Util'], function( Util )
         internalLinks : function()
         {
             var main = document.querySelector('main'),
-            site_url = 'http://' + top.location.host.toString();
+            site_url = top.location.host.toString();
             var links = document.querySelectorAll("a");
 
             [].forEach.call(links, function(el)
