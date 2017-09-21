@@ -56,8 +56,6 @@ define(['Util'], function( Util )
 
                 if( href !== null && href.match(site_url) )
                 {
-                    console.log( href.match("[href^='" + site_url +"']") );
-
                     el.classList.add('internal_link');
 
                     el.addEventListener('click', function(e)
@@ -90,7 +88,7 @@ define(['Util'], function( Util )
             });
 
             var xhr = new XMLHttpRequest();
-            xhr.open('PUT', url );
+            xhr.open('POST', url );
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send(json_string);
             xhr.onload = function()
@@ -100,6 +98,7 @@ define(['Util'], function( Util )
                     var response = xhr.responseText;
 
                     history.pushState(null, null, url);
+                    document.title = response.match(/<h1[^>]*>([^<]+)<\/h1>/)[1] + "\u2014" + location.host;
 
                     Ajax.getPageCallback(response);
 
