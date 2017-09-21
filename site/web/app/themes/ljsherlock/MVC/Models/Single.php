@@ -119,6 +119,7 @@ class Single extends Base
             // get children at current level.
             // $children = wp_get_post_terms($tax, array( 'parent' => $term->term_id, 'hide_empty' => true) );
             $children = wp_get_post_terms( $post->ID, $tax, array( 'parent' => $term->term_id, 'hide_empty' => true) );
+            $term->term_permalink = get_term_link( $term->term_id, $tax );
 
             if( count($children) > 0 )
             {

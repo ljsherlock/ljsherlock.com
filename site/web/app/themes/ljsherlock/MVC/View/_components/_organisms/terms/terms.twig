@@ -36,7 +36,7 @@
    {% import 'macros.twig' as mcro %}
    {% set termsInnerHTML %}
       {% for term in termsArray %}
-         {% include '_molecules/btn/btn.twig' with { text: { value: term.name }, attrs: { href: http_host ~ '/' ~ termsPostType ~ '/' ~ term.taxonomy ~ '/' ~ term.slug },
+         {% include '_molecules/btn/btn.twig' with { text: { value: term.name }, attrs: { href: term.term_permalink },
          bem: termsBtnBem, non_anchor: termsSpan } %}
          {% if term.children %}
             {% for term in term.children %}
