@@ -79,6 +79,7 @@ main
 {
     @include transition(margin .5s ease-in);
     margin: 0 !important;
+    overflow: hidden;
 
     %main
     {
@@ -89,6 +90,7 @@ main
 
 %page--show-content
 {
+    overflow: auto;
     @include desktop() {
         @include animation( 0.3s ease-in 1.75s slideInMarginDesktop forwards );
     };
