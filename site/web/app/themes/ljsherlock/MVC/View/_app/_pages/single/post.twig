@@ -27,17 +27,23 @@
 
       {% set postInnerHTML %}
 
-         <div class="typography">
+         <section id="content" class="wrap--break-sm">
+            <div class="typography">
+               {{ appPost.content }}
+            </div>
+         </section>
 
-            {{ appPost.content }}
+         <section id="terms" class="wrap--break-md">
+            {% include '_organisms/terms/terms.twig' with {
+               terms: appPost.terms,
+               postObj: postObj,
+               taxObj: taxObj
+            } %}
+         </section>
 
+         <div class="wrap--break-md">
+            {% include '_molecules/prev-next-post/prev-next-post.twig' with { prev: post.prev, next: post.next } %}
          </div>
-
-         {% include '_organisms/terms/terms.twig' with {
-            terms: appPost.terms,
-            postObj: postObj,
-            taxObj: taxObj
-         } %}
 
       {% endset %}
 
