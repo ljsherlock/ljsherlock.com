@@ -30,7 +30,12 @@
          {% for item in galleryArray %}
 
             {% if item.link %}
-               {{ mcro.createHTMLTag('a', {href: item.link, target: '_blank'}, galleryImageBem, mcro.createHTMLTag('img', { src: item.src, alt: item.alt }, [ {block : 'gallery', element: 'img'} ], '', true) ) }}
+               {% set galleryaInnerHTML %}
+                  {{ mcro.createHTMLTag('img', { src: item.src, alt: item.alt }, [ {block : 'gallery', element: 'img'} ], '', true) }}
+                  {{ mcro.createHTMLTag('span', {}, [{ block: 'gallery', element: 'date' }], item.created_date) }}
+               {% endset %}
+
+               {{ mcro.createHTMLTag('a', {href: item.link, target: '_blank'}, galleryImageBem, galleryaInnerHTML) }}
             {% else %}
                {{ mcro.createHTMLTag('div', {}, galleryImageBem, mcro.createHTMLTag('img', { src: item.src, alt: item.alt }, [ {block : 'gallery', element: 'img'} ], '', true) ) }}
             {% endif %}

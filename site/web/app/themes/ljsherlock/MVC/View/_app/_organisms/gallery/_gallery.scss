@@ -35,6 +35,8 @@
             display: block;
             position: relative;
             padding: 1rem;
+            @extend %flex;
+            @extend %flex--center;
             &:before
             {
                 @include transition(.3s opacity ease-out);
@@ -52,6 +54,17 @@
                 bottom: 0;
                 opacity: 0;
             }
+            %gallery__img {
+                width: 100%;
+                height: auto;
+            }
+            %gallery__date
+            {
+                display: block;
+                @extend %btn--menu;
+                letter-spacing: 0.07em;
+                text-align: center;
+            }
             &:hover
             {
                 &:before {
@@ -64,6 +77,7 @@
 
 .gallery { @extend %gallery; }
 .gallery__image { @extend %gallery__image; }
+.gallery__date { @extend %gallery__date; }
 .gallery__img {@extend %gallery__img;}
 .gallery--project { @extend %gallery--project; }
 .gallery--instagram { @extend %gallery--instagram; }

@@ -46,7 +46,8 @@ class Frontpage extends Page
                 $caption = $item->caption->text ?? null;
                 $link = $item->link ?? null;
                 $image = $item->images->standard_resolution->url ?? null;
-                array_push($images, array( 'src' => $image, 'alt' => $caption, 'link' => $link ));
+                $created_time = $item->created_time;
+                array_push($images, array( 'src' => $image, 'alt' => $caption, 'link' => $link, 'created_date' => date( 'j F Y', $created_time) ));
             }
             return $images;
         }
