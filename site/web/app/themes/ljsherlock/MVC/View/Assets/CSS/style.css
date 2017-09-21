@@ -3299,7 +3299,7 @@ a {
 /*---------------------------------------------*\
 *    RELATIONSHIPS
 /*---------------------------------------------*/
-.grid, .heading--prefix, .page-header .page-header__subtitle, header .header__grid, .colours .colour, .colours .colour .colours__hex, footer, footer .footer__contact, footer .footer__recent-posts .posts, footer .footer__copyright, .nav, .intro .intro__logo, .intro .intro__content .intro__content-inner, .flex, .flex--row, .flex--col, .select-js .select-js__list, .accordion .select-js__list, .intro .intro__header, .newest-project .newest-project__footer {
+.grid, .heading--prefix, .page-header .page-header__subtitle, header .header__grid, .colours .colour, .colours .colour .colours__hex, footer, footer .footer__contact, footer .footer__recent-posts .posts, footer .footer__copyright, .nav, .intro .intro__logo, .intro .intro__content .intro__content-inner, .flex, .flex--row, .flex--col, .select-js .select-js__list, .accordion .select-js__list, .gallery--instagram .gallery__image, .intro .intro__header, .newest-project .newest-project__footer {
   -js-display: flex;
   display: -webkit-box;
   display: -webkit-flex;
@@ -3387,7 +3387,7 @@ a {
   -moz-align-items: center;
   align-items: center; }
 
-.flex--center, .colours .colour, .intro .intro__header, .intro .intro__logo, .newest-project .newest-project__footer {
+.flex--center, .colours .colour, .gallery--instagram .gallery__image, .intro .intro__header, .intro .intro__logo, .newest-project .newest-project__footer {
   vertical-align: middle;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -4477,7 +4477,7 @@ main {
   -o-transition: 0.3s color ease;
   transition: 0.3s color ease; }
 
-.btn--diagonal-fill, .btn--menu, .btn--primary, .prev-next-post .prev-next-post__link, .nav--terms .nav__item, .nav--primary .nav__item, .nav.nav--terms .nav__item {
+.btn--diagonal-fill, .btn--menu, .btn--primary, .prev-next-post .prev-next-post__link, .nav--terms .nav__item, .gallery--instagram .gallery__image .gallery__date, .nav--primary .nav__item, .nav.nav--terms .nav__item {
   color: #4d4d4d;
   text-transform: uppercase;
   font-weight: 700;
@@ -4778,6 +4778,13 @@ footer {
     top: 0;
     bottom: 0;
     opacity: 0; }
+  .gallery--instagram .gallery__image .gallery__img {
+    width: 100%;
+    height: auto; }
+  .gallery--instagram .gallery__image .gallery__date {
+    display: block;
+    letter-spacing: 0.07em;
+    text-align: center; }
   .gallery--instagram .gallery__image:hover:before {
     opacity: 1; }
 
