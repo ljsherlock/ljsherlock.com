@@ -3737,31 +3737,34 @@ main {
   -ms-transition: margin 0.5s ease-in;
   -o-transition: margin 0.5s ease-in;
   transition: margin 0.5s ease-in;
-  margin: 0 !important; }
+  margin: 0 !important;
+  overflow: hidden; }
   .smart-browser main {
     position: relative;
     opacity: 0; }
 
-@media (min-width: 64em) {
-  .page--show-content {
-    -webkit-animation: 0.3s ease-in 1.75s slideInMarginDesktop forwards;
-    -moz-animation: 0.3s ease-in 1.75s slideInMarginDesktop forwards;
-    -o-animation: 0.3s ease-in 1.75s slideInMarginDesktop forwards;
-    -ms-animation: 0.3s ease-in 1.75s slideInMarginDesktop forwards;
-    animation: 0.3s ease-in 1.75s slideInMarginDesktop forwards; } }
-@media (max-width: 63.9375em) {
-  .page--show-content {
-    -webkit-animation: 0.3s ease-in 1.75s slideInMargin forwards;
-    -moz-animation: 0.3s ease-in 1.75s slideInMargin forwards;
-    -o-animation: 0.3s ease-in 1.75s slideInMargin forwards;
-    -ms-animation: 0.3s ease-in 1.75s slideInMargin forwards;
-    animation: 0.3s ease-in 1.75s slideInMargin forwards; } }
-.page--show-content main {
-  -webkit-animation: 0.3s ease-in 2.45s fadeInMain forwards;
-  -moz-animation: 0.3s ease-in 2.45s fadeInMain forwards;
-  -o-animation: 0.3s ease-in 2.45s fadeInMain forwards;
-  -ms-animation: 0.3s ease-in 2.45s fadeInMain forwards;
-  animation: 0.3s ease-in 2.45s fadeInMain forwards; }
+.page--show-content {
+  overflow: auto; }
+  @media (min-width: 64em) {
+    .page--show-content {
+      -webkit-animation: 0.3s ease-in 1.75s slideInMarginDesktop forwards;
+      -moz-animation: 0.3s ease-in 1.75s slideInMarginDesktop forwards;
+      -o-animation: 0.3s ease-in 1.75s slideInMarginDesktop forwards;
+      -ms-animation: 0.3s ease-in 1.75s slideInMarginDesktop forwards;
+      animation: 0.3s ease-in 1.75s slideInMarginDesktop forwards; } }
+  @media (max-width: 63.9375em) {
+    .page--show-content {
+      -webkit-animation: 0.3s ease-in 1.75s slideInMargin forwards;
+      -moz-animation: 0.3s ease-in 1.75s slideInMargin forwards;
+      -o-animation: 0.3s ease-in 1.75s slideInMargin forwards;
+      -ms-animation: 0.3s ease-in 1.75s slideInMargin forwards;
+      animation: 0.3s ease-in 1.75s slideInMargin forwards; } }
+  .page--show-content main {
+    -webkit-animation: 0.3s ease-in 2.45s fadeInMain forwards;
+    -moz-animation: 0.3s ease-in 2.45s fadeInMain forwards;
+    -o-animation: 0.3s ease-in 2.45s fadeInMain forwards;
+    -ms-animation: 0.3s ease-in 2.45s fadeInMain forwards;
+    animation: 0.3s ease-in 2.45s fadeInMain forwards; }
 
 .icon--sm, .header--scroll-up .logo {
   height: 40px;
@@ -4570,10 +4573,7 @@ main {
   left: 0;
   margin: auto;
   bottom: 0;
-  top: 0;
-  width: 15%;
-  height: 15%;
-  overflow: hidden; }
+  top: 0; }
   .loading-screen .loading-screen__block .loading-screen__object {
     bottom: 50%;
     position: absolute;
