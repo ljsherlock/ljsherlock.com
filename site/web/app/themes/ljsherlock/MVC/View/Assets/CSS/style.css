@@ -203,8 +203,7 @@ html {
 body h1, body h2, body h3, body .typography h1, .typography body h1, body .typography h2, .typography body h2, body .typography h3, .typography body h3 {
   font-family: "Zilla Slab", serif;
   font-weight: 700;
-  color: #646464;
-  margin: 0; }
+  color: #646464; }
   body h1 a, body h2 a, body h3 a, body .typography h1 a, .typography body h1 a, body .typography h2 a, .typography body h2 a, body .typography h3 a, .typography body h3 a {
     font-size: inherit;
     font-family: inherit;
@@ -215,6 +214,7 @@ body h1, body h2, body h3, body .typography h1, .typography body h1, body .typog
     body h1, body h2, body h3, body .typography h1, .typography body h1, body .typography h2, .typography body h2, body .typography h3, .typography body h3 {
       text-align: left; } }
 body h1 {
+  margin: 0;
   font-size: 9.5rem;
   line-height: 10rem;
   margin-top: 0rem;
@@ -230,6 +230,7 @@ body h1 {
       padding-bottom: 0.3975rem;
       margin-bottom: 2rem; } }
 body h2 {
+  margin: 0;
   font-size: 3.5rem;
   line-height: 5rem;
   margin-top: 1rem;
@@ -245,6 +246,7 @@ body h2 {
       padding-bottom: 0.035rem;
       margin-bottom: 2rem; } }
 body h3 {
+  margin: 0;
   font-size: 3rem;
   line-height: 4rem;
   margin-top: 0rem;
