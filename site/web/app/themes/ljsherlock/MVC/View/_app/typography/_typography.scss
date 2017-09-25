@@ -168,6 +168,7 @@
 
 	%h1
     {
+        @extend %headers;
 		@include plumber
         (
 			$baseline: $heading-baseline,
@@ -192,6 +193,7 @@
 
 	%h2
     {
+        @extend %headers;
 		@include plumber
         (
 			$baseline: $heading-baseline,
@@ -204,6 +206,7 @@
 
 	%h3
     {
+        @extend %headers;
 		@include plumber
         (
 			$font-size: 3,
@@ -217,14 +220,15 @@
 /* Output */
 html { @extend %html; }
 body { @extend %body; }
+.typography { @extend %typography; }
 p { @extend %p; }
-a { @extend %a; }
 span { @extend %span; }
 datetime { @extend %datetime; }
 h1 { @extend %h1; }
 h2 { @extend %h2; }
 h3 { @extend %h3; }
-.typography { @extend %typography; }
+a { @extend %a; }
+
 
 
 footer

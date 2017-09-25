@@ -200,19 +200,19 @@ html {
   background: #e6a1a1;
   color: #fff; }
 
-body h1, body h2, body h3 {
+body h1, body h2, body h3, body .typography h1, .typography body h1, body .typography h2, .typography body h2, body .typography h3, .typography body h3 {
   font-family: "Zilla Slab", serif;
   font-weight: 700;
   color: #646464;
   margin: 0; }
-  body h1 a, body h2 a, body h3 a {
+  body h1 a, body h2 a, body h3 a, body .typography h1 a, .typography body h1 a, body .typography h2 a, .typography body h2 a, body .typography h3 a, .typography body h3 a {
     font-size: inherit;
     font-family: inherit;
     color: #e6a1a1; }
-    body h1 a:hover, body h2 a:hover, body h3 a:hover {
+    body h1 a:hover, body h2 a:hover, body h3 a:hover, body .typography h1 a:hover, .typography body h1 a:hover, body .typography h2 a:hover, .typography body h2 a:hover, body .typography h3 a:hover, .typography body h3 a:hover {
       color: #f1c9c9; }
   @media (max-width: 47.9375em) {
-    body h1, body h2, body h3 {
+    body h1, body h2, body h3, body .typography h1, .typography body h1, body .typography h2, .typography body h2, body .typography h3, .typography body h3 {
       text-align: left; } }
 body h1 {
   font-size: 9.5rem;
