@@ -40,6 +40,7 @@ class Archive extends Single
             'postObj' => $this->postObj,
             'termObj' => $this->get_term_obj(),
             'taxObj' => $this->get_tax_obj(),
+            'termName' => $this->args['term'],
         ));
 
         return parent::get();
