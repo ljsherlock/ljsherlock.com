@@ -54,8 +54,7 @@ define(['Util'], function( Util )
             [].forEach.call(links, function(el)
             {
                 var href = el.getAttribute('href');
-
-                if( href !== null && href.match(site_url) )
+                if( href !== null && href.match(site_url) && !href.match('mailto:') )
                 {
                     if ( !el.classList.contains('internal_link') )
                     {
