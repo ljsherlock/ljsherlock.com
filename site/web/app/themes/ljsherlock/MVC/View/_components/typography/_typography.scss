@@ -13,11 +13,11 @@
 *   based on ( including widths )
 /*---------------------------------------------*/
 
-    @include adaptive-root-font-size();
-
-    :root {
-        @extend %root;
-    }
+    // @include adaptive-root-font-size();
+    //
+    // :root {
+    //     @extend %root;
+    // }
 
 /*---------------------------------------------*\
 *   Margins

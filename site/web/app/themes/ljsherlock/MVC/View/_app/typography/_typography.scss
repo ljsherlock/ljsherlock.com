@@ -6,55 +6,92 @@
 * @requires     variables.scss
 */
 
+/* Variables */
 
+/* Placeholders */
 
-html {
+/* Base Typography */
+
+%html
+{
     font-size: #{$gh}px;
     font-family: $body-font;
     font-weight: 400;
     color: $doveGrey;
 }
 
-body.base-grid {
-    background-image: linear-gradient(to top, rgba(242, 201, 76, 0.5) 0, rgba(242, 201, 76, 0.5) 1px, transparent 1px);
-    background-size: 100% #{$gh}px;
-}
-
-
 ::selection {
     background: $shilo;
     color: $white;
 }
 
-body {
+%body
+{
+    %base-grid
+    {
+        background-image: linear-gradient(to top, rgba(242, 201, 76, 0.5) 0, rgba(242, 201, 76, 0.5) 1px, transparent 1px);
+        background-size: 100% #{$gh}px;
+    }
 
-	// *** Headers ***
-	h1, h2, h3 {
-		font-family: $heading-font;
+    %headers
+    {
+        font-family: $heading-font;
         font-weight: 700;
         color: $doveGrey;
         margin: 0;
-		// @include font-smoothing;
-	}
+        %a
+        {
+            font-size: inherit;
+            font-family: inherit;
+        }
+        @include mobile()
+        {
+            text-align: left;
+        };
+    }
 
-	h1 {
-		@include plumber(
+	%h1
+    {
+		@include plumber
+        (
             $baseline: $heading-baseline,
 			$font-size: 9.5,
 			$line-height: 10,
 		);
+        @include mobile()
+        {
+            @include plumber
+            (
+                $baseline: $heading-baseline,
+    			$font-size: 5.5,
+    			$line-height: 7,
+    		);
+        };
 	}
 
-	h2 {
-		@include plumber(
+	%h2
+    {
+		@include plumber
+        (
             $baseline: $heading-baseline,
 			$font-size: 3.5,
 			$line-height: 5,
 		);
+        @include mobile()
+        {
+            @include plumber
+            (
+                $baseline: $heading-baseline,
+                $font-size: 3,
+                $line-height: 4,
+            );
+        };
 	}
 
-	h3 {
-		@include plumber(
+	%h3
+    {
+		@include plumber
+        (
 			$font-size: 3,
 			$line-height: 4,
 			$baseline: $heading-baseline
@@ -67,103 +104,120 @@ body {
         letter-spacing: 0.6em;
         text-transform: uppercase;
         color: $silver;
-        @include plumber(
+        @include plumber
+        (
             $font-size: 1.5,
-            $leading-bottom: 10,
             $line-height: 2,
+            $leading-top: 0,
+            $leading-bottom: 0,
         );
     }
 
-	span
+	%span
 	{
-		@include plumber(
+		@include plumber
+        (
 			$font-size: 1.25,
 			$leading-top: 0,
 			$leading-bottom: 0
 		);
 	}
+}
 
-	.typography
-	{
-		@include plumber-set-defaults
-		(
-			$font-size: 2.5,
-			$line-height: 4,
-			$baseline: $body-baseline,
-			$grid-height: 1rem,
-		);
+/* Formatted Typograpy */
+%typography
+{
+    font-size: #{$gh}px;
+	@include plumber-set-defaults
+	(
+		$font-size: 2.5,
+		$line-height: 4,
+		$baseline: $body-baseline,
+		$grid-height: 1rem,
+	);
 
-        h1, h2, h3
+	%p
+    {
+		@include plumber($leading-top: 0, $leading-bottom: 2);
+        color: $doveGrey;
+        %a
         {
-            > a
-            {
-                font-size: inherit;
-                font-family: inherit;
-            }
-            @include mobile(){
-                text-align: center;
-            };
+            @extend %a;
         }
+	}
 
-		p {
-			@include plumber($leading-top: 0, $leading-bottom: 2);
-            color: $doveGrey;
-		}
+	%a
+	{
+		@extend p;
+        color: $shilo;
+        font-weight: 700;
+        @include transition(.3s color ease);
+        &:hover
+        {
+            color: lighten($shilo, 10%);
+        }
+	}
 
-		a
-		{
-			@extend p;
-            color: $shilo;
-            font-weight: 700;
-            @include transition(.3s color ease);
-            &:hover
-            {
-                color: lighten($shilo, 10%);
-            }
-		}
+	%h1
+    {
+		@include plumber
+        (
+			$baseline: $heading-baseline,
+			$font-size: 9.5,
+			$line-height: 10,
+			$leading-top: 10,
+			$leading-bottom: 5
+		);
+        @include mobile()
+        {
+            @include plumber
+            (
+                $baseline: $heading-baseline,
+                $font-size: 6.5,
+                $line-height: 7,
+                $leading-top: 10,
+                $leading-bottom: 5
+            );
+        };
+		font-weight: 700;
+	}
 
-        // a
-        // {
-        //     text-decoration: none;
-        //     font-weight: 700;
-        //     color: $doveGrey;
-        //     &:hover
-        //     {
-        //         color: $shilo;
-        //     }
-        // }
+	%h2
+    {
+		@include plumber
+        (
+			$baseline: $heading-baseline,
+			$font-size: 3.5,
+			$line-height: 5,
+			$leading-top: 7,
+			$leading-bottom: 4,
+		);
+	}
 
-		h1 {
-			@include plumber(
-				$baseline: $heading-baseline,
-				$font-size: 9.5,
-				$line-height: 10,
-				$leading-top: 10,
-				$leading-bottom: 5
-			);
-			font-weight: 700;
-		}
-
-		h2 {
-			@include plumber(
-				$baseline: $heading-baseline,
-				$font-size: 3.5,
-				$line-height: 5,
-				$leading-top: 7,
-				$leading-bottom: 4,
-			);
-		}
-
-		h3 {
-			@include plumber(
-				$font-size: 3,
-				$line-height: 4,
-				$leading-top: 5,
-				$baseline: $heading-baseline
-			);
-		}
+	%h3
+    {
+		@include plumber
+        (
+			$font-size: 3,
+			$line-height: 4,
+			$leading-top: 5,
+			$baseline: $heading-baseline
+		);
 	}
 }
+
+/* Output */
+html { @extend %html; }
+body { @extend %body; }
+p { @extend %p; }
+span { @extend %span; }
+datetime { @extend %datetime; }
+h1, h2, h3 { @extend %headers };
+h1 { @extend %h1; }
+h2 { @extend %h2; }
+h3 { @extend %h3; }
+.typography { @extend %typography; }
+
 
 footer
 {
@@ -201,5 +255,3 @@ footer
 		color: white;
 	}
 }
-
-datetime { @extend %datetime; }

@@ -44,9 +44,12 @@
     %footer__copyright
     {
         @extend %grid;
-        @extend %grid--gutter-lg-right;
+        @extend %grid-desktop--gutter-lg-right;
+        @extend %grid-tablet--gutter-lg-right;
+        @extend %grid-mobile--col;
+        @extend %grid-mobile--gutter-sm-bottom;
     }
-    
+
     background-color: $tundora;
 }
 

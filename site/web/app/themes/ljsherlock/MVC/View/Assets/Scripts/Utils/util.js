@@ -10,10 +10,9 @@
     x = window.innerWidth,
     y = window.innerHeight;
 
-    return {
+    var Utils = {
 
-        isArray: function(obj)
-        {
+        isArray: function(obj) {
             return Object.prototype.toString.call(obj) === '[object Array]';
         },
 
@@ -94,6 +93,34 @@
           var value = "; " + document.cookie;
           var parts = value.split("; " + name + "=");
           if (parts.length == 2) return parts.pop().split(";").shift();
+        },
+
+        addRemoveModifier: function(el, modifier, action = 'add')
+        {
+            var regex = new RegExp( '--' +modifier+'.*' );
+            var classes = '';
+
+            [].forEach.call(el.className.split(' '), function(c, index, array)
+            {
+                if( regex.test(c) )
+                {
+                    if(action == 'add')
+                    {
+                        el.classList.add(c);
+                    }
+                    if(action == 'remove')
+                    {
+                        el.classList.remove(c);
+                    }
+                }
+            });
+
+            return classes;
+        },
+
+        removeModifier: function(el, modifier)
+        {
+            Utils.getModifier(el, modifier) ;
         },
 
         delete_cookie : function( name )
@@ -613,4 +640,6 @@
 
 
     };
+
+    return Utils;
 });

@@ -10,6 +10,7 @@
         }
         100% {
             margin: 40px;
+            overflow: auto;
         }
     };
 
@@ -20,7 +21,8 @@
             margin: 0;
         }
         100% {
-            margin: 15px;
+            margin: 5px;
+            overflow: auto;
         }
     };
 
@@ -33,6 +35,7 @@
         100%
         {
             opacity: 1;
+            z-index: 20;
         }
     };
 
@@ -43,67 +46,75 @@
 *    Relationships
 \*---------------------------------------------------*/
 
-@include desktop()
-{
-    html {
-        margin: 40px;
-    }
-};
-@include tablet()
-{
-    html
-    {
-        margin: 20px;
-    }
-};
 
-html
+%html
 {
     background-color: $tundora;
+    @include desktop()
+    {
+        margin: 40px;
+    };
+    @include tablet()
+    {
+        margin: 20px;
+    };
+    &%smart-browser
+    {
+        @include transition(margin .5s ease-in);
+        margin: 0 !important;
+        overflow: hidden;
+    }
+    &%html--animation-loaded
+    {
+        @include desktop()
+        {
+            @include animation( 0.3s ease-in 1.5s slideInMarginDesktop forwards );
+        };
+        @include portable()
+        {
+            @include animation( 0.3s ease-in 1.5s slideInMargin forwards );
+        };
+    }
 }
 
-body
+%body
 {
     background-color: white;
     margin: 0 !important;
 }
 
-main
+%main
 {
     padding: 15px;
     position: relative;
-    overflow:hidden;
-}
-
-%smart-browser
-{
-    @include transition(margin .5s ease-in);
-    margin: 0 !important;
     overflow: hidden;
-
-    %main
+    &--fade
     {
-        position: relative;
         opacity: 0;
+        @include animation( .75s ease-in 2.2s fadeInMain forwards );
+        &%main--ajax
+        {
+            animation-delay: 1s;
+        }
     }
+    // &--animation-show
+    // {
+    //     @include animation( 0.3s ease-in 2.2s fadeInMain forwards );
+    //
+    // }
+    // &--animation-hide
+    // {
+    //     @include animation( ease-in 0.3s fade-out forwards );
+    // }
 }
 
-%page--show-content
-{
-    overflow: auto;
-    @include desktop() {
-        @include animation( 0.3s ease-in 1.75s slideInMarginDesktop forwards );
-    };
-    @include portable() {
-        @include animation( 0.3s ease-in 1.75s slideInMargin forwards );
-    };
-    %main
-    {
-        @include animation( 0.3s ease-in 2.45s fadeInMain forwards );
-    }
-}
-
+html { @extend %html; }
+body { @extend %body; }
 main { @extend %main; }
-.page--show-content { @extend %page--show-content; }
+
+.html--animation-loaded { @extend %html--animation-loaded; }
+.main--ajax { @extend %main--ajax; }
+.main--fade { @extend %main--fade; }
+// .main--animation-show { @extend %main--animation-show; }
+
 .smart-browser { @extend %smart-browser; }
-.header__grid { @extend %header__grid; }

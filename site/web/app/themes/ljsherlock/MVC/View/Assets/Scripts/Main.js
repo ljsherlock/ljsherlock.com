@@ -18,14 +18,7 @@
                     {
                         // runs loading screen then app with a callback which is to close the screen
                         Core.init();
-                        App.init(function()
-                        {
-                			setTimeout(function()
-                			{
-                				document.querySelector('html').classList.add('page--loading-close');
-                				document.querySelector('html').classList.add('page--show-content');
-                			}, 750);
-                        });
+                        App.init();
 
                     });
                 }

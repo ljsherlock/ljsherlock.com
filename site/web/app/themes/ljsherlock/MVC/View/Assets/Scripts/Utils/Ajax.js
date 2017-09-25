@@ -1,6 +1,7 @@
 define(['Util'], function( Util )
 {
-    var Ajax = {
+    var Ajax =
+    {
         put: function( url, json, success, fail )
         {
             var xhr = new XMLHttpRequest(),
@@ -56,24 +57,26 @@ define(['Util'], function( Util )
 
                 if( href !== null && href.match(site_url) )
                 {
-                    el.classList.add('internal_link');
-
-                    el.addEventListener('click', function(e)
+                    if ( !el.classList.contains('internal_link') )
                     {
-                        e.preventDefault();
+                        el.classList.add('internal_link');
 
-                        Ajax.internalLinkBefore();
-
-                        var target_url = el.getAttribute('href');
-                        var current_url = window.location;
-
-                        if( target_url !== current_url )
+                        el.addEventListener('click', function(e)
                         {
-                            Ajax.getPage(target_url);
-                        }
+                            e.preventDefault();
 
-                        e.stopPropagation();
-                    });
+                            var target_url = el.getAttribute('href');
+                            var current_url = window.location;
+
+                            if( target_url != current_url )
+                            {
+                                Ajax.internalLinkBefore();
+                                Ajax.getPage(target_url);
+                            }
+
+                            e.stopPropagation();
+                        });
+                    }
                 }
 
             });

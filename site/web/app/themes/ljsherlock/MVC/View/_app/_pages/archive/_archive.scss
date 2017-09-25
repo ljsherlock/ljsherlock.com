@@ -13,7 +13,7 @@
 
         &--post
         {
-            @extend %wrap--md;
+            @extend %wrap--sm;
             margin-top: 5rem;
 
             %posts__post
@@ -31,7 +31,7 @@
             margin-top: 10rem;
             %posts__post
             {
-                @extend %wrap--break-xlg;
+                @extend %grid-desktop--gutter-lg-bottom;
             }
             %heading--prefix
             {

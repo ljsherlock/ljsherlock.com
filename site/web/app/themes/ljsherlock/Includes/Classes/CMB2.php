@@ -22,8 +22,8 @@ class CMB2
     {
         if ( file_exists( dirname( __FILE__ ) . '/cmb2/init.php' ) ) {
         	require_once dirname( __FILE__ ) . '/cmb2/init.php';
-        } elseif ( file_exists( dirname( __FILE__ ) . '/CMB2/init.php' ) ) {
-        	require_once dirname( __FILE__ ) . '/CMB2/init.php';
+        } elseif ( file_exists( dirname( __FILE__ ) . '/CMB_2/init.php' ) ) {
+        	require_once dirname( __FILE__ ) . '/CMB_2/init.php';
         }
 
         add_action( 'cmb2_admin_init', array( __CLASS__, 'ljsherlock_register_front_page_meta') );
