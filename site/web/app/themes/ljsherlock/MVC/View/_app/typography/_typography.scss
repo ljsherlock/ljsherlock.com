@@ -41,13 +41,13 @@
         margin: 0;
         %a
         {
+            font-size: inherit;
+            font-family: inherit;
             color: $shilo;
             &:hover
             {
                 color: lighten($shilo, 10%);
             }
-            font-size: inherit;
-            font-family: inherit;
         }
         @include mobile()
         {
@@ -218,6 +218,7 @@
 html { @extend %html; }
 body { @extend %body; }
 p { @extend %p; }
+a { @extend %a; }
 span { @extend %span; }
 datetime { @extend %datetime; }
 h1 { @extend %h1; }

@@ -205,6 +205,12 @@ body h1, body h2, body h3 {
   font-weight: 700;
   color: #646464;
   margin: 0; }
+  body h1 a, body h2 a, body h3 a {
+    font-size: inherit;
+    font-family: inherit;
+    color: #e6a1a1; }
+    body h1 a:hover, body h2 a:hover, body h3 a:hover {
+      color: #f1c9c9; }
   @media (max-width: 47.9375em) {
     body h1, body h2, body h3 {
       text-align: left; } }
@@ -267,7 +273,7 @@ body span, body .nav--footer .nav__item, .nav--footer body .nav__item {
 /* Formatted Typograpy */
 .typography {
   font-size: 8px; }
-  .typography p {
+  .typography p, .typography a {
     font-size: 2.5rem;
     line-height: 4rem;
     margin-top: 0rem;
@@ -275,6 +281,16 @@ body span, body .nav--footer .nav__item, .nav--footer body .nav__item {
     padding-bottom: 0.88875rem;
     margin-bottom: 1rem;
     color: #646464; }
+  .typography a {
+    color: #e6a1a1;
+    font-weight: 700;
+    -webkit-transition: 0.3s color ease;
+    -moz-transition: 0.3s color ease;
+    -ms-transition: 0.3s color ease;
+    -o-transition: 0.3s color ease;
+    transition: 0.3s color ease; }
+    .typography a:hover {
+      color: #f1c9c9; }
   .typography h1 {
     font-size: 9.5rem;
     line-height: 10rem;
