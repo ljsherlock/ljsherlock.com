@@ -96,6 +96,7 @@
             @extend %grid;
             @extend %grid--col;
             @extend %flex--align-items-center;
+            @extend %grid--gutter-md-bottom;
             @include padding-all($top: 4.5, $bottom: 8.5, $units: 'em');
             .typography > *
             {

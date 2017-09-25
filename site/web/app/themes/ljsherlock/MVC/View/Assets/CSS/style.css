@@ -1158,7 +1158,7 @@ a {
 .grid--gutter-xlg-right .grid--gutter-full > *:last-of-type:not(:first-child) {
   margin-right: 100px; }
 
-.grid--gutter-sm-bottom > *:last-of-type:not(:first-child), .posts--work .post__body > *:last-of-type:not(:first-child), footer > *:last-of-type:not(:first-child), .grid--gutter-xs-bottom > *:last-of-type:not(:first-child), footer .footer__contact > *:last-of-type:not(:first-child), footer .footer__recent-posts .posts > *:last-of-type:not(:first-child), .intro .intro__logo > *:last-of-type:not(:first-child), .grid--gutter-md-bottom > *:last-of-type:not(:first-child), .grid--gutter-lg-bottom > *:last-of-type:not(:first-child), .grid--gutter-xlg-bottom > *:last-of-type:not(:first-child) {
+.grid--gutter-sm-bottom > *:last-of-type:not(:first-child), .posts--work .post__body > *:last-of-type:not(:first-child), footer > *:last-of-type:not(:first-child), .grid--gutter-xs-bottom > *:last-of-type:not(:first-child), footer .footer__contact > *:last-of-type:not(:first-child), footer .footer__recent-posts .posts > *:last-of-type:not(:first-child), .intro .intro__logo > *:last-of-type:not(:first-child), .grid--gutter-md-bottom > *:last-of-type:not(:first-child), .intro .intro__content .intro__content-inner > *:last-of-type:not(:first-child), .grid--gutter-lg-bottom > *:last-of-type:not(:first-child), .grid--gutter-xlg-bottom > *:last-of-type:not(:first-child) {
   margin-bottom: 0px; }
 
 .grid--gutter-null-bottom > * {
@@ -1174,9 +1174,9 @@ a {
 .grid--gutter-xs-bottom .grid--gutter-full > *:last-of-type:not(:first-child), footer .footer__contact .grid--gutter-full > *:last-of-type:not(:first-child), footer .footer__recent-posts .posts .grid--gutter-full > *:last-of-type:not(:first-child), .intro .intro__logo .grid--gutter-full > *:last-of-type:not(:first-child) {
   margin-bottom: 10px; }
 
-.grid--gutter-md-bottom > * {
+.grid--gutter-md-bottom > *, .intro .intro__content .intro__content-inner > * {
   margin-bottom: 5rem; }
-.grid--gutter-md-bottom .grid--gutter-full > *:last-of-type:not(:first-child) {
+.grid--gutter-md-bottom .grid--gutter-full > *:last-of-type:not(:first-child), .intro .intro__content .intro__content-inner .grid--gutter-full > *:last-of-type:not(:first-child) {
   margin-bottom: 40px; }
 
 .grid--gutter-lg-bottom > * {
