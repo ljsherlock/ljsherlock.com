@@ -41,7 +41,6 @@
         margin: 0;
         %a
         {
-
             color: $shilo;
             &:hover
             {
@@ -58,7 +57,8 @@
 
 	%h1
     {
-		@include plumber
+        @extend %headers;
+        @include plumber
         (
             $baseline: $heading-baseline,
 			$font-size: 9.5,
@@ -77,6 +77,7 @@
 
 	%h2
     {
+        @extend %headers;
 		@include plumber
         (
             $baseline: $heading-baseline,
@@ -96,6 +97,7 @@
 
 	%h3
     {
+        @extend %headers;
 		@include plumber
         (
 			$font-size: 3,
@@ -218,7 +220,6 @@ body { @extend %body; }
 p { @extend %p; }
 span { @extend %span; }
 datetime { @extend %datetime; }
-h1, h2, h3 { @extend %headers };
 h1 { @extend %h1; }
 h2 { @extend %h2; }
 h3 { @extend %h3; }
