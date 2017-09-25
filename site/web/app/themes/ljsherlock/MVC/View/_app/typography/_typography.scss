@@ -41,6 +41,12 @@
         margin: 0;
         %a
         {
+
+            color: $shilo;
+            &:hover
+            {
+                color: lighten($shilo, 10%);
+            }
             font-size: inherit;
             font-family: inherit;
         }
