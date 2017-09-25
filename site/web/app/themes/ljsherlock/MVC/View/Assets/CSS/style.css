@@ -5269,6 +5269,9 @@ footer {
     .intro .intro__header .intro__top {
       position: relative;
       width: 100%; }
+    @media (max-width: 47.9375em) {
+      .intro .intro__header {
+        display: none; } }
   .intro .intro__logo {
     z-index: 1;
     font-size: 4px;
