@@ -3913,41 +3913,41 @@ main {
   z-index: -1020;
   opacity: 0; }
   .overlay.overlay--ajax.overlay--fade {
-    -webkit-animation: 0.5s ease loading-fade-in forwards;
-    -moz-animation: 0.5s ease loading-fade-in forwards;
-    -o-animation: 0.5s ease loading-fade-in forwards;
-    -ms-animation: 0.5s ease loading-fade-in forwards;
-    animation: 0.5s ease loading-fade-in forwards; }
+    -webkit-animation: 0.5s ease ajax-fade-in forwards;
+    -moz-animation: 0.5s ease ajax-fade-in forwards;
+    -o-animation: 0.5s ease ajax-fade-in forwards;
+    -ms-animation: 0.5s ease ajax-fade-in forwards;
+    animation: 0.5s ease ajax-fade-in forwards; }
 
-@-webkit-keyframes loading-fade-in {
+@-webkit-keyframes ajax-fade-in {
   0% {
     opacity: 0;
     z-index: -1000; }
   100% {
     z-index: 1020;
     opacity: 1; } }
-@-moz-keyframes loading-fade-in {
+@-moz-keyframes ajax-fade-in {
   0% {
     opacity: 0;
     z-index: -1000; }
   100% {
     z-index: 1020;
     opacity: 1; } }
-@-o-keyframes loading-fade-in {
+@-o-keyframes ajax-fade-in {
   0% {
     opacity: 0;
     z-index: -1000; }
   100% {
     z-index: 1020;
     opacity: 1; } }
-@-ms-keyframes loading-fade-in {
+@-ms-keyframes ajax-fade-in {
   0% {
     opacity: 0;
     z-index: -1000; }
   100% {
     z-index: 1020;
     opacity: 1; } }
-@keyframes loading-fade-in {
+@keyframes ajax-fade-in {
   0% {
     opacity: 0;
     z-index: -1000; }
@@ -5111,41 +5111,6 @@ header {
     top: 0;
     background: #4d4d4d; }
 
-@-webkit-keyframes loading-fade-in {
-  0% {
-    height: 100%;
-    z-index: 1; }
-  100% {
-    z-index: 1010;
-    opacity: 1; } }
-@-moz-keyframes loading-fade-in {
-  0% {
-    height: 100%;
-    z-index: 1; }
-  100% {
-    z-index: 1010;
-    opacity: 1; } }
-@-o-keyframes loading-fade-in {
-  0% {
-    height: 100%;
-    z-index: 1; }
-  100% {
-    z-index: 1010;
-    opacity: 1; } }
-@-ms-keyframes loading-fade-in {
-  0% {
-    height: 100%;
-    z-index: 1; }
-  100% {
-    z-index: 1010;
-    opacity: 1; } }
-@keyframes loading-fade-in {
-  0% {
-    height: 100%;
-    z-index: 1; }
-  100% {
-    z-index: 1010;
-    opacity: 1; } }
 .colours .colour .colour__fill {
   width: 100%;
   height: 40px; }

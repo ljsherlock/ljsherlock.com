@@ -21,14 +21,14 @@
         // };
         &%overlay--fade
         {
-            @include animation( .5s ease loading-fade-in forwards );
+            @include animation( .5s ease ajax-fade-in forwards );
         }
     }
 }
 
 
-// loading overlay
-@include keyframes (loading-fade-in)
+// ajax overlay
+@include keyframes (ajax-fade-in)
 {
    0%
    {

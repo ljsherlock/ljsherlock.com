@@ -75,19 +75,19 @@
     }
 }
 
-@include keyframes (loading-fade-in)
-{
-   0%
-   {
-      height: 100%;
-      z-index: 1;
-   }
-   100%
-   {
-       z-index: 1010;
-       opacity: 1;
-   }
-};
+// @include keyframes (loading-fade-in)
+// {
+//    0%
+//    {
+//       height: 100%;
+//       z-index: 1;
+//    }
+//    100%
+//    {
+//        z-index: 1010;
+//        opacity: 1;
+//    }
+// };
 
 header { @extend %header; }
 .header--animation-loaded { @extend %header--animation-loaded; }
