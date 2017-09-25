@@ -50,39 +50,11 @@ define([ "Util", 'Config', 'Utils/Events' ], function( Util, appConfig, Events )
 				} else {
 					header.classList.add(headerModifier);
 				}
-				//
-				// App.overlayMenu.classList.remove('overlay--fade');
-				// void App.overlayMenu.offsetWidth;
-				//
-				// if (App.overlayMenuDirection == 'normal')
-				// {
-				// 	App.overlayMenu.style.animationDirection = 'reverse';
-				// 	App.overlayMenu.style.animationDuration = '.75s';
-				// 	App.overlayMenuDirection = 'reverse';
-				// } else
-				// {
-				// 	App.overlayMenu.style.animationDirection = '';
-				//
-				// 	App.overlayMenuDirection = 'normal';
-				// }
-				// App.overlayMenu.classList.add('overlay--fade');
 
 			});
 
 			//Binds
 			// Events.bindOne(ajaxScreen, 'animationend', function() {
-			// 	Util.addRemoveModifier(this, 'animation', 'remove');
-			// });
-			// Events.bindOne(overlayLoading, 'animationend', function() {
-			// 	Util.addRemoveModifier(this, 'animation', 'remove');
-			// });
-			// Events.bindOne(main, 'animationend', function() {
-			// 	Util.addRemoveModifier(this, 'animation', 'remove');
-			// });
-			// Events.bindOne(html, 'animationend', function() {
-			// 	Util.addRemoveModifier(this, 'animation', 'remove');
-			// });
-			// Events.bindOne(header, 'animationend', function() {
 			// 	Util.addRemoveModifier(this, 'animation', 'remove');
 			// });
 
@@ -100,17 +72,14 @@ define([ "Util", 'Config', 'Utils/Events' ], function( Util, appConfig, Events )
 				App.header.classList.add('header--animation-loaded');
 
 			}, 250);
-
-
 		},
 
 		ajaxLinks : function()
 		{
 			require( ['Utils/Ajax'], function( Ajax )
 			{
-				Ajax.internalLinkBefore = function() {
-
-
+				Ajax.internalLinkBefore = function()
+				{
 					var hamburger = document.querySelector('.hamburger');
 					if (hamburger.classList.contains('hamburger--active')) {
 						App.hamburger(hamburger);
@@ -125,12 +94,8 @@ define([ "Util", 'Config', 'Utils/Events' ], function( Util, appConfig, Events )
 						}
 					}
 
-					// create new internal links from new HTML
 					App.ajaxLinks();
 
-					// Start loading animation
-					// App.loadingScreen.classList.add('loading-screen--animation-show');
-					// App.overlayLoading.classList.add('overlay--animation-show');
 					App.toggleAjaxLoadingScreen();
 				}
 
@@ -153,6 +118,11 @@ define([ "Util", 'Config', 'Utils/Events' ], function( Util, appConfig, Events )
 						App.main.classList.add('main--fade');
 					}, 750);
 
+				};
+
+				window.onpopstate = function(event)
+				{
+				  	Ajax.getPage(document.location);
 				};
 
 				Ajax.internalLinks();
@@ -193,62 +163,6 @@ define([ "Util", 'Config', 'Utils/Events' ], function( Util, appConfig, Events )
 			}
 			App.ajaxScreen.classList.add('loading-screen--fade');
 		},
-
-		// loadingScreen: function()
-		// {
-		// 	// Page load for first time
-		// 	setTimeout(function()
-		// 	{
-		// 		// Util.getModifier(loadingScreen, '--animation');
-		//
-		//
-		// 		// close the loading icon
-		// 		var loadingScreen = document.querySelector('#loadingScreen');
-		// 		loadingScreen.classList.add('loading-screen--animation-inactive');
-		// 		Events.bindOne(el, 'animationend', function() {
-		// 	  		Util.addRemoveModifier(loadingScreen, 'animation-inactive', 'remove');
-		// 	  	});
-		//
-		// 		loadingScreen = document.querySelector('#loadingScreen');
-		//
-		//
-		// 		document.querySelector('main').classList.add('main--animation-show');
-		// 		document.querySelector('html').classList.add('html--animation-loaded');
-		// 		document.querySelector('header').classList.add('header--animation-loaded');
-		//
-		// 	}, 750);
-		//
-		// 	// Start loading animation
-		// 	var overlayLoading = document.querySelector('#overlayLoading'),
-		// 	loadingScreen = document.querySelector('#loadingScreen');
-		//
-		// 	// remove animation modifier??
-		// 	Util.addRemoveModifier(overlayLoading, 'animation-inactive', 'remove');
-		// 	overlayLoading.classList.add('overlay--animation-active');
-		//
-		// 	// add loading screen modifier
-		// 	Util.addRemoveModifier(loadingScreen, 'animation', 'remove');
-		// 	loadingScreen.classList.add('loading-screen--animation-active');
-		//
-		// 	// show page content
-		// 	Util.addRemoveModifier(document.querySelector('main'), 'animation', 'remove');
-		// 	document.querySelector('main').classList.remove('main--animation-show');
-		//
-		//
-		// 	// Finish Loading animation
-		// 	// Loading Screen
-		// 	var loadingScreen = document.querySelector('.loading-screen');
-		// 	Util.addRemoveModifier(loadingScreen, 'animation', 'remove');
-		// 	loadingScreen.classList.add('loading-screen--animation-inactive');
-		//
-		// 	// Loading Overlay
-		// 	Util.addRemoveModifier(document.querySelector('.overlay'), 'animation', 'remove');
-		// 	document.querySelector('.overlay').classList.add('overlay--animation-inactive');
-		//
-		// 	// Content Show/Hide
-		// 	Util.addRemoveModifier(document.querySelector('main'), 'animation', 'remove');
-		// 	document.querySelector('main').classList.add('main--animation-show');
-		// },
 
 		hamburger : function(el, force)
 		{

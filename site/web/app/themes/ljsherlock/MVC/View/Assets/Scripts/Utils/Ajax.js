@@ -69,8 +69,10 @@ define(['Util'], function( Util )
 
                             if( target_url != current_url )
                             {
-                                Ajax.internalLinkBefore();
-                                Ajax.getPage(target_url);
+                                if( Ajax.getPage(target_url) == true )
+                                {
+                                    history.pushState(null, null, url);
+                                }
                             }
 
                             e.stopPropagation();
@@ -85,6 +87,8 @@ define(['Util'], function( Util )
 
         getPage : function(url)
         {
+            Ajax.internalLinkBefore();
+
             var json_string = JSON.stringify({
                 ajax: true
             });
@@ -99,14 +103,15 @@ define(['Util'], function( Util )
                 {
                     var response = xhr.responseText;
 
-                    history.pushState(null, null, url);
                     document.title = response.match(/<h1[^>]*>([^<]+)<\/h1>/)[1] + "\u2014" + location.host;
 
                     Ajax.getPageCallback(response);
 
+                    return true;
                 }
                 else if (xhr.status !== 200)
                 {
+                    return false;
                     alert('Request failed.  Returned status of ' + xhr.status);
                 }
             };
