@@ -97,7 +97,7 @@ define([ "Util", 'Config', 'Utils/Events' ], function( Util, appConfig, Events )
 					App.ajaxLinks();
 
 					App.toggleAjaxLoadingScreen();
-				}
+				};
 
 				Ajax.getPageCallback = function(response)
 				{

@@ -38,7 +38,7 @@ define(['Util'], function( Util )
                         alert('Request failed.  Returned status of ' + xhr.status);
                     }
                 }
-            }
+            };
 
             return xhr;
         },
@@ -69,9 +69,9 @@ define(['Util'], function( Util )
 
                             if( target_url != current_url )
                             {
-                                if( Ajax.getPage(target_url) == true )
+                                if(  Ajax.getPage(target_url) != false )
                                 {
-                                    history.pushState(null, null, url);
+                                    history.pushState(null, null, target_url);
                                 }
                             }
 
@@ -106,17 +106,14 @@ define(['Util'], function( Util )
                     document.title = response.match(/<h1[^>]*>([^<]+)<\/h1>/)[1] + "\u2014" + location.host;
 
                     Ajax.getPageCallback(response);
-
-                    return true;
                 }
                 else if (xhr.status !== 200)
                 {
                     return false;
-                    alert('Request failed.  Returned status of ' + xhr.status);
                 }
             };
         }
-    }
+    };
 
     return Ajax;
 
