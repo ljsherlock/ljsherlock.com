@@ -156,6 +156,11 @@
         }
 	}
 
+    %li
+    {
+        @extend %p;
+    }
+
 	%a
 	{
 		@extend p;
@@ -224,6 +229,7 @@ html { @extend %html; }
 body { @extend %body; }
 .typography { @extend %typography; }
 p { @extend %p; }
+li { @extend %li; }
 span { @extend %span; }
 datetime { @extend %datetime; }
 h1 { @extend %h1; }

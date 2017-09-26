@@ -275,7 +275,7 @@ body span, body .nav--footer .nav__item, .nav--footer body .nav__item {
 /* Formatted Typograpy */
 .typography {
   font-size: 8px; }
-  .typography p, .typography a {
+  .typography li, .typography p, .typography a {
     font-size: 2.5rem;
     line-height: 4rem;
     margin-top: 0rem;
