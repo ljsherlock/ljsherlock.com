@@ -275,7 +275,7 @@ body span, body .nav--footer .nav__item, .nav--footer body .nav__item {
 /* Formatted Typograpy */
 .typography {
   font-size: 8px; }
-  .typography pre, .typography li, .typography p, .typography a {
+  .typography li, .typography p, .typography a {
     font-size: 2.5rem;
     line-height: 4rem;
     margin-top: 0rem;
@@ -284,8 +284,18 @@ body span, body .nav--footer .nav__item, .nav--footer body .nav__item {
     margin-bottom: 1rem;
     color: #646464; }
   .typography pre {
+    font-size: 1.5rem;
     padding: 1.5rem;
-    background: #e1e1e1; }
+    background: whitesmoke;
+    white-space: pre-wrap;
+    /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;
+    /* Mozilla, since 1999 */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    word-wrap: break-word; }
   .typography a {
     color: #e6a1a1;
     font-weight: 700;
