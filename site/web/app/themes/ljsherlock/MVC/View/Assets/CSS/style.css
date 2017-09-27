@@ -275,7 +275,7 @@ body span, body .nav--footer .nav__item, .nav--footer body .nav__item {
 /* Formatted Typograpy */
 .typography {
   font-size: 8px; }
-  .typography li, .typography p, .typography a {
+  .typography pre, .typography li, .typography p, .typography a {
     font-size: 2.5rem;
     line-height: 4rem;
     margin-top: 0rem;
@@ -283,6 +283,9 @@ body span, body .nav--footer .nav__item, .nav--footer body .nav__item {
     padding-bottom: 0.88875rem;
     margin-bottom: 1rem;
     color: #646464; }
+  .typography pre {
+    padding: 1.5rem;
+    background: #e1e1e1; }
   .typography a {
     color: #e6a1a1;
     font-weight: 700;

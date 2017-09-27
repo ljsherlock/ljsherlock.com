@@ -155,6 +155,12 @@
             @extend %a;
         }
 	}
+    %pre
+    {
+        @extend %p;
+        padding: 1.5rem;
+        background: $mercury;
+    }
 
     %li
     {
@@ -229,6 +235,7 @@ html { @extend %html; }
 body { @extend %body; }
 .typography { @extend %typography; }
 p { @extend %p; }
+pre {  @extend %pre; }
 li { @extend %li; }
 span { @extend %span; }
 datetime { @extend %datetime; }
