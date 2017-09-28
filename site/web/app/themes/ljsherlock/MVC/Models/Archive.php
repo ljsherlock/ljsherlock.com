@@ -34,13 +34,21 @@ class Archive extends Single
     {
         $this->posts = $this->query($this->args);
 
+        // var_dump( $this->args['term'] );
+        // var_dump( $this->args['tax']->name );
+
+        // get_term_by( slug, speed-freak, post_tag )
+        // get_term_by( slug, web-design, category )
+        $termObj = get_term_by( 'slug', $this->args['term'], $this->args['tax']->name );
+        // die(var_dump($termObj));
+
         $this->timber->addContext(array(
             'posts' => $this->addTerms( $this->posts ),
             'pagination' => \TImber::get_pagination(),
             'postObj' => $this->postObj,
             'termObj' => $this->get_term_obj(),
             'taxObj' => $this->get_tax_obj(),
-            'termName' => $this->args['term'],
+            'termName' => $termObj->name,
         ));
 
         return parent::get();

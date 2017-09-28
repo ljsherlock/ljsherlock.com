@@ -2,9 +2,7 @@
 
 $taxonomy = 'post_tag';
 $taxonomyObj = get_taxonomy($taxonomy);
-$term = get_query_var('term');
-
-//die(var_dump($term));
+$term = get_query_var('tag');
 
 $args = array(
     'post_type' => $taxonomyObj->object_type[0],
