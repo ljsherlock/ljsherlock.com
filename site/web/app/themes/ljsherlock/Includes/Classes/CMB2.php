@@ -233,6 +233,12 @@ class CMB2
              'type' => 'title',
          ) );
 
+         $cmb_options->add_field( array(
+     		'name'    => __( 'Theme Colour ', 'cmb2' ),
+     		'id'      => self::$prefix . 'theme_colour',
+     		'type'    => 'colorpicker',
+     	) );
+
          $cmb_options->add_field(array(
              'name' => esc_html__( 'Instagram Access Token', 'cmb2' ),
              'desc' => esc_html__( 'The Instagram API requires authentication - specifically requests made on behalf of a user. Authenticated requests require an access_token. These tokens are unique to a user and should be stored securely. Access tokens may expire at any time in the future.', 'cmb2' ),

@@ -33,14 +33,7 @@ class Archive extends Single
     public function get()
     {
         $this->posts = $this->query($this->args);
-
-        // var_dump( $this->args['term'] );
-        // var_dump( $this->args['tax']->name );
-
-        // get_term_by( slug, speed-freak, post_tag )
-        // get_term_by( slug, web-design, category )
         $termObj = get_term_by( 'slug', $this->args['term'], $this->args['tax']->name );
-        // die(var_dump($termObj));
 
         $this->timber->addContext(array(
             'posts' => $this->addTerms( $this->posts ),

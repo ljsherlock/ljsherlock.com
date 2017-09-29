@@ -58,6 +58,9 @@ class Single extends Base
 
         $this->timber->addContext( array(
             // content
+            'meta' => array (
+                'themeColor' => CMB2::myprefix_get_option( CMB2::$prefix . 'theme_colour'),
+            ),
             'request_body' => $data,
             'subtitle' => get_post_meta( $this->post->ID, CMB2::$prefix . 'subtitle', true ),
             'post' => $this->post,
