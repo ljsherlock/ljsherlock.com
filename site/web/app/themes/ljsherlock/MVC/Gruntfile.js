@@ -1,13 +1,13 @@
-module.exports = function(grunt) {
+module.exports = function(grunt)
+{
+    grunt.initConfig({
 
-  // Project configuration.
-  grunt.initConfig({
-
-    // Task configuration.
-        // SASS
-        sass: {
-            build: {
-                files: {
+        sass:
+        {
+            build:
+            {
+                files:
+                {
                  'View/Assets/CSS/style.css': 'View/main.scss'
                 }
             }
@@ -40,7 +40,8 @@ module.exports = function(grunt) {
         },
 
        // MINIFY CSS
-       cssmin: {
+       cssmin:
+       {
            options: {
                shorthandCompacting: false,
                roundingPrecision: -1
@@ -53,7 +54,8 @@ module.exports = function(grunt) {
        },
 
        // SVG OPTIMIZATION
-       svgmin: {
+       svgmin:
+       {
            options: {
                plugins: [
                    {
@@ -86,7 +88,8 @@ module.exports = function(grunt) {
         },
 
         // SVG SYMBOLS CREATION
-       svgstore: {
+       svgstore:
+       {
            build: {
                files: {
                      'View/Assets/Icons/icons.svg': 'View/Assets/SVG/svg-final/*.svg',
@@ -103,7 +106,8 @@ module.exports = function(grunt) {
 
 
        // DO TASK ON CHANGE
-       watch: {
+       watch:
+       {
            // No task. Just reload.
          html: {
            files: [
@@ -191,10 +195,76 @@ module.exports = function(grunt) {
                 livereload: true,
             },
         },
+    },
 
-      }
-
-  });
+    realFavicon:
+    {
+        favicons: {
+            src: 'View/Assets/Icons/logo.png',
+            dest: 'View/Assets/Icons/favicon/',
+            options: {
+                iconsPath: 'https://ljsherlock.com/app/themes/ljsherlock/MVC/View/Assets/Icons/favicon/',
+                html: [ 'View/Assets/Icons/favicon/markup.html' ],
+                design: {
+                    ios: {
+                        pictureAspect: 'backgroundAndMargin',
+                        backgroundColor: '#ffffff',
+                        margin: '0%',
+                        assets: {
+                            ios6AndPriorIcons: true,
+                            ios7AndLaterIcons: true,
+                            precomposedIcons: true,
+                            declareOnlyDefaultIcon: false
+                        }
+                    },
+                    desktopBrowser: {},
+                    windows: {
+                        pictureAspect: 'noChange',
+                        backgroundColor: '#ffc40d',
+                        onConflict: 'override',
+                        assets: {
+                            windows80Ie10Tile: false,
+                            windows10Ie11EdgeTiles: {
+                                small: false,
+                                medium: true,
+                                big: false,
+                                rectangle: false
+                            }
+                        }
+                    },
+                    androidChrome: {
+                        pictureAspect: 'noChange',
+                        themeColor: '#ffffff',
+                        manifest: {
+                            name: 'Sherlock',
+                            display: 'standalone',
+                            orientation: 'notSet',
+                            onConflict: 'override',
+                            declared: true
+                        },
+                        assets: {
+                            legacyIcon: false,
+                            lowResolutionIcons: false
+                        }
+                    },
+                    safariPinnedTab: {
+                        pictureAspect: 'blackAndWhite',
+                        threshold: 92.8125,
+                        themeColor: '#e6a1a1'
+                    }
+                },
+                settings: {
+                    scalingAlgorithm: 'Mitchell',
+                    errorOnImageTooSmall: false
+                },
+                versioning: {
+                    paramName: 'v',
+                    paramValue: 'WGLYX443lM'
+                }
+            }
+        }
+    }
+});
 
   // These plugins provide necessary tasks.
   // grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -205,6 +275,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-svgstore');
   grunt.loadNpmTasks('grunt-svgmin');
+  grunt.loadNpmTasks('grunt-real-favicon');
 
   grunt.registerTask('default', ['build']);
   grunt.registerTask('build', [ 'sass', 'cssmin']);
