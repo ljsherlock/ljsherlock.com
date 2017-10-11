@@ -1,0 +1,58 @@
+%copy
+{
+    @extend %wrap--break-md;
+    @extend %grid-mobile;
+    @extend %grid-mobile--col;
+    @extend %grid-mobile--gutter-sm-bottom;
+
+    @extend %grid-tablet;
+    @extend %grid-tablet--row;
+
+    @extend %grid-desktop;
+    @extend %grid-desktop--row;
+
+    padding: 0 15px;
+
+    %copy__logo, %copy__content
+    {
+        width: 100%;
+    }
+
+    @include desktop()
+    {
+        @include flex-just(space-between);
+        %copy__logo
+        {
+            width: 28%;
+            img {
+                width: 100%;
+            }
+        }
+
+        %copy__content
+        {
+            width: 65%
+        }
+    };
+    @include tablet()
+    {
+        @include flex-just(space-between);
+        %copy__logo
+        {
+            width: 28%;
+            img {
+                width: 100%;
+            }
+        }
+
+        %copy__content
+        {
+            width: 65%
+        }
+    };
+
+}
+
+.copy { @extend %copy; }
+.copy__logo { @extend %copy__logo; }
+.copy__content { @extend %copy__content; }

@@ -1,0 +1,115 @@
+@include keyframes( slideDownHeader )
+{
+    0%
+    {
+        top: -20vh;
+    }
+    100%
+    {
+        top: 0;
+    }
+};
+
+%header
+{
+    height: 140px;
+    @include mobile() {
+        height: auto;
+        padding: 20px;
+    };
+    padding: 40px 0;
+    @extend %wrap;
+    @extend %grid-desktop;
+    @extend %grid-desktop--row;
+    @extend %grid-tablet;
+    @extend %grid-tablet--row;
+    @extend %flex--align-items-center;
+    @extend %flex--just-space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 1000;
+    background-color: $mercury;
+    border-bottom: 5px solid $codGrey;
+
+    @include mobile()
+    {
+        @include flex-just(center);
+        @include align-content(center);
+        @include flex-just(center);
+    };
+
+    %header__logo
+    {
+        height: 100%;
+        width: auto;
+        z-index: 1011;
+        @include mobile()
+        {
+            width: 80%;
+            height: auto;
+            margin: auto;
+            img {
+                width: 100%;
+            }
+        };
+        img {
+            height: 100%;
+        }
+    }
+
+
+    %header__contact
+    {
+        @include mobile(){
+            display: none;
+        };
+
+        position: relative;
+        height: 100%;
+        @extend %flex--align-items-center;
+        @extend %grid-desktop;
+        @extend %grid-desktop--row;
+        @extend %grid-desktop--gutter-sm-right;
+        @extend %grid-tablet;
+        @extend %grid-tablet--row;
+        @extend %grid-tablet--gutter-sm-right;
+        @include align-self(flex-end);
+        padding-top: 16px;
+    }
+
+    @include mobile()
+    {
+        position: fixed;
+        left: 0; right: 0;
+        padding: 10px 40px 10px;
+        width: 100%;
+        z-index: 40;
+        &%header--fade-in
+        {
+            height: 100%;
+            @include animation( .5s ease menu-fade-in forwards );
+        }
+    };
+
+    &--scroll-up
+    {
+        position: fixed;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        width: calc( 100% - 80px );
+        top: 0;
+        %logo
+        {
+            @extend %icon--sm;
+        }
+    }
+}
+
+header { @extend %header; }
+.header--scroll-up { @extend %header--scroll-up; }
+.header__contact { @extend %header__contact; }
+.header__logo { @extend %header__logo; }
+.header--fade-in { @extend %header--fade-in; }

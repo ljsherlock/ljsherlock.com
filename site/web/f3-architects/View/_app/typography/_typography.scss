@@ -1,0 +1,279 @@
+/**
+* @desc         Base typography styles.
+* @name         Typography
+* @author
+* @tested
+* @requires     variables.scss
+*/
+
+/* Variables */
+
+/* Placeholders */
+
+/* Base Typography */
+
+%html
+{
+    font-size: #{$gh}px;
+    font-family: $body-font;
+    font-weight: 400;
+    color: black;
+}
+
+::selection {
+    background: $caribbeanGreen;
+    color: $white;
+}
+
+%body
+{
+    %base-grid
+    {
+        background-image: linear-gradient(to top, rgba(242, 201, 76, 0.5) 0, rgba(242, 201, 76, 0.5) 1px, transparent 1px);
+        background-size: 100% #{$gh}px;
+    }
+
+    %headers
+    {
+        font-family: $heading-font;
+        font-weight: 700;
+        color: black;
+        %a
+        {
+            font-size: inherit;
+            font-family: inherit;
+            color: $link-color;
+            &:hover
+            {
+                color: $link-color
+            }
+        }
+        @include mobile()
+        {
+            text-align: left;
+        };
+    }
+
+	%h1
+    {
+        @extend %p;
+        text-transform: uppercase;
+	}
+
+
+    %datetime
+    {
+        display: block;
+        letter-spacing: 0.6em;
+        text-transform: uppercase;
+        @include plumber
+        (
+            $font-size: 1.5,
+            $line-height: 2,
+            $leading-top: 0,
+            $leading-bottom: 0,
+        );
+    }
+
+	%span
+	{
+        text-transform: uppercase;
+		@include plumber
+        (
+			$font-size: 1.25,
+			$leading-top: 0,
+			$leading-bottom: 0
+		);
+	}
+
+    %address
+    {
+        text-transform: uppercase;
+        @include plumber
+        (
+            $font-size: 1.9,
+            $leading-top: 1,
+			$leading-bottom: 0
+        );
+    }
+    %a
+    {
+        color: black;
+        text-transform: uppercase;
+        @include transition(.3s color ease-in);
+        @include plumber
+        (
+            $font-size: 1.9,
+            $line-height: 2,
+            $leading-top: 1,
+            $leading-bottom: 0
+        );
+        &:hover
+        {
+            color: $link-color;
+        }
+    }
+    %small
+    {
+        display: block;
+        @include plumber
+        (
+            $font-size: 1.5,
+            $line-height: 2,
+            $leading-top: 0,
+            $leading-bottom: 0
+        );
+        * {
+            display: inline;
+            text-transform: capitalize;
+            @include plumber
+            (
+                $font-size: 1.5,
+                $leading-top: 0,
+                $leading-bottom: 0
+            );
+        }
+    }
+    %p
+    {
+        @include plumber(
+            $font-size: 2.25,
+            $leading-bottom: 1,
+            $leading-top: 0
+        );
+    }
+}
+
+/* Formatted Typograpy */
+%typography
+{
+    font-size: #{$gh}px;
+	@include plumber-set-defaults
+	(
+		$font-size: 2.5,
+		$line-height: 4,
+		$baseline: $body-baseline,
+		$grid-height: 1rem,
+	);
+
+	%p
+    {
+		@include plumber($leading-top: 0, $leading-bottom: 2);
+        %a
+        {
+            @extend %a;
+        }
+	}
+
+    %pre
+    {
+        font-size: 1.5rem;
+        padding: 1.5rem;
+        background: whitesmoke;
+        white-space: pre-wrap;       /* Since CSS 2.1 */
+        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+        white-space: -pre-wrap;      /* Opera 4-6 */
+        white-space: -o-pre-wrap;    /* Opera 7 */
+        word-wrap: break-word;
+    }
+
+    %li
+    {
+        @extend %p;
+    }
+
+	%a
+	{
+		@extend p;
+        display: inline;
+        color: $link-color;
+        font-weight: 700;
+        @include transition(.3s color ease);
+        &:hover
+        {
+            color: $link-color;
+        }
+	}
+
+	%h1
+    {
+        @extend %headers;
+		@include plumber
+        (
+			$baseline: $heading-baseline,
+			$font-size: 9.5,
+			$line-height: 10,
+			$leading-top: 10,
+			$leading-bottom: 5
+		);
+        @include mobile()
+        {
+            @include plumber
+            (
+                $baseline: $heading-baseline,
+                $font-size: 6.5,
+                $line-height: 7,
+                $leading-top: 10,
+                $leading-bottom: 5
+            );
+        };
+		font-weight: 700;
+	}
+
+	%h2
+    {
+        @extend %headers;
+		@include plumber
+        (
+			$baseline: $heading-baseline,
+			$font-size: 3.5,
+			$line-height: 5,
+			$leading-top: 7,
+			$leading-bottom: 4,
+		);
+	}
+
+	%h3
+    {
+        @extend %headers;
+		@include plumber
+        (
+			$font-size: 3,
+			$line-height: 4,
+			$leading-top: 5,
+			$baseline: $heading-baseline
+		);
+	}
+}
+
+/* Output */
+html { @extend %html; }
+body { @extend %body; }
+.typography { @extend %typography; }
+p { @extend %p; }
+pre {  @extend %pre; }
+li { @extend %li; }
+span { @extend %span; }
+datetime { @extend %datetime; }
+address { @extend %address; }
+h1 { @extend %h1; }
+h2 { @extend %h2; }
+h3 { @extend %h3; }
+a { @extend %a; }
+small { @extend %small; }
+
+
+
+
+footer
+{
+	color: $mercury;
+
+	a {
+		color: $mercury;
+	}
+
+	.btn--menu {
+		color: white;
+	}
+}
