@@ -12,6 +12,7 @@
 
 %header
 {
+    visibility: hidden;
     height: 140px;
     @include mobile() {
         height: auto;

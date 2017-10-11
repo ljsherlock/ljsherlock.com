@@ -4396,6 +4396,7 @@ main {
   100% {
     top: 0; } }
 header {
+  visibility: hidden;
   height: 140px;
   padding: 40px 0;
   position: fixed;
