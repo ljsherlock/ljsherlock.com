@@ -3701,21 +3701,8 @@ a {
 *    Relationships
 \*---------------------------------------------------*/
 html {
-  background-color: #e6e6e6; }
-  @media (min-width: 64em) {
-    html.html--animation-loaded {
-      -webkit-animation: 0.3s ease-in 1.5s slideInMarginDesktop forwards;
-      -moz-animation: 0.3s ease-in 1.5s slideInMarginDesktop forwards;
-      -o-animation: 0.3s ease-in 1.5s slideInMarginDesktop forwards;
-      -ms-animation: 0.3s ease-in 1.5s slideInMarginDesktop forwards;
-      animation: 0.3s ease-in 1.5s slideInMarginDesktop forwards; } }
-  @media (max-width: 63.9375em) {
-    html.html--animation-loaded {
-      -webkit-animation: 0.3s ease-in 1.5s slideInMargin forwards;
-      -moz-animation: 0.3s ease-in 1.5s slideInMargin forwards;
-      -o-animation: 0.3s ease-in 1.5s slideInMargin forwards;
-      -ms-animation: 0.3s ease-in 1.5s slideInMargin forwards;
-      animation: 0.3s ease-in 1.5s slideInMargin forwards; } }
+  background-color: #e6e6e6;
+  overflow: hidden; }
 
 a {
   display: block; }
@@ -3733,16 +3720,6 @@ main {
   @media (min-width: 64em) {
     main {
       padding: 0; } }
-  .main--fade {
-    opacity: 0;
-    -webkit-animation: 0.75s ease-in 2.2s fadeInMain forwards;
-    -moz-animation: 0.75s ease-in 2.2s fadeInMain forwards;
-    -o-animation: 0.75s ease-in 2.2s fadeInMain forwards;
-    -ms-animation: 0.75s ease-in 2.2s fadeInMain forwards;
-    animation: 0.75s ease-in 2.2s fadeInMain forwards; }
-    .main--ajax.main--fade {
-      animation-delay: 1s; }
-
 /*------------------------------------------*\
 *   B E M
 /*------------------------------------------*/

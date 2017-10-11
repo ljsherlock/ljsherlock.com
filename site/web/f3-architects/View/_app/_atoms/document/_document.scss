@@ -50,17 +50,7 @@
 %html
 {
     background-color: $mercury;
-    &%html--animation-loaded
-    {
-        @include desktop()
-        {
-            @include animation( 0.3s ease-in 1.5s slideInMarginDesktop forwards );
-        };
-        @include portable()
-        {
-            @include animation( 0.3s ease-in 1.5s slideInMargin forwards );
-        };
-    }
+    overflow: hidden;
 }
 
 a { display: block; }
@@ -108,8 +98,3 @@ a { display: block; }
 html { @extend %html; }
 body { @extend %body; }
 main { @extend %main; }
-
-.html--animation-loaded { @extend %html--animation-loaded; }
-.main--ajax { @extend %main--ajax; }
-.main--fade { @extend %main--fade; }
-// .main--animation-show { @extend %main--animation-show; }
