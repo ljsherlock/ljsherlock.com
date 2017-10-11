@@ -4396,7 +4396,6 @@ main {
   100% {
     top: 0; } }
 header {
-  visibility: hidden;
   height: 140px;
   padding: 40px 0;
   position: fixed;
@@ -4441,6 +4440,7 @@ header {
     header .header__logo img {
       height: 100%; }
   header .header__contact {
+    visibility: hidden;
     position: relative;
     height: 100%;
     -webkit-align-self: flex-end;

@@ -12,7 +12,6 @@
 
 %header
 {
-    visibility: hidden;
     height: 140px;
     @include mobile() {
         height: auto;
@@ -64,6 +63,7 @@
 
     %header__contact
     {
+        visibility: hidden;
         @include mobile(){
             display: none;
         };
