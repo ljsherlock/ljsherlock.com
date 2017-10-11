@@ -26,7 +26,7 @@
 @mixin grid--gutter-last-of($dir, $gut)
 {
     > * {
-        &:last-of-type:not(:first-child)
+        &:last-child:not(:first-child)
         {
             margin-#{$dir}: #{$gut}px;
         }
