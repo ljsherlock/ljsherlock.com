@@ -3702,7 +3702,7 @@ a {
 \*---------------------------------------------------*/
 html {
   background-color: #e6e6e6;
-  overflow: hidden; }
+  overflow-x: hidden; }
 
 a {
   display: block; }
