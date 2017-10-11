@@ -12,13 +12,6 @@
 
     var Utils = {
 
-        setVendor: function(element, property, value) {
-          element.style["webkit" + property] = value;
-          element.style["moz" + property] = value;
-          element.style["ms" + property] = value;
-          element.style["o" + property] = value;
-      },
-
         isArray: function(obj) {
             return Object.prototype.toString.call(obj) === '[object Array]';
         },

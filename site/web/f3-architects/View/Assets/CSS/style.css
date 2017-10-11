@@ -218,6 +218,8 @@ body .typography h1, .typography body h1, body .typography h2, .typography body 
       text-align: left; } }
 body h1 {
   text-transform: uppercase; }
+body .btn--f3 {
+  font-family: "Gill Sans W01 Medium", serif; }
 body datetime {
   display: block;
   letter-spacing: 0.6em;
@@ -3725,6 +3727,9 @@ main {
   position: relative;
   margin-top: 30em;
   padding: 0 15px; }
+  @media (max-width: 47.9375em) {
+    main {
+      margin-top: 15em; } }
   @media (min-width: 64em) {
     main {
       padding: 0; } }
@@ -4585,6 +4590,14 @@ footer {
   position: absolute;
   left: 850px; }
 
+@media (max-width: 47.9375em) {
+  #residential,
+  #commercial,
+  #planning {
+    position: relative;
+    top: initial;
+    left: initial; } }
+
 .gallery {
   margin-left: 15px;
   margin-right: 15px;
@@ -5166,6 +5179,8 @@ footer {
   padding: 0 15px; }
   .copy .copy__logo, .copy .copy__content {
     width: 100%; }
+  .copy .copy__logo img {
+    width: 100%; }
   @media (min-width: 64em) {
     .copy {
       -webkit-box-pack: justify;
@@ -5175,8 +5190,6 @@ footer {
       justify-content: space-between; }
       .copy .copy__logo {
         width: 28%; }
-        .copy .copy__logo img {
-          width: 100%; }
       .copy .copy__content {
         width: 65%; } }
   @media (min-width: 48em) and (max-width: 63.9375em) {
@@ -5188,8 +5201,6 @@ footer {
       justify-content: space-between; }
       .copy .copy__logo {
         width: 28%; }
-        .copy .copy__logo img {
-          width: 100%; }
       .copy .copy__content {
         width: 65%; } }
 

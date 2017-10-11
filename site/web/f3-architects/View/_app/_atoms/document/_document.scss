@@ -75,6 +75,10 @@ a { display: block; }
     @extend %wrap;
     position: relative;
     margin-top: 30em;
+    @include mobile()
+    {
+        margin-top: 15em;
+    };
     padding: 0 15px;
     @include desktop()
     {

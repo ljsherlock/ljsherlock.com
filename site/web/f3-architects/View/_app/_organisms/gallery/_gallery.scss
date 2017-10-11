@@ -35,6 +35,16 @@
     left: 850px;
 }
 
+#residential,
+#commercial,
+#planning {
+    @include mobile(){
+        position: relative;
+        top: initial;
+        left:initial;
+    };
+}
+
 %gallery
 {
     margin-left: 15px;
