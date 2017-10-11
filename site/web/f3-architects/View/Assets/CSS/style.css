@@ -4578,9 +4578,9 @@ footer {
 .gallery {
   margin-left: 15px;
   margin-right: 15px;
-  z-index: 0; }
+  z-index: 0;
+  visibility: hidden; }
   .gallery--animate > * {
-    visibility: hidden;
     left: 80%; }
   .gallery--animate .gallery__image {
     position: absolute;

@@ -53,11 +53,11 @@
     @extend %grid--col;
     @extend %grid--gutter-sm-bottom;
     z-index: 0;
+    visibility: hidden;
 
     &--animate
     {
         > * {
-            visibility: hidden;
             left: 80%;
         }
 
