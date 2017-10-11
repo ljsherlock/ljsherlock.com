@@ -84,7 +84,7 @@ define([ "Util", 'Config', 'Utils/Events', 'Lib/scrollReveal' ], function( Util,
 				};
 
 				window.sr = scrollReveal();
-				sr.reveal(".gallery > *, .header__contact", config);
+				sr.reveal(".gallery > *", config);
 
 			   sr.reveal(".header__contact", {
 				   origin: 'right',
@@ -98,7 +98,20 @@ define([ "Util", 'Config', 'Utils/Events', 'Lib/scrollReveal' ], function( Util,
 				   delay: 500
 			   });
 
-			}
+		   } else {
+			   var config = {
+				   viewFactor : 0.15,
+				   distance   : "50vw",
+				   origin: 'right',
+				   easing: 'ease',
+				   delay: 250,
+				   duration: 500,
+				   scale: 1,
+			   };
+
+			   window.sr = scrollReveal();
+			   sr.reveal(".gallery > *", config);
+		   }
 		},
     }
 
