@@ -17,6 +17,7 @@ before_install:
 
 install:
     - cd $THEME_DIR
+    - ls -la
     - composer install --no-dev --no-scripts --quiet --optimize-autoloader
 
 script:
