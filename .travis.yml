@@ -16,7 +16,8 @@ before_install:
   - npm install -g grunt
 
 install:
-    - cd $THEME_DIR && composer install --no-dev --no-scripts --quiet --optimize-autoloader
+    - cd $THEME_DIR
+    - composer install --no-dev --no-scripts --quiet --optimize-autoloader
 
 script:
   - cd $TRAVIS_BUILD_DIR
