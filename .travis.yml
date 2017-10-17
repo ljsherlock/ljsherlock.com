@@ -15,10 +15,8 @@ before_install:
   - phpenv rehash
   - npm install -g grunt
 
-install:
-    - "cd $THEME_DIR"
-    - composer install --no-dev --no-scripts --quiet --optimize-autoloader
-
 script:
+  - "cd $THEME_DIR"
+  - composer install --no-dev --no-scripts --quiet --optimize-autoloader
   - "cd $TRAVIS_BUILD_DIR"
   - phpcs --standard=ruleset.xml --extensions=php --ignore=site/web/wp/,web/app/plugins/,vendor/ -n -s .
