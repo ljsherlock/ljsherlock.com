@@ -6,7 +6,9 @@ php:
   - 5.6
 
 global:
-  - THEME_DIR=./web/app/themes/ljsherlock/
+  - THEME_DIR=./site/web/app/themes/ljsherlock/
+  - SITE_DIR=./site/
+  -TRELLIS_DIR=./trellis/
 
 before_install:
   - pear install pear/PHP_CodeSniffer
@@ -14,8 +16,8 @@ before_install:
   - npm install -g grunt
 
 install:
-    - composer install --no-dev --no-scripts --quiet --optimize-autoloader
     - cd $THEME_DIR
+    - composer install --no-dev --no-scripts --quiet --optimize-autoloader
     - npm install --devDependencies --silent --no-spin
 
 script:
