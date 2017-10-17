@@ -1,7 +1,0 @@
-{% macro tmpData( data, default ) %}
-   {% if data is defined and data is iterable %}
-      {% set tmpAttributes = default|merge(data) %}
-   {% else %}
-      {% set tmpAttributes = default %}
-   {% endif %}
-{% endmacro %}

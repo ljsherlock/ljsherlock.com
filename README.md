@@ -1,5 +1,8 @@
 # Wordpress Development
 
+[![Build Status](https://img.shields.io/travis/ljsherlock/js-stack.svg?style=flat-square)](https://travis-ci.org/ljsherlock/ljsherlock.com)
+[![Coverage Status](https://img.shields.io/coveralls/ljsherlock/ljsherlock.com.svg?style=flat-square)](https://coveralls.io/github/ljsherlock/ljsherlock.com?branch=master)
+
 ## Features
 
 * Local Development with Vagrant box and Remote Deployment using [Trellis](https://github.com/roots/trellis)
