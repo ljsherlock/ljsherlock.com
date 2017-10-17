@@ -4,23 +4,22 @@ php:
   - 7.1
   - 7.0
   - 5.6
+  
+global:
+  - THEME_DIR=./web/app/themes/ljsherlock/
 
-env:
-  global:
-    - THEME_DIR=./web/app/themes/ljsherlock/
+before_install:
+  - pyrus install pear/PHP_CodeSniffer
+  - phpenv rehash
+  - npm install -g grunt bower
+  - bundle install
 
-  before_install:
-    - pyrus install pear/PHP_CodeSniffer
-    - phpenv rehash
-    - npm install -g grunt bower
-    - bundle install
+install:
+    - composer install --no-dev --no-scripts --quiet --optimize-autoloader
+    - cd $THEME_DIR
+    - npm install --devDependencies --silent --no-spin
+    - bower install
 
-  install:
-      - composer install --no-dev --no-scripts --quiet --optimize-autoloader
-      - cd $THEME_DIR
-      - npm install --devDependencies --silent --no-spin
-      - bower install
-
-  script:
-    - cd $TRAVIS_BUILD_DIR
-    - phpcs --standard=ruleset.xml --extensions=php --ignore=web/wp/,web/app/plugins/,vendor/ -n -s .
+script:
+  - cd $TRAVIS_BUILD_DIR
+  - phpcs --standard=ruleset.xml --extensions=php --ignore=web/wp/,web/app/plugins/,vendor/ -n -s .
