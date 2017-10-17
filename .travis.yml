@@ -17,8 +17,6 @@ before_install:
 install:
     - composer install --no-dev --no-scripts --quiet --optimize-autoloader
     - cd $THEME_DIR
-    - npm install --devDependencies --silent --no-spin
-    - bower install
 
 script:
   - cd $TRAVIS_BUILD_DIR
