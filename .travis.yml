@@ -16,7 +16,6 @@ before_install:
   - npm install -g grunt
 
 script:
-  - "cd $THEME_DIR"
-  - composer install --no-dev --no-scripts --quiet --optimize-autoloader
-  - "cd $TRAVIS_BUILD_DIR"
-  - phpcs --standard=ruleset.xml --extensions=php --ignore=site/web/wp/,web/app/plugins/,vendor/ -n -s .
+  - composer -d ./site/web/app/themes/ljsherlock install --no-dev --no-scripts --quiet --optimize-autoloader
+  - cd $TRAVIS_BUILD_DIR
+  - phpcs --standard=ruleset.xml --extensions=php --ignore=site/web/wp/,site/web/app/plugins/, site/vendor -n -s .
