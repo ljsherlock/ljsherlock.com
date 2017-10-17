@@ -10,12 +10,8 @@ global:
   - SITE_DIR=./site/
   - TRELLIS_DIR=./trellis/
 
-before_install:
-  - pear install pear/PHP_CodeSniffer
-  - phpenv rehash
-  - npm install -g grunt
+install: composer install --no-dev --no-scripts --quiet --optimize-autoloader
 
-script:
-  - composer -d ./site/web/app/themes/ljsherlock install --no-dev --no-scripts --quiet --optimize-autoloader
-  - cd $TRAVIS_BUILD_DIR
-  - phpcs --standard=ruleset.xml --extensions=php --ignore=site/web/wp/,site/web/app/plugins/, site/vendor -n -s .
+before_script: composer require atoum/atoum
+
+script: vendor/bin/atoum
