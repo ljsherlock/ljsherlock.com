@@ -3,7 +3,6 @@ language: php
 php:
   - 7.1
   - 7.0
-  - 5.6
 
 global:
   - THEME_DIR=./site/web/app/themes/ljsherlock/
