@@ -23,3 +23,6 @@ vendor/*
 # Sass
 web/app/themes/*/MVC/.sass-cache/
 web/app/themes/*/MVC/.sass-cache/*
+
+#Trellis
+database_backup
