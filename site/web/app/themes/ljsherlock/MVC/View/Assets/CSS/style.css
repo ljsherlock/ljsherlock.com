@@ -5062,6 +5062,8 @@ main {
   letter-spacing: 0.07em;
   font-size: 1.5em;
   text-transform: uppercase; }
+  .nav--terms svg.nav__item, .nav--terms .svg.nav__item, .nav--terms .nav__item.icon {
+    fill-rule: evenodd; }
 
 @-webkit-keyframes slideDownHeader {
   0% {
