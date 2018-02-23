@@ -4,21 +4,31 @@ vault_mysql_root_password: stagingpw
 # Documentation: https://roots.io/trellis/docs/security/
 vault_users:
   - name: "{{ admin_user }}"
-    password: example_password
-    salt: "generateme"
+    password: "oLEcUgT2nzANpQdxGRMVqygE"
+    salt: "fLMyHuWdPgUsDzyALCchXXa2"
 
 # Variables to accompany `group_vars/staging/wordpress_sites.yml`
 # Note: the site name (`example.com`) must match up with the site name in the above file.
 vault_wordpress_sites:
-  example.com:
+  ljsherlock.com:
     env:
-      db_password: example_dbpassword
-      # Generate your keys here: https://roots.io/salts.html
-      auth_key: "generateme"
-      secure_auth_key: "generateme"
-      logged_in_key: "generateme"
-      nonce_key: "generateme"
-      auth_salt: "generateme"
-      secure_auth_salt: "generateme"
-      logged_in_salt: "generateme"
-      nonce_salt: "generateme"
+      db_password: "rKDBW9nyokcGACaBWXsUXTwH"
+      auth_key: "r$]Ik|B6K^^3K:BA%e?rUgm6&|{yXS0,4%`f)%uZ!Uu$%g>U,5/:kmX!+)&|,u9J"
+      secure_auth_key: ";doPkA|mRtTwHMY-:y,SuV!|_Th-PNs0cAR3/}RbV-!?Tc5(4W?U!_-r0%te:qN?"
+      logged_in_key: "*Y7R^|5]or[L5rBB7QAz+!CDWpwpaInw6pB0EqBjp^[n8%cu]hc}R@HP!9m`@U{@"
+      nonce_key: "#IXagEzRT/0H,kp_Hrvo5[}{Bj+y$:v5Y+WX`M3o^V[00zy.tp)r,ov2`}_W=4a+"
+      auth_salt: ".g0hyWJpwuj,0.Q1IFMnEhqdHJD7N2%+4lP3^M|Stk|zUI`<**1*xz%<!8(riD$R"
+      secure_auth_salt: "a7Qs`X>E&osdyLf^rf(@;E@4ziW.Cyq+T<$g=}1@9,h9:??-``y6|J{_bjK07erE"
+      logged_in_salt: "scYx0SoLT)Uj!Xm[Ti_Kf!RSN3$_C+S>L2uh^C#m1oPO/zi+=Dob?Y@[1ihI=b}>"
+      nonce_salt: "*F}kJS;RD(IUt[vIQh|y_^(#CNvTd}A#4nnEHy.oV9Cy>{}B3f+Eo?y@CS6Iyd(_"
+  f3architects.co.uk:
+    env:
+      db_password: "rKDBW9nyokcGACaBWXsUXTwH"
+      auth_key: "r$]Ik|B6K^^3K:BA%e?rUgm6&|{yXS0,4%`f)%uZ!Uu$%g>U,5/:kmX!+)&|,u9J"
+      secure_auth_key: ";doPkA|mRtTwHMY-:y,SuV!|_Th-PNs0cAR3/}RbV-!?Tc5(4W?U!_-r0%te:qN?"
+      logged_in_key: "*Y7R^|5]or[L5rBB7QAz+!CDWpwpaInw6pB0EqBjp^[n8%cu]hc}R@HP!9m`@U{@"
+      nonce_key: "#IXagEzRT/0H,kp_Hrvo5[}{Bj+y$:v5Y+WX`M3o^V[00zy.tp)r,ov2`}_W=4a+"
+      auth_salt: ".g0hyWJpwuj,0.Q1IFMnEhqdHJD7N2%+4lP3^M|Stk|zUI`<**1*xz%<!8(riD$R"
+      secure_auth_salt: "a7Qs`X>E&osdyLf^rf(@;E@4ziW.Cyq+T<$g=}1@9,h9:??-``y6|J{_bjK07erE"
+      logged_in_salt: "scYx0SoLT)Uj!Xm[Ti_Kf!RSN3$_C+S>L2uh^C#m1oPO/zi+=Dob?Y@[1ihI=b}>"
+      nonce_salt: "*F}kJS;RD(IUt[vIQh|y_^(#CNvTd}A#4nnEHy.oV9Cy>{}B3f+Eo?y@CS6Iyd(_"

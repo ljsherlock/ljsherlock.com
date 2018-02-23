@@ -66,6 +66,7 @@ class Single extends Base
                 'themeColour' => CMB2::myprefix_get_option( CMB2::$prefix . 'theme_colour'),
             ),
             'request_body' => $data,
+            'dateFormat' => 'j:m:y',
             'subtitle' => get_post_meta( $this->post->ID, CMB2::$prefix . 'subtitle', true ),
             'post' => $this->post,
             'terms' => $this->terms($this->post),
