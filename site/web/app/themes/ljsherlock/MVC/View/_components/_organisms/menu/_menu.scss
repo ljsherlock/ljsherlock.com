@@ -1,17 +1,20 @@
 %nav
 {
+  %nav__item
+  {
+    &%svg {
+      fill-rule: evenodd;
+    }
+  }
     &--terms
     {
-        %nav__item
-        {
-            @extend %btn--menu;
-            letter-spacing: 0.07em;
-            font-size: 1.5em;
-            text-transform: uppercase;
-            &%svg {
-              fill-rule: evenodd;
-            }
-        }
+      %nav__item
+      {
+        @extend %btn--menu;
+        letter-spacing: 0.07em;
+        font-size: 1.5em;
+        text-transform: uppercase;
+      }
     }
 }
 
