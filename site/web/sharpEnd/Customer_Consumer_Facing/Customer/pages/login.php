@@ -1,6 +1,6 @@
 <div class="container">
 
-	<div class="typography typography--b2c">
+	<div class="typography typography--b2c typography--center">
 
 		<h1>Welcome</h1>
 

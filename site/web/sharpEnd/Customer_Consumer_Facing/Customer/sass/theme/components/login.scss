@@ -2,7 +2,10 @@
   margin-top: 20%;
   position: absolute;
   bottom: 5%;
-  margin: 0 10%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  padding: 0 10%;
   %login__btns {
     > * {
       margin-bottom: 20px;

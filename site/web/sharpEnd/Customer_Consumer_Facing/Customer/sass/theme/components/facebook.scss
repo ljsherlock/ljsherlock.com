@@ -8,6 +8,7 @@
   %facebook__header {
     background-image: none;
 		background-color: $facebook-blue;
+    text-align: center;
   }
   %facebook__details {
     position: relative;
@@ -26,6 +27,7 @@
     margin: 0 auto;
   }
   %facebook__footer {
+    text-align: center;
     width: 100%;
     position: fixed;
     bottom: 0;
