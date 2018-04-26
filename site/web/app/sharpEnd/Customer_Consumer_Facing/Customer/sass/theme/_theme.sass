@@ -1,0 +1,186 @@
+
+@font-face
+	font-family: 'Avenir-Black'
+	src: url('../../fonts/Avenir-Black-03.ttf') format('truetype')
+
+@font-face
+	font-family: 'Avenir-Heavy'
+	src: url('../../fonts/Avenir-Heavy-05.ttf') format('truetype')
+
+@font-face
+	font-family: 'Avenir-Medium'
+	src: url('../../fonts/Avenir-Medium-09.ttf') format('truetype')
+
+@font-face
+	font-family: 'Avenir-Book'
+	src: url('../../fonts/Avenir-Book-01.ttf') format('truetype')
+
+html
+	font-family: 'Avenir-Book', sans-serif
+	color: $black
+
+body
+	&.loading
+		overflow: hidden
+	&.loaded
+		overflow: scroll !important
+
+h1
+	font-family: 'Avenir-Black', sans-serif
+	font-size: 36px
+	white-space: normal
+	padding: 0px 5%
+h2
+	font-family: 'Avenir-Heavy', sans-serif
+	font-size: 24px
+	white-space: normal
+	&.product
+		font-size: 36px
+		margin: 0 auto
+
+h3
+	font-family: 'Avenir-Heavy', sans-serif
+	font-size: 18px
+	white-space: normal
+
+h4
+	font-family: 'Avenir-Heavy', sans-serif
+	font-size: 18px
+	white-space: normal
+
+p
+	font-size: 14px
+	padding-bottom: 15px
+	font-weight: 400
+	&.blurb
+		font-size: 18px
+	&.store
+		margin: 0 auto
+		padding-bottom: 0px
+	&.price
+		font-size: 28px
+		margin: 0 auto
+
+.modal
+	top: 30% !important
+	width: 90%
+
+.modal-content
+	p.blurb
+		font-size: 14px
+		#product_name
+			text-transform: capitalize
+
+a
+	font-family: 'Avenir-Heavy', sans-serif
+	font-size: 14px
+	font-weight: 600
+	color: $black
+
+.top-title
+	font-size: 22px
+	font-weight: 400
+	letter-spacing: 0.2px
+	padding-bottom: 0px
+	line-height: 30px
+
+.popups-title
+	font-size: 18px
+	font-weight: 400
+
+.modal-content
+	p
+		font-weight: 400
+		text-transform: none
+		font-size: 12px
+		margin: 0px
+		padding: 0px
+
+
+
+@-webkit-keyframes spin
+	0%
+		-webkit-transform: rotate(0deg)
+		-ms-transform: rotate(0deg)
+		transform: rotate(0deg)
+
+	100%
+		-webkit-transform: rotate(360deg)
+		-ms-transform: rotate(360deg)
+		transform: rotate(360deg)
+
+
+@keyframes spin
+	0%
+		-webkit-transform: rotate(0deg)
+		-ms-transform: rotate(0deg)
+		transform: rotate(0deg)
+
+	100%
+		-webkit-transform: rotate(360deg)
+		-ms-transform: rotate(360deg)
+		transform: rotate(360deg)
+
+
+
+#language
+	margin: 50% auto
+	ul
+		li
+			border: 1px solid $grey
+			margin: 10px auto
+			p
+				margin: 0 auto
+				padding: 10px
+
+
+section.product-archive
+	ul
+		white-space: nowrap
+		overflow-y: hidden
+		overflow-x: scroll
+		-webkit-overflow-scrolling: touch
+		padding: 0px 20px
+
+		li
+			display: inline-block
+			max-width: 40%
+			padding: 0px 20px
+			img
+				width: 100%
+			h3
+				height: 40px
+.section_breaker
+	background: url('../../images/line.png') no-repeat
+	background-size: 90%
+	background-position: center
+	&:last-of-type
+		display: none
+
+#style
+	>img
+		max-width: 50%
+		height: auto
+.description
+	padding-bottom: 20px
+	p
+		padding-bottom: 0px
+		&.flow-text
+			font-weight: 400
+	strong
+		font-weight: 600
+
+#cancel
+	font-weight: 400
+
+#wrong_product
+	.row
+		margin-bottom: 0px
+
+.btn
+	width: 100%
+
+
+.card-action
+	.row
+		margin-bottom: 0

@@ -1,0 +1,22 @@
+%order {
+  > div {
+    margin: 0 auto;
+  }
+ %order__header {
+   img {
+     max-height: 130px;
+   }
+ }
+ %order__body {
+   width: 80%
+ }
+ %order__footer {
+   width: 50%;
+   margin-top: 15%;
+ }
+}
+
+.order { @extend %order; }
+.order__header { @extend %order__header; }
+.order__body { @extend %order__body; }
+.order__footer { @extend %order__footer; }
