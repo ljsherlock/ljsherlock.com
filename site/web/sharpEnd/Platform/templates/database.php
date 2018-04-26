@@ -5,7 +5,7 @@
 	// $db = "sharpend_univerre_platform-db";
 	$db = "lewisjsh_sharpend";
 	// mysqli_report(MYSQLI_REPORT_ALL);
-	$conn = new mysqli("46.29.93.70	", $user, $pswd, $db, 3306);
+	$conn = new mysqli("46.29.93.70", $user, $pswd, $db, 3306);
 	if ($conn->connect_error) {
     	end_output(1, "DBCONERR");
 	}
