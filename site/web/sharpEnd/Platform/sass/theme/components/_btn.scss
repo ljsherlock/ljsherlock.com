@@ -1,0 +1,26 @@
+%btn {
+  line-height: 50px;
+  height: auto;
+  border: 0 none;
+  box-shadow: none;
+  text-transform: capitalize;
+  &%btn--round {
+    border-radius: 5px;
+  }
+  &%btn--facebook {
+    background-color: $facebook-blue;
+  }
+  &%btn--io {
+    background-color: $green;
+  }
+  &%btn--cancel {
+    background-color: $white;
+    color: grey;
+  }
+}
+
+.btn { @extend %btn; }
+.btn--round { @extend %btn--round; }
+.btn--facebook { @extend %btn--facebook; }
+.btn--cancel { @extend %btn--cancel; }
+.btn--io { @extend %btn--io; }

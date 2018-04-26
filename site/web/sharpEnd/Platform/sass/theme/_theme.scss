@@ -1,0 +1,59 @@
+body{
+	font-family: avenir;
+}
+
+header{
+	margin: 0 auto;
+	text-align: center;
+}
+
+label{
+	display: block;
+}
+
+#overview-header{
+	margin:50px auto;
+}
+
+
+.upload-btn-wrapper {
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	width:20%;
+}
+
+.btn {
+	border: 2px solid #eee;
+	width:100%;
+	background-color: white;
+	padding: 8px 20px;
+	font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+}
+
+
+// Import Global styles
+@import "components/base";
+
+// Import all the components
+@import "components/header";
+@import "components/modal";
+@import "components/form";
+@import "components/btn";
+@import "components/icon";
+@import "components/typography";
+@import "components/nav";
+@import "components/order";
+@import "components/overview";
+@import "components/page-interaction";
+@import "components/tile";
+@import "components/stat";
+@import "components/plane";
+@import "components/breadcrumbs";

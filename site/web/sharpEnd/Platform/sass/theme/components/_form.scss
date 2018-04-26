@@ -1,0 +1,49 @@
+%form {
+  .col {
+      margin-bottom: 20px;
+  }
+  h5 {
+    font-weight: bold;
+  }
+  p {
+    text-align: center;
+  }
+}
+
+form, .form { @extend %form; }
+
+// Checkboxes
+[type=checkbox].filled-in:checked+label:after {
+  border: 2px solid $orange;
+  background-color: $orange;
+}
+
+[type=checkbox]:checked+label:before {
+  border-right-color:$orange;
+  border-bottom-color:$orange;
+}
+
+%login {
+  margin-top: 20%;
+}
+
+.login { @extend %login; }
+
+input[type=text], input[type=date], input[type=textarea], input[type=number], input[type=url], input[type=email]{
+	border: 1px solid #eee;
+	border-radius: 5px;
+	padding: 10px;
+}
+textarea {
+	height:70px;
+  border: 1px solid #eee
+}
+
+input[type=submit]{
+	display: block;
+	border: 2px solid #00d6be;
+	padding: 10px 15px;
+	font-size: 13px;
+	background-color: #fff;
+	font-weight: bolder;
+}

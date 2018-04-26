@@ -1,0 +1,42 @@
+%body {
+  background-color: $grey;
+}
+
+%main {
+  margin: 100px auto 0;
+  padding: 30px 20px 20px;
+  background-color: $white;
+  max-width: 1400px;
+  border-radius: 15px;
+  %main__content {
+    margin:auto;
+    margin-top: 80px;
+    width: 90%;
+    section {
+      margin-bottom: 3rem;
+    }
+  }
+}
+
+body { @extend %body; }
+
+main { @extend %main; }
+.main__content { @extend %main__content; }
+
+p {
+  font-size: 18px;
+  margin: 0;
+}
+
+strong {
+  font-weight: bold;
+}
+
+table {
+  thead {
+    background-color: $grey;
+  }
+  tr {
+    border-bottom: 1px solid $grey;
+  }
+}
