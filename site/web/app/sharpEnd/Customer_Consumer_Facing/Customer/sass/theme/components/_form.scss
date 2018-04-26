@@ -1,0 +1,29 @@
+%form {
+  p {
+    text-align: center;
+  }
+}
+
+form { @extend %form; }
+
+// Checkboxes
+[type=checkbox].filled-in:checked+label:after {
+  border: 2px solid $orange;
+  background-color: $orange;
+}
+
+[type=checkbox]:checked+label:before {
+  border-right-color:$orange;
+  border-bottom-color:$orange;
+}
+
+%login {
+  margin-top: 20%;
+}
+
+.login { @extend %login; }
+
+.input--large {
+  font-size: 18px !important;
+  text-align: center;
+}

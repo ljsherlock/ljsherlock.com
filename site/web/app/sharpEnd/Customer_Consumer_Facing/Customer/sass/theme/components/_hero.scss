@@ -1,0 +1,6 @@
+%hero {
+  position: relative;
+}
+
+.hero { @extend %hero; }
+.winner__hero { @extend %hero; }

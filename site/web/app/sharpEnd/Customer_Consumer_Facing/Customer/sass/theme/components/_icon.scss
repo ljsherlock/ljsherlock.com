@@ -1,0 +1,16 @@
+%icon {
+  display: block;
+  margin: auto;
+  &--sm {
+    width: 60px;
+  }
+  &--md {
+
+  }
+  &--lg {
+
+  }
+}
+
+.icon { @extend %icon; }
+.icon--sm { @extend %icon--sm; }
