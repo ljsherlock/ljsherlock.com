@@ -1,11 +1,11 @@
 <?php
 	// $user = "sharpend_univerre_platform";
-	$user = "sharpend_univerr";
-	$pswd = "S_^7gNMA+JhAw.w";
+	$user = "lewisjsh";
+	$pswd = "Enterthematrix0921";
 	// $db = "sharpend_univerre_platform-db";
-	$db = "sharpend_univerr";
+	$db = "lewisjsh_sharpend";
 	// mysqli_report(MYSQLI_REPORT_ALL);
-	$conn = new mysqli("localhost", $user, $pswd, $db);
+	$conn = new mysqli("46.29.93.70	", $user, $pswd, $db, 3306);
 	if ($conn->connect_error) {
     	end_output(1, "DBCONERR");
 	}
