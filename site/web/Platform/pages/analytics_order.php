@@ -50,7 +50,7 @@
 
     <div class="analytic__pending-orders">
 
-      <h5><strong>Pending Orders</strong></h5>
+      <h4><strong>Pending Orders</strong></h4>
 
       <div class="row">
 
@@ -86,7 +86,7 @@
     <div class="analytic__order-history">
 
 
-      <h5><strong>Order History</strong></h5>
+      <h4><strong>Order History</strong></h4>
 
       <div class="row">
 

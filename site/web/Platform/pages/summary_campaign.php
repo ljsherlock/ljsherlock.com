@@ -54,7 +54,7 @@
 			<div class="col offset-s2 col s4">
 				<ul>
 					<li><h5><strong>Type: </strong><?php echo $row['number_of_bottles']; ?></h5></li>
-					<li><h5><strong>URL: </strong><?php echo $row['campaign_URL']; ?></h5></li>
+					<li><h5><strong>URL: </strong>coop.io.tt/<?php echo $row['campaign_URL']; ?></h5></li>
 					<li><h5><strong>Product: </strong><?php echo $row['product']; ?></h5></li>
 				</ul>
 			</div>

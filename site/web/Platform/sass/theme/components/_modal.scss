@@ -1,13 +1,5 @@
-%overlay {
-  position: fixed;
-  left:0;
-  right:0;
-  background: rgba(0,0,0, 0.6);
-}
-
-.overlay { @extend %overlay; }
-
 %modal {
+  max-width: 600px;
   border-radius: 15px;
   background-color: $white;
   %modal__header {
@@ -25,6 +17,9 @@
     }
   }
   %modal__footer {
+    .row {
+      margin-bottom:0;
+    }
     text-align: center;
     a {
       color: $black !important;

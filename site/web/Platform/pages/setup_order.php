@@ -25,39 +25,56 @@
 
 		<div class="main__content">
 			<div class="box">
-				<table id="tableSelect">
-					<thead>
-						<tr>
-							<th></th>
-							<th>Order Number</th>
-							<th># of Palettes</th>
-							<th>Contact</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php foreach ($data as $key => $row) :
-							$order_number_ID = $row['order_number_ID'];
 
-							// Only Show Orders that have not yet been assigned an App
-							if ($row['app_created'] == False) :
-						?>
+				<div class="row">
 
-							<tr>
-								<td>
-									<input type="radio" name="order_number" id="order<?= $key ?>" value="<?php echo $order_number_ID; ?>">
-									<label for="order<?= $key ?>" value="<?php echo $order_number_ID; ?>"><span></span></label>
+					<div class="col s12">
 
-								</td>
-								<td class="order_number_item"><?php echo $order_number_ID; ?></td>
-								<td class="total_palettes_item"><?php echo $row['total_palettes']; ?></td>
-								<td class="contact_item"><?php echo $row['contact']; ?></td>
-							</td>
-						<?php endif; ?>
-						<?php endforeach; ?>
-					</tbody>
-				</table>
+						<table id="tableSelect">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Order Number</th>
+									<th># of Palettes</th>
+									<th>Contact</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($data as $key => $row) :
+									$order_number_ID = $row['order_number_ID'];
 
-				<a href="#order_selection" class="modal-trigger btn btn--io btn--round" type="submit" id="list-order-button" value="Confirm Order">Confirm Order</a>
+									// Only Show Orders that have not yet been assigned an App
+									if ($row['app_created'] == False) :
+								?>
+
+									<tr>
+										<td>
+											<input type="radio" name="order_number" id="order<?= $key ?>" value="<?php echo $order_number_ID; ?>">
+											<label for="order<?= $key ?>" value="<?php echo $order_number_ID; ?>"><span></span></label>
+
+										</td>
+										<td class="order_number_item"><?php echo $order_number_ID; ?></td>
+										<td class="total_palettes_item"><?php echo $row['total_palettes']; ?></td>
+										<td class="contact_item"><?php echo $row['contact']; ?></td>
+									</td>
+								<?php endif; ?>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+
+					</div>
+
+					<div class="col s12">
+						<div class="row">
+							<div class="col s2 offset-s10">
+								<p></p>
+									<a href="#order_selection" class="modal-trigger btn btn--io btn--round" type="submit" id="list-order-button" value="Confirm Order">Confirm Order</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
 
 			</div>
 			<?php endif; ?>
@@ -70,7 +87,7 @@
 
 						<div class=" modal__header">
 
-							<h3 class="card-title">Confirm App Details and Generate Palette IDs?</h3>
+							<h3 class="card-title"><strong>Confirm App Details and <br> Generate Palette IDs?</strong></h3>
 
 						</div>
 
@@ -78,26 +95,26 @@
 
 							<div class="form">
 
-								<div class="row">
-									<h5 class="col s3"><strong>Order Number:</strong></h5>
-									<div class="col s3">
+								<div class="row" style="margin-bottom:0;">
+									<h5 class="col s5"><strong>Order Number:</strong></h5>
+									<div class="col s5">
 										<input id="order_number_input" type="text" value=""/>
 									</div>
-									<span class="col s3">&nbsp;</span>
 								</div>
-								<div class="row">
-									<h5 class="col s3">#<strong> of Palettes:</strong></h5>
-									<div class="col s3">
-										<input id="total_palettes_input" type="text" value=""/>
+								<div class="row" style="margin-bottom:0;">
+									<h5 class="col s5">#<strong> of Palettes:</strong></h5>
+									<div class="col s5">
+										<div class="row" style="margin-bottom:0;">
+											<input id="total_palettes_input" class="col s3" type="text" value=""/>
+											<span class="col 9" id="total_palettes_input_span"></span>
+										</div>
 									</div>
-									<span class="col s3" id="total_palettes_input_span"></span>
 								</div>
-								<div class="row">
-									<h5 class="col s3"><strong>Contact:</strong></h5>
-									<div class="col s3">
+								<div class="row" style="margin-bottom:0;">
+									<h5 class="col s5"><strong>Contact:</strong></h5>
+									<div class="col s5">
 										<input id="contact_input" type="text" value=""/>
 									</div>
-									<span class="col s3">&nbsp;</span>
 								</div>
 
 							</div>

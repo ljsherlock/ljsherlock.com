@@ -1,5 +1,16 @@
 %order {
-
+  position: relative;
+  %order__item {
+    padding: 20px;
+  }
 }
 
 .order { @extend %order !optional; }
+.order__item { @extend %order__item !optional; }
+
+
+.order-item {
+  .order-item__icon {
+    padding: 20px;
+  }
+}

@@ -55,7 +55,7 @@
 
   <section class="analytic__page-interactions">
 
-      <h5><strong>Page Interactions</strong></h5>
+      <h4><strong>Page Interactions</strong></h4>
 
       <div class="row">
 
@@ -97,7 +97,7 @@
 
     <section class="analytic__interaction-loactions typography">
 
-      <h5><strong>Interaction Locations</strong></h5>
+      <h4><strong>Interaction Locations</strong></h4>
 
       <img src="assets/map.png" alt="Interaction Locations" class="responsive-img">
 

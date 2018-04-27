@@ -99,7 +99,7 @@
 			<div class="card-action modal__content typography typography--center">
 
 				<img class="responsive-img col s4 offset-s4" src="assets/bottle.png" />
-				<h4>Valais 2018</h4>
+				<h4><strong>Valais 2018</strong></h4>
 				<p>Create Campaign and Generate Bottle IDs?</p>
 
 			</div>

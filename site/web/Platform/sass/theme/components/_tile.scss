@@ -32,6 +32,9 @@
     padding-top: 80px;
     padding-bottom: 80px;
   }
+  &--centered {
+    line-height: 75px;
+  }
 }
 
 %tile-wrapper {
@@ -61,6 +64,7 @@
 .tile-wrapper--campaign { @extend %tile-wrapper--campaign; }
 .tile--lg { @extend %tile--lg; }
 .tile--sm { @extend %tile--sm; }
+.tile--centered { @extend %tile--centered; }
 
 // .box li a, #overview-header a,
 //  .listbrands li a {

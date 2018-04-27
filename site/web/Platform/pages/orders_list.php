@@ -46,7 +46,7 @@
 		<?php
 			foreach ($data as $row) {
 				echo '<div class="col">';
-				echo '<a class="tile tile--sm" href="summary.php?type=order&client_ID='. $client_ID .'&order_number_ID=' . $row['order_number_ID'] . '">';
+				echo '<a class="tile tile--sm tile--centered" href="summary.php?type=order&client_ID='. $client_ID .'&order_number_ID=' . $row['order_number_ID'] . '">';
 					echo '<div class="tile__content">';
 						// echo '<img src="assets/logo-coop.svg" class="responsive-img" />';
 						echo '<p>' . $row['order_number_ID'] . '</p>';

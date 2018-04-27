@@ -24,3 +24,10 @@
 .btn--facebook { @extend %btn--facebook; }
 .btn--cancel { @extend %btn--cancel; }
 .btn--io { @extend %btn--io; }
+
+button {
+  border: 0 none;
+  &:hover {
+    background-color: transparent;
+  }
+}

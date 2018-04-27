@@ -47,3 +47,12 @@ input[type=submit]{
 	background-color: #fff;
 	font-weight: bolder;
 }
+
+
+[type=radio].with-gap:checked+label:after, [type=radio]:checked+label:after {
+    background-color: #00d6be;
+}
+
+[type=radio].with-gap:checked+label:after, [type=radio].with-gap:checked+label:before, [type=radio]:checked+label:after {
+    border: 2px solid #00d6be;
+}
