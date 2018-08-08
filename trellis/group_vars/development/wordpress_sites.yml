@@ -5,7 +5,7 @@
 wordpress_sites:
   ljsherlock.com:
     site_hosts:
-      - canonical: ljsherlock.dev
+      - canonical: develop.ljsherlock.com
         # redirects:
         #   - www.ljsherlock.dev
     local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
@@ -13,7 +13,7 @@ wordpress_sites:
     multisite:
       enabled: false
     ssl:
-      enabled: true
+      enabled: false
       provider: self-signed
     cache:
       enabled: false
