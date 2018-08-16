@@ -1,0 +1,85 @@
+  {# pages/archive/post.twig #}
+
+{#
+   Archive Post Page
+   @param {Post Object} post
+#}
+
+{# Parameters #}
+{% set archivePosts = posts ?? null %}
+
+{# Variables #}
+{% set archivePostBem = [{ block: 'posts', modifier: ['post', posts.category_term_obj.slug] }] %}
+{% set archivePostPostsTemplate = 'components/article--post.twig' %}
+
+{# Output #}
+{% extends ['templates-app/templates/app.twig', 'templates/app.twig'] %}
+
+{% import 'macros.twig' as mcro %}
+
+   {% block app %}
+
+      <div class="archive posts--post posts--{{posts.category_term_obj.slug}}">
+
+        <div class="block block--green block--curvy wrap--break-md">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              <h1>{{ posts.category_term_obj.taxonomy }}</h1>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+              {% if posts.category_term_obj.name %}
+                <h2>{{ posts.category_term_obj.name }}</h2>
+              {% endif %}
+              {% if posts.category_term_obj.description %}
+                <h2>{{ posts.category_term_obj.description }}</h2>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        {% for post in posts.postsArray %}
+
+          {% if loop.index == 1 %}
+
+            {% include 'components/post--content-grid.twig' with { post: post } %}
+
+          {% elseif loop.index is even %}
+
+            <div class="grid-desktop grid-desktop--row grid-desktop--gutter-md-right
+                        grid-tablet grid-tablet--row grid-tablet--gutter-md-right">
+              <div class="grid-desktop__50-of-100
+                          grid-tablet-of-100">
+                {% include 'components/post--content.twig' with { post: post } %}
+              </div>
+
+          {% elseif loop.index is odd %}
+
+              <div class="grid-desktop__50-of-100
+                          grid-tablet-of-100">
+                {% include 'components/post--content.twig' with { post: post } %}
+              </div>
+            </div>
+
+          {% endif %}
+
+        {% endfor %}
+
+      </div>
+
+      <div class="grid-mobile__100-of-100 grid-tablet__100-of-100 grid-desktop__100-of-100 flex flex--center">
+        <a class="btn--load-more" href="#load-more" id="loadMore"
+        data-total="{{posts.found_posts}}"
+        data-more="{{posts.more}}"
+        data-offset="{{posts.posts_per_page}}"
+        data-posts-per-page="{{ (posts.ajax_posts_per_page) ? posts.ajax_posts_per_page : posts.posts_per_page }}"
+        data-post-type="{{posts.post_type_obj.name}}"
+        data-taxonomy="{{posts.taxonomy_obj.name}}"
+        data-category="{{posts.category_term_obj.slug}}"
+        data-tag="{{posts.tag_term_obj.slug}}"
+        data-term="{{posts.term_obj.slug}}">
+          <span class="btn__text">Load More</span>
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 23.04 21.12"><defs><style>.cls-1{fill:none;}.cls-2{clip-path:url(#clip-path);}.cls-3{clip-path:url(#clip-path-2);}</style><clipPath id="clip-path"><path class="cls-1" d="M20.25,14.65V.65h-14S1.32.71,1.32,5.6V19.77H15.13s5.12-.06,5.12-5.12Zm-.24,0a4.38,4.38,0,0,1-2.43,4.27,6.16,6.16,0,0,1-2.45.62H1.56V5.6A4.23,4.23,0,0,1,3.9,1.48,6,6,0,0,1,6.26.89H20V14.65Zm-8.23-3.44h4v-2h-4v-4h-2v4h-4v2h4v4h2v-4Z"/></clipPath><clipPath id="clip-path-2"><rect class="cls-1" x="1.32" y="0.65" width="18.93" height="19.12"/></clipPath></defs><title>Asset 10</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><g class="cls-2"><g class="cls-3"><image width="48" height="44" transform="matrix(0.48, 0, 0, -0.48, 0, 21.12)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAAtCAIAAACI6hSrAAAACXBIWXMAABcRAAAXEQHKJvM/AAAAsUlEQVRYR+2ZMQ7CMBAEb617Rh7H03gcr4CAKcAuKC5uckxx0ySythjtWVasqPduMNpR4A/456HrLc6dR79sPys+Xl6GYTjpEcZSmU73MJYKuqdyCplOexhLBd0T0MlqdiHT6RnGUkHPDtgT0KkBv1Uc2JMD97gDZ9cMdHsZdwTxeiLeEYizI55PIvYknpMRe4pTuRD3OKqgL+W0Bvh8kuJYKsTZldMa5bQG0Un1b2OJN255Jmg70pCrAAAAAElFTkSuQmCC"/></g></g></g></g></svg>
+        </a>
+      </div>
+
+   {% endblock %}

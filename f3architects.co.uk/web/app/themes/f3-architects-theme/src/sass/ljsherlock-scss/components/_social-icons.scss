@@ -1,0 +1,21 @@
+%nav--social-media
+{
+    @extend %grid--gutter-sm-right;
+    %nav__item
+    {
+        fill: $silverTree;
+        &:hover
+        {
+            fill: lighten($silverTree, 25%);
+        }
+        %svg
+        {
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+}
+
+.nav--social-media { @extend %nav--social-media; }
+.nav__item { @extend %nav__item; }
+// .icon { @extend %svg; }

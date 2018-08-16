@@ -1,0 +1,29 @@
+
+%testimonial {
+  margin:0;
+  @extend %block;
+  @extend %block--curvy;
+  @extend %block--white;
+  text-align: center;
+  @extend %grid;
+  @extend %grid--col;
+
+  %testimonial__content {
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+    %testimonial__author {
+      @extend %h2;
+    }
+    %testimonial__author-description {
+      @extend %p;
+    }
+  }
+  %testimonial__footer {
+
+  }
+}
+
+.testimonial { @extend %testimonial; }
+.testimonial__content { @extend %testimonial__content; }
+// .testimonial__footer { @extend %testimonial__footer; }

@@ -1,21 +1,33 @@
-# Documentation: https://roots.io/trellis/docs/remote-server-setup/
+# Documentation: https://roots.io/trellis/docs/local-development-setup/
 # `wordpress_sites` options: https://roots.io/trellis/docs/wordpress-sites
-# Define accompanying passwords/secrets in group_vars/production/vault.yml
+# Define accompanying passwords/secrets in group_vars/development/vault.yml
 
 wordpress_sites:
   ljsherlock.com:
     site_hosts:
       - canonical: ljsherlock.com
-        redirects:
-          - www.ljsherlock.com
-    local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
-    repo: git@github.com:ljsherlock/ljsherlock.com.git # replace with your Git repo URL
+    local_path: ../ljsherlock.com # path targeting local Bedrock site directory (relative to Ansible root)
+    repo: git@github.com:example/example.com.git # replace with your Git repo URL
     repo_subtree_path: site # relative path to your Bedrock/WP directory in your repo
     branch: master
     multisite:
       enabled: false
     ssl:
       enabled: true
+      provider: letsencrypt
+    cache:
+      enabled: true
+  f3architects.co.uk:
+    site_hosts:
+      - canonical: f3architects.ljsherlock.com
+    local_path: ../f3architects.co.uk # path targeting local Bedrock site directory (relative to Ansible root)
+    repo: git@bitbucket.org:ljsherlock/f3architects.co.uk.git
+    repo_subtree_path: site # relative path to your Bedrock/WP directory in your repo
+    branch: master
+    multisite:
+      enabled: false
+    ssl:
+      enabled: false
       provider: letsencrypt
     cache:
       enabled: true

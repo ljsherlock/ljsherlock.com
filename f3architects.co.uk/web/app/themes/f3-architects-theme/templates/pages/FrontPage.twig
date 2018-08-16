@@ -1,0 +1,73 @@
+{% extends ['templates-app/templates/app.twig', 'templates/app.twig'] %}
+
+   {% block app %}
+
+      {% import 'macros.twig' as mcro %}
+
+      <section id="caption">
+          <div class="gallery">
+
+              {% for homepagePost in homepagePosts %}
+
+                {% set count = loop.index %}
+
+                {% if homepagePost.media == 'video' and homepagePost.post.projectVideo %}
+
+                  <div class="gallery__item gallery__item--image gallery__item--{{ count }} gallery__item--{{ homepagePost.size }}">
+                    <article class="{{homepagePost.post.class}}">
+                      {% include 'components/video-block.twig' with {
+                        sources: homepagePost.post.projectVideo,
+                        icon: 'icon-play',
+                        bem: [{ block: 'project-video' }] }
+                      %}
+                    </article>
+                  </div>
+
+                {% elseif homepagePost.media == 'link' %}
+
+                    <a id="{{ homepagePost.link.slug }}" href="{{ homepagePost.link.permalink }}" class="gallery__item gallery__item--btn gallery__item--{{ count }} btn--f3">{{ homepagePost.link.name }}</a>
+
+                {% elseif homepagePost.media == 'content' %}
+
+                  <div class="gallery__item gallery__content gallery__item--{{ count }} block block--green block--curvy">
+                    <article class="column typography">
+                      {{ homepagePost.post.content }}
+                    </article>
+                  </div>
+
+                {% else %}
+
+                  <div class="gallery__item gallery__item--image gallery__item--{{ count }} gallery__item--{{ homepagePost.size }} gallery__item--{{ homepagePost.orientation }}">
+                    <a href="{{homepagePost.post.link}}">
+                    <article class="block--curvy {{ homepagePost.post.class }}">
+                      <header class="header-content">
+
+                        {% if homepagePost.media == 'customImage' %}
+                          {% set thumbnails = homepagePost.customImage %}
+                        {% else %}
+                          {% set thumbnails = homepagePost.post.post_thumbnails %}
+                        {% endif %}
+
+                        {% if homepagePost.orientation == 'portrait' %}
+                          {{ attribute(thumbnails, 'portrait_3_column--desktop').img }}
+                        {% else %}
+                          {{ attribute(thumbnails, 'frontPage_' ~ homepagePost.size ).img }}
+                        {% endif %}
+
+                      </header>
+                      <div class="entry-content">
+                        <h2>{{ homepagePost.post.title }}</h2>
+                        <h5>View Project</h5>
+                      </div>
+                    </article>
+                    </a>
+                  </div>
+
+                {% endif %}
+
+              {% endfor %}
+
+          </div>
+      </section>
+
+   {% endblock %}

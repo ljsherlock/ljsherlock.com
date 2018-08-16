@@ -1,0 +1,326 @@
+/**
+* @desc         Base typography styles.
+* @name         Typography
+* @author
+* @tested
+* @requires     variables.scss
+*/
+
+/*---------------------------------------------*\
+*   Typographic Classes
+/*---------------------------------------------*/
+
+    %link {
+        &:link {
+          color: $link-color;
+          text-decoration: none;
+        }
+        &:visited {
+          color: $link-visited-color;
+        }
+        &:hover, &:visited:hover {
+          color: $link-hover-color;
+          text-decoration: underline;
+        }
+    }
+
+    %italic { font-style: italic; }
+    %bold { font-weight: bold; }
+    %light { font-weight: lighter; }
+
+    %unordered-list { list-style-type: disc; }
+    %ordered-list { list-style: decimal; }
+
+    .italic { @extend %italic; }
+    .bold { @extend %bold; }
+    .light { @extend %light; }
+
+    .ordered-list { @extend %ordered-list; }
+    .unordered-list { @extend %unordered-list; }
+
+/*---------------------------------------------*\
+*   PLumber Defaults
+/*---------------------------------------------*/
+
+@include plumber-set-defaults(
+    $grid-height: 1rem,
+    $baseline: 0.158203,
+    $font-size: 1.75,
+    $line-height: 3,
+    $leading-top: 1,
+    $leading-bottom: 2
+);
+
+%html {
+    font-size: #{$gh}px;
+    font-family: $body-font;
+    font-weight: 400;
+    color: $black;
+}
+
+::selection {
+    background: $silverTree;
+    color: white;
+}
+
+/*---------------------------------------------*\
+*   Base Rules
+/*---------------------------------------------*/
+
+%body {
+
+  %p {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  %address {
+    font-style: normal;
+  }
+
+  %datetime {
+    display: block;
+    letter-spacing: 0.6rem;
+    text-transform: uppercase;
+    @include plumber(
+      $font-size: 1.5,
+      $line-height: 2,
+      $leading-top: 0,
+      $leading-bottom: 0,
+    );
+  }
+
+  %span {
+    @include plumber(
+      $font-size: 1.25,
+      $leading-top: 0,
+      $leading-bottom: 0
+    );
+  }
+
+  %a {
+    font-size: inherit;
+    color: inherit;
+    &:hover {
+        color: $silverTree;
+    }
+    // &:active {
+    //     color: $silverTree;
+    // }
+    // &:visited {
+    //     color: darken($silverTree, 20%);
+    // }
+    &%green {
+      color: $silverTree;
+    }
+    &%underline {
+      text-decoration: underline;
+    }
+  }
+
+  %headers {
+    font-family: $heading-font;
+    margin-top: 0;
+    margin-bottom: 0;
+    %a {
+      font-size: inherit;
+      font-family: inherit;
+    }
+  }
+
+  %h1 {
+    @extend %headers;
+    text-transform: uppercase;
+    font-weight: 700; // Bold
+    letter-spacing: 2px;
+    font-size: 2rem;
+  }
+
+  %h2 {
+    @extend %headers;
+    text-transform: none;
+    font-weight: 100; // Thin
+    // text-transform: capitalize;
+    letter-spacing: 0px;
+    font-size: 2.8rem // 20px
+  }
+
+  %h3 {
+    @extend %headers;
+    text-transform: none;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+
+  %h4 {
+    @extend %headers;
+    text-transform: none;
+    font-weight: 600; // Seni Bold
+    font-size: 1.7;
+  }
+
+  %h5 {
+    @extend %headers;
+    text-transform: none;
+    font-weight: 100; // Regular
+    font-size: 1.7rem;
+  }
+}
+
+/*---------------------------------------------*\
+* Fromatted Rules
+*
+* Full formatted type
+/*---------------------------------------------*/
+
+%typography {
+
+  // white on green
+  &--white {
+    %a:hover {
+      color: black;
+    }
+  }
+
+  //
+  &--black {
+    %a:hover {
+      color: $silverTree;
+    }
+  }
+
+  > {
+    font-size: #{$gh}px;
+
+    // background-image: linear-gradient(to top, rgba(242, 201, 76, 0.5) 0, rgba(242, 201, 76, 0.5) 1px, transparent 1px);
+    // background-size: 100% #{$gh}px;
+
+  	@include plumber-set-defaults(
+  		$font-size: 2,
+  		$line-height: 4,
+  		$baseline: $body-baseline,
+  		$grid-height: 1rem,
+  	);
+
+    %pre {
+      font-size: 1.5rem;
+      padding: 1.5rem;
+      background: whitesmoke;
+      white-space: pre-wrap; /* Since CSS 2.1 */
+      word-wrap: break-word;
+    }
+
+    %a {
+      text-decoration: underline;
+      font-size: 12px;
+    }
+
+    %p {
+      @include plumber(
+        $font-size: 2,
+        $line-height: 4,
+        $leading-top: 0,
+        $leading-bottom: 3
+      );
+      %a {
+        font-size: inherit;
+        color: $link-color;
+        @include transition(.3s color ease);
+        &:hover {
+          color: lighten($link-color, 30%);
+        }
+      }
+    }
+
+    %headers {
+      margin-bottom: 0.5rem;
+    }
+
+    %h2 {
+      @extend %h2;
+      @extend %headers;
+      @include plumber(
+        $baseline: $heading-baseline,
+        $font-size: 2.8, // 20px
+        $line-height: 4, // 28px
+        $leading-top: 0,
+        $leading-bottom: 2,
+      );
+  	}
+
+  	%h1 {
+      @extend %h1;
+      @extend %headers;
+      @include plumber (
+        $baseline: $heading-baseline,
+        $font-size: 2, // 14px
+        $line-height: 3, // 16.8
+        $leading-top: 0,
+        $leading-bottom: 2,
+      );
+  	}
+
+  	%h3 {
+      @extend %h3;
+      @extend %headers;
+      @include plumber(
+        $font-size: 2, // 14px
+        $line-height: 3, // 21px
+        $baseline: $heading-baseline,
+      );
+  	}
+
+    %h4 {
+      @extend %h4;
+      @extend %headers;
+      @include plumber(
+        $font-size: 1.7, // 12px
+        $line-height: 2,
+        $baseline: $heading-baseline,
+      );
+  	}
+
+    %h5 {
+      @extend %h5;
+      @extend %headers;
+      @include plumber(
+        $font-size: 1.7, // 12px
+        $line-height: 2,
+        $baseline: $heading-baseline,
+      );
+  	}
+  }
+}
+
+/*---------------------------------------------*\
+*   Output
+/*---------------------------------------------*/
+
+  article.column {
+    @include desktop() {
+      column-count: 2;
+      column-gap: 30px;
+    }
+  }
+
+  html { @extend %html; }
+  body { @extend %body; }
+  p, .p { @extend %p; }
+  address { @extend %address; }
+  a, .a { @extend %a; }
+  h1, .h1 { @extend %h1; }
+  h2, .h2 { @extend %h2; }
+  h3, .h3 { @extend %h3; }
+  h4, .h4 { @extend %h4; }
+  h5, .h5 { @extend %h5; }
+
+  pre {  @extend %pre; }
+  // span { @extend %span; }
+  time { display: block; }
+
+  .typography { @extend %typography; }
+  .typography--white { @extend %typography--white; }
+  .typography--black { @extend %typography--black; }
+  .datetime { @extend %datetime; }
+  .green { @extend %green;}
+  .green { @extend %underline;}

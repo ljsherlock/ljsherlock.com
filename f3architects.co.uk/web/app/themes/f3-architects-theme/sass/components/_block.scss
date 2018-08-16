@@ -1,0 +1,50 @@
+/*---------------------------------------------*\
+*    ACCORDION
+/*---------------------------------------------*/
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %block {
+        &--green {
+          background-color: $silverTree;
+          color: white;
+          .nav--social-media {
+            .nav__item {
+              fill: white;
+              &:hover {
+                fill: black;
+              }
+            }
+          }
+          a {
+            &:hover {
+              color: black;
+            }
+          }
+        }
+
+        &--white {
+          background-color: white;
+          color: $black;
+        }
+
+        &--curvy {
+          border-radius: 15px 0;
+          overflow: hidden;
+        }
+    }
+
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    .block { @extend %block; }
+
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/
+    .block--green { @extend  %block--green };
+    .block--white { @extend  %block--white };
+    .block--curvy { @extend  %block--curvy };

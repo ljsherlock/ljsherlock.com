@@ -1,0 +1,206 @@
+/*---------------------------------------------*\
+ *  BASE
+ *
+ *  1. Section Breaks
+ *  2. Layout
+ *  3. Media
+ *  4. Grid
+ *  5. Typography
+ *  6. Colours
+ *  7. Components
+ *
+/*---------------------------------------------*/
+
+/*---------------------------------------------*\
+ *    1. Media
+/*---------------------------------------------*/
+
+  $media: (
+      mobile: 0,
+      tablet: 768,
+      desktop: 1024,
+  );
+
+/*---------------------------------------------*\
+ *    2. Layout
+/*---------------------------------------------*/
+
+$layout : (
+    padding: 25,
+    wrap : (
+        padding: 15,
+        mobile: (
+            width: 100%,
+            squash: (
+                sm: 0
+            )
+        ),
+        tablet: (
+            width: 100%,
+            squash: (
+                sm: 100,
+                md: 75,
+                rg: 50
+            )
+        ),
+        desktop: (
+            width: 1140,
+            squash: (
+                sm: 480,
+                md: 300,
+                rg: 200
+            )
+        ),
+        squash : (
+            value: 50,
+        )
+    ),
+);
+
+/*---------------------------------------------*\
+ *    3. Section Breaks
+/*---------------------------------------------*/
+
+$wrap : (
+    mobile: 0.5,
+    tablet: 0.75,
+    padding: (
+        sm: 20,
+        md: 30,
+        lg: 40,
+        xlg: 60,
+    ),
+);
+
+  $wrap-padding--xs: 1;
+  $wrap-padding--sm: 2;
+  $wrap-padding--md: 3;
+  $wrap-padding--lg: 4;
+  $wrap-padding--xlg: 10;
+
+  // device multipliers
+  $wrap-mobile-multiplier: 0.50;
+  $wrap-tablet-multiplier: 0.75;
+
+
+/*---------------------------------------------*\
+ *    4. Grid
+/*---------------------------------------------*/
+
+    $grid : (
+        gutter : (
+            xs: 2.5,
+            sm : 5,
+            md : 17.5,
+            lg : 20,
+            xlg : 30
+        )
+    );
+
+/*---------------------------------------------*\
+ *    5. Colours
+/*---------------------------------------------*/
+
+
+    $black: #000000;
+    $silverTree: #1fae89;
+    $mercury: #E6E6E6;
+
+    $blue: #009ee3;
+    $green: #1fae89;
+    $white: #fff;
+
+    $link-color: $black;
+    $link-hover-color: $silverTree;
+    $link-visited-color: darken($link-hover-color, 25%);
+    $primary-btn-color: $silverTree;
+
+    $base-color: $mercury;
+
+/*---------------------------------------------*\
+ *    6. Typography
+/*---------------------------------------------*/
+
+  $type_size : (
+      scale: '1.333',
+      base: 0.9375,
+      size: (
+          base: 16,
+      )
+  );
+
+  $type : (
+      scale: 1.333,
+      base: 1,
+      root: 8,
+      margins: (
+          heading: 1em 0 0.5em,
+          content: 1em 0,
+      )
+  );
+
+  $adaptive-font : (
+      scale: 1.4,
+      min: 6,
+      max: 8,
+      screen: (
+          min: 360,
+          max: map_get($media, tablet),
+      ),
+  );
+
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:100,400,600,700');
+
+  $heading-baseline: 0.141500;
+  $heading-font: ('Montserrat', sans-serif);
+
+  $body-baseline: 0.144500;
+  $body-font: ('Montserrat', sans-serif);
+
+  $gh: 7;
+
+/*---------------------------------------------*\
+ *    7. Components
+/*---------------------------------------------*/
+    /*---------------------------------------------*\
+     *    1. Buttons
+    /*---------------------------------------------*/
+
+        $btn: (
+            icon: (
+                dimensions: (
+                    width: 16px,
+                    height: 16px
+                )
+            ),
+            font-size: 13px,
+            line-height: 15px,
+            padding: (
+                side: 20px,
+                )
+
+        );
+    /*---------------------------------------------*\
+     *    2. Blocks
+    /*---------------------------------------------*/
+
+        $block: (
+            padding: (
+                xs: 10px,
+                sm: 15px,
+                md: 20px,
+                lg: 25px
+            ),
+            font-size: 13px,
+            line-height: 15px
+        );
+
+    /*---------------------------------------------*\
+     *    3. Icons
+    /*---------------------------------------------*/
+
+        $icon: (
+            sm: 15,
+            md: 20,
+            lg: 30
+        );

@@ -1,0 +1,92 @@
+@include keyframes( slideDownHeader )
+{
+    0%
+    {
+        top: -20vh;
+    }
+    100%
+    {
+        top: 0;
+    }
+};
+
+%header
+{
+  max-width: 1140px;
+  margin: auto;
+    padding-top: 45px;
+    padding-bottom: 30px;
+    position: relative;
+    top: 0;
+    @include transition( top .5s ease-out );
+    top: -25%;
+    top: -25vh;
+    %header__logo
+    {
+        z-index: 1011;
+        @include flex-shrink(0);
+        @include mobile()
+        {
+            width: 50px;
+            height: 50px;
+        };
+    }
+
+    %header__grid
+    {
+        position: relative;
+        height: 100%;
+        @extend %grid;
+        @extend %flex--just-space-between;
+    }
+
+    &--animation-loaded {
+      @include animation( slideDownHeader 0.5s ease-in 1.45s forwards );
+    }
+
+    &--dark {
+      %svg {
+        fill: $black;
+      }
+      %hamburger %hamburger__layer {
+        background-color: white;
+      }
+    }
+
+    @include mobile() {
+        position: fixed;
+        top: 0;
+        left: 0; right: 0;
+        padding:10px 20px;
+        background: $silverTree;
+        width: 100%;
+        z-index: 40;
+        &%header--fade-in {
+            height: 100%;
+            background-color: $silverTree;
+            @include animation( .5s ease menu-fade-in forwards );
+        }
+    };
+
+    &--scroll-up
+    {
+        position: fixed;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        width: calc( 100% - 80px );
+        top: 0;
+
+        %logo
+        {
+            @extend %icon--sm;
+        }
+    }
+}
+
+header.site-header { @extend %header; }
+.header--dark { @extend %header--dark; }
+.header--animation-loaded { @extend %header--animation-loaded; }
+.header--scroll-up { @extend %header--scroll-up; }
+.header__grid { @extend %header__grid; }
+.logo { @extend %header__logo; }
+.header--fade-in { @extend %header--fade-in; }

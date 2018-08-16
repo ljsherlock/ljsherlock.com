@@ -1,0 +1,96 @@
+{% extends ['templates-app/templates/app.twig', 'templates/app.twig'] %}
+
+{% import 'macros.twig' as mcro %}
+
+   {% block app %}
+
+     <section class="wrap--break-sm">
+       <div class="contact-details block block--green block--curvy grid-desktop grid-desktop--row grid-desktop--gutter-sm-right">
+         <div class="grid-desktop__50-of-100">
+            <h1>{{post.title}}</h1>
+          </div>
+          <div class="grid-desktop__50-of-100 typography--white">
+
+              <div class="grid grid--col grid--gutter-lg-bottom wrap--break-xlg">
+                  <a class="btn" target="_blank" href="http://maps.google.com/?q=Suite 4 5 Rochester Mews London NW1 9JB">
+                    <address class="h2">
+                      {% for item in global.company_address %}
+                          {{ item.line }}<br>
+                      {% endfor %}
+                    </address>
+                  </a>
+                <div class="contact">
+                  <a class="btn h2 " href="tel:{{ global.telephone }}">{{ global.telephone }}</a><br>
+                  <a class="btn h2" href="mailto:{{ global.email }}">{{ global.email }}</a>
+                </div>
+              </div>
+              {% include 'components/social-icons.twig' with { icons: global.social_media, bem: [ {block: 'grid', modifier: ['gutter-md-right']} ] } %}
+          </div>
+        </div>
+     </section>
+
+      {% block page %}
+        <section class="wrap--break-sm">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                {{ post.post_thumbnails.landscape_2_column__media.img }}
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div id="map" class="map">
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="block block--green block--curvy">
+            <div class="row">
+              <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 typography">
+                <h1>Jobs</h1>
+              </div>
+              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 typography">
+                {{ jobsPage.post.content }}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="wrap--break-sm">
+          {% for item in post.grid_images %}
+            {% for image in item.images %}
+                {% set innerHTML %}
+                  <div class="grid-desktop__{{ 100 / item.images|length }}-of-100
+                  grid-tablet__100-of-100 grid-mobile__100-of-100">
+                    {% if item.images|length == 1 %}
+                      {{image.landscape_1_column__media.img}}
+                    {% elseif item.images|length == 2 %}
+                      {{image.landscape_2_column__media.img}}
+                    {% endif %}
+                  </div>
+                {% endset %}
+
+                {% if loop.first %}
+                  {% set grid_class = 'grid-tablet grid-tablet--col grid-tablet--gutter-lg-bottom grid-mobile grid-mobile--col grid-mobile--gutter-lg-bottom' %}
+
+                  {% if item.images|length > 1 %}
+                    {% set grid_class = grid_class ~ ' grid-desktop grid-desktop--row grid-desktop--gutter-lg-right grid-desktop--gutter-lg-bottom' %}
+                  {% else %}
+                    {% set grid_class = grid_class ~ ' grid-desktop grid-desktop--row grid-desktop--gutter-lg-bottom' %}
+                  {% endif %}
+
+                  <div class="{{grid_class}}">
+                    {{ innerHTML }}
+                {% elseif loop.last %}
+                    {{ innerHTML }}
+                  </div>
+                {% else %}
+                  {{ innerHTML }}
+                {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </section>
+
+      {% endblock %}
+
+   {% endblock %}

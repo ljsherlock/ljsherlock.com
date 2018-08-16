@@ -1,0 +1,57 @@
+{# pages/job.twig #}
+
+{#
+   Page
+   @param {Post Object} post
+#}
+
+{# Parameters #}
+
+
+{# Variables #}
+
+{# Output #}
+{% extends ['templates-app/templates/page.twig', 'templates/page.twig'] %}
+
+{% import 'macros.twig' as mcro %}
+
+   {% block page %}
+
+      <div class="jobs">
+
+        {% for post in posts.postsArray %}
+          {% embed 'components/post--content.twig' with { article: post, bem: [] } %}
+            {% block articleInnerHTML %}
+
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <div class="article-job__header">
+                    <div class="job__title wrap--break-xlg">
+                      <h3 class="h1">{{ post.title }}</h3>
+                    </div>
+
+                    <div class="job__apply wrap--break-xlg">
+                      <p>Please send CV and covering letter<br> to
+                      <a class="underline" href="mailto:{{global.vacancy_email}}">{{ global.vacancy_email }}</a> </p>
+                    </div>
+
+                    <div class="job__share wrap--break-md">
+                      {% include 'components/social-share-icons.twig' with { bem: [{ block: 'grid', modifier: ['gutter-md-right']} ], link: post.link, text: post.title } %}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="article-job__content typography">
+                    {{ post.content }}
+                  </div>
+                </div>
+              </div>
+
+
+            {% endblock %}
+          {% endembed %}
+        {% endfor %}
+
+      </div>
+
+   {% endblock %}

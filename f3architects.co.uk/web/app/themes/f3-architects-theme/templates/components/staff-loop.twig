@@ -1,0 +1,65 @@
+{# people loop #}
+
+{# components/people/people.twig #}
+
+{#
+   Page
+   @param {Post Object} post
+#}
+
+{# Parameters #}
+{% set peoplePosts = posts ?? null %}
+
+{# Variables #}
+
+{# Output #}
+
+{% if peoplePosts.postsArray %}
+
+  {% for post in peoplePosts.postsArray %}
+
+    {% if loop.first %}
+      <div class="row"> {# open row #}
+    {% endif %}
+
+    <div class="archive__post">
+      {% embed 'components/post--content.twig' with { post: post } %}
+        {% block articleInnerHTML %}
+
+          {{postContentPost.post_thumbnails.gallery_image__media.img}}
+
+          <div class="entry-content">
+             <div class="staff_desc typography">
+               <h3 class="h1">{{ post.title }}</h3>
+               <h4 class="h5">{{ post.position.0.name }}</h4>
+             </div>
+             <div class="staff__key-projects typography">
+               {% if post.key_projects %}
+                 <h4>Key Projects:</h4>
+                 <div class="">
+                   {% for term in post.key_projects %}
+                     <h5><a href="{{term.link}}"> {{ term.name }}</a></h5>
+                   {% endfor %}
+                 </div>
+               {% endif %}
+             </div>
+          </div>
+
+          <footer class="entry-footer">
+
+          </footer>
+
+        {% endblock %}
+      {% endembed %}
+    </div>
+
+    {% if loop.index % 5 == 0 %}
+        </div><div class="row"> {# after 3 iterates close row and open new #}
+    {% endif %}
+    {% if loop.last %}
+        </div> {# close last row #}
+    {% endif %}
+
+  {% endfor %}
+
+{% endif %}

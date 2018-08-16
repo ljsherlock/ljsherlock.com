@@ -1,0 +1,50 @@
+
+{# components/post-header.twig #}
+
+{#
+   Page Header
+   @param {Array} bem (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @param {Array} attrs (optional)
+   {
+      Mixed
+   }
+   @param {String} title
+   @param {String} content (optional)
+#}
+
+{# Parameters #}
+
+{% set postHeaderBem = bem ?? null %}
+{% set postHeaderAttrs = attrs ?? null %}
+{% set postHeaderTitle = title %}
+{% set postHeaderContent = content ?? null %}
+
+{# Variables #}
+{% set postHeaderBemDefault = [{ block : 'post-header'}] %}
+{% set postHeaderBem = (postHeaderBem) ? postHeaderBem|merge(postHeaderBemDefault) : postHeaderBemDefault %}
+
+{# Output #}
+{% if postHeaderTitle %}
+
+ {% import 'macros.twig' as mcro %}
+
+ {% set postHeaderInnerHTML %}
+
+    <div class="post-header__title">
+      {{ mcro.createHTMLTag('h2', {}, [{block: 'h3'}],  postHeaderTitle) }}
+    </div>
+
+    <div class="post-header__content">
+      {{ postHeaderContent }}
+    </div>
+
+  {% endset %}
+
+  {{ mcro.createHTMLTag('div', postHeaderAttrs, postHeaderBem, postHeaderInnerHTML) }}
+
+{% endif %}

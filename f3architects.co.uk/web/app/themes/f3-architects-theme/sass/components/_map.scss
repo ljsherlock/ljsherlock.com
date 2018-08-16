@@ -1,0 +1,8 @@
+
+%map {
+  @include mobile() {
+    height: 360px !important;
+  };
+}
+
+.map { @extend %map; }

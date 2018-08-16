@@ -1,0 +1,36 @@
+{# pages/page/page.twig #}
+
+{#
+  Services Article
+  @param {Obj} post (service term)
+
+#}
+
+{# Parameters #}
+{% set servicesArticlePost = post ?? null %}
+
+{# Variables #}
+{% set servicesArticleDefault = [{ block : 'article', modifier: ['services'] }] %}
+{% set servicesArticleBem = (servicesArticle) ? servicesArticle|merge(servicesArticleDefault) : servicesArticleDefault %}
+
+{# Output #}
+{% import 'macros.twig' as mcro %}
+
+{% set servicesArticleInnerHTML %}
+
+  <div class="article--services__description">
+
+    {% include 'components/post-header.twig' with { title: servicesArticlePost.name, content: servicesArticlePost.description } %}
+
+  </div>
+
+  <div class="article--services__related-posts">
+
+    {{ servicesArticlePost.name ~ ' expertise' }}
+    {% include 'components/related-posts/related-posts.twig' with { posts: servicesArticlePost.recent_posts } %}
+
+  </div>
+
+{% endset %}
+
+{{ mcro.createHTMLTag('div', servicesArticleAttrs, servicesArticleBem, servicesArticleInnerHTML) }}

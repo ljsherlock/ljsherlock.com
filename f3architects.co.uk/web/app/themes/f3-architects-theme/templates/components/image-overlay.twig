@@ -1,0 +1,50 @@
+{# components/image-overlay.twig #}
+
+{#
+   Title Content Block
+   @param {Array} bem (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @param {Array} attrs (optional)
+   {
+      Mixed
+   }
+   @param {String} title
+   @param {String} content (optional)
+#}
+
+{# Parameters #}
+
+{% set imageOverlayBem = bem ?? null %}
+{% set imageOverlayAttrs = attrs ?? null %}
+{% set imageOverlayImage = image %}
+{% set imageOverlayTitle = title ?? null %}
+
+{# Variables #}
+{% set imageOverlayBemDefault = [{ block : 'image-overlay'}] %}
+{% set imageOverlayBem = (imageOverlayBem) ? imageOverlayBem|merge(imageOverlayBemDefault) : imageOverlayBemDefault %}
+
+{# Output #}
+{% if imageOverlayTitle %}
+
+   {% import 'macros.twig' as mcro %}
+
+   {% set imageOverlayInnerHTML %}
+
+      {{imageOverlayImage}}
+
+      <div class="block">
+        {% block imageOverlayContent %}
+          {{ imageOverlayPostObj.title }}
+          {{ imageOverlayPostObj.link }}
+        {% endblock %}
+      </div>
+
+   {% endset %}
+
+   {{ mcro.createHTMLTag('div', imageOverlayAttrs, imageOverlayBem, imageOverlayInnerHTML) }}
+
+{% endif %}

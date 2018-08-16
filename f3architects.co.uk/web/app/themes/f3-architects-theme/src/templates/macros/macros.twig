@@ -1,0 +1,92 @@
+{% macro createHTMLTag( tagName, attributes, bem, innerHtml, selfClosing ) %}
+{% spaceless %}
+{% import _self as mcro %}
+{% if bem %}
+{% set class = mcro.bem(bem) %}
+{% endif %}
+{% set tmpAttributes = [] %}
+{% if attributes is defined and attributes is iterable %}
+{% for key, val in attributes %}
+{% set tmpAttributes = tmpAttributes | merge(['%s="%s"' | format(key, val)]) %}
+{% endfor %}
+{% endif %}
+<{{ tagName }} {% if class %}class="{{ class }}"{% endif %} {{ tmpAttributes | join(' ') | raw }}{% if selfClosing is not defined or selfClosing == false %}>{%
+endif %}{% if innerHtml is defined and innerHtml | length > 0 %}{{ innerHtml|raw }}{% endif %}
+{% if selfClosing is defined and selfClosing == true %}>{% else %}</{{ tagName }}>{% endif %}
+{% endspaceless %}
+{% endmacro %}
+
+{% macro bem(bem) %}
+{% set classname = '' %}
+{% for item in bem %}
+{# set create the block and element #}
+{% set block__element = (item.block ? item.block ~ ( item.element ? '__' ~ item.element : '' ) : '') %}
+{# if is block, modifier needs print as new string. IE block__element block__element--modifier #}
+{# add to output variable #}
+{% set classname = classname ~ ' ' ~ block__element %}
+{# if there are modifiers add the after the base block/modifier IE block__element block__element--modifier #}
+{% if item.modifier %}
+{% for modifier in item.modifier %}
+{% set classname = classname ~ (' ' ~ block__element ~ '--' ~ modifier) %}
+{% endfor %}{% endif %}{% endfor %}{{classname}}{% endmacro %}
+
+{# {% macro dump(value) %}
+   {% import _self as mcro %}
+   {{ mcro.createHTMLTag('pre', {}, [], dump(value) ) }}
+{% endmacro %} #}
+
+{% macro menuItem(item, posts, post, url, attrs) %}
+
+  {# Variables #}
+  {% set menuBtnBem = item.bem %}
+  {% set menuBtnBemDefault = [{block: 'nav', element: 'item'}] %}
+  {% set menuBtnBem = (menuBtnBem) ? menuBtnBem|merge( menuBtnBemDefault ) : menuBtnBemDefault %}
+  {% set menuBtnElement = item.element ?? false %}
+
+  {# add wp classes (which may make the below, unecessary) #}
+  {% set menuBtnBem = menuBtnBem|merge([{ block: item.class }]) %}
+
+  {# Set current page class #}
+  {% if item.current == true
+   or item.slug == posts.term_obj.slug
+   or item.slug == posts.post_type_obj.name
+   or item.slug == post.post_type.name
+   or item.slug == post.post_type_obj.name
+   or item.slug == post.categories.0.slug
+   or item.slug == 'news' and post.post_type_obj.name == 'post'
+   or item.slug == 'news' and posts.post_type_obj.name == 'post'
+   %}
+      {% set menuBtnBem = menuBtnBem|merge([{ block: 'nav__item', modifier: ['current-page']}])  %}
+  {% endif %}
+
+  {# if this is a menu of terms #}
+  {% if item.taxonomy %}
+    {# term classes #}
+    {% set termsBtnClass = [ {block: 'taxonomy', modifier: [ item.slug, item.taxonomy ] }] %}
+    {% set menuBtnBem = ( menuBtnBem ) ? menuBtnBem|merge( termsBtnClass ) : menuBtnBemDefault %}
+  {% endif %}
+
+   {# Btn Variables #}
+   {% set btnIcons = item.icons ?? null %}
+   {% set btnIcon = item.icon ?? null %}
+   {% set btnTexts = item.texts ?? null %}
+   {% set btnText = (item.name) ? item.name : item.title %}
+   {% set btnLink  = (item.term_permalink) ? item.term_permalink : item.link %}
+   {% set btnAttrs =  (attrs) ? attrs|merge({ href: btnLink }) : { href: btnLink } %}
+
+   {% if btnLink starts with url  %}
+   {% else %}
+        {% set btnAttrs = btnAttrs|merge( { 'target': '_blank' } ) %}
+   {% endif %}
+
+   {% include 'components/btn.twig' with {
+     text: { value: btnText },
+     texts: btnTexts,
+     attrs: btnAttrs ,
+     icons: btnIcons,
+     icon: btnIcon,
+     bem: menuBtnBem,
+     non_anchor: menuBtnElement
+   } %}
+
+{% endmacro %}

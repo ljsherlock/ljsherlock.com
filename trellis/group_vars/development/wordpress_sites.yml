@@ -6,10 +6,20 @@ wordpress_sites:
   ljsherlock.com:
     site_hosts:
       - canonical: develop.ljsherlock.com
-        # redirects:
-        #   - www.ljsherlock.dev
-    local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
-    admin_email: me@ljsherlock.com
+    local_path: ../ljsherlock.com # path targeting local Bedrock site directory (relative to Ansible root)
+    admin_email: developer@ljsherlock.com
+    multisite:
+      enabled: false
+    ssl:
+      enabled: false
+      provider: self-signed
+    cache:
+      enabled: false
+  f3architects.co.uk:
+    site_hosts:
+      - canonical: develop.f3architects.co.uk
+    local_path: ../f3architects.co.uk # path targeting local Bedrock site directory (relative to Ansible root)
+    admin_email: developer@ljsherlock.com
     multisite:
       enabled: false
     ssl:

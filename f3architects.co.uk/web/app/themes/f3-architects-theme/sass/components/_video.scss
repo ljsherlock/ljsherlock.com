@@ -1,0 +1,122 @@
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %video {
+        position: relative;
+        width: 100%;
+        video {
+            width: 100%;
+            height: 100%;
+        }
+
+        %video__playpause.video__btn--loading {
+            .video__icon--hover {
+                @include animation(video-loading 1.15s ease infinite);
+            }
+        }
+
+    }
+
+    %video__playpause {
+        &%video__btn--loading {
+            %video__icon--hover {
+                @include animation(video-loading 1.15s ease infinite);
+            }
+        }
+        &%video__btn--loaded {
+            @include animation(hide-off-screen-bottom .5s ease-in forwards);
+        }
+    }
+
+    %video--background {
+        @extend %video;
+        @include transition(.3s all ease-in);
+
+        &%video--inactive {
+            opacity: 0;
+        }
+
+        &%video--active {
+            opacity: 1;
+        }
+
+        height: 100%;
+        left: 0px;
+        top: 0px;
+        overflow: hidden;
+        margin: 0px;
+        padding: 0px;
+        z-index: -999995;
+        position: absolute;
+    }
+
+
+/*---------------------------------------------*\
+*    RELATIONSHIPS
+/*---------------------------------------------*/
+
+    %video--block {
+        @extend %video;
+    }
+
+    %video__playpause {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        border: 0;
+        top:0;bottom:0;
+        left:0;right:0;
+        outline: 0;
+        background: transparent;
+        cursor:pointer;
+        @include transition(.5s opacity ease);
+
+        %video__icon {
+            transition:inherit;
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            left:0; right:0;
+            bottom:0; top:0;
+            margin: auto;
+            &--hover {
+                opacity:0;
+                &:hover {
+                    opacity:1;
+                }
+            }
+        }
+
+        &--playing {
+            opacity: 0;
+        }
+
+    }
+
+    // %intro {
+    //     %video--block {
+    //         @include transform( translateY( 175px ) );
+    //     }
+    // }
+
+/*---------------------------------------------*\
+*    BLOCK
+/*---------------------------------------------*/
+
+    .video--block { @extend %video--block; }
+
+/*---------------------------------------------*\
+*    ELEMENT
+/*---------------------------------------------*/
+
+    .video__icon { @extend %video__icon; }
+    .video__playpause { @extend %video__playpause; }
+
+/*---------------------------------------------*\
+*    MODIFIER
+/*---------------------------------------------*/
+
+    .video__icon--hover { @extend %video__icon--hover; }
+    .video__playpause--playing { @extend %video__playpause--playing; }

@@ -1,0 +1,55 @@
+{#
+ * @usedby global.twig
+ * @requires constants, mustard, icons
+#}
+<!DOCTYPE html>
+<html class="restrict smart-browser">
+    <head>
+        {% block head %}
+            <meta charset="{{ function( 'bloginfo', 'charset' ) }}">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            {{ favourites.wp_head }}
+        {% endblock %}
+        <link rel="apple-touch-icon" sizes="76x76" href="{{favourites.site.theme.uri}}/img/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{favourites.site.theme.uri}}/img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{favourites.site.theme.uri}}/img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="{{favourites.site.theme.uri}}/img/favicon/site.webmanifest">
+        <link rel="mask-icon" href="{{favourites.site.theme.uri}}/img/favicon/safari-pinned-tab.svg" color="#1fae89">
+        <link rel="shortcut icon" href="{{favourites.site.theme.uri}}/img/favicon/favicon.ico">
+        <meta name="msapplication-TileColor" content="#1fae89">
+        <meta name="msapplication-config" content="{{favourites.site.theme.uri}}/img/favicon/browserconfig.xml">
+        <meta name="theme-color" content="#1fae89">
+      </head>
+        <!--[if lt IE 7]>      <body class="ie6">    <![endif]-->
+        <!--[if IE 7]>         <body class="ie7">    <![endif]-->
+        <!--[if IE 8]>         <body class="ie8">    <![endif]-->
+        <!--[if IE 9]>         <body class="ie9">    <![endif]-->
+        <!--[if gt IE 9]>      <body class="ie10+">  <![endif]-->
+        <!--[if !IE]><!-->     <body class="">                <!--<![endif]-->
+
+         {% if mustard != true and icons != '' %}
+            {{ icons }}
+         {% endif %}
+
+         {% block body %}
+         {% endblock %}
+
+         <script>
+           window.ajax_url = "{{ constant('LJS_AJAXURL') }}";
+           var require = {
+               baseUrl: "{{ constant('LJS_THEME_URL') ~ '/dist/js'}}",
+               paths: {
+                   Polyfills: 'lib/polyfills',
+                   Util: 'utils/Util',
+                   Mustard: 'lib/mustard',
+                   Core: 'core',
+                   App: 'app',
+                   Config: 'lib/app-config',
+               }
+           };
+         </script>
+
+         <script src="{{ constant('LJS_THEME_URL') ~ '/dist/js/lib/require.js'}}" data-main="main"></script>
+        {{ favourites.wp_footer }}
+     </body>
+</html>

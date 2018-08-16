@@ -1,0 +1,68 @@
+{# components/page-header.twig #}
+
+{#
+   Page Header
+   @param {Array} bem (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @param {Array} attrs (optional)
+   {
+      Mixed
+   }
+   @param {Obj} post
+
+#}
+
+{# Parameters #}
+
+{% set ArticletBem = bem ?? null %}
+{% set ArticletAttrs = attrs ?? null %}
+{% set ArticletPost = post %}
+
+{# Variables #}
+{% set ArticletBemDefault = [{ block : ArticletPost.class}] %}
+{% set ArticletBem = (ArticletBem) ? ArticletBem|merge(ArticletBemDefault) : ArticletBemDefault %}
+{% set ArticletBem = (ArticletBem) ? ArticletBem|merge( [ {block: 'taxonomy', element: ArticletPost.taxonomy }, {block: 'taxonomy', element: ArticletPost.taxonomy, modifier: [ ArticletPost.slug ] }] ) : ArticletBem %}
+{% set ArticletAttrs = { id: ArticletPost.ID } %}
+
+{# Output #}
+{% if ArticletPost %}
+
+{% import 'macros.twig' as mcro %}
+
+{% set postContentInnerHTML %}
+  {% block articleInnerHTML %}
+
+    {% block entry_header %}
+      <header class="entry-header">
+        {% block entry_header__inner %}
+          {{ ArticletPost.post_thumbnails.landscape_2_column.ing }}
+        {% endblock %}
+      </header>
+    {% endblock %}
+
+    {% block entry_content %}
+      <div class="entry-content">
+        {% block entry_content__inner %}
+          {{ post.content }}
+        {% endblock %}
+      </div>
+    {% endblock %}
+
+    {% block entry_footer %}
+      <footer class="entry-footer">
+        {% block entry_footer__inner %}
+          {{ post.link }}
+        {% endblock %}
+      </footer>
+    {% endblock %}
+
+  {% endblock %}
+{% endset %}
+
+  {{ mcro.createHTMLTag('article', postContentAttrs, postContentBem, postContentInnerHTML) }}
+
+{% endif %}

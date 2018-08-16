@@ -1,0 +1,101 @@
+{# base/components/menuu.twig #}
+
+{#
+   Menu
+   From the menu object create a menu
+   @param {Array} bem (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @param {Array} attrs (optional)
+   {
+      Mixed
+   }
+   @param {Timber Menu Object}
+#}
+
+{# Parameters #}
+{% set navMenu = menu ?? null %}
+{% set navAttrs = attrs ?? null %}
+{% set navBem = bem ?? null %}
+
+{# Variables #}
+{% set navBemDefault = [{ block: 'nav' }] %}
+{% set navBtnBemDefault = [{block: 'nav', element: 'item'}] %}
+{% set navBtnBem = (navBtnBem) ? navBtnBem|merge( navBtnBemDefault ) : navBtnBemDefault %}
+{% set navBem = (navBem) ? navBem|merge( navBemDefault ) : navBemDefault %}
+
+{# Output #}
+{% if navMenu %}
+
+   {% import 'macros.twig' as mcro %}
+
+   {% set navHTML %}
+
+      {% for item in navMenu %}
+
+        {% set navBtnBem = navBtnBemDefault|merge([{ block: item.class }]) %}
+
+        {% if item.current == true %}
+          {% set navBtnBem = navBtnBem|merge([{ block: 'nav__item', modifier: ['current-page']}])  %}
+        {% endif %}
+
+         {# Loop Variables #}
+         {% set btnIcons = item.icons ?? null %}
+         {% set btnIcon = item.icon ?? null %}
+         {% set btnTexts = item.texts ?? null %}
+         {% set btnText = item.title ?? null %}
+         {% set btnLink = item.link ?? null %}
+
+         <li>
+
+           {% include 'components/btn.twig' with {
+             text: { value: btnText },
+             texts: btnTexts,
+             attrs: { href: btnLink },
+             icons: btnIcons,
+             icon: btnIcon,
+             bem: navBtnBem
+           } %}
+
+           {% if item.children %}
+              <ul class="nav__child">
+                  {% for child in item.children %}
+
+                    {# Loop Variables #}
+                    {% set btnIcons = child.icons ?? null %}
+                    {% set btnIcon = child.icon ?? null %}
+                    {% set btnTexts = child.texts ?? null %}
+                    {% set btnText = child.title ?? null %}
+                    {% set btnLink = child.link ?? null %}
+
+                    <li>
+                      {% include 'components/btn.twig' with {
+                        text: { value: btnText },
+                        texts: btnTexts,
+                        attrs: { href: btnLink },
+                        icons: btnIcons,
+                        icon: btnIcon,
+                        bem: navBtnBem
+                      } %}
+                    </li>
+
+                  {% endfor %}
+              </ul>
+            {% endif %}
+
+         </li>
+
+         {% if item.current == true %}
+            {% set navBtnBem = navBtnBemDefault %}
+         {% endif %}
+
+      {% endfor %}
+
+   {% endset %}
+
+   {{ mcro.createHTMLTag( 'nav', navAttrs, navBem, navHTML ) }}
+
+{% endif %}

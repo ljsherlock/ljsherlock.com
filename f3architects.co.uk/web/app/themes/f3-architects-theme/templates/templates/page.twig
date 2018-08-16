@@ -1,0 +1,28 @@
+{% extends ['templates-app/templates/app.twig', 'templates/app.twig' ] %}
+
+{% import 'macros.twig' as mcro %}
+
+   {% block app %}
+
+      <div id="primary" class="content-area">
+
+        <section class="wrap--break-md">
+
+         <div class="block block--green block--curvy">
+           <div class="row">
+             <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 typography">
+               <h1>{{ post.title }}</h1>
+             </div>
+             <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 typography">
+               {{ post.content }}
+             </div>
+           </div>
+         </div>
+
+       </section>
+
+        {% block page %}{% endblock %}
+
+      </div>
+
+   {% endblock %}

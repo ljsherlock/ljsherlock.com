@@ -1,0 +1,674 @@
+$size-xs-w: 270px;
+$size-xs-h: 184px;
+$size-sm-w: 361px;
+$size-sm-h: 203px;
+$size-md-w: 576px;
+$size-md-h: 330px;
+$size-lg-w: 760px;
+$size-lg-h: 506px;
+
+
+@include keyframes(greyscale-opacity) {
+    0% {
+        opacity: 0;
+        filter: grayscale(100%);
+    }
+
+    75% {
+        opacity: 0.2
+    }
+
+    100% {
+        opacity: 1;
+        filter: grayscale(0%);
+    }
+}
+
+@include keyframes(opacity) {
+    0% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0.5
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.btn--f3 {
+    @include mobile(){
+        position: relative;
+        top: initial;
+        left:initial;
+    };
+}
+
+@include keyframes(gallery__item--1){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 0;
+    }
+};
+@include keyframes(gallery__item--2){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 35%;
+    }
+};
+@include keyframes(gallery__item--3){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 20%;
+    }
+};
+@include keyframes(gallery__item--4){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 70%;
+    }
+};
+@include keyframes(gallery__item--5){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 0;
+    }
+};
+@include keyframes(gallery__item--6){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 80%;
+    }
+};
+@include keyframes(gallery__item--7){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 65%;
+    }
+};
+@include keyframes(gallery__item--8){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 0;
+    }
+};
+@include keyframes(gallery__item--9){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 35%;
+    }
+};
+@include keyframes(gallery__item--10){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 13%;
+    }
+};
+@include keyframes(gallery__item--11){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 60%;
+    }
+};
+@include keyframes(gallery__item--12){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 0;
+    }
+};
+@include keyframes(gallery__item--13){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 4%;
+    }
+};
+@include keyframes(gallery__item--14){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 70%;
+    }
+};
+@include keyframes(gallery__item--15){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 45%;
+    }
+};
+@include keyframes(gallery__item--16){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 10%;
+    }
+};
+@include keyframes(gallery__item--17){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 0%;
+    }
+};
+@include keyframes(gallery__item--18){
+  from{
+      left: 80%;
+  }
+  to {
+      left: 30%;
+  }
+};
+@include keyframes(gallery__item--19){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 10%;
+    }
+};
+@include keyframes(gallery__item--20){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 30%;
+    }
+};
+@include keyframes(gallery__item--21){
+    from{
+        left: 80%;
+    }
+    to {
+        left: 70%;
+    }
+};
+
+%gallery
+{
+    position: relative;
+    @extend %wrap--break-md;
+    @extend %grid--col;
+    @extend %grid--gutter-sm-bottom;
+    @extend %grid-mobile--gutter-lg-bottom;
+    z-index: 0;
+    visibility: hidden;
+
+    &:not(%gallery--animate) {
+      %gallery__item
+      {
+        article.has-post-thumbnail {
+          @extend %article--f3-ui-active;
+        }
+
+        width: 100%;
+        height: auto;
+
+        %article, %header-content {
+          height: 100%;
+        }
+      }
+    }
+
+    &--animate
+    {
+        > * {
+            left: 80%;
+        }
+
+        %gallery__item
+        {
+          article {
+            @extend %article--f3-ui;
+          }
+
+          position: absolute;
+          left: 80%;
+
+          &--xs {
+            width: $size-xs-w;
+            height: $size-xs-h;
+          }
+          &--sm {
+            width: $size-sm-w;
+            height: $size-sm-h;
+          }
+          &--md {
+            width: $size-md-w;
+            height: $size-md-h;
+          }
+          &--lg {
+            width: $size-lg-w;
+            height: $size-lg-h;
+          }
+
+          &--portrait {
+            // natural height
+            height: auto;
+          }
+
+          &--landscape {
+            img {
+              height: 100%;
+              width: auto;
+            }
+          }
+
+          &%gallery__item--1
+          {
+            top: 150px;
+            // &%gallery__item--image {
+            //   width: $landscape-xs-w;
+            //   height: $landscape-xs-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--2
+          {
+            top: 0;
+            z-index: 1;
+            // &%gallery__item--image {
+            //   width: $landscape-lg-w;
+            //   height: $landscape-lg-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--3
+          {
+            z-index: 1;
+            top: 410px;
+            // &%gallery__item--image {
+            //   width: $portrait-sm-w;
+            //   height: auto;
+            //   // height: $portrait-sm-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--4
+          {
+            z-index: 1;
+            top: 430px;
+            // &%gallery__item--image {
+            //   width: $portrait-xs-w;
+            //   // height: $portrait-xs-h;
+            //   height: auto;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--5
+          {
+            top: 830px;
+            z-index: 2;
+            // &%gallery__item--image {
+            //   width: $landscape-xs-w;
+            //   height: $landscape-xs-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--6
+          {
+            top: 773px;
+            z-index: 2;
+            // &%gallery__item--image {
+            //   width: $landscape-xs-w;
+            //   height: $landscape-xs-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+
+          &%gallery__item--7
+          {
+            top: 1000px;
+            z-index: 3;
+            // &%gallery__item--image {
+            //   width: $landscape-sm-w;
+            //   height: $landscape-sm-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--8
+          {
+            top: 1120px;
+            // &%gallery__item--image {
+            //   width: $landscape-md-w;
+            //   height: $landscape-md-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--9
+          {
+            top: 1370px;
+            z-index: 0;
+            // &%gallery__item--image {
+            //   width: $landscape-lg-w;
+            //   height: $landscape-lg-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--10
+          {
+            top: 1670px;
+            z-index: 4;
+            // &%gallery__item--image {
+            //   width: $landscape-xs-w;
+            //   height: $landscape-xs-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--11
+          {
+            top: 1905px;
+            // &%gallery__item--image {
+            //   width: $landscape-sm-w;
+            //   height: $landscape-sm-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--12
+          {
+            top: 1935px;
+            // &%gallery__item--image {
+            //   width: $landscape-sm-w;
+            //   height: $landscape-sm-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+
+          &%gallery__item--13
+          {
+            top: 2170px;
+            z-index: 5;
+            // &%gallery__item--image {
+            //   width: $landscape-lg-w;
+            //   height: $landscape-lg-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--14
+          {
+            top: 2210px;
+            z-index: 6;
+            // &%gallery__item--image {
+            //   width: $landscape-sm-w;
+            //   height: $landscape-sm-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--15
+          {
+            height: auto;
+            top: 2336px;
+            z-index: 10;
+            // &%gallery__item--image {
+            //   width: $portrait-lg-w;
+            //   // height: $portrait-lg-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--16
+          {
+            top: 2280px;
+            z-index: 25;
+            // &%gallery__item--image {
+            //   width: $landscape-sm-w;
+            //   height: $landscape-sm-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--17
+          {
+            top: 2800px;
+            z-index: 0;
+            // &%gallery__item--image {
+            //   width: $landscape-md-w;
+            //   height: $landscape-md-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--18
+          {
+            top: 2900px;
+            z-index: 20;
+            // &%gallery__item--image {
+            //   width: $landscape-md-w;
+            //   height: $landscape-md-h;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--19
+          {
+            top: 3030px;
+            z-index: 20;
+            // &%gallery__item--image {
+            //   width: $portrait-xs-w;
+            //   // height: $portrait-xs-h;
+            //   height: auto;
+            // }
+            &gallery__btn {
+
+            }
+          }
+          &%gallery__item--20
+          {
+            z-index: 0;
+            top: 3080px;
+            left: 25%;
+          }
+          &%gallery__item--21
+          {
+            z-index: 20;
+            top: 2885px;
+          }
+          &%gallery__content {
+              height: auto;
+          }
+
+          &--show
+          {
+              opacity: 0;
+              @include animation(.75s greyscale-opacity ease-out .5s forwards);
+
+              &%gallery__content {
+                  @include animation( 1.5s greyscale-opacity ease-in forwards, .75s gallery__item--8 ease-in forwards );
+              }
+              &%gallery__item--1
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--1 ease-in forwards );
+              }
+              &%gallery__item--2
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--2 ease-in forwards );
+              }
+              &%gallery__item--3
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--3 ease-in forwards );
+              }
+              &%gallery__item--4
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--4 ease-in forwards );
+              }
+              &%gallery__item--5
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--5 ease-in forwards );
+              }
+              &%gallery__item--6
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--6 ease-in forwards );
+              }
+              &%gallery__item--7
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--7 ease-in forwards );
+              }
+              &%gallery__item--8
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--8 ease-in forwards );
+              }
+              &%gallery__item--9
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--9 ease-in forwards );
+              }
+              &%gallery__item--10
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--10 ease-in forwards );
+              }
+              &%gallery__item--11
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--11 ease-in forwards );
+              }
+              &%gallery__item--12
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--12 ease-in forwards );
+              }
+              &%gallery__item--13
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--13 ease-in forwards );
+              }
+              &%gallery__item--14
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--14 ease-in forwards );
+              }
+              &%gallery__item--15
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--15 ease-in forwards );
+              }
+              &%gallery__item--16
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--16 ease-in forwards );
+              }
+              &%gallery__item--17
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--17 ease-in forwards );
+              }
+              &%gallery__item--18
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--18 ease-in forwards );
+              }
+              &%gallery__item--19
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--19 ease-in forwards );
+              }
+              &%gallery__item--20
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--20 ease-in forwards );
+              }
+              &%gallery__item--21
+              {
+                  @include animation( .75s greyscale-opacity ease-in forwards, .75s gallery__item--21 ease-in forwards );
+              }
+          }
+        }
+    }
+
+    %gallery__item
+    {
+        // filter: grayscale(100%);
+        @include mobile()
+        {
+            width: 100%;
+        };
+    }
+
+
+    &--project
+    {
+        %gallery__item
+        {
+            @extend %wrap--break-lg;
+            width: 100%;
+            height: auto;
+            %gallery__img
+            {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+}
+
+.gallery { @extend %gallery; }
+.gallery--animate { @extend %gallery--animate; }
+
+.gallery__item { @extend %gallery__item; }
+.gallery__item--show { @extend %gallery__item--show; }
+// .gallery__item--image { @extend %gallery__item--image; }
+.gallery__item--portrait { @extend %gallery__item--portrait; }
+.gallery__item--landscape { @extend %gallery__item--landscape; }
+.gallery__item--xs { @extend %gallery__item--xs; }
+.gallery__item--sm { @extend %gallery__item--sm; }
+.gallery__item--md { @extend %gallery__item--md; }
+.gallery__item--lg { @extend %gallery__item--lg; }
+
+article { @extend %article; }
+.header-content { @extend %header-content; }
+.gallery__content { @extend %gallery__content; }
+
+
+
+@for $i from 1 through 21 {
+    .gallery__item--#{$i} { @extend %gallery__item--#{$i} !optional; }
+}

@@ -1,0 +1,51 @@
+{# pages/page/page.twig #}
+
+{#
+   Related Posts
+   @param {Array} posts
+      - {Post Obj}
+#}
+
+{# Parameters #}
+{% set relatedPosts = posts ?? null %}
+{% set relatedPostsArray = relatedPosts.postsArray ?? null %}
+
+{# Variables #}
+{% set relatedPostsBem = [{ block: 'related-posts' }, {block :'row' }] %}
+
+{# Output #}
+{% if relatedPostsArray %}
+
+  {% import 'macros.twig' as mcro %}
+
+  {% set relatedPostsInnerHTML %}
+
+    {% for relatedPost in relatedPostsArray %}
+
+      <div class="related-posts__post col-lg-4 col-md-4 col-sm-6 col-xs-12">
+
+        <a href="{{relatedPost.link}}">
+          {% embed 'components/post--content.twig' with { post: relatedPost, bem: [{block: 'type-related'}] } %}
+            {% block articleInnerHTML %}
+              <header class="entry-header">
+                {{ relatedPost.post_thumbnails.landscape_2_column__media.img }}
+              </header>
+              <div class="entry-content flex--just-start">
+
+                <h2>{{relatedPost.title}}</h2>
+                <h5>{{relatedPosts.post_type_obj.labels.view_item}}</h5>
+              </div>
+              <div class="entry-footer">
+              </div>
+            {% endblock %}
+          {% endembed %}
+        </a>
+      </div>
+
+      {% endfor %}
+
+   {% endset %}
+
+   {{ mcro.createHTMLTag('div', relatedPostsAttrs, relatedPostsBem, relatedPostsInnerHTML) }}
+
+{% endif %}

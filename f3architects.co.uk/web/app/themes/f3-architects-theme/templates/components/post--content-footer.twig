@@ -1,0 +1,29 @@
+{# pages/single/post.twig #}
+
+{#
+   Single Post Page
+   @param {Post Object} post
+#}
+
+{# Parameters #}
+{% set contentFooterPost = post ?? null %}
+
+{# Variables #}
+{% set contentFooterBem = [{ block: 'entry-footer', modifier: ['share'] }] %}
+{% set contentFooterAttrs = attrs %}
+
+{# Output #}
+{% import 'macros.twig' as mcro %}
+
+{% set contentThumbnailInnerHTML %}
+
+  {% if contentFooterPost.is_single %}
+    <div class="grid flex--just-space-between">
+      <h5>{{ mcro.createHTMLTag('a', { href: favourites.site.url ~ '/' ~ post.post_type_obj.name }, [], 'Back to ' ~ post.post_type_obj.labels.name ) }}</h5>
+      {% include 'components/social-share-icons.twig' with { bem: [ {block: 'grid', modifier: ['gutter-md-right']} ], link: post.link, text: post.title } %}
+    </div>
+  {% endif %}
+
+{% endset %}
+
+{{ mcro.createHTMLTag('footer', contentFooterAttrs, contentFooterBem, contentThumbnailInnerHTML) }}

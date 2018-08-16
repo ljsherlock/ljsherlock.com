@@ -1,0 +1,84 @@
+{# pages/about.twig #}
+
+{#
+   Page
+   @param {Post Object} post
+#}
+
+{# Parameters #}
+{% set peoplePosts = peoplePage.posts ?? null %}
+
+{# Variables #}
+
+{# Output #}
+{% extends ['templates-app/templates/page.twig', 'templates/page.twig'] %}
+
+{% import 'macros.twig' as mcro %}
+
+   {% block page %}
+
+    <section class="about wrap--break-lg">
+
+      {% for item in post.grid_content %}
+
+          <div class="grid-content">
+
+            <div class="block typography">
+              <h2 class="h1">{{ item.title }}</h2>
+              <article class="columns typography">{{item.content}}</article>
+            </div>
+
+            {% for image in item.images %}
+                {% set innerHTML %}
+                  <div class="grid__{{ 100 / item.images|length }}-of-100">
+                    {% if item.images|length == 1 %}
+                    {{ image.landscape_1_column__media.img }}
+                    {% elseif item.images|length == 2 %}
+                      {{ image.landscape_2_column__media.img }}
+                    {% endif %}
+                  </div>
+                {% endset %}
+
+                {% if loop.first %}
+                  {% set grid_class = (item.images|length > 1) ? 'grid grid--row grid--gutter-lg-right' : 'grid grid--row' %}
+
+                  <div class="{{grid_class}}">
+                    {{ innerHTML }}
+                {% elseif loop.last %}
+                    {{ innerHTML }}
+                  </div>
+                {% else %}
+                  {{ innerHTML }}
+                {% endif %}
+            {% endfor %}
+
+          </div>
+
+      {% endfor %}
+
+      </section>
+
+      <section class="wrap--break-md">
+
+       <div class="block block--green block--curvy">
+         <div class="row">
+           <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 typography">
+             <h1>{{ peoplePage.post.title }}</h1>
+           </div>
+           <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 typography">
+             <h2>{{ peoplePage.post.content|striptags }}</h2>
+           </div>
+         </div>
+       </div>
+
+     </section>
+
+      <section id="people">
+
+        <div class="archive archive--staff">
+          {% include 'components/staff-loop.twig' with { posts: peoplePosts } %}
+        </div>
+
+      </section>
+
+   {% endblock %}

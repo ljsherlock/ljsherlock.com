@@ -1,0 +1,22 @@
+%logo
+{
+    width: 335px;
+    height: 45px;
+    padding:0;
+    margin:0;
+    &--mobile {
+      display: none;
+    }
+    @include mobile() {
+      display: none;
+      &--mobile {
+        display: block;
+        svg {
+          fill: $white;
+        }
+      }
+    };
+}
+
+.logo { @extend %logo; }
+.logo--mobile { @extend %logo--mobile; }

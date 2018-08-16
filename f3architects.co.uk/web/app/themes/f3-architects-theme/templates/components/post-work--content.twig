@@ -1,0 +1,156 @@
+{# components/page-header.twig #}
+
+{#
+   Page Header
+   @param {Array} bem (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @param {Array} attrs (optional)
+   {
+      Mixed
+   }
+   @param {Obj} post
+
+#}
+
+{# Parameters #}
+{% set postWorkBem = bem ?? null %}
+{% set postWorkAttrs = attrs ?? null %}
+{% set postWorkObj = post %}
+
+{# Variables #}
+{% set postWorkBemDefault = [{ block : postWorkObj.class}] %}
+{% set postWorkBem = (postWorkBem) ? postWorkBem|merge(postWorkBemDefault) : postWorkBemDefault %}
+{% set postWorkAttrs = { id: postWorkObj.ID } %}
+
+{# Output #}
+{% if postWorkObj %}
+
+  {% import 'macros.twig' as mcro %}
+
+  {% set postWorkInnerHTML %}
+
+    {% if postWorkObj.is_single %}
+
+      <header class="entry-header block--curvy wrap--break-md">
+        {{ postWorkObj.post_thumbnails.featured_image_work__media.img }}
+      </header>
+
+      <div class="entry-content wrap--break-md">
+        <section class="wrap--break-md">
+          <div class="post-work__header block block--green block--curvy">
+            <div class="flex--just-space-between row">
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 typography">
+                  <h1>{{ postWorkObj.title }}</h1>
+              </div>
+              <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 typography">
+                  <p class="h2">{{ postWorkObj.post_content }}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      {% else %}
+        {{ postWorkObj.post_thumbnails.landscape_2_column__media.img }}
+
+        <div class="entry-content">
+          <h1 class="h2">{{ postWorkObj.title }}</h1>
+          <h5>{{posts.post_type_obj.labels.view_item}}</h5>
+        </div>
+
+      {% endif %}
+
+      {% if postWorkObj.is_single %}
+
+      <section class="wrap--break-md">
+        {# gallery #}
+        <div class="work-gallery">
+
+          <div class="grid-desktop grid-desktop--col grid-desktop--gutter-md-bottom
+          grid-tablet grid-tablet--col grid-tablet--gutter-md-bottom
+          grid-mobile grid-mobile--col grid-mobile--gutter-md-bottom">
+          {% for item in post.projectGallery %}
+
+                {% if loop.index == 2 %}
+                    {% if post.projectVideo %}
+                      <div class="grid-content">
+                        <div class="grid grid--row">
+                          <div class="grid__100-of-100">
+                            {% include 'components/video-block.twig' with {
+                              sources: post.projectVideo,
+                              icon: 'icon-play',
+                              attrs: { id: 'project-video' } }
+                            %}
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+                {% endif %}
+
+              <div class="grid-content">
+
+                {% for image in item.file_list %}
+                    {% set innerHTML %}
+
+                      <div class="grid__{{ 100 / item.file_list|length }}-of-100">
+
+                        {% if item.file_list|length == 1 %}
+                        {{ image.landscape_1_column__media.img }}
+                        {% elseif item.file_list|length == 2 %}
+                          {{ image.landscape_2_column__media.img }}
+                        {% elseif item.file_list|length == 3 %}
+                          {{ image.portrait_3_column__media.img }}
+                        {% endif %}
+                      </div>
+                    {% endset %}
+
+                    {% if loop.first %}
+                      {% set grid_class = (item.file_list|length > 1) ? 'grid grid--row grid--gutter-lg-right' : 'grid grid--row' %}
+                      <div class="{{grid_class}}">
+                    {% endif %}
+                      {{ innerHTML }}
+                    {% if loop.last %}
+                      </div>
+                    {% endif %}
+
+                {% endfor %}
+              </div>
+          {% endfor %}
+        </div>
+      </section>
+
+      {% if postWorkObj.projectTestimonial %}
+        <section class="wrap--break-md">
+          {# testimonial #}
+          <div class="testimonial grid grid--col grid--gutter-xlg-bottom">
+            <div class="testimonial__content typography">
+              <p class="h2">{{ postWorkObj.projectTestimonial.0.content }}</p>
+            </div>
+            <div class="testimonial__footer typography">
+              <h3 class="h1">{{ postWorkObj.projectTestimonial.0.author }}</h3>
+              <h5>{{ postWorkObj.projectTestimonial.0.author_desc }}</h5>
+            </div>
+          </div>
+        </section>
+      {% endif %}
+
+      </div>
+
+    {% include 'components/post--content-footer.twig' %}
+
+{% endif %}
+
+  {% endset %}
+
+  {% if not postWorkObj.is_single %}
+    <a href="{{postWorkObj.link}}">
+      {{ mcro.createHTMLTag('article', postWorkAttrs, postWorkBem, postWorkInnerHTML) }}
+    </a>
+  {% else %}
+    {{ mcro.createHTMLTag('article', postWorkAttrs, postWorkBem, postWorkInnerHTML) }}
+  {% endif %}
+
+{% endif %}

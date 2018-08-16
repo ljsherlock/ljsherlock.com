@@ -1,0 +1,17 @@
+%element {
+
+  &--overlap {
+
+    background-color: $black;
+
+    &%svg {
+      background: transparent;
+      fill: $black;
+    }
+
+  }
+
+}
+
+// .element { @extend %element; }
+.element--overlap { @extend %element--overlap; }

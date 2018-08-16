@@ -1,0 +1,136 @@
+%footer
+{
+  color: white;
+  padding: 55px 15px;
+    @include desktop(){
+        height: 300px;
+    }
+    @include tablet(){
+        height: 300px;
+    }
+    position: relative;
+
+    %nav--footer {
+      %nav__item {
+        font-size: 2em;
+        &:hover {
+          color: $silverTree;
+        }
+      }
+      @include mobile(){
+        text-align: center;
+      };
+    }
+
+    %nav--social-media {
+      %nav__item {
+        fill: white;
+        &:hover {
+          fill: $silverTree;
+        }
+      }
+    }
+
+    %footer__container
+    {
+        height: 100%;
+        position: relative;
+        @extend %wrap;
+        @extend %grid-desktop;
+        @extend %grid-desktop--row;
+        @extend %grid-tablet;
+        @extend %grid-tablet--row;
+        @extend %grid-mobile;
+        @extend %grid-mobile--col;
+        @extend %grid-mobile--gutter-xlg-bottom;
+
+        @include align-items(center);
+        @extend %flex--just-space-between;
+    }
+    background-color: black;
+
+    %footer__column
+    {
+        height: 100%;
+        @extend %grid;
+        @extend %grid--col;
+        @extend %flex--just-space-between;
+        @include mobile()
+        {
+            @include align-items(center);
+            text-align: center;
+        };
+    }
+
+    %footer__info
+    {
+        @extend %footer__column;
+        // desktop
+        @include desktop(){
+            left: 0;
+        };
+        %footer__contact {
+          @extend %grid;
+          @extend %grid--col;
+          @include mobile()
+          {
+              @include align-items(center);
+              text-align: center;
+          };
+        }
+    }
+
+    %footer__legal-terms
+    {
+        margin-left: auto;
+        @extend %footer__column;
+        // desktop
+        @include desktop()
+        {
+            margin-left: auto;
+            text-align: right;
+        }
+        @include tablet()
+        {
+            margin-left: auto;
+            text-align: right;
+        }
+        @include mobile()
+        {
+//            height: 200px;
+            text-align: center;
+        };
+
+        %footer__legal
+        {
+            @extend %grid;
+            @extend %grid--col;
+            @include mobile()
+            {
+                @include align-items(center);
+                text-align: center;
+            };
+        }
+
+        %footer__terms
+        {
+            @extend %grid;
+            @extend %grid--col;
+            @include mobile()
+            {
+                @include align-items(center);
+                text-align: center;
+            };
+        }
+    }
+}
+
+footer.site { @extend %footer; }
+.footer__container { @extend %footer__container; }
+.footer__info { @extend %footer__info; }
+.footer__contact { @extend %footer__contact; }
+.footer__legal-terms { @extend %footer__legal-terms; }
+.footer__legal { @extend %footer__legal; }
+.footer__terms { @extend %footer__terms; }
+.nav--social-media { @extend %nav--social-media; }
+.nav--footer { @extend %nav--footer; }

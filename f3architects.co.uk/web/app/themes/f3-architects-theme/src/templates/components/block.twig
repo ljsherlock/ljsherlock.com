@@ -1,0 +1,24 @@
+{# _components/block.twig #}
+
+{#
+    Block
+    Add padding or colour as a parent to another component (could just be CSS to be honest).
+    @param {Array} bem (optional)
+    {
+        block {String}
+        element {String}
+        modifier {Array}
+    }
+#}
+
+{# Parameters #}
+{% set blockBem = bem ?? null %}
+
+{# Variables #}
+{% set blockBemDefault = [ { block: 'block' } ] %}
+{% set blockBem = (blockBem) ? blockBem|merge(blockBemDefault) : blockBemDefault %}
+
+{# Output #}
+{% import 'macros.twig' as mcro %}
+
+{{ mcro.createHTMLTag('div', attr, tmpClasses, innerHTML) }}

@@ -1,0 +1,21 @@
+/*
+This file can be used to overwrite any normailze settings.
+*/
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+a
+{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}

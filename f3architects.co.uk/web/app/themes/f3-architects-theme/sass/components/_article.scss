@@ -1,0 +1,141 @@
+/*
+  Styling for all post types, both as archives and singular posts
+*/
+
+// Archive Element
+
+%type-work:not(%is-single) {
+  @extend %article--f3-ui;
+  %entry-content {
+    padding: 11% 9%;
+  }
+}
+
+%archive--staff {
+  %row {
+    margin-left: -1.35rem;
+    margin-right: -1.35rem;
+    > div {
+      padding-left: 1.35em;
+      padding-right: 1.35em;
+      margin-bottom: 2.7em;
+    }
+  }
+  %archive__post {
+    width: 100%;
+    @include desktop() {
+      width: 20%;
+    }
+    @include tablet() {
+      width: 20%;
+    }
+  }
+}
+
+// Article Element
+%article {
+  &--ajax-loaded {
+    @include animation(.75s opacity forwards);
+  }
+  &%is-single {
+    &%type-post {
+      %entry-content {
+        %row {
+          margin-left: -2.2em;
+          margin-right: -2.2em;
+            > div {
+              @include desktop() {
+                padding-left: 2.2em;
+                padding-right: 2.2em;
+              };
+            }
+        }
+        %p, %entry-footer {
+          @include desktop() {
+            margin-left: 20px;
+            margin-right: 20px;
+          };
+        }
+        %p {
+          %img {
+            margin-left: -20px;
+            margin-right: -20px;
+            width: calc(100% + 40px);
+          }
+        }
+      }
+    }
+  }
+  &%type-post {
+    &%first-post {
+      %entry-header {
+        @extend %block--curvy;
+      }
+    }
+    %entry-content {
+      padding: 40px 30px;
+    }
+  }
+  &%type-vacancy {
+    padding: rem(40) rem(20);
+    &:not(:last-child) {
+      border-bottom: 2px solid $silverTree;
+    }
+  }
+  &%type-staff {
+    @extend %article--f3-ui;
+    %img {
+      filter: grayscale(100%);
+    }
+  }
+  &%type-related {
+    @extend %article--f3-ui;
+    %entry-content {
+      padding: 10% 7%;
+    }
+  }
+  %entry-footer--share {
+    padding: em(60) 0;
+  }
+
+  %entry-footer, %entry-content {
+    &%entry-footer--share {
+      a {
+        @extend %green;
+        @extend %underline;
+      }
+    }
+    .nav--social-media {
+      %a {
+        @extend %green;
+        @extend %underline;
+      }
+    }
+  }
+}
+
+article { @extend %article; }
+.article--ajax-loaded { @extend %article--ajax-loaded; }
+
+.entry-header { @extend %entry-header !optional; }
+.entry-content { @extend %entry-content !optional; }
+.entry-footer { @extend %entry-footer !optional; }
+
+.entry-footer--share { @extend %entry-footer--share !optional; }
+
+.first-post { @extend %first-post; }
+.is-single { @extend %is-single; }
+
+.archive--staff { @extend %archive--staff; }
+.archive__post { @extend %archive__post; }
+
+.type-post { @extend %type-post; }
+.type-related { @extend %type-related; }
+.type-staff { @extend %type-staff; }
+.type-vacancy { @extend %type-vacancy; }
+.type-work { @extend %type-work; }
+
+.row { @extend %row; }
+
+img { @extend %img; }
+a { @extend %a; }

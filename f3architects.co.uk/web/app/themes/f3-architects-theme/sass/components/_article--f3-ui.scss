@@ -1,0 +1,57 @@
+%article--f3-ui {
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  %img {
+    margin: auto;
+    display: block;
+  }
+  %entry-content {
+    transition: .3s opacity ease-in;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1fae89+1,009ee3+100&0.8+0,0.8+100 */
+    background: -moz-linear-gradient(top, rgba(31,174,137,0.8) 0%, rgba(31,174,137,0.8) 1%, rgba(0,158,227,0.8) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(31,174,137,0.8) 0%,rgba(31,174,137,0.8) 1%,rgba(0,158,227,0.8) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(31,174,137,0.8) 0%,rgba(31,174,137,0.8) 1%,rgba(0,158,227,0.8) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc1fae89', endColorstr='#cc009ee3',GradientType=0 ); /* IE6-9 */
+    @include mobile () {
+      background: rgba(0, 0, 0, 0.4);
+    };
+    position: absolute;
+    top: 0;
+    margin: auto;
+    padding: 16% 15%;
+    height: 100%;
+    width: 100%;
+    @extend %flex;
+    @extend %flex--col;
+    @extend %flex--just-space-between;
+    color: white;
+    opacity: 0;
+    %a {
+      &:visited {
+        color: darken(white, 5%);
+      }
+      &:hover {
+        color: black;
+      }
+    }
+  }
+  &:hover {
+    %entry-content {
+      opacity: 1;
+    }
+  }
+  @include mobile() {
+    %entry-content {
+      opacity: 1;
+    }
+  };
+}
+
+%article--f3-ui-active {
+  @extend %article--f3-ui;
+  background: linear-gradient(to bottom, rgba(31,174,137,0.5) 0%,rgba(31,174,137,0.5) 1%,rgba(0,158,227,0.5) 100%);
+  %entry-content {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,50 @@
+{# base/components/video/video.twig #}
+
+{#
+   Video
+
+   @bem {Array} ()
+    {
+       block {String}
+       element {String}
+       modifier {Array}
+    }
+    @attrs (Array)
+    @sources (array)
+    {
+      src
+    }
+
+#}
+{# Parameters #}
+{% set videoSources = sources ?? null %}
+{% set videoImg = img %}
+{% set videoAttrs = attrs ?? null %}
+{% set videoBem = bem ?? null %}
+
+{# Variables #}
+{% set videoBemDefault = [{ block: 'video' , modifier: [''] }] %}
+{% set videoBem = (navBem) ? videoBem|merge( videoBemDefault ) : videoBemDefault %}
+
+{# Output #}
+{% if videoSources %}
+
+   {% import 'macros.twig' as mcro %}
+
+   {% set videoInnerHTML %}
+
+      {% if videoSources|length > 1 %}
+        {% for key,source in videoSources %}
+            {{ mcro.createHTMLTag( 'source', { src: source, type: 'video/' ~ key }, [], true ) }}
+        {% endfor %}
+      {% else %}
+
+      {% endif %}
+
+      {{ mcro.createHTMLTag( 'img', { src: videoImg }, [], true ) }}
+
+   {% endset %}
+
+   {{ mcro.createHTMLTag( 'video', navAttrs, navBem, videoInnerHTML ) }}
+
+ {% endif %}

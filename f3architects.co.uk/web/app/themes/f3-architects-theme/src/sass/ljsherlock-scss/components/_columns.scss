@@ -1,0 +1,10 @@
+%article-columns {
+  columns: 2 350px;
+  column-gap: 20px;
+  @include mobile() {
+    columns: initial;
+    column-gap: initial;
+  };
+}
+
+.columns { @extend %article-columns; }

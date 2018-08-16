@@ -1,0 +1,14 @@
+{
+    "name": "F3Architects",
+    "short_name": "F3Architects",
+    "icons": [
+        {
+            "src": "android-chrome-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#1fae89",
+    "background_color": "#1fae89",
+    "display": "standalone"
+}

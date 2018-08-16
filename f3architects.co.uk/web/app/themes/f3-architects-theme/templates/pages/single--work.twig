@@ -1,0 +1,28 @@
+{# pages/single/post.twig #}
+
+{#
+   Single Post Page
+   @param {Post Object} post
+#}
+
+{# Parameters #}
+{% set postWorkObj = post ?? null %}
+
+{# Variables #}
+{% set postBem = [{ block: 'post'}] %}
+
+{# Output #}
+{% extends ['templates-app/templates/app.twig', 'templates/app.twig'] %}
+
+   {% block app %}
+
+      {% import 'macros.twig' as mcro %}
+
+      {% include 'components/post-work--content.twig' with { post: postWorkObj, bem: [{ block: 'is-single' }] } %}
+
+      <div class="block block--curvy block--green typography">
+        <h3 class="h1">{{ 'related ' ~ post.post_type_obj.labels.name  }}</h2>
+        {% include 'components/post--content-related-posts.twig' with { posts: postWorkObj.relatedPosts } %}
+      </div>
+
+   {% endblock %}

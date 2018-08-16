@@ -1,0 +1,76 @@
+{# base/components/menuu.twig #}
+
+{#
+  Menu
+
+  From the menu object create a menu
+
+  @param {Array} bem (optional)
+  {
+    block {String}
+    element {String}
+    modifier {Array}
+  }
+
+  @param {Array} attrs (optional)
+  {
+    Mixed
+  }
+
+  @param {Timber Menu Object}
+#}
+
+{# Parameters #}
+{% set menuArray = menu ?? null %}
+{% set menuAttrs = attrs ?? null %}
+{% set menuBem = bem ?? null %}
+{% set menuItemAttrs = [] %}
+
+
+{# Variables #}
+{% set menuBemDefault = [{ block: 'nav' }] %}
+{% set menuBem = (menuBem) ? menuBem|merge( menuBemDefault ) : menuBemDefault %}
+
+
+{# Output #}
+{% if menuArray %}
+
+   {% import 'macros.twig' as mcro %}
+
+   {% set navHTML %}
+      {% for item in menuArray %}
+      <li>
+        {% if menuItemAttrFields %}
+            {% set menuItemAttrs = [] %}
+            {% for field in menuItemAttrFields %}
+                {% set menuItemAttrs = menuItemAttrs|merge({ (field): (attribute(item, field)) }) %}
+            {% endfor %}
+        {% endif %}
+
+        {# create button #}
+        {{ mcro.menuItem(item, posts, post, favourites.site.url, menuItemAttrs) }}
+
+        {% if item._children is not null or item.children is not null %}
+        <ul>
+          {% for child in item.children %}
+          <li>
+            {% if menuItemAttrFields %}
+                {% set menuItemAttrs = [] %}
+                {% for field in menuItemAttrFields %}
+                    {% set menuItemAttrs = menuItemAttrs|merge({ (field): (attribute(child, field)) }) %}
+                {% endfor %}
+            {% endif %}
+
+            {# create button #}
+            {{ mcro.menuItem(child, posts, post, favourites.site.url, menuItemAttrs) }}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endfor %}
+   {% endset %}
+
+   {{ mcro.createHTMLTag( 'nav', menuAttrs, menuBem, navHTML ) }}
+
+{% endif %}

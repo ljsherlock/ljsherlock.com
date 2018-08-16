@@ -1,0 +1,43 @@
+{# pages/single/post.twig #}
+
+{#
+   Single Post Page
+   @param {Post Object} post
+#}
+
+{# Parameters #}
+{% set contentHeaderPost = post ?? null %}
+
+{# Variables #}
+{% set contentHeaderBem = [{ block: 'entry-header'}] %}
+{% set contentHeaderAttrs = attrs %}
+
+{# Output #}
+  {% import 'macros.twig' as mcro %}
+
+  <div class="wrap--break-lg typography">
+    {% if contentHeaderPost.is_single %}
+      <h1 class="h2">{{ contentHeaderPost.title }}</h1>
+    {% else %}
+      <h2>{{ contentHeaderPost.title }}</h2>
+    {% endif %}
+    <time class="h1">{{ contentHeaderPost.date('j.m.y') }}</time>
+  </div>
+
+    {% if contentHeaderPost.is_single %}
+      <div class="wrap--break-lg typography">
+        <h5 class="bold">{{ contentHeaderPost.taxonomyObjs.category.labels.name }}</h5>
+        <nav class="nav nav--row">
+          <h5>
+            {% include 'components/menu.twig'  with {
+               menu: contentHeaderPost.categories,
+               bem: [{block: 'nav', modifier: ['categories'] }, {block: 'grid', modifier: ['gutter-sm-right']} ]
+            } %}
+
+          </h5>
+        </nav>
+      </div>
+      <div class="wrap--break-xlg typography">
+        {% include 'components/social-share-icons.twig' with { bem: [ {block: 'grid', modifier: ['gutter-md-right']} ], link: post.link, text: post.title } %}</h2>
+      </div>
+  {% endif %}

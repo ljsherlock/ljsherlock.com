@@ -1,0 +1,57 @@
+{# pages/page.twig #}
+
+{#
+   Page
+   @param {Post Object} post
+#}
+
+{# Parameters #}
+{% set servicesTerms = app.services ?? null %}
+
+{# Variables #}
+
+{# Output #}
+{% extends ['templates-app/templates/page.twig', 'templates/page.twig'] %}
+
+   {% import 'macros.twig' as mcro %}
+
+   {% block page %}
+
+      <div class="grid grid--col grid--gutter-md-bottom">
+
+        {% for service in services %}
+
+          {% embed 'components/post--content.twig' with {
+            post: post, bem: [
+              {block: 'article', modifier: ['services']},
+              {block: 'block', modifier: ['curvy', 'white']}
+            ] } %}
+            {% block articleInnerHTML %}
+              <div class="grid grid--col grid--gutter-xlg-bottom">
+
+                <header class="entry-header article--services__description">
+                  <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 typography">
+                      <h1>{{ service.title }}</h1>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 typography">
+                      <h3 class="h2">{{ service.content }}</h3>
+                      <h5><a class="green" href="{{ service.link.permalink }}">View {{service.plural}} Projects</a></h5>
+                    </div>
+                  </div>
+                </header>
+
+                <footer class="entry-footer article--services__related-posts gird grid--gutter-md-bottom">
+                  <h3>{{ service.plural ~ ' expertise' }}</h3>
+                  {% include 'components/post--content-related-posts.twig' with { posts: service.posts, bem: [{block: 'related-posts__post'}] } %}
+                </footer>
+
+              </div>
+            {% endblock %}
+          {% endembed %}
+
+        {% endfor %}
+
+      </div>
+
+   {% endblock %}

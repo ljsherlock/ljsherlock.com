@@ -7,4 +7,8 @@ vault_wordpress_sites:
   ljsherlock.com:
     admin_password: admin
     env:
-      db_password: Missioncontrol1992
+      db_password: admin
+  f3architects.co.uk:
+    admin_password: admin
+    env:
+      db_password: admin

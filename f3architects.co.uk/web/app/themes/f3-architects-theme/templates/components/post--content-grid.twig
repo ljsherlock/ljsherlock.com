@@ -1,0 +1,64 @@
+{# components/page-header.twig #}
+
+{#
+   Page Header
+   @param {Array} bem (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @param {Array} attrs (optional)
+   {
+      Mixed
+   }
+   @param {Obj} post
+
+#}
+
+{# Parameters #}
+
+{% set postContentBem = bem ?? null %}
+{% set postContentAttrs = attrs ?? null %}
+{% set postContentPost = post %}
+
+{# Variables #}
+{% set postContentBemDefault = [{ block : postContentPost.class}, { block: 'first-post'}] %}
+{% set postContentBem = (postContentBem) ? postContentBem|merge(postContentBemDefault) : postContentBemDefault %}
+{% set postContentAttrs = { id: postContentPost.ID } %}
+
+{# Output #}
+{% if postContentPost %}
+
+  {% import 'macros.twig' as mcro %}
+
+  {% set postContentInnerHTML %}
+
+    <header class="entry-header">
+      {{ postContentPost.post_thumbnails.landscape_1_column__media.img }}
+    </header>
+
+    <div class="entry-content">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 typography">
+          {% include 'components/post--content-header.twig' with { post: postContentPost } %}
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 typography">
+            {% if postContentPost.is_single %}
+              {{ postContentPost.content }}
+            {% else %}
+              <p>{{ postContentPost.post_content|excerpt(50) }}</p>
+              <h5><a class="green underline" href="{{ post.link }}">Read full article</a></h5>
+            {% endif %}
+            {% if postContentPost.is_single %}
+              {% include 'components/post--content-footer.twig' %}
+            {% endif %}
+        </div>
+      </div>
+    </div>
+
+  {% endset %}
+
+  {{ mcro.createHTMLTag('article', postContentAttrs, postContentBem, postContentInnerHTML) }}
+
+{% endif %}

@@ -1,0 +1,29 @@
+/*---------------------------------------------
+    btn.scss
+---------------------------------------------*/
+
+%btn--f3
+{
+  // @extend %h2;
+  text-transform: uppercase;
+  font-weight: 700; // Bold
+  letter-spacing: 2px;
+  background: linear-gradient(to top, rgba(31,174,137,1) 0%, rgba(31,174,137,1) 1%, rgba(31,174,137,1) 100%); /* FF3.6-15 */
+  border-radius: 20px 0;
+  padding: 20px 30px;
+  font-size: 2rem;
+  display: block;
+  width: 185px;
+  text-align: center;
+  transition: .3s background ease-in;
+  backface-visibility: hidden;
+  color: $white;
+  &:hover {
+    backface-visibility: hidden;
+    background: linear-gradient(to bottom, rgba(31,174,137,1) 0%,rgba(31,174,137,1) 1%,rgba(0,158,227,1) 100%);
+    color: $white;
+  }
+}
+
+
+.btn--f3 { @extend %btn--f3; }

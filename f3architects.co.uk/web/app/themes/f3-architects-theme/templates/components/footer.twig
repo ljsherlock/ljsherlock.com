@@ -1,0 +1,65 @@
+{# components/footer/footer.twig #}
+
+{#
+   Footer
+   @param {Array} bem (optional)
+      {
+         block {String}
+         element {String}
+         modifier {Array}
+      }
+   @param {Array} attrs (optional)
+   {
+      Mixed
+   }
+   @param {Array} social_media
+#}
+
+{# Parameters #}
+{% set footerSocialMedia = social_media ?? null %}
+{% set footerEmail = footer.email ?? null %}
+{% set footerTelephone = footer.telephone ?? null %}
+{% set footerPosts = footer.posts ?? null %}
+{% set footerMenu = footer.menu.items ?? null %}
+{% set footerCopyright = footer.copyright ?? null %}
+
+{# Varaibles #}
+
+{# Output #}
+{% import 'macros.twig' as mcro %}
+
+{% set innerHTML %}
+
+   <div class="footer__container">
+       <div class="footer__info grid-mobile grid-mobile--row grid-mobile--gutter-lg-bottom">
+           <a class="btn" target="_blank" href="http://maps.google.com/?q=Suite 4 5 Rochester Mews London NW1 9JB">
+             <address class="h2">
+               {% for item in global.company_address %}
+                   {{ item.line }}<br>
+               {% endfor %}
+             </address>
+           </a>
+           <div class="footer__contact">
+             <a class="h2 btn" href="tel:{{ global.telephone }}">{{ global.telephone }}</a>
+             <a class="h2 btn" href="mailto:{{ global.email }}">{{ global.email }}</a>
+           </div>
+           {% include 'components/social-icons.twig' with { icons: global.social_media, bem: [ {block: 'grid', modifier: ['gutter-md-right']} ] } %}
+       </div>
+       <div class="footer__legal-terms grid-mobile grid-mobile--row grid-mobile--gutter-lg-bottom">
+           {% include ['components/menu.twig', 'components/menu.twig' ] with { menu: global.footerMenu.items, bem: [{block: 'nav', modifier: ['footer'] }, { block: 'flex--just-end'} ] } %}
+           <div class="footer__legal">
+               <p class="h5">{{ global.copyright }}</p>
+               <div class="footer__terms">
+                   <p class="h5">Registered in England and Wales Company Number OC337658.</p>
+                   <p class="h5">Registered Office 1st FLoor, London W1G 9DQ</p>
+               </div>
+           </div>
+           <div class="footer__site-by">
+               <h5>Site by <a class="btn" href="http://www.twoboys.co.uk">Two Boys</a></h5>
+           </div>
+       </div>
+   </div>
+
+{% endset %}
+
+{{ mcro.createHTMLTag('footer', {}, [{block: 'site'}], innerHTML) }}

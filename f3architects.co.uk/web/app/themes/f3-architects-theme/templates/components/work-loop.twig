@@ -1,0 +1,43 @@
+{# work loop #}
+
+{# components/work-loop/work-loop.twig #}
+
+{#
+   Page
+   @param {Post Object} post
+#}
+
+{# Parameters #}
+{% set workLoopPosts = posts ?? null %}
+{% set workLoopBem = bem ?? null %}
+
+{% for post in workLoopPosts.postsArray %}
+
+  {% if loop.index is odd %}
+    <div class="grid-desktop grid-desktop--row grid-desktop--gutter-md-right
+                grid-tablet grid-tablet--row grid-tablet--gutter-md-right
+                grid-mobile grid-mobile--col grid-mobile--gutter-md-bottom">
+      <div class="grid-desktop__50-of-100
+                  grid-tablet__50-of-100
+                  grid-molie__100-of-100">
+        {% include 'post-work--content.twig' with { post: post, bem: workLoopBem } %}
+      </div>
+
+  {% elseif loop.index is even %}
+      <div class="grid-desktop__50-of-100
+                  grid-tablet__50-of-100
+                  grid-molie__100-of-100">
+        {% include 'post-work--content.twig' with { post: post, bem: workLoopBem } %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if loop.last and loop.index is odd %}
+      <div class="grid-desktop__50-of-100
+                grid-tablet__50-of-100
+                grid-molie__100-of-100">
+      </div>
+    </div>
+  {% endif %}
+
+{% endfor %}
